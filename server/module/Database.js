@@ -48,7 +48,7 @@ class Database {
     } else {
       this.client = new Client(process.env.DATABASE_URL);
       this.client.connect();
-      this.createTables();
+      this.migrate();
     }
   }
 
@@ -61,12 +61,9 @@ class Database {
     return new Database();
   }
 
-  createTables(req, resp) {
+  migrate(req, resp) {
     this.query(usersTableShema);
     this.query(parcelsTableShema);
-    // const query = `CREATE TABLE IF NOT EXISTS test(id int)`;
-    // this.query(query);
-    //resp.statusCode = 201;
     return {
       status: 'ok',
       message: 'tables created'

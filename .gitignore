@@ -12,3 +12,4 @@
 /nbproject/private/
 .*lock.json
 .npmrc
+.env

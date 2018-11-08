@@ -19,7 +19,7 @@ resp.json(result);
 }
 
 function createTables(req, resp) {
- resp.json(db.createTables(req,resp));
+ resp.json(db.migrate(req,resp));
 }
 
 async function dropTables(req,resp){
