@@ -1,0 +1,33 @@
+{
+    "name": "sendIt",
+    "version": "1.0.0",
+    "keywords": [
+        "util",
+        "functional",
+        "server",
+        "client",
+        "browser"
+    ],
+    "author": "ndifreke",
+    "contributors": [],
+    "dependencies": {},
+    "scripts": {
+        "lint": "eslint .",
+        "test": "mocha ./test",
+        "start": "node index.js",
+        "coverage": "node node_modules/.bin/istanbul cover _mocha -- -R spec",
+        "coveralls": "cat ./coverage/lcov.info | node node_modules/.bin/coveralls"
+    },
+    "devDependencies": {
+        "mocha": "latest",
+        "chai":"latest",
+        "eslint": "^5.8.0",
+        "mocha-lcov-reporter": "^1.2.0",
+        "istanbul": "~0.2.4",
+        "coveralls": "~2.7.1",
+        "eslint-config-airbnb": "^17.1.0",
+        "eslint-plugin-import": "^2.14.0",
+        "eslint-plugin-jsx-a11y": "^6.1.2",
+        "eslint-plugin-react": "^7.11.1"
+    }
+}
