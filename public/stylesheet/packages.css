@@ -1,0 +1,88 @@
+#packageOption{
+ display: block;
+}
+.package-preview{
+ background-color: #FFCDD2;
+ margin-top: 40px;
+ cursor: default;
+ position: relative;
+}
+
+.package-content{
+ margin-left: -3px;
+ margin-right: -3px;
+ border-top-style: none;
+ border-top-left-radius: 0px;
+ border-bottom-right-radius: 0px;
+ padding: 10px;
+}
+
+.package{
+ display: block;
+}
+#package-btn{
+ display: flex;
+}
+
+.meta{
+ display: inline-block;
+}
+section.package{
+ margin: 16px;
+}
+.cancel{
+ width: 100px;
+ background: url("../images/bin.svg") no-repeat;
+ text-transform: uppercase;
+}
+.edit{
+ width: 100px;
+ background: url("../images/edit.svg") no-repeat;
+ text-transform: uppercase;
+}
+
+#percel-description-input{
+ font-family: cursive;
+ border-radius: 4px;
+ font-size: 20px;
+ width: 90%;
+ outline: none;
+ overflow: auto;
+ padding:2% 5%;
+}
+table#sort-table td, table#sort-table th{
+ padding:0px;
+}
+
+
+li.divider{
+ margin-left: -20px;
+ padding-left: -10px;
+ width: 200px;
+}
+
+/************Admin section ***************/
+.search-icon {
+ background: url(../images/search.svg) no-repeat;
+ cursor: pointer;
+ background-size: 31px 42px;
+ width: 45px;
+ height: 28px;
+ border-style: none;
+ outline: none;
+}
+
+#search{
+ display: inline;
+ border:1px solid gray;
+ border-radius: 2px;
+ padding: 5px;
+ margin-left: 41%
+}
+.package-content hr{
+ margin:15px;
+}
+.adminOption{
+ display: block;
+}
+

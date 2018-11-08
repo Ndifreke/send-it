@@ -1,0 +1,139 @@
+
+.main{
+    display:flex;
+    width: 100vw;
+}
+
+h1,h2,h3,h4,h5{
+    font-family:  'Roboto','sans-serif';
+    color:#212121;
+    border-bottom: 4px solid #BDBDBD;
+}
+
+.botton, .package-preview, .active-btn{
+    cursor:pointer;
+    font-family: "liberaton mono";
+    padding: 5px 5px;
+    margin: 0px,10px;
+    text-decoration: none;
+    border-radius: 2px;
+    border-style: none;
+}
+
+.prim-btn{
+    background: rgb(55,160,0);
+    color:white;
+    padding: 9px 78px;
+    font-size: 15px;
+}
+
+.elevate, .active-btn:hover, .prim-btn:hover,.package-preview:hover, .position-label:hover{
+    box-shadow: 0px 1px 8px rgba(0,0,0,0.20);
+
+}
+.active-btn:hover
+{background-color:  #FF5722;}
+
+nav ul{
+    display: flex;
+}
+
+li, ul, ol{
+    list-style: none;
+}
+
+.positon-bottom-right{
+    position: absolute;
+    right: 0px;
+    bottom: 0px;
+}
+
+main{
+    margin-top: 13vh;
+}
+
+#signupUI, #loginUI{
+    position: relative;
+    padding:10px;
+    min-width: 259px;
+    max-width: 580px;
+    width: 45vw;
+    border: none;
+    margin:auto;
+    margin-top: 25vh;
+}
+
+
+
+.align-center{
+    text-align: center;
+}
+.align-right{
+    text-align: right;
+}
+.fit-width{
+    width: fit-content;
+}
+input[type='text'],input[type='email'], input[type='tel'],input[type='password']{
+    font-family: serif;
+    width:40%;
+    border-top: none;
+    border-right: none;
+    border-left: none;
+    font-size: 16px;
+    display: inline-flex;
+    outline: none;
+    color:rgb(50,50,50);
+    font-weight: 100;
+}
+
+#logo{
+    background: url("../images/logo.svg") no-repeat;
+    width: 80px;
+    height: 80px;
+    background-size: 80px;
+}
+
+header{
+    background:#f1f1f1;
+    display: flex;
+    position: absolute;
+    right: 0px;
+    left:0px;
+    top:0px;
+    height: 15vh;
+}
+
+.display-none{
+    display: none;
+}
+
+.close-btn{
+    background: url("../images/close.svg") no-repeat;
+    background-size: 35px 35px;
+}
+
+.close-btn:hover{
+    background: url("../images/close_hover.svg") no-repeat;
+    background-size: 35px 35px;
+}
+.pointer, .close-btn{
+    border-style: none;
+    outline:none;
+    width: 35px;
+    height: 35px;
+}
+.pointer, .close-btn:hover{
+    cursor: pointer;
+}
+.active-btn{
+    background:#009688;
+    color:white;
+    padding: 5px 15px;
+    font-size: 15px;
+}
+a{
+    text-orientation : none;
+}
+
+

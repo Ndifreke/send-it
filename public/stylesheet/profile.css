@@ -1,0 +1,46 @@
+#about, #statistics{
+    padding: 25px;
+    display: block;
+    text-align: center;
+    width:-webkit-fill-available;
+    min-width: 193px;
+    padding-bottom: 30px;
+}
+
+
+.stats-badge{
+    padding: 3px;
+    width: 100px;
+    height: 100px;
+    display: table-cell;
+    vertical-align: middle;
+    border-radius: 50%;
+    border:5px solid #448AFF;
+}
+#aveter-container{
+    display: flex;
+    margin: auto;
+    width: 20%;
+}
+.badges{
+    display: inline;
+}
+
+#profile{
+    display: block;
+}
+#profile h1{
+    display: block;
+}
+
+@media screen and (max-wdith:450px){
+    .stats-badge{
+        padding: 3px;
+        width: 40px;
+        height: 40px;
+        display: table-cell;
+        vertical-align: middle;
+        border-radius: 50%;
+        border:5px solid gray;
+    }
+}
