@@ -1,0 +1,151 @@
+<html>
+
+    <head>
+        <title> Create It | SendIt </title>
+        <link type="text/css" rel="stylesheet" href="../stylesheet/main.css">
+        <link type="text/css" rel="stylesheet" href="../stylesheet/shared.css">
+        <link type="text/css" rel="stylesheet" href="../stylesheet/create.css">
+        <script type="text/javascript" src="../javascript/client_server.js"></script>
+        <script type="text/javascript" src="../javascript/ui_render.js"></script>
+        <script type="text/javascript" src="../javascript/responsive_ui.js"></script>
+        <script type="text/javascript" src="../javascript/location_services.js"></script>
+
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+
+    <body>
+
+        <header>
+            <a href='#' id="logo"> </a>
+            <nav class="positon-bottom-right">
+                <ul>
+                    <li>
+                        <!-- can use href to separate page at public/ui/login.html-->
+                        <a href='../../index.html' class="active-btn botton">
+                            SIGN OUT </a>
+                    </li>
+                </ul>
+            </nav>
+        </header>
+
+        <aside id='dashboard' class="elevate">
+            <a class="close-btn" id='dashboard-closer' onclick="toggle('dashboard')">
+            </a>
+
+            <ul>
+                <li onclick='showDashContent( "packages" )'>
+                    <div id="package-btn">
+                        <a href="packages.html" title="Profile" class='botton active-btn'>
+                            Packages</a>
+                        <input type="button" value="&plus;" id="dash-expand" onclick="toggle('dashboard')">
+                    </div>
+
+                    <ul id="packageOption">
+                        <li id='create-package'>
+                            <input class="active-btn" type="button" value="New Package" />
+                        </li>
+                    </ul>
+                </li>
+                <li class='divider'>
+                    <hr />
+                </li>
+
+                <li>
+                    <a href="profile.html" title="Profile" class='botton active-btn'>
+                        Profile </a>
+                </li>
+                <li class='divider'>
+                    <hr />
+                </li>
+                <li>
+                    <a href="settings.html" title="Settings" class='botton active-btn'>Settings
+                    </a>
+                </li>
+
+                <li class='divider'>
+                    <hr />
+                </li>
+                <li>
+                    <a href="admin.html" title="Admin" class='botton active-btn'>
+                        Admin </a>
+                </li>
+
+                <li class='divider'>
+                    <hr />
+                </li>
+            </ul>
+        </aside>
+        <!--*********************************************************************************************-->
+        <main id="main">
+            <button type="button" id="flow-btn"> </button>
+
+
+            <section id="main-content">
+                <h2 class="align-center"> Create New Percel </h2>
+                <div id="new-parcel-viewport" style="margin-top: -20px" class="elevate">
+
+                    <form class="align-center elevate" id="percel-form">
+
+                        <div id="create-field1">
+                            <input type="text" id="percel-name" placeholder="Percel Title">
+                            <br />
+
+                            <a href="#map-ui" class="place-picker" onclick="setActivePosition('parcel-origin')"></a>
+                            <input type="text" id="parcel-origin" placeholder="Origin">
+                            <br />
+
+                            <a href="#map-ui" class="place-picker" onclick="setActivePosition('parcel-destination')">
+                            </a>
+                            <input type="text" id="parcel-destination" placeholder="Destination">
+                            <br />
+                        </div>
+                        <div>
+                            <label for="percel-description-input"></label>
+                            <textarea rows="10" placeholder="More information About this percel"
+                                id="percel-description-input">
+																																																</textarea>
+                            <p>
+                                <input type="button" onclick="initMap" class="botton prim-btn"
+                                    value='Create It' id="createMap">
+                            </p>
+                        </div>
+                    </form>
+                    <div id="mapviewport">
+                        <div id="position-container" class="elevate">
+                            <div class="position-label" id="map-tip">
+                                <p><strong></strong>Tip: USE ANY OF
+                                    BELLOW METHOD
+                                    <hr /></strong></p>
+                                Enter Address into
+                                Destination/Origin input field and
+                                click on Location Picker icon
+                                <a href="#map-ui" class="place-picker"></a>
+                                to see result on this menu and Map.
+                                <hr />
+
+                                Click any location on the Map to get
+                                information displayed in this Menu
+                                <hr />
+                                Select the Place on this menu to
+                                Fill the input box field
+
+                            </div>
+                        </div>
+                        <div id="map-ui" class="elevate">
+
+                        </div>
+                    </div>
+
+                </div>
+
+
+            </section>
+
+        </main>
+
+        <script type="text/javascript" async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCVG4POFIVEKqFALXWDJKSF1o1HPaUI8zk&callback=initMap">
+        </script>
+    </body>
+
+</html>

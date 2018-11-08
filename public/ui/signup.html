@@ -1,0 +1,53 @@
+
+<!DOCTYPE html>
+<html>
+   <head>
+      <title>Create Account </title>
+      <link type="text/css" rel="stylesheet" href="../stylesheet/shared.css">
+      <link type="text/css"  rel="stylesheet" href="../stylesheet/main.css">
+      <link type="text/css"  rel="stylesheet" href="../stylesheet/signup.css">
+      <script type="text/javascript" src="../javascript/ui_render.js"></script>
+      <script type="text/javascript" src="../javascript/client_server.js"></script>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   </head>
+   <body>
+
+      <header> 
+         <a href='/sendIt/index.html' id="logo">  </a>
+         <nav class="positon-bottom-right"> 
+            <ul> 
+               <li> 
+                  <a href='login.html' class="active-btn botton"> LOG IN </a>
+               </li>
+            </ul>
+         </nav> 
+      </header>
+<!--*********************************************************************************************-->
+      <main id="main">
+         <div id="signupUI" class="elevate">
+
+            <form  class="align-center" id="signupForm">
+               <h2 class="align-center"> Create your SendIt Account </h2>
+               <input type="text" name="signupName"   placeholder="First Name">
+               <input type="text" name='signupLastName' placeholder="Last Name">
+               <br/>
+               <input type="email" name='signupEmail' placeholder="username@domain">
+               <br/>
+               <input type="tel" name='signupNumber' class="fit-width">
+               <br/>
+               <input type="password" name='signupPassword' placeholder="password"> 
+               <input type="password" name='signupComfirmpassword' 
+                      placeholder="confirm password">
+               <p>
+                  <input type="button" name="register" class="botton prim-btn"
+                         value='Register' onclick="signupUser()">
+               </p>
+            </form>
+         </div>
+      </main>
+
+   </body>
+
+</html>
+
