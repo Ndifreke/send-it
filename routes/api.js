@@ -38,4 +38,29 @@ function createOrder( req, resp, next ) {
 
 }
 
+function getParcel( req, resp, next ) {
+    resp.setHeader( "Content-Type", "text/json" );
+    let id = req.url.slice( 1 );
+    let json = Parcel.fetchById( id );
+
+    if ( /^\d+$/.test( id ) ) {
+        switch ( JSON.parse( json ).status ) {
+            case "ok":
+                resp.statusCode = 200;
+                resp.end( json );
+                break;
+            case "error":
+                resp.statusCode = 404;
+                let obj = JSON.parse( json );
+                obj.status = "Not Found";
+                resp.end( utils.formatJson( obj ) );
+        }
+    }
+    resp.statusCode = 400;
+    reply.status = "error";
+    reply.message = "Invalid request format or Argument";
+    resp.end( json );
+}
+
+
 module.exports.createParcel = createOrder;
