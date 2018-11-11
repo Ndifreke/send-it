@@ -37,7 +37,7 @@ function createParcel( req, resp, next ) {
         reply.message = e.message;
         resp.end( utils.formatJson( reply ) );
     }
-
+    next();
 }
 
 function getParcel( req, resp, next ) {
@@ -58,16 +58,19 @@ function getParcel( req, resp, next ) {
                 resp.end( utils.formatJson( obj ) );
         }
     }
+    let reply = {};
     resp.statusCode = 400;
     reply.status = "error";
     reply.message = "Invalid request format or Argument";
-    resp.end( json );
+    resp.end( utils.formatJson(reply));
+    next();
 }
 
 function getAllParcels( req, resp, next ) {
     resp.setHeader( "Content-Type", "text/json" );
     resp.statusCode = 200;
     resp.end( utils.formatJson( Parcel.getDB() ) );
+    next();
 }
 
 function cancelParcel( req, resp, next ) {
@@ -93,7 +96,46 @@ function cancelParcel( req, resp, next ) {
         reply.message = "Invalid request format or Argument";
         resp.end( utils.formatJson( reply ) );
     }
+    next();
 }
+
+function getUsersParcel( req, resp, id ) {
+    resp.setHeader( "Content-Type", "text/json" );
+    let parcels = Parcel.fetchByUserId( id );
+    let json = JSON.parse(parcels);
+    if(json.status === "error"){
+        json.status = "Not Found"
+        resp.statusCode = 404;
+        resp.end( utils.formatJson(json));
+    }
+    resp.end( parcels);
+    next();
+}
+
+function routeUsers( req, resp, next ) {
+    let path = req.url.slice( 1 ).split( "/" ); // extracting 1/parcels
+    if ( /^\d+$/.test( path[ 0 ] ) && /^parcels$/.test( path[ 1 ] )
+       ) {
+        getUsersParcel( req, resp, path[ 0 ] );
+    }
+    next();
+}
+
+function parcelRoute( req, resp, next ) {
+    console.log( req.method );
+    switch ( req.method ) {
+        case "GET":
+            getParcel( req, resp, next );
+            break;
+        case "PUT":
+            cancelParcel( req, resp, next );
+            break;
+        default:
+            //an error, method not supported
+    }
+    next();
+}
+
 
 module.exports.getParcel = getParcel;
 module.exports.cancelParcel = cancelParcel;

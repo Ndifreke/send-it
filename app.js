@@ -25,4 +25,13 @@ app.put( "/api/v1/parcels/", api.cancelParcel );
 //handle for both get parcel and put parcel
 app.use( "/api/v1/users", api.routeUsers );
 app.use( "/api/v1/parcels/", api.parcelRoute );
+
+app.use(function(req,resp){
+ resp.statusCode = 500;
+ let msg = {
+  status :"error",
+  message: "we dont quiit understand your request at this time. Project is WIP"
+ }
+ resp.end(JSON.stringify(msg), null, "\t");
+})
 http.createServer( app ).listen( app.get( "port" ) );
