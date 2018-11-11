@@ -4,7 +4,7 @@ let path = require( "path" );
 let bcrypt = require( "bcrypt" );
 let cookieParser = require( "cookie-parser" );
 let bodyParser = require( "body-parser" );
-let apis = require("./routes/api");
+let api = require( "./routes/api" );
 
 let app = express();
 
@@ -14,21 +14,15 @@ app.set( "port", process.env.PORT );
 app.use( express.static( path.join( __dirname, "public" ) ) );
 app.use( bodyParser() );
 
-// for powering front end pages
-/*
-app.get("/") //home page
-app.get("/user/:id/settings")
-app.get("api/v1/parcels") //get all parcels
-app.get("api/v1/parcels/:id") //get parel by id
-app.get("/api/users/:id/parcels") //get parcel by user
-app.put("/api/parcels/:id/cancel") //cancel parcel
-app.post("/api/parcels") //create new parcel
-app.get("api/v1/users/:id/")
-*/
-app.post("api/v1/parcels", apis.createParcel);
-//app.put("/api/v1/parcels", )
+
+app.post( "/api/v1/parcels", api.createParcel );
+
+app.get( "/api/v1/parcels", api.getAllParcels );
+
+app.put( "/api/v1/parcels/", api.cancelParcel );
 
 
-
-
+//handle for both get parcel and put parcel
+app.use( "/api/v1/users", api.routeUsers );
+app.use( "/api/v1/parcels/", api.parcelRoute );
 http.createServer( app ).listen( app.get( "port" ) );
