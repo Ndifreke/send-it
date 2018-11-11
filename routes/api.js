@@ -64,6 +64,12 @@ function getParcel( req, resp, next ) {
     resp.end( json );
 }
 
+function getAllParcels( req, resp, next ) {
+    resp.setHeader( "Content-Type", "text/json" );
+    resp.statusCode = 200;
+    resp.end( utils.formatJson( Parcel.getDB() ) );
+}
+
 module.exports.getParcel = getParcel;
 module.exports.cancelParcel = cancelParcel;
 module.exports.parcelRoute = parcelRoute;
