@@ -70,6 +70,31 @@ function getAllParcels( req, resp, next ) {
     resp.end( utils.formatJson( Parcel.getDB() ) );
 }
 
+function cancelParcel( req, resp, next ) {
+    resp.setHeader( "Content-Type", "text/json" );
+    let reply = {
+        status: "ok",
+        message: "success"
+    };
+    let id = req.url.slice( 1 );
+    if ( /^\d+$/.test( id ) ) {
+        if ( Parcel.changeStatus( id, Parcel.CANCELLED ) ) {
+            resp.statusCode = 201;
+            resp.end( utils.formatJson( reply ) );
+        }
+        //parcel does not exist
+        resp.statusCode = 404;
+        reply.status = "error";
+        reply.message = "Parcel with id " + id + " does not exist";
+        resp.end( utils.formatJson( reply ) );
+    } else {
+        resp.statusCode = 400;
+        reply.status = "error";
+        reply.message = "Invalid request format or Argument";
+        resp.end( utils.formatJson( reply ) );
+    }
+}
+
 module.exports.getParcel = getParcel;
 module.exports.cancelParcel = cancelParcel;
 module.exports.parcelRoute = parcelRoute;
