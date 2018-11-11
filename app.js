@@ -25,7 +25,7 @@ app.put("/api/parcels/:id/cancel") //cancel parcel
 app.post("/api/parcels") //create new parcel
 app.get("api/v1/users/:id/")
 */
-app.post("/parcels", apis.createParcel);
+app.post("api/v1/parcels", apis.createParcel);
 //app.put("/api/v1/parcels", )
 
 
