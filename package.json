@@ -14,7 +14,7 @@
     "scripts": {
         "lint": "eslint .",
         "test": "mocha ./test",
-        "start": "node index.js",
+        "start": "node app.js",
         "coverage": "node node_modules/.bin/istanbul cover _mocha -- -R spec",
         "coveralls": "cat ./coverage/lcov.info | node node_modules/.bin/coveralls"
     },
