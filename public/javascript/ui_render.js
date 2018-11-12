@@ -27,8 +27,6 @@ function signupUser () {
  * and the display property is the type of display. By default an id withoud display is set to
  * block display
  *  */
-
-
 function getElement ( identifier, attribute ) {
     switch ( attribute ) {
         case "class":
