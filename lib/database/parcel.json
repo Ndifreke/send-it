@@ -1,0 +1,33 @@
+{
+	"lastId": 2,
+	"parcelList": {
+		"1": {
+			"parcel": {
+				"userId": "10",
+				"name": "ndifreke",
+				"destination": "Lagos",
+				"destinationLatitude": "1457865",
+				"destinationLongitude": "1457858",
+				"origin": "Abuja",
+				"originLatitude": "787898",
+				"originLongitude": "4896598",
+				"status": "CANCELLED",
+				"createdAt": "Mon Nov 12 2018"
+			}
+		},
+		"2": {
+			"parcel": {
+				"userId": "10",
+				"name": "ndifreke",
+				"destination": "Lagos",
+				"destinationLatitude": "1457865",
+				"destinationLongitude": "1457858",
+				"origin": "Abuja",
+				"originLatitude": "787898",
+				"originLongitude": "4896598",
+				"status": "CANCELLED",
+				"createdAt": "Mon Nov 12 2018"
+			}
+		}
+	}
+}
