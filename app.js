@@ -22,7 +22,7 @@ app.get( "/api/v1/parcels", api.getAllParcels );
 app.put( "/api/v1/parcels/", api.cancelParcel );
 
 
-//handle for both get parcel and put parcel
+// handle for both get parcel and put parcel
 app.use( "/api/v1/users", api.routeUsers );
 app.use( "/api/v1/parcels/", api.parcelRoute );
 

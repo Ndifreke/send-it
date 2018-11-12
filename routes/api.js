@@ -37,7 +37,7 @@ function createParcel( req, resp, next ) {
         reply.message = e.message;
         resp.end( utils.formatJson( reply ) );
     }
-    next();
+   // next();
 }
 
 function getParcel( req, resp, next ) {
@@ -63,14 +63,14 @@ function getParcel( req, resp, next ) {
     reply.status = "error";
     reply.message = "Invalid request format or Argument";
     resp.end( utils.formatJson(reply));
-    next();
+    //next();
 }
 
 function getAllParcels( req, resp, next ) {
     resp.setHeader( "Content-Type", "text/json" );
     resp.statusCode = 200;
     resp.end( utils.formatJson( Parcel.getDB() ) );
-    next();
+    //next();
 }
 
 function cancelParcel( req, resp, next ) {
@@ -96,7 +96,7 @@ function cancelParcel( req, resp, next ) {
         reply.message = "Invalid request format or Argument";
         resp.end( utils.formatJson( reply ) );
     }
-    next();
+   // next();
 }
 
 function getUsersParcel( req, resp, id ) {
@@ -109,7 +109,7 @@ function getUsersParcel( req, resp, id ) {
         resp.end( utils.formatJson(json));
     }
     resp.end( parcels);
-    next();
+ //   next();
 }
 
 function routeUsers( req, resp, next ) {
@@ -118,11 +118,10 @@ function routeUsers( req, resp, next ) {
        ) {
         getUsersParcel( req, resp, path[ 0 ] );
     }
-    next();
+    //next();
 }
 
 function parcelRoute( req, resp, next ) {
-    console.log( req.method );
     switch ( req.method ) {
         case "GET":
             getParcel( req, resp, next );
@@ -133,7 +132,7 @@ function parcelRoute( req, resp, next ) {
         default:
             //an error, method not supported
     }
-    next();
+    //next();
 }
 
 
