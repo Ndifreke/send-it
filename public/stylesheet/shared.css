@@ -16,7 +16,7 @@ td ,th{
     position: fixed;
     left: 0px;
     top:0px;
-    width: 250px;
+    width: 270px;
     z-index: 2001;
     height: 100vh;
 
@@ -99,11 +99,17 @@ input[type=checkbox] + label{
     display: inline-block;
 }
 
+form#settingsUI{
+    width: 100vw;
+}
+
 input.prim-btn.botton{
-    padding: 5px 9px;
 }
 /* for desktop */
 @media screen and (min-width:760px){
+    #dash-expand{
+        display: none;
+    }
     .package-content{display: flex;}
     #main-content{ margin-left: 250px;  }
     #dashboard-closer{   display: none; }

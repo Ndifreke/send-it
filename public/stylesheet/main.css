@@ -7,10 +7,10 @@
 h1,h2,h3,h4,h5{
     font-family:  'Roboto','sans-serif';
     color:#212121;
-    border-bottom: 4px solid #BDBDBD;
+    margin-bottom: 10px;
 }
 
-.botton, .package-preview, .active-btn{
+.botton, .minor-btn, .package-preview, .active-btn{
     cursor:pointer;
     font-family: "liberaton mono";
     padding: 5px 5px;
@@ -20,11 +20,16 @@ h1,h2,h3,h4,h5{
     border-style: none;
 }
 
-.prim-btn{
+.prim-btn, .minor-btn{
     background: rgb(55,160,0);
     color:white;
     padding: 9px 78px;
     font-size: 15px;
+}
+
+.minor-btn{
+    padding: 8px;
+    width: initial;
 }
 
 .elevate, .active-btn:hover, .prim-btn:hover,.package-preview:hover, .position-label:hover{
@@ -80,11 +85,12 @@ input[type='text'],input[type='email'], input[type='tel'],input[type='password']
     border-top: none;
     border-right: none;
     border-left: none;
-    font-size: 16px;
+    font-size: 17px;
     display: inline-flex;
     outline: none;
     color:rgb(50,50,50);
     font-weight: 100;
+    margin:5px;
 }
 
 #logo{
@@ -129,7 +135,8 @@ header{
 .active-btn{
     background:#009688;
     color:white;
-    padding: 5px 15px;
+    padding: 8px 18px;
+    margin:10px;
     font-size: 15px;
 }
 a{
