@@ -21,50 +21,41 @@
             <header>
                   <a href='#' id="logo"> </a>
                   <nav class="positon-bottom-right">
-                        <ul>
-                              <li>
-                                    <a href='../../index.html' class="active-btn botton">
-                                          SIGN OUT
-                                    </a>
-                              </li>
-                        </ul>
+                    <ul>
+                      <li id="navigation-list">
+                        <a href="create.html" class='botton active-btn' title="create parcel order">
+                          New Package
+                        </a>
+                      </li>
+                      <li id="navigation-list">
+                        <a href='../../index.html' class="active-btn botton">
+                          Sign out </a>
+                      </li>
+                    </ul>
                   </nav>
             </header>
 
-            <aside id='dashboard' class="elevate">
-                  <a class="close-btn" id='dashboard-closer' onclick="toggle('dashboard')">
-                  </a>
-                  <ul>
-                        <li>
-                              <a href="packages.html" title="Percels" class='botton active-btn'>
-                                    Packages </a>
-                        </li>
-                        <li class='divider'>
-                              <hr />
-                        </li>
-
-                        <li onclick='showDashContent( "profile" )'>
-                              <input class="active-btn" type="button" value="Profile" />
-                        </li>
-                        <li class='divider'>
-                              <hr />
-                        </li>
-                        <li>
-                              <a href="settings.html" title="Settings" class='botton active-btn'>
-                                    Settings </a>
-                        </li>
-                        <li class='divider'>
-                              <hr />
-                        </li>
-                        <li>
-                              <a href="admin.html" title="Admin" class='botton active-btn'>
-                                    Admin </a>
-                        </li>
-                        <li class='divider'>
-                              <hr />
-                        </li>
-                  </ul>
-            </aside>
+            <aside id='dashboard'>
+                        <a class="close-btn" id='dashboard-closer' onclick="toggle('dashboard')">
+                        </a>
+                        <ul class="dashboard">
+                          <li class="dashLink"> <a href="packages.html" value="Packages"> PARCELS </a>
+                          </li>
+                     
+                          <li class="dashLink active">
+                            <a title="Profile">
+                              PROFILE </a>
+                          </li>
+                          <li class="dashLink">
+                            <a href="settings.html" title="Settings">
+                              SETTINGS </a>
+                          </li>
+                          <li class="dashLink">
+                            <a href="admin.html" title="Admin">
+                              ADMINISTRATOR</a>
+                          </li>
+                        </ul>
+                      </aside>
             <!--*********************************************************************************************-->
             <main id="main">
 
@@ -117,6 +108,9 @@
 
                   </section>
             </main>
+            <footer>
+            
+                  </footer>
       </body>
 
 </html>

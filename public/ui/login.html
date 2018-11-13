@@ -1,52 +1,59 @@
-
 <!DOCTYPE html>
 <html>
+
    <head>
       <title>login</title>
       <link type="text/css" rel="stylesheet" href="../stylesheet/shared.css">
-      <link type="text/css"  rel="stylesheet" href="../stylesheet/main.css">
+      <link type="text/css" rel="stylesheet" href="../stylesheet/main.css">
       <script type="text/javascript" src="../javascript/ui_render.js"></script>
       <script type="text/javascript" src="../javascript/client_server.js"></script>
       <script type="text/javascript" src="../javascript/location_services.js"></script>
       <meta charset="UTF-8">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
    </head>
+
    <body>
-      <header> 
-         <a href='/sendIt/index.html' id="logo">  </a>
-         <nav class="positon-bottom-right"> 
+      <header>
+         <div id="logo">
+            <a href='/sendIt/index.html'> </a>
+         </div>
+         <nav class="positon-bottom-right">
             <ul> 
-               <li> 
-                  <a href="signup.html"  class="active-btn botton"> SIGN UP </a> 
+               <li  id="navigation-list">
+                  <a href="signup.html" class="active-btn botton">
+                     SIGN UP </a>
                </li>
             </ul>
-         </nav> 
+         </nav>
       </header>
-<!--*********************************************************************************************-->
+      <!--*********************************************************************************************-->
       <main id="main">
          <div id="loginUI" class="elevate">
 
             <h2 class="align-center"> Sign into SendIt Account </h2>
-            <form  class="align-center" id='loginForm' >
-               <input type="email" id="login-email" 
-                      placeholder="Click Continue to enter. No login needed for now"/>
-               <input type="password" name="login-password" placeholder="password"/>
+            <form class="align-center" id='loginForm'>
+               <label id="input-title">Email</label><br />
+               <input type="email" id="login-email" placeholder="Email" />
+               <label id="input-title">Password</label><br />
+               <input type="password" name="login-password" placeholder="password" />
                <p>
-                  <a href="packages.html">
+                  <a class="anchor" href="packages.html">
                      <input type="button" name="signin-btn" onclick='verifySignIn()'
-                         class="prim-btn botton" value='Continue'> 
+                        class="prim-btn botton" value='Submit'>
                   </a>
                </p>
 
-               <p class="align-right"> <a href=""> Recover Account</a>  </p>
+               <p class="align-right anchor"> <a href=""> Recover Account</a>
+               </p>
             </form>
          </div>
 
       </main>
 
-
+      <footer>
+            
+            </footer>
 
    </body>
 
 </html>
-

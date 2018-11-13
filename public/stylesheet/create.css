@@ -20,7 +20,7 @@ input#createMap.prim-btn.botton{
  margin: 11px;
  position: absolute;
  margin-top: 55;
- z-index: 2000;
+ z-index: 200;
  width: 270;
  height: 170px;
 }
@@ -78,7 +78,7 @@ form#new-percel-viewport.elevate{
 display: flex;
  }
  #create-field1{
-  width: 75%;
+ // width: 95%;
  }
 }
 @media screen and (min-width:1371px){
@@ -87,7 +87,7 @@ display: flex;
  }
  #percel-form {
   display: block;
-  width: 30%;
+  width: 45%;
 }
 #percel-description-input{
  height: 60%;

@@ -29,46 +29,26 @@
             </nav>
         </header>
 
-        <aside id='dashboard' class="elevate">
-            <a class="close-btn" id='dashboard-closer' onclick="toggle('dashboard')">
-            </a>
-            <ul>
-                <li>
-                    <div id="package-btn">
-                        <input class="active-btn" type="button" value="Admin" />
-                        <input type="button" value="&plus;" id="dash-expand" onclick="toggle('adminOption')">
-                    </div>
-
-                    <ul id="adminOption">
-                        <li id='create-package'>
-                            <a href="create.html" class='botton active-btn' title="create parcel order">
-                                New Package </a>
-                        </li>
-                        
-                    </ul>
-
-                </li>
-                <li class='divider'>
-                    <hr />
-                </li>
-
-                <li>
-                    <a href="profile.html" title="Profile" class='botton active-btn'>
-                        Profile </a>
-                </li>
-                <li class='divider'>
-                    <hr />
-                </li>
-                <li>
-                    <a href="settings.html" title="Settings" class='botton active-btn'>
-                        Settings </a>
-                </li>
-                <li class='divider'>
-                    <hr />
-                </li>
-
-            </ul>
-        </aside>
+        <aside id='dashboard'>
+                <a class="close-btn" id='dashboard-closer' onclick="toggle('dashboard')">
+                </a>
+                <ul class="dashboard">
+                  <li class="dashLink"> <a href="packages.html"> PARCELS </a>
+                   
+                  </li>          
+                  <li class="dashLink">
+                    <a href="profile.html" title="Profile">
+                      PROFILE </a>
+                  </li>
+                  <li class="dashLink">
+                    <a href="settings.html" title="Settings">
+                      SETTINGS </a>
+                  </li>
+                  <li class="dashLink active"  title="Admin">
+                      ADMINISTRATOR
+                  </li>
+                </ul>
+              </aside>
         <!--*********************************************************************************************-->
         <main id="main">
 
@@ -77,12 +57,12 @@
             <button type="button" id="flow-btn"> </button>
 
             <section id="main-content">
-             
-                    <form id="search">
-                        <input type="text" id="search-parcel" placeholder="Email or Percel ID">
-                        <input type="button" class="search-icon" input>
-                    </form>
-               
+
+                <form id="search">
+                    <input type="text" id="search-parcel" placeholder="Email or Percel ID">
+                    <input type="button" class="search-icon" input>
+                </form>
+
                 <section id='packages'>
                     <h2> Packages </h2>
 
@@ -118,7 +98,7 @@
                                     </span> Proccessing <br />
                                 </div>
                             </div>
-                            <hr />
+
 
 
 
@@ -212,6 +192,9 @@
             </section>
 
         </main>
+        <footer>
+            
+        </footer>
 
 
     </body>

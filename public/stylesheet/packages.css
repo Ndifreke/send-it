@@ -9,8 +9,8 @@
 }
 
 .package-content{
- margin-left: -3px;
- margin-right: -3px;
+ //margin-left: -3px;
+ //margin-right: -3px;
  border-top-style: none;
  border-top-left-radius: 0px;
  border-bottom-right-radius: 0px;
@@ -59,6 +59,7 @@ li.divider{
  margin-left: -20px;
  padding-left: -10px;
  width: 200px;
+ margin-bottom: 80px
 }
 
 /************Admin section ***************/
@@ -84,5 +85,8 @@ li.divider{
 }
 .adminOption{
  display: block;
+}
+.parcel-views{
+ display: none;
 }
 

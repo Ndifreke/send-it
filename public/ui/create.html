@@ -28,54 +28,27 @@
                 </ul>
             </nav>
         </header>
-
-        <aside id='dashboard' class="elevate">
-            <a class="close-btn" id='dashboard-closer' onclick="toggle('dashboard')">
-            </a>
-
-            <ul>
-                <li onclick='showDashContent( "packages" )'>
-                    <div id="package-btn">
-                        <a href="packages.html" title="Profile" class='botton active-btn'>
-                            Packages</a>
-                        <input type="button" value="&plus;" id="dash-expand" onclick="toggle('dashboard')">
-                    </div>
-
-                    <ul id="packageOption">
-                        <li id='create-package'>
-                            <input class="active-btn" type="button" value="New Package" />
-                        </li>
-                    </ul>
-                </li>
-                <li class='divider'>
-                    <hr />
-                </li>
-
-                <li>
-                    <a href="profile.html" title="Profile" class='botton active-btn'>
-                        Profile </a>
-                </li>
-                <li class='divider'>
-                    <hr />
-                </li>
-                <li>
-                    <a href="settings.html" title="Settings" class='botton active-btn'>Settings
-                    </a>
-                </li>
-
-                <li class='divider'>
-                    <hr />
-                </li>
-                <li>
-                    <a href="admin.html" title="Admin" class='botton active-btn'>
-                        Admin </a>
-                </li>
-
-                <li class='divider'>
-                    <hr />
-                </li>
-            </ul>
-        </aside>
+        <aside id='dashboard'>
+                <a class="close-btn" id='dashboard-closer' onclick="toggle('dashboard')">
+                </a>
+                <ul class="dashboard">
+                  <li class="dashLink"> <a value="Packages"> PARCELS </a>
+                  </li>
+             
+                  <li class="dashLink">
+                    <a href="profile.html" title="Profile">
+                      PROFILE </a>
+                  </li>
+                  <li class="dashLink">
+                    <a href="settings.html" title="Settings">
+                      SETTINGS </a>
+                  </li>
+                  <li class="dashLink">
+                    <a href="admin.html" title="Admin">
+                      ADMINISTRATOR</a>
+                  </li>
+                </ul>
+              </aside>
         <!--*********************************************************************************************-->
         <main id="main">
             <button type="button" id="flow-btn"> </button>
@@ -143,6 +116,9 @@
             </section>
 
         </main>
+        <footer>
+            
+            </footer>
 
         <script type="text/javascript" async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCVG4POFIVEKqFALXWDJKSF1o1HPaUI8zk&callback=initMap">
         </script>
