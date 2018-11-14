@@ -2,19 +2,19 @@
  display: block;
 }
 .package-preview{
- background-color: #FFCDD2;
+ background-color:#323544;
+ color:white;
  margin-top: 40px;
  cursor: default;
  position: relative;
 }
 
 .package-content{
- margin-left: -3px;
- margin-right: -3px;
- border-top-style: none;
- border-top-left-radius: 0px;
- border-bottom-right-radius: 0px;
- padding: 10px;
+    background: whitesmoke;
+    border-top-style: none;
+    border-top-left-radius: 0px;
+    border-bottom-right-radius: 0px;
+    padding: 10px;
 }
 
 .package{
@@ -32,12 +32,12 @@ section.package{
 }
 .cancel{
  width: 100px;
- background: url("../images/bin.svg") no-repeat;
+ background: url("../images/bin.png") no-repeat;
  text-transform: uppercase;
 }
 .edit{
  width: 100px;
- background: url("../images/edit.svg") no-repeat;
+ background: url("../images/edit.png") no-repeat;
  text-transform: uppercase;
 }
 
@@ -59,30 +59,40 @@ li.divider{
  margin-left: -20px;
  padding-left: -10px;
  width: 200px;
+ margin-bottom: 80px
 }
 
 /************Admin section ***************/
-.search-icon {
+.search-icon {   
  background: url(../images/search.svg) no-repeat;
  cursor: pointer;
- background-size: 31px 42px;
+ background-size: 51px 45px;
  width: 45px;
- height: 28px;
+ top: 11px;
+ height: 58px;
  border-style: none;
+ position: absolute;
  outline: none;
+ border: none;
+}
+form#search{
+ width: 300px;
+    position: absolute;
+    right: 0px;
 }
 
-#search{
- display: inline;
- border:1px solid gray;
- border-radius: 2px;
- padding: 5px;
- margin-left: 41%
+form#search input[type=text]{
+ margin-right: 22px;
+ border-bottom: 2px solid #FF5722;
 }
+
 .package-content hr{
  margin:15px;
 }
 .adminOption{
  display: block;
+}
+.parcel-views{
+ display: none;
 }
 
