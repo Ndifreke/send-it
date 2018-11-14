@@ -1,9 +1,9 @@
 {
-	"lastId": 6,
+	"lastId": 4,
 	"parcelList": {
 		"1": {
 			"parcel": {
-				"userId": "324",
+				"userId": "584",
 				"name": "/lm",
 				"destination": "Lagos",
 				"destinationLatitude": "1457865",
@@ -12,12 +12,12 @@
 				"originLatitude": "787898",
 				"originLongitude": "4896598",
 				"status": "PENDING",
-				"createdAt": "Mon Nov 12 2018"
+				"createdAt": "Wed Nov 14 2018"
 			}
 		},
 		"2": {
 			"parcel": {
-				"userId": "967",
+				"userId": "477",
 				"name": "/lm",
 				"destination": "Lagos",
 				"destinationLatitude": "1457865",
@@ -25,13 +25,13 @@
 				"origin": "Abuja",
 				"originLatitude": "787898",
 				"originLongitude": "4896598",
-				"status": "CANCELLED",
-				"createdAt": "Mon Nov 12 2018"
+				"status": "PENDING",
+				"createdAt": "Wed Nov 14 2018"
 			}
 		},
 		"3": {
 			"parcel": {
-				"userId": "645",
+				"userId": "5",
 				"name": "/lm",
 				"destination": "Lagos",
 				"destinationLatitude": "1457865",
@@ -40,12 +40,12 @@
 				"originLatitude": "787898",
 				"originLongitude": "4896598",
 				"status": "PENDING",
-				"createdAt": "Mon Nov 12 2018"
+				"createdAt": "Wed Nov 14 2018"
 			}
 		},
 		"4": {
 			"parcel": {
-				"userId": "400",
+				"userId": "5",
 				"name": "/lm",
 				"destination": "Lagos",
 				"destinationLatitude": "1457865",
@@ -54,35 +54,7 @@
 				"originLatitude": "787898",
 				"originLongitude": "4896598",
 				"status": "PENDING",
-				"createdAt": "Mon Nov 12 2018"
-			}
-		},
-		"5": {
-			"parcel": {
-				"userId": "962",
-				"name": "/lm",
-				"destination": "Lagos",
-				"destinationLatitude": "1457865",
-				"destinationLongitude": "1457858",
-				"origin": "Abuja",
-				"originLatitude": "787898",
-				"originLongitude": "4896598",
-				"status": "PENDING",
-				"createdAt": "Mon Nov 12 2018"
-			}
-		},
-		"6": {
-			"parcel": {
-				"userId": "907",
-				"name": "/lm",
-				"destination": "Lagos",
-				"destinationLatitude": "1457865",
-				"destinationLongitude": "1457858",
-				"origin": "Abuja",
-				"originLatitude": "787898",
-				"originLongitude": "4896598",
-				"status": "PENDING",
-				"createdAt": "Mon Nov 12 2018"
+				"createdAt": "Wed Nov 14 2018"
 			}
 		}
 	}

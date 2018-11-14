@@ -80,12 +80,11 @@ ul.dashboard {
 #flow-btn {
     z-index: 2;
     position: sticky;
-    top: 15vh;
+    top: 0;
     margin-left: -4px;
     background: url(../images/overflow.svg) no-repeat;
     background-size: 35px 35px;
     width: 31px;
-    margin-top: 35px;
     height: 26px;
     cursor: pointer;
     outline: none;
@@ -98,7 +97,7 @@ ul.dashboard {
     outline: none;
     position: absolute;
     right: 3px;
-    /* bottom: 7px; */;
+     bottom: 8px;
 }
 
 #dash-expand {
@@ -118,7 +117,6 @@ hr {
 button.cancel,
 button.edit,
 .place-picker {   
-     position: absolute;
     background-size: 24px 45px;
     width: 45px;
     height: 25px;
@@ -243,6 +241,9 @@ input.prim-btn.botton {}
 
     #settingsUI * {
         width: -webkit-fill-available;
+    }
+    #signupUI{
+        width: 80%;
     }
 
     form#settingsUI {

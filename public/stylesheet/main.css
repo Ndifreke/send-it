@@ -26,7 +26,6 @@ h4 {
     background: url("../images/travel.jpg") no-repeat center center fixed;
     background-size: cover;
     height: 100%;
-    overflow: hidden;
    
 }
 
@@ -95,19 +94,18 @@ li#create-package {
 }
 
 main {
-    margin-top: 12vh;
 }
 
 #signupUI,
 #loginUI {
+    margin-top:35px;
     position: relative;
     padding: 10px;
     min-width: 259px;
     max-width: 580px;
-    width: 50%;
+    //width: 50%;
     border: none;
     margin: auto;
-    margin-top: 200px;
     background: whitesmoke;
 }
 
@@ -158,7 +156,7 @@ input[type='password'] {
 
 header{
     z-index: 3000;
-    position: fixed;
+    position: relative;
     top: 0;
     left: 0px;
     right: 0px;

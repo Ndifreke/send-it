@@ -109,8 +109,8 @@ form#new-percel-viewport.elevate {
 
 }
 
-textarea {
-  height: 45%;
+textarea#percel-description-input {
+width: 90%;
 }
 
 @media screen and (min-width:500px) {

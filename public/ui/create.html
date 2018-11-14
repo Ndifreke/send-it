@@ -32,7 +32,8 @@
             <a class="close-btn" id='dashboard-closer' onclick="toggle('dashboard')">
             </a>
             <ul class="dashboard">
-                <li class="dashLink"> <a href="packages.html" value="Packages"> PARCELS </a>
+                <li class="dashLink"> <a href="packages.html" value="Packages">
+                        PARCELS </a>
                 </li>
 
                 <li class="dashLink">
@@ -62,7 +63,6 @@
 
                         <div id="create-field1">
                             <input type="text" id="percel-name" placeholder="Percel Title">
-                            
                             <br />
 
                             <a href="#map-ui" class="place-picker" onclick="setActivePosition('parcel-origin')"></a>
@@ -73,18 +73,23 @@
                             <a href="#map-ui" class="place-picker" onclick="setActivePosition('parcel-destination')">
                             </a>
                             <input type="text" id="parcel-destination" placeholder="Destination">
+                            
                             <br />
+                            
+                            <div>
+                                <textarea rows="10" placeholder="More information About this percel"
+                                    id="percel-description-input">
+                                    Some description of what the content or the state of the content
+                                </textarea>
+                            </div>
                             <p>
                                 <input type="button" onclick="initMap" class="botton prim-btn"
                                     value='Create It' id="createMap">
                             </p>
+                           
                         </div>
 
-                        <div>
-                            <textarea rows="10" placeholder="More information About this percel"
-                                id="percel-description-input">
-							</textarea>
-                        </div>
+
 
                         <div id="create-sumary" class="elevate">
 
