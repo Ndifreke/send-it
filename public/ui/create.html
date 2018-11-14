@@ -29,26 +29,26 @@
             </nav>
         </header>
         <aside id='dashboard'>
-                <a class="close-btn" id='dashboard-closer' onclick="toggle('dashboard')">
-                </a>
-                <ul class="dashboard">
-                  <li class="dashLink"> <a value="Packages"> PARCELS </a>
-                  </li>
-             
-                  <li class="dashLink">
+            <a class="close-btn" id='dashboard-closer' onclick="toggle('dashboard')">
+            </a>
+            <ul class="dashboard">
+                <li class="dashLink"> <a href="packages.html" value="Packages"> PARCELS </a>
+                </li>
+
+                <li class="dashLink">
                     <a href="profile.html" title="Profile">
-                      PROFILE </a>
-                  </li>
-                  <li class="dashLink">
+                        PROFILE </a>
+                </li>
+                <li class="dashLink">
                     <a href="settings.html" title="Settings">
-                      SETTINGS </a>
-                  </li>
-                  <li class="dashLink">
+                        SETTINGS </a>
+                </li>
+                <li class="dashLink">
                     <a href="admin.html" title="Admin">
-                      ADMINISTRATOR</a>
-                  </li>
-                </ul>
-              </aside>
+                        ADMINISTRATOR</a>
+                </li>
+            </ul>
+        </aside>
         <!--*********************************************************************************************-->
         <main id="main">
             <button type="button" id="flow-btn"> </button>
@@ -72,16 +72,20 @@
                             </a>
                             <input type="text" id="parcel-destination" placeholder="Destination">
                             <br />
-                        </div>
-                        <div>
-                            <label for="percel-description-input"></label>
-                            <textarea rows="10" placeholder="More information About this percel"
-                                id="percel-description-input">
-																																																</textarea>
                             <p>
                                 <input type="button" onclick="initMap" class="botton prim-btn"
                                     value='Create It' id="createMap">
                             </p>
+                        </div>
+
+                        <div>
+                            <textarea rows="10" placeholder="More information About this percel"
+                                id="percel-description-input">
+							</textarea>
+                        </div>
+
+                        <div id="create-sumary" class="elevate">
+
                         </div>
                     </form>
                     <div id="mapviewport">
@@ -117,8 +121,8 @@
 
         </main>
         <footer>
-            
-            </footer>
+
+        </footer>
 
         <script type="text/javascript" async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCVG4POFIVEKqFALXWDJKSF1o1HPaUI8zk&callback=initMap">
         </script>

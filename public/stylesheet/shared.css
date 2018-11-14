@@ -1,15 +1,12 @@
-
-
-
-html{
+html {
     width: 100%;
     height: 100%;
 }
+
 body {
     max-width: 100%;
     max-height: 100%;
     margin: 1%;
-    background: #f1f1f1;
 }
 
 td,
@@ -21,25 +18,32 @@ th {
 #signinUi {
     padding: 7%;
 }
-li,ul,ol {
+
+li,
+ul,
+ol {
     list-style: none;
 }
 
-#navigation-list{
+#navigation-list {
     margin-right: 20px;
 }
-.dashLink{
+
+.dashLink {
     padding-top: 25px;
     padding-bottom: 25px;
     padding-left: 15%;
-    color: #bbc0c4;
+    color:ghostwhite;
     border: 1px solid white;
     margin: 5px;
     border-radius: 2px;
 }
-.dashLink:hover, .active{
+
+.dashLink:hover,
+.active {
     background-color: #FF5722;
-    color:white;
+    color: white;
+    font-weight: bolder;
 }
 
 #input-title {
@@ -51,10 +55,10 @@ li,ul,ol {
     padding-top: 5vh;
     background-color: #323544;
     position: fixed;
-    top: 15vh;
+    top: 0;
     left: 0px;
     width: 270px;
-    z-index: 2001;
+    z-index: 4001;
     height: 100vh;
 }
 
@@ -94,7 +98,7 @@ ul.dashboard {
     outline: none;
     position: absolute;
     right: 3px;
-    top: 3px
+    /* bottom: 7px; */;
 }
 
 #dash-expand {
@@ -113,11 +117,14 @@ hr {
 .icon,
 button.cancel,
 button.edit,
-.place-picker {
+.place-picker {   
+     position: absolute;
     background-size: 24px 45px;
     width: 45px;
-    height: 45px;
+    height: 25px;
     border-style: none;
+    right: 78px;
+    top: 0px;
 }
 
 input[type=checkbox] {
@@ -131,29 +138,65 @@ input[type=checkbox]+label {
     min-height: 45px;
     display: inline-block;
 }
+
 form#settingsUI {
+    background: whitesmoke;
 }
 
 input.prim-btn.botton {}
 
-.inline{
+.inline {
     display: inline-flex;
 }
-.inline-block{
+
+.inline-block {
     display: inline-block;
 }
-.block{
+
+.block {
     display: block;
 }
 
 /* for desktop */
+
+@media screen and (min-width:1000px) {
+    #settingsUI * {
+        width: 70%;
+    }
+
+    form#settingsUI {
+        margin: 0 20%;
+        padding: 20px;
+    }
+
+    #about {
+        display: flex;
+    }
+
+    #aveter-container {
+        width: 50%;
+    }
+}
+
 @media screen and (min-width:760px) {
+
+    form#settingsUI {
+        margin: 0 14%;
+        padding: 20px;
+    }
+
+    #about {
+        display: flex;
+    }
+
     #dash-expand {
         display: none;
     }
+
     .package-content hr {
         margin: 15px;
     }
+
     .package-content {
         display: flex;
     }
@@ -181,23 +224,40 @@ input.prim-btn.botton {}
     aside#dashboard {
         display: block;
     }
+
     #new-parcel-viewport {
         display: flex;
     }
-    #main{
+
+    #main {
         margin-left: 2%;
     }
- }
+}
 
 
 /* for mobile */
 @media screen and (max-width : 760px) {
+    #aveter-container {
+        width: 80%;
+    }
+
+    #settingsUI * {
+        width: -webkit-fill-available;
+    }
+
+    form#settingsUI {
+        margin: 0 5%;
+        padding: 20px;
+    }
+
     #new-parcel-viewport {
         display: block;
     }
+
     .inline {
         display: block;
     }
+
     #main-content {
         margin-left: 1%;
     }

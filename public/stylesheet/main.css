@@ -6,10 +6,9 @@
 h1,
 h2,
 h3,
-h4,
-h5 {
+h4 {
     font-family: 'Roboto', 'sans-serif';
-    color: #212121;
+    color:#FF5708;
     margin-bottom: 10px;
 }
 
@@ -17,6 +16,18 @@ h5 {
     border: 1px;
     color: #0095ff;
     background: snow;
+}
+#home{
+    width: 100%;
+    height: 100%;
+ 
+    max-width: 100%;
+    min-width: 100%;
+    background: url("../images/travel.jpg") no-repeat center center fixed;
+    background-size: cover;
+    height: 100%;
+    overflow: hidden;
+   
 }
 
 .botton,
@@ -84,7 +95,7 @@ li#create-package {
 }
 
 main {
-      margin-top: 7vh;
+    margin-top: 12vh;
 }
 
 #signupUI,
@@ -96,7 +107,8 @@ main {
     width: 50%;
     border: none;
     margin: auto;
-    margin-top: 25%;
+    margin-top: 200px;
+    background: whitesmoke;
 }
 
 
@@ -130,7 +142,7 @@ input[type='password'] {
     margin: 5px;
     text-align: center;
     border-radius: 5px;
-    height: 30px;
+    height: 45px;
 }
 
 #logo {
@@ -143,20 +155,7 @@ input[type='password'] {
     height: 80px;
     background-size: 80px;
 }
-/*
-header {
-    z-index: 10;
-    padding: 0 7%;
-    background: gray;
-    display: flex;
-    position: relative;
-    position: absolute;
-    right: 0px;
-    left:0px;
-    top:0px;
-    height: 9vh;
-}
-*/
+
 header{
     z-index: 3000;
     position: fixed;
@@ -218,7 +217,7 @@ a {
     color:inherit;
 }
 footer {
-    display: flex;
+    display: none;
     justify-content: center;
     padding: 5px;
     background-color: #45a1ff;
