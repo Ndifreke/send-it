@@ -13,6 +13,7 @@
     "dependencies": {},
     "scripts": {
         "lint": "eslint .",
+
         "test": "mocha ./test",
         "start": "node app.js",
         "coverage": "node node_modules/.bin/istanbul cover _mocha -- -R spec",
