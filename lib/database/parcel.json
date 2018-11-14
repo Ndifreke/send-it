@@ -1,0 +1,89 @@
+{
+	"lastId": 6,
+	"parcelList": {
+		"1": {
+			"parcel": {
+				"userId": "324",
+				"name": "/lm",
+				"destination": "Lagos",
+				"destinationLatitude": "1457865",
+				"destinationLongitude": "1457858",
+				"origin": "Abuja",
+				"originLatitude": "787898",
+				"originLongitude": "4896598",
+				"status": "PENDING",
+				"createdAt": "Mon Nov 12 2018"
+			}
+		},
+		"2": {
+			"parcel": {
+				"userId": "967",
+				"name": "/lm",
+				"destination": "Lagos",
+				"destinationLatitude": "1457865",
+				"destinationLongitude": "1457858",
+				"origin": "Abuja",
+				"originLatitude": "787898",
+				"originLongitude": "4896598",
+				"status": "CANCELLED",
+				"createdAt": "Mon Nov 12 2018"
+			}
+		},
+		"3": {
+			"parcel": {
+				"userId": "645",
+				"name": "/lm",
+				"destination": "Lagos",
+				"destinationLatitude": "1457865",
+				"destinationLongitude": "1457858",
+				"origin": "Abuja",
+				"originLatitude": "787898",
+				"originLongitude": "4896598",
+				"status": "PENDING",
+				"createdAt": "Mon Nov 12 2018"
+			}
+		},
+		"4": {
+			"parcel": {
+				"userId": "400",
+				"name": "/lm",
+				"destination": "Lagos",
+				"destinationLatitude": "1457865",
+				"destinationLongitude": "1457858",
+				"origin": "Abuja",
+				"originLatitude": "787898",
+				"originLongitude": "4896598",
+				"status": "PENDING",
+				"createdAt": "Mon Nov 12 2018"
+			}
+		},
+		"5": {
+			"parcel": {
+				"userId": "962",
+				"name": "/lm",
+				"destination": "Lagos",
+				"destinationLatitude": "1457865",
+				"destinationLongitude": "1457858",
+				"origin": "Abuja",
+				"originLatitude": "787898",
+				"originLongitude": "4896598",
+				"status": "PENDING",
+				"createdAt": "Mon Nov 12 2018"
+			}
+		},
+		"6": {
+			"parcel": {
+				"userId": "907",
+				"name": "/lm",
+				"destination": "Lagos",
+				"destinationLatitude": "1457865",
+				"destinationLongitude": "1457858",
+				"origin": "Abuja",
+				"originLatitude": "787898",
+				"originLongitude": "4896598",
+				"status": "PENDING",
+				"createdAt": "Mon Nov 12 2018"
+			}
+		}
+	}
+}

@@ -29,46 +29,26 @@
             </nav>
         </header>
 
-        <aside id='dashboard' class="elevate">
-            <a class="close-btn" id='dashboard-closer' onclick="toggle('dashboard')">
-            </a>
-            <ul>
-                <li>
-                    <div id="package-btn">
-                        <input class="active-btn" type="button" value="Admin" />
-                        <input type="button" value="&plus;" id="dash-expand" onclick="toggle('adminOption')">
-                    </div>
-
-                    <ul id="adminOption">
-                        <li id='create-package'>
-                            <a href="create.html" class='botton active-btn' title="create parcel order">
-                                New Package </a>
-                        </li>
-                        
-                    </ul>
-
-                </li>
-                <li class='divider'>
-                    <hr />
-                </li>
-
-                <li>
-                    <a href="profile.html" title="Profile" class='botton active-btn'>
-                        Profile </a>
-                </li>
-                <li class='divider'>
-                    <hr />
-                </li>
-                <li>
-                    <a href="settings.html" title="Settings" class='botton active-btn'>
-                        Settings </a>
-                </li>
-                <li class='divider'>
-                    <hr />
-                </li>
-
-            </ul>
-        </aside>
+        <aside id='dashboard'>
+                <a class="close-btn" id='dashboard-closer' onclick="toggle('dashboard')">
+                </a>
+                <ul class="dashboard">
+                  <li class="dashLink"> <a href="packages.html"> PARCELS </a>
+                   
+                  </li>          
+                  <li class="dashLink">
+                    <a href="profile.html" title="Profile">
+                      PROFILE </a>
+                  </li>
+                  <li class="dashLink">
+                    <a href="settings.html" title="Settings">
+                      SETTINGS </a>
+                  </li>
+                  <li class="dashLink active"  title="Admin">
+                      ADMINISTRATOR
+                  </li>
+                </ul>
+              </aside>
         <!--*********************************************************************************************-->
         <main id="main">
 
@@ -77,141 +57,164 @@
             <button type="button" id="flow-btn"> </button>
 
             <section id="main-content">
-             
-                    <form id="search">
-                        <input type="text" id="search-parcel" placeholder="Email or Percel ID">
-                        <input type="button" class="search-icon" input>
-                    </form>
-               
+
+                <form id="search">
+                    <input type="text" id="search-parcel" placeholder="Email or Percel ID">
+                    <input type="button" class="search-icon" input>
+                </form>
+
                 <section id='packages'>
-                    <h2> Packages </h2>
-
-                    <div class="package">
-                        <div class="package-preview">
-                            <button class="edit" value="{packageId1}">edit</button>
-                            <span class="preview"> Title1 || ID </span>
-                            <button id="expand-btn" onclick='toggle("{packageId1}")'>
-                                more +</button>
+                        <h2> Packages </h2>
+    
+                        <div class="package">
+                            <div class="package-preview">
+                                <button class="cancel" value="{packageId1}"></button>
+    
+                                <button class="edit" value="{packageId1}"></button>
+                                <span class="preview"> Title1 || ID </span>
+                                <button id="expand-btn" onclick='toggle("{packageId1}1")'>
+                                    more +</button>
+                            </div>
+                            <div id="{packageId1}1" class="parcel-views">
+                                <!--append I again to differenttiate id below-->
+                                <div class='package-content elevate' id='{packageId1}'>
+                                    <p class="package-description">
+                                        Black and white television
+                                    </p>
+                                    <div class='package-info'>
+                                        <p class="meta">
+                                            <span class="from">
+                                                From:</span> Accra
+                                            <br />
+                                            <span class="destination">
+                                                Destination:
+                                            </span> Lagos<br />
+                                            <span class="sender">
+                                                Sender </span> Mc
+                                            spender <br />
+                                            <span class="date"> Date
+                                            </span> 24, August, 2018
+                                            <br />
+                                            <span class="location">
+                                                Location </span>
+                                            Lagos Custome<br />
+                                            <span class="status">
+                                                Status </span>
+                                            Proccessing <br />
+                                        </p>
+                                    </div>
+                                </div>
+    
+                            </div>
                         </div>
-
-                        <div class='package-content elevate' id='{packageId1}'>
-                            <p class="package-description">
-                                Black and white television
-                            </p>
-                            <hr />
-
-                            <div class='package-info'>
-                                <div class="meta">
-                                    <span class="from"> From:</span>
-                                    Accra <br />
-                                    <span class="destination">
-                                        Destination: </span>
-                                    Lagos<br />
-                                    <span class="sender"> Sender
-                                    </span> Mc spender <br />
-                                    <span class="date"> Date
-                                    </span> 24, August, 2018 <br />
-                                    <span class="location">
-                                        Location </span> Lagos
-                                    Custome<br />
-                                    <span class="status"> Status
-                                    </span> Proccessing <br />
+    
+                        <div class="package">
+                            <div class="package-preview">
+                                <button class="cancel" value="{packageId5}"></button>
+                                <button class="edit" value="{packageId5}"></button>
+                                <button id="expand-btn" onclick='toggle( "{packageId5}5")'>
+                                    more
+                                    +</button>
+                                <span class="preview"> Title1 || ID </span>
+                            </div>
+                            <div id="{packageId5}5" class="parcel-views">
+                                <!--append I again to differenttiate id below-->
+                                <div class='package-content elevate' id='{packageId5}'>
+                                    <p class="package-description">
+                                        This is the view for a product
+                                        that has been delivered to
+                                        the owner
+                                        this view does not have edit
+                                        or delete button like the rest
+                                        of other
+                                        views
+                                    </p>
+                                    <hr />
+    
+                                    <div class='package-info'>
+                                        <p class="meta">
+                                            <span class="from">
+                                                From:</span> Lekki
+                                            Lagos <br />
+                                            <span class="destination">
+                                                Destination:
+                                            </span> Ibadan
+                                            <br />
+                                            <span class="sender">
+                                                Sender </span>
+                                            Andela <br />
+                                            <span class="date"> Date
+                                            </span> 15, Jan, 2017
+                                            <br />
+                                            <span class="location">
+                                                Location </span>
+                                            Delivered <br />
+                                            <span class="status">
+                                                Status </span>
+                                            Completed <br />
+                                        </p>
+                                    </div>
                                 </div>
                             </div>
-                            <hr />
-
-
-
                         </div>
-                    </div>
-
-                    <div class="package">
-                        <div class="package-preview">
-                            <button class="edit" value="{packageId5}"></button>
-                            <button id="expand-btn" onclick='toggle("{packageId5}")'>
-                                more +</button>
-                            <span class="preview"> Title1 || ID </span>
-                        </div>
-
-                        <div class='package-content elevate' id='{packageId5}'>
-                            <p class="package-description">
-                                This is the view for a product that
-                                has been delivered to the owner
-                                this view does not have edit or
-                                delete button like the rest of other
-                                views
-                            </p>
-                            <hr />
-
-                            <div class='package-info'>
-                                <div class="meta">
-                                    <span class="from"> From:</span>
-                                    Lekki Lagos <br />
-                                    <span class="destination">
-                                        Destination: </span>
-                                    Ibadan <br />
-                                    <span class="sender"> Sender
-                                    </span> Andela <br />
-                                    <span class="date"> Date
-                                    </span> 15, Jan, 2017 <br />
-                                    <span class="location">
-                                        Location </span>
-                                    Delivered <br />
-                                    <span class="status"> Status
-                                    </span> Completed <br />
+    
+    
+                        <div class="package">
+                            <div class="package-preview">
+                                <button class="cancel" value="{packageId2}"></button>
+                                <button class="edit" value="{packageId2}"></button>
+                                <span class="preview"> Title1 || ID </span>
+                                <button id="expand-btn" onclick='toggle( "{packageId2}2")'>
+                                    more
+                                    +</button>
+                            </div>
+                            <div id="{packageId2}2" class="parcel-views">
+                                <!--append I again to differenttiate id below-->
+                                <div class='package-content elevate' id='{packageId2}'>
+                                    <p class="package-description">
+                                        Three eggs coupled with an ice
+                                        tea in a sandwitch form
+                                        reader
+                                        to explode on the very basic
+                                        time it has
+                                    </p>
+                                    <hr />
+    
+                                    <div class='package-info'>
+                                        <p class="meta">
+                                            <span class="from">
+                                                From:</span> Abuja
+                                            <br />
+                                            <span class="destination">
+                                                Destination:
+                                            </span> Canada<br />
+                                            <span class="sender">
+                                                Sender </span>
+                                            Anthony Ekim <br />
+                                            <span class="date"> Date
+                                            </span> 16, July, 2018
+                                            <br />
+                                            <span class="location">
+                                                Location </span>
+                                            currently in
+                                            warehouse<br />
+                                            <span class="status">
+                                                Status </span>
+                                            Processing <br />
+                                        </p>
+                                    </div>
                                 </div>
                             </div>
-                            <hr />
-
                         </div>
-                    </div>
-
-
-                    <div class="package">
-                        <div class="package-preview">
-                            <button class="edit" value="{packageId2}">edit</button>
-                            <span class="preview"> Title1 || ID </span>
-                            <button id="expand-btn" onclick='toggle( "{packageId2}")'>
-                                more +</button>
-                        </div>
-
-                        <div class='package-content elevate' id='{packageId2}'>
-                            <p class="package-description">
-                                Three eggs coupled with an ice tea
-                                in a sandwitch form reader
-                                to explode on the very basic time it
-                                has
-                            </p>
-                            <hr />
-
-                            <div class='package-info'>
-                                <div class="meta">
-                                    <span class="from"> From:</span>
-                                    Abuja <br />
-                                    <span class="destination">
-                                        Destination: </span>
-                                    Canada<br />
-                                    <span class="sender"> Sender
-                                    </span> Anthony Ekim <br />
-                                    <span class="date"> Date
-                                    </span> 16, July, 2018 <br />
-                                    <span class="location">
-                                        Location </span>
-                                    currently in warehouse<br />
-                                    <span class="status"> Status
-                                    </span> Processing <br />
-                                </div>
-                            </div>
-                            <hr />
-
-                        </div>
-                    </div>
-
-                </section>
+    
+                    </section>
 
             </section>
 
         </main>
+        <footer>
+            
+        </footer>
 
 
     </body>

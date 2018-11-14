@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <html>
+
    <head>
       <title>SendIt | Settings</title>
       <link type="text/css" rel="stylesheet" href="../stylesheet/shared.css">
-      <link type="text/css"  rel="stylesheet" href="../stylesheet/main.css">
-      <link type="text/css"  rel="stylesheet" href="../stylesheet/settings.css">
+      <link type="text/css" rel="stylesheet" href="../stylesheet/main.css">
+      <link type="text/css" rel="stylesheet" href="../stylesheet/settings.css">
       <script type="text/javascript" src="../javascript/ui_render.js"></script>
       <script type="text/javascript" src="../javascript/client_server.js"></script>
       <script type="text/javascript" src="../javascript/responsive_ui.js"></script>
@@ -14,128 +15,89 @@
       <meta charset="UTF-8">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
    </head>
+
    <body>
-      <header> 
-         <a href='#' id="logo">  </a>
-         <nav class="positon-bottom-right"> 
-            <ul> 
-               <li> 
-                  <!-- can use href to separate page at public/ui/login.html-->
-                  <a href='../../index.html' class="active-btn botton"> SIGN OUT </a>
+      <header>
+         <a href='#' id="logo"> </a>
+         <nav class="positon-bottom-right">
+            <ul>
+               <li id="navigation-list">
+                  <a href="create.html" class='botton active-btn' title="create parcel order">
+                     New Package
+                  </a>
+               </li>
+               <li id="navigation-list">
+                  <a href='../../index.html' class="active-btn botton">
+                     Sign out </a>
                </li>
             </ul>
-         </nav> 
+         </nav>
       </header>
 
-      <aside id='dashboard'  class="elevate">
+      <aside id='dashboard'>
          <a class="close-btn" id='dashboard-closer' onclick="toggle('dashboard')">
          </a>
-         <ul>
-            <li > 
-               <a href="packages.html" title="Percels" class='botton active-btn'> 
-                  Packages        </a>
-            </li> 
-            <li class='divider'> <hr/> </li>
-
-            <li>  
-               <a href="profile.html" title="Profile" class='botton active-btn'> 
-                  Profile </a>        
-            </li>
-            <li class='divider'> <hr/> </li>
-            <li onclick='showDashContent( "settings" )'>   
-               <input class="active-btn" type="button" value="Settings"/> 
+         <ul class="dashboard">
+            <li class="dashLink"> <a href="packages.html" value="Packages"> PARCELS </a>
             </li>
 
-            <li class='divider'> <hr/> </li>
-            <li>   
-               <a href="admin.html" title="Admin" class='botton active-btn'> 
-                  Admin </a>
+            <li class="dashLink">
+               <a href="profile.html" title="Profile">
+                  PROFILE </a>
             </li>
-
-            <li class='divider'> <hr/> </li>
-
+            <li class="dashLink active">
+               <a title="Settings">
+                  SETTINGS </a>
+            </li>
+            <li class="dashLink">
+               <a href="admin.html" title="Admin">
+                  ADMINISTRATOR</a>
+            </li>
          </ul>
       </aside>
       <!--*********************************************************************************************-->
       <main id="main">
 
          <!-- event in internal.js useMobileView() -->
-         <button type="button" id="flow-btn" > </button> 
+         <button type="button" id="flow-btn"> </button>
 
 
          <section id="main-content">
             <section id='settings'>
                <h2> Personal Settings </h2>
                <form id="settingsUI" class="elevate">
-               <table>
-                  <tr>
-                     <th> <h3> Notifications </h3> </th>
-                  </tr>
 
-                  <tr> 
-                     <td>
-                        <span> Receive Email Update </span> 
-                     </td> 
-                     <td>
-                        <input type="checkbox" id="accept-mail-btn" name="accept-email">
-                        <label for="accept-mail-btn"></label> 
-                     </td> 
-                  </tr> 
+                  <h3> Notifications </h3>
+                  <div>
+                     <h5>UPDATE EMAIL </h5>
+                     <input type="email" name='update-mail-input' placeholder="username@example.com">
+                     <h5>UPDATE PHONE</h5>
+                     <input type="tel" id='update-phone-input' placeholder="+234 xxxx xxxx" />
+                  </div>
 
-                  <tr>
-                     <td>
-                        <span> Receive Promotional Email Update </span>  
-                     </td>    
-                     <td> 
-                        <input type="checkbox" id="receive-promo-btn" name="accept-email"> 
-                        <label for="receive-promo-btn"></label>  
-                     </td>
-                  </tr>
+                  <h2> Security </h2>
+                  <div>
+                        <h5>UPDATE PASSWORD</h5>
+                     <input type="password" id='update-password' placeholder="password">
+                     <input type="password" id='update-password-confirm' placeholder="confirm password">
+                  </div>
+                  <div>
+                     <input type="button" value="UPDATE ACCOUNT" id="update-password-btn"
+                        class="prim-btn" />
+                  </div>
 
-                  <tr>
-                     <td>
-                        <input type="email" name='update-mail-input' placeholder="username@example.com">  
-                     </td>
-                     <td>
-                        <input type="button" id='update-mail-btn' value="Update Email"
-                               class="prim-btn botton"/>
-                     </td>
-                  </tr>
-                  <tr> <td colspan="2"> <hr/> </td> </tr>
-                  <tr>
-                     <th>  <h2> Security </h2> </th>
-                  </tr>
 
-                  <tr>
-                     <td>
-                        <input type="tel" id='update-phone-input' placeholder="+234 xxxx xxxx"
-                               />
-                     </td>
-                     <td>
-                        <input type="button" value="Update Phone" class=" prim-btn botton"
-                               id='update-phone-btn' />
-                     </td>
-                  </tr>
 
-                  <tr>
-                     <td>
-                        <input type="password" id='update-password' placeholder="password"> 
-                        <input type="password" id='update-password-confirm' 
-                               placeholder="confirm password">
-                     </td>
-                     <td>
-                        <input type="button" value="Update Password" id="update-password-btn"
-                               class="prim-btn botton" />
-                     </td>
-                  </tr>
 
-               </table>
-            </form>
+               </form>
 
+            </section>
          </section>
-</section>
       </main>
+      <footer>
 
+      </footer>
 
    </body>
+
 </html>

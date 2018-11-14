@@ -1,21 +1,21 @@
 var cachedDisplayStyle = {};
 
 
-function verifySignIn () {
-    let loginForm = document.forms['loginForm'];
-    let loginEmail = loginForm['login-email'].value;
-    let loginPassword = loginForm['login-password'].value;
+function verifySignIn() {
+    let loginForm = document.forms[ 'loginForm' ];
+    let loginEmail = loginForm[ 'login-email' ].value;
+    let loginPassword = loginForm[ 'login-password' ].value;
     console.log( `${loginPassword + loginEmail}` );
 }
 
-function signupUser () {
-    let signupForm = document.forms['signupForm']
-    let signupFirstName = signupForm['signupName'].value;
-    let signupLastName = signupForm['signupLastName'].value;
-    let signupEmail = signupForm['signupEmail'].value;
-    let signupNumber = signupForm['signupNumber'].value;
-    let signupPassword = signupForm['signupPassword'].value;
-    let signupComfirmPassword = signupForm['signupComfirmpassword'].value;
+function signupUser() {
+    let signupForm = document.forms[ 'signupForm' ]
+    let signupFirstName = signupForm[ 'signupName' ].value;
+    let signupLastName = signupForm[ 'signupLastName' ].value;
+    let signupEmail = signupForm[ 'signupEmail' ].value;
+    let signupNumber = signupForm[ 'signupNumber' ].value;
+    let signupPassword = signupForm[ 'signupPassword' ].value;
+    let signupComfirmPassword = signupForm[ 'signupComfirmpassword' ].value;
 
     console.log( `${signupFirstName + signupEmail + signupLastName + signupNumber +
         signupPassword + signupComfirmPassword}` )
@@ -27,9 +27,7 @@ function signupUser () {
  * and the display property is the type of display. By default an id withoud display is set to
  * block display
  *  */
-
-
-function getElement ( identifier, attribute ) {
+function getElement( identifier, attribute ) {
     switch ( attribute ) {
         case "class":
             return document.getElementsByClassName( identifier );
@@ -40,18 +38,12 @@ function getElement ( identifier, attribute ) {
     }
 }
 
-function showDashContent ( viewID ) {
+function showDashContent( viewID ) {
     setDisplay( viewID );
 }
 
-function toggle (ui) {
-  
-   let  element = document.getElementById(ui);
-   console.log(element.style.display);
+function toggle( ui ) {
+    const element = document.getElementById( ui );
     element.style.display = ( element.style.display !== "block" ) ? "block" : "none";
-    console.log(element.style.display);
+    console.log( element.style.display );
 }
-
-
-
-

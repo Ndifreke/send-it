@@ -1,93 +1,155 @@
-
-.main{
-    display:flex;
+.main {
+    display: flex;
     width: 100vw;
 }
 
-h1,h2,h3,h4,h5{
-    font-family:  'Roboto','sans-serif';
-    color:#212121;
-    border-bottom: 4px solid #BDBDBD;
+h1,
+h2,
+h3,
+h4 {
+    font-family: 'Roboto', 'sans-serif';
+    color:#FF5708;
+    margin-bottom: 10px;
 }
 
-.botton, .package-preview, .active-btn{
-    cursor:pointer;
+.sec-btn {
+    border: 1px;
+    color: #0095ff;
+    background: snow;
+}
+#home{
+    width: 100%;
+    height: 100%;
+ 
+    max-width: 100%;
+    min-width: 100%;
+    background: url("../images/travel.jpg") no-repeat center center fixed;
+    background-size: cover;
+    height: 100%;
+    overflow: hidden;
+   
+}
+
+.botton,
+.minor-btn,
+.package-preview,
+.active-btn,
+.sec-btn {
+    cursor: pointer;
     font-family: "liberaton mono";
     padding: 5px 5px;
-    margin: 0px,10px;
+    margin: 0px, 10px;
     text-decoration: none;
     border-radius: 2px;
     border-style: none;
 }
 
-.prim-btn{
-    background: rgb(55,160,0);
-    color:white;
+.prim-btn,
+.minor-btn {
+    background: rgb(55, 160, 0);
+    color: white;
     padding: 9px 78px;
     font-size: 15px;
 }
 
-.elevate, .active-btn:hover, .prim-btn:hover,.package-preview:hover, .position-label:hover{
-    box-shadow: 0px 1px 8px rgba(0,0,0,0.20);
+.minor-btn {
+    padding: 8px;
+    width: initial;
+}
+
+.elevate,
+.active-btn:hover,
+.prim-btn:hover,
+.package-preview:hover,
+.position-label:hover {
+    box-shadow: 0px 1px 8px rgba(0, 0, 0, 0.20);
 
 }
-.active-btn:hover
-{background-color:  #FF5722;}
 
-nav ul{
+.active-btn:hover {
+    background-color: #FF5722;
+}
+
+nav ul {
     display: flex;
-}
-
-li, ul, ol{
     list-style: none;
 }
 
-.positon-bottom-right{
+ul#packageOption {
+    margin-top: 5px;
+    margin-left: 25px;
+    margin-bottom: 7px;
+}
+ul#packageOption:hover{
+    color:white;
+}
+
+li#create-package {
+    margin-bottom: 20px;
+}
+
+.positon-bottom-right {
     position: absolute;
-    right: 0px;
+    right: 7%;
     bottom: 0px;
 }
 
-main{
-    margin-top: 13vh;
+main {
+    margin-top: 12vh;
 }
 
-#signupUI, #loginUI{
+#signupUI,
+#loginUI {
     position: relative;
-    padding:10px;
+    padding: 10px;
     min-width: 259px;
     max-width: 580px;
-    width: 45vw;
+    width: 50%;
     border: none;
-    margin:auto;
-    margin-top: 25vh;
+    margin: auto;
+    margin-top: 200px;
+    background: whitesmoke;
 }
 
 
 
-.align-center{
+.align-center {
     text-align: center;
 }
-.align-right{
+
+.align-right {
     text-align: right;
 }
-.fit-width{
+
+.fit-width {
     width: fit-content;
 }
-input[type='text'],input[type='email'], input[type='tel'],input[type='password']{
+
+input[type='text'],
+input[type='email'],
+input[type='tel'],
+input[type='password'] {
     font-family: serif;
-    width:40%;
+    width: 90%;
     border-top: none;
     border-right: none;
     border-left: none;
-    font-size: 16px;
+    font-size: 17px;
     display: inline-flex;
     outline: none;
-    color:rgb(50,50,50);
+    color: rgb(50, 50, 50);
     font-weight: 100;
+    margin: 5px;
+    text-align: center;
+    border-radius: 5px;
+    height: 45px;
 }
 
-#logo{
+#logo {
+    position: absolute;
+    /**/
+    bottom: 0px;
+    /* new */
     background: url("../images/logo.svg") no-repeat;
     width: 80px;
     height: 80px;
@@ -95,45 +157,69 @@ input[type='text'],input[type='email'], input[type='tel'],input[type='password']
 }
 
 header{
-    background:#f1f1f1;
-    display: flex;
-    position: absolute;
+    z-index: 3000;
+    position: fixed;
+    top: 0;
+    left: 0px;
     right: 0px;
-    left:0px;
-    top:0px;
     height: 15vh;
+    background-color: gray;
+    width: 100%;
 }
 
-.display-none{
+.display-none {
     display: none;
 }
 
-.close-btn{
+.close-btn {
     background: url("../images/close.svg") no-repeat;
     background-size: 35px 35px;
 }
 
-.close-btn:hover{
+.close-btn:hover {
     background: url("../images/close_hover.svg") no-repeat;
     background-size: 35px 35px;
 }
-.pointer, .close-btn{
+
+.pointer,
+.close-btn {
     border-style: none;
-    outline:none;
+    outline: none;
     width: 35px;
     height: 35px;
 }
-.pointer, .close-btn:hover{
+
+.pointer,
+.close-btn:hover {
     cursor: pointer;
 }
-.active-btn{
-    background:#009688;
-    color:white;
-    padding: 5px 15px;
+
+.active-btn {
+  //  background: #009688;
+    color: white;
+    padding: 8px 18px;
     font-size: 15px;
-}
-a{
-    text-orientation : none;
+    border: 1px solid;
 }
 
+.anchor {
+    text-orientation: none !important;
+    color: black;
+}
 
+.anchor:visited,
+.anchor:active {
+    color: black;
+}
+
+a {
+    text-decoration: none;
+    color:inherit;
+}
+footer {
+    display: none;
+    justify-content: center;
+    padding: 5px;
+    background-color: #45a1ff;
+    color: #fff;
+}

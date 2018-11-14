@@ -13,16 +13,19 @@
     "dependencies": {},
     "scripts": {
         "lint": "eslint .",
-        "test": "mocha test/api_test",
-        "start": "node index.js"
+
+        "test": "mocha ./test",
+        "start": "node app.js",
+        "coverage": "node node_modules/.bin/istanbul cover _mocha -- -R spec",
+        "coveralls": "cat ./coverage/lcov.info | node node_modules/.bin/coveralls"
     },
     "devDependencies": {
-        "mocha": "latest",
-        "chai":"latest",
-        "eslint": "^5.8.0",
+        "chai": "latest",
+        "eslint": "^5.9.0",
         "eslint-config-airbnb": "^17.1.0",
         "eslint-plugin-import": "^2.14.0",
         "eslint-plugin-jsx-a11y": "^6.1.2",
-        "eslint-plugin-react": "^7.11.1"
+        "eslint-plugin-react": "^7.11.1",
+        "mocha": "latest"
     }
 }
