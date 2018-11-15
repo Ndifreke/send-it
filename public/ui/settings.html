@@ -21,11 +21,7 @@
          <a href='#' id="logo"> </a>
          <nav class="positon-bottom-right">
             <ul>
-               <li id="navigation-list">
-                  <a href="create.html" class='botton active-btn' title="create parcel order">
-                     New Package
-                  </a>
-               </li>
+              
                <li id="navigation-list">
                   <a href='../../index.html' class="active-btn botton">
                      Sign out </a>
@@ -38,22 +34,27 @@
          <a class="close-btn" id='dashboard-closer' onclick="toggle('dashboard')">
          </a>
          <ul class="dashboard">
-            <li class="dashLink"> <a href="packages.html" value="Packages"> PARCELS </a>
-            </li>
 
-            <li class="dashLink">
+               <a href="./packages.html" value="Packages">
+                   <li class="dashLink "> PARCELS </li>
+               </a>
+
+               <a href="./create.html" title="Create Parcel">
+                  <li class="dashLink">CREATE PARCEL </li>
+                </a>
+        
                <a href="profile.html" title="Profile">
-                  PROFILE </a>
-            </li>
-            <li class="dashLink active">
+                   <li class="dashLink"> PROFILE </li>
+               </a>
+
                <a title="Settings">
-                  SETTINGS </a>
-            </li>
-            <li class="dashLink">
+                   <li class="dashLink active"> SETTINGS </li>
+               </a>
+
                <a href="admin.html" title="Admin">
-                  ADMINISTRATOR</a>
-            </li>
-         </ul>
+               <li class="dashLink">ADMINISTRATOR </li>
+               </a>
+           </ul>
       </aside>
       <!--*********************************************************************************************-->
       <main id="main">
@@ -64,26 +65,29 @@
 
          <section id="main-content">
             <section id='settings'>
-               <h2> Personal Settings </h2>
-               <form id="settingsUI" class="elevate">
 
-                  <h3> Notifications </h3>
+               <form id="settingsUI" class="elevate">
+                  <h2> Personal Settings </h2>
+                  <hr>
+
                   <div>
+                     <h3> Notifications </h3>
                      <h5>UPDATE EMAIL </h5>
-                     <input type="email" name='update-mail-input' placeholder="username@example.com">
+                     <input type="email" id='update-mail' placeholder="username@example.com">
                      <h5>UPDATE PHONE</h5>
-                     <input type="tel" id='update-phone-input' placeholder="+234 xxxx xxxx" />
+                     <input type="tel" id='update-phone' placeholder="+234 xxxx xxxx" />
                   </div>
 
-                  <h2> Security </h2>
+
                   <div>
-                        <h5>UPDATE PASSWORD</h5>
+                     <h2> Security </h2>
+                     <h5>UPDATE PASSWORD</h5>
                      <input type="password" id='update-password' placeholder="password">
                      <input type="password" id='update-password-confirm' placeholder="confirm password">
                   </div>
                   <div>
                      <input type="button" value="UPDATE ACCOUNT" id="update-password-btn"
-                        class="prim-btn" />
+                        class="prim-btn botton" />
                   </div>
 
 

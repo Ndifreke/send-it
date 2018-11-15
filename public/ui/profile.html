@@ -1,120 +1,125 @@
 <!DOCTYPE html>
 <html>
 
-      <head>
-            <title>SendIt | Profile </title>
-            <link type="text/css" rel="stylesheet" href="../stylesheet/main.css">
-            <link type="text/css" rel="stylesheet" href="../stylesheet/profile.css">
-            <link type="text/css" rel="stylesheet" href="../stylesheet/shared.css">
-            <script type="text/javascript" src="../javascript/ui_render.js"></script>
-            <script type="text/javascript" src="../javascript/client_server.js"></script>
-            <script type="text/javascript" src="../javascript/responsive_ui.js"></script>
-            <!--
+   <head>
+      <title>SendIt | Profile </title>
+      <link type="text/css" rel="stylesheet" href="../stylesheet/main.css">
+      <link type="text/css" rel="stylesheet" href="../stylesheet/profile.css">
+      <link type="text/css" rel="stylesheet" href="../stylesheet/shared.css">
+      <script type="text/javascript" src="../javascript/ui_render.js"></script>
+      <script type="text/javascript" src="../javascript/client_server.js"></script>
+      <script type="text/javascript" src="../javascript/responsive_ui.js"></script>
+      <!--
       <script type="text/javascript" src="../javascript/location_services.js"></script>
       -->
-            <meta charset="UTF-8">
-            <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      </head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   </head>
 
-      <body>
+   <body>
 
-            <header>
-                  <a href='#' id="logo"> </a>
-                  <nav class="positon-bottom-right">
-                        <ul>
-                              <li id="navigation-list">
-                                    <a href="create.html" class='botton active-btn'
-                                          title="create parcel order">
-                                          New Package
-                                    </a>
-                              </li>
-                              <li id="navigation-list">
-                                    <a href='../../index.html' class="active-btn botton">
-                                          Sign out </a>
-                              </li>
-                        </ul>
-                  </nav>
-            </header>
+      <header>
+         <a href='#' id="logo"> </a>
+         <nav class="positon-bottom-right">
+            <ul>
+               
+               <li id="navigation-list">
+                  <a href='../../index.html' class="active-btn botton">
+                     Sign out </a>
+               </li>
+            </ul>
+         </nav>
+      </header>
 
-            <aside id='dashboard'>
-                  <a class="close-btn" id='dashboard-closer' onclick="toggle('dashboard')">
-                  </a>
-                  <ul class="dashboard">
-                        <li class="dashLink"> <a href="packages.html" value="Packages">
-                                    PARCELS </a>
-                        </li>
+      <aside id='dashboard'>
+         <a class="close-btn" id='dashboard-closer' onclick="toggle('dashboard')">
+         </a>
+         <ul class="dashboard">
+               <a href="./packages.html" value="Packages">
+                   <li class="dashLink "> PARCELS </li>
+               </a>
 
-                        <li class="dashLink active">
-                              <a title="Profile">
-                                    PROFILE </a>
-                        </li>
-                        <li class="dashLink">
-                              <a href="settings.html" title="Settings">
-                                    SETTINGS </a>
-                        </li>
-                        <li class="dashLink">
-                              <a href="admin.html" title="Admin">
-                                    ADMINISTRATOR</a>
-                        </li>
-                  </ul>
-            </aside>
-            <!--*********************************************************************************************-->
-            <main id="main">
+               <a href="./create.html" title="Create Parcel">
+                  <li class="dashLink">CREATE PARCEL </li>
+                </a>      
 
-                  <button type="button" id="flow-btn"> </button>
+               <a  title="Profile">
+                   <li class="dashLink active"> PROFILE </li>
+               </a>
 
-                  <section id="main-content">
-                        <h2> Profile Information </h2>
-                        <section id='profile'>
-                              <h3>About</h3>
+               <a href="settings.html" title="Settings">
+                   <li class="dashLink"> SETTINGS </li>
+               </a>
 
-                              <div id="about" class="elevate">
-                                    <div id="aveter-container">
-                                          <img src="../images/photo.gif" alt="Profile Image" width="250"
-                                                height="300" />
-                                    </div>
+               <a href="admin.html" title="Admin">
+               <li class="dashLink">ADMINISTRATOR </li>
+               </a>
+           </ul>
+      </aside>
+      <!--*********************************************************************************************-->
+      <main id="main">
 
-                                    <div id="profile-sumary" class="elevate">
-                                          <strong> Name :</strong>  <br/> 
-                                           <span id="name"> Ndifreke Anthony</span> <br/> 
-                                          <strong> Phone </strong> <br />
-                                          <span>   23470352748987 </span> <br />
-                                          <strong> Email :</strong> <br />
-                                          <span>user@domain.com</span>
-                                    </div>
+         <button type="button" id="flow-btn"> </button>
 
-                              </div>
+         <section id="main-content">
+            <h2> Profile Information </h2>
+            <section id='profile'>
+               <h3>About</h3>
 
-                              <div id="statistics" class="elevate">
-                                    <h3>Profile Statistics</h3>
-                                    <div class="badges">
-                                          <div class="stats-badge elevate">
-                                                <span> Total Number of Percels
-                                                </span>
-                                                <span>588 </span>
-                                          </div>
-                                          <br>
-                                          <div class="stats-badge elevate">
-                                                <span> Percels Delivered </span>
-                                                <span>15 </span>
-                                          </div>
+               <div id="about" class="elevate">
+                  <div id="aveter-container">
+                     <img src="../images/photo.gif" alt="Profile Image" width="250"
+                        height="300" />
+                  </div>
 
-                                          <div class="stats-badge elevate">
-                                                <span> Percel In Process </span>
-                                                <span> 5 </span>
+                  <div id="profile-sumary" class="elevate">
+                     <p>
+                        <strong> Name :</strong> <br />
+                        <span id="name"> Ndifreke Anthony</span>
+                     </p>
+                     <p>
+                        <strong> Phone </strong> <br />
+                        <span> 23470352748987 </span>
+                     </p>
+                     <p>
+                        <strong> Email :</strong> <br />
+                        <span>user@domain.com</span>
+                     </p>
 
-                                          </div>
-                                    </div>
-                              </div>
+                  </div>
+
+               </div>
+
+               <div id="statistics" class="elevate">
+                  <h3>Profile Statistics</h3>
+                  <div class="badges">
+                     <div class="stats-badge elevate">
+                        <span> Total Number of Percels
+                        </span>
+                        <span>588 </span>
+                     </div>
+                     <br>
+                     <div class="stats-badge elevate">
+                        <span> Percels Delivered </span>
+                        <span>15 </span>
+                     </div>
+
+                     <div class="stats-badge elevate">
+                        <span> Percel In Process </span>
+                        <span> 5 </span>
+
+                     </div>
+                  </div>
+               </div>
 
 
-                        </section>
+            </section>
 
-                  </section>
-            </main>
-            <footer>
+         </section>
+      </main>
+      <footer>
 
-            </footer>
-      </body>
+      </footer>
+   </body>
 
 </html>

@@ -1,12 +1,17 @@
 html {
     width: 100%;
     height: 100%;
+    max-width: 100%;
+    max-height: 100%;
+    margin: 0px;
+    padding: 0px;
 }
 
 body {
     max-width: 100%;
     max-height: 100%;
-    margin: 1%;
+    margin: 0px;
+    padding: 0px;
 }
 
 td,
@@ -33,7 +38,7 @@ ol {
     padding-top: 25px;
     padding-bottom: 25px;
     padding-left: 15%;
-    color:ghostwhite;
+    color: ghostwhite;
     border: 1px solid white;
     margin: 5px;
     border-radius: 2px;
@@ -97,7 +102,8 @@ ul.dashboard {
     outline: none;
     position: absolute;
     right: 3px;
-     bottom: 8px;
+    bottom: 8px;
+    height: 45px;
 }
 
 #dash-expand {
@@ -116,7 +122,7 @@ hr {
 .icon,
 button.cancel,
 button.edit,
-.place-picker {   
+.place-picker {
     background-size: 24px 45px;
     width: 45px;
     height: 25px;
@@ -160,6 +166,10 @@ input.prim-btn.botton {}
 @media screen and (min-width:1000px) {
     #settingsUI * {
         width: 70%;
+    }
+
+    #logo {
+        left: 290px;
     }
 
     form#settingsUI {
@@ -228,7 +238,7 @@ input.prim-btn.botton {}
     }
 
     #main {
-        margin-left: 2%;
+        margin-left: 4%;
     }
 }
 
@@ -242,7 +252,8 @@ input.prim-btn.botton {}
     #settingsUI * {
         width: -webkit-fill-available;
     }
-    #signupUI{
+
+    #signupUI {
         width: 80%;
     }
 

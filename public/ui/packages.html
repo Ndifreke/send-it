@@ -23,11 +23,6 @@
             <nav class="positon-bottom-right">
                 <ul>
                     <li id="navigation-list">
-                        <a href="create.html" class='botton active-btn' title="create parcel order">
-                            New Package
-                        </a>
-                    </li>
-                    <li id="navigation-list">
                         <a href='../../index.html' class="active-btn botton">
                             Sign out </a>
                     </li>
@@ -49,21 +44,26 @@
             <a class="close-btn" id='dashboard-closer' onclick="toggle('dashboard')">
             </a>
             <ul class="dashboard">
-                <li class="dashLink active"> <a value="Packages"> PARCELS </a>
-                </li>
 
-                <li class="dashLink">
-                    <a href="profile.html" title="Profile">
-                        PROFILE </a>
-                </li>
-                <li class="dashLink">
-                    <a href="settings.html" title="Settings">
-                        SETTINGS </a>
-                </li>
-                <li class="dashLink">
-                    <a href="admin.html" title="Admin">
-                        ADMINISTRATOR</a>
-                </li>
+                <a value="Packages">
+                    <li class="dashLink active"> PARCELS </li>
+                </a>
+
+                <a href="./create.html" title="Create Parcel">
+                    <li class="dashLink">CREATE PARCEL </li>
+                  </a>
+          
+                <a href="profile.html" title="Profile">
+                    <li class="dashLink"> PROFILE </li>
+                </a>
+
+                <a href="settings.html" title="Settings">
+                    <li class="dashLink"> SETTINGS </li>
+                </a>
+
+                <a href="./admin.html" title="Admin">
+                <li class="dashLink">ADMINISTRATOR </li>
+                </a>
             </ul>
         </aside>
         <!--*********************************************************************************************-->

@@ -2,11 +2,12 @@
  display: block;
 }
 .package-preview{
- background-color:#323544;
- color:white;
- margin-top: 40px;
- cursor: default;
- position: relative;
+    background-color: #323544;
+    color: white;
+    margin-top: 40px;
+    cursor: default;
+    height: 55px;
+    position: relative;
 }
 
 .package-content{
