@@ -3,7 +3,6 @@
  display: block;
  margin: auto;
  margin-top: 20px;
- text-align: left;
 }
 
 #update-mail, #update-phone, #update-password, #update-password-confirm{
