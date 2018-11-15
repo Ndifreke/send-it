@@ -7,7 +7,7 @@ h1,
 h2,
 h3,
 h4 {
-    font-family: 'Roboto', 'sans-serif';
+    font-family: 'Kinnari','Roboto', 'sans-serif';
     color: #FF5708;
     margin-bottom: 10px;
 }
@@ -19,17 +19,15 @@ h4 {
 }
 
 #home {
-    width: 100%;
-    height: 100%;
-    max-width: 100%;
-    min-width: 100%;
-    background: url("../images/travel.jpg") no-repeat center center fixed;
-    background-size: cover;
-    height: 100%;
+    
 }
 
 .accent {
     color: #FF5708;
+}
+.bg, body{
+    background: url("../images/bg.jpg");
+  //  background-image: url("../images/bg.jpg") repeat-x repeat-y;
 }
 
 .botton,
@@ -238,12 +236,12 @@ footer {
 #introduction,
 #services {
     height: 44%;
-  //  background: seashell;
+    //  background: seashell;
 }
 
 #introduction {
     text-align: center;
-    opacity: 0.4;
+   // opacity: 0.4;
 }
 
 #services {
@@ -258,17 +256,27 @@ footer {
 }
 
 .service {
-    padding:9px;
+    padding: 9px;
     text-align: center;
-    display: inline-block;
+    display: table-row-group;
     height: 100%;
-    width: 30%;
     background: white;
     margin: auto;
 }
-.slogain{
-color: rgb(50, 50, 50);
+hr.divider{
+    margin:0px;
+
 }
-.welcome{
-    font-size: 55px;
+
+.slogan {
+    color: rgb(50, 50, 50);
+}
+
+.welcome {
+   // font-size: 55px;
+    background: #FF5708;
+    padding: 0px;
+    display: inline;
+    color: white;
+    padding: 10px;
 }
