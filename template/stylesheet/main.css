@@ -94,6 +94,9 @@ li#create-package {
     right: 5px;
     bottom: 0px;
 }
+header-align-content{
+    width: 100%
+}
 
 main {
     margin: 2%;
