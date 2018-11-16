@@ -1,18 +1,18 @@
 {
-	"lastId": 4,
+	"lastId": 6,
 	"parcelList": {
 		"1": {
 			"parcel": {
-				"userId": "15",
-				"name": "/lm",
-				"destination": "Lagos",
-				"destinationLatitude": "1457865",
-				"destinationLongitude": "1457858",
-				"origin": "Abuja",
-				"originLatitude": "787898",
-				"originLongitude": "4896598",
+				"userId": "{{user}}",
+				"name": "Ndifreke",
+				"destination": "{{destination}}",
+				"destinationLatitude": "{{destinationLatitude}}",
+				"destinationLongitude": "{{destinationLongitude}}",
+				"origin": "{{origiin}}",
+				"originLatitude": "{{originLatitude}}",
+				"originLongitude": "{{originLongitude}}",
 				"status": "CANCELLED",
-				"createdAt": "Thu Nov 15 2018"
+				"createdAt": "Fri Nov 16 2018"
 			}
 		},
 		"2": {
@@ -25,7 +25,7 @@
 				"origin": "{{origiin}}",
 				"originLatitude": "{{originLatitude}}",
 				"originLongitude": "{{originLongitude}}",
-				"status": "PENDING",
+				"status": "CANCELLED",
 				"createdAt": "Fri Nov 16 2018"
 			}
 		},
@@ -39,20 +39,48 @@
 				"origin": "{{origiin}}",
 				"originLatitude": "{{originLatitude}}",
 				"originLongitude": "{{originLongitude}}",
-				"status": "PENDING",
+				"status": "CANCELLED",
 				"createdAt": "Fri Nov 16 2018"
 			}
 		},
 		"4": {
 			"parcel": {
-				"userId": "{{user}}",
-				"name": "Ndifreke",
-				"destination": "{{destination}}",
-				"destinationLatitude": "{{destinationLatitude}}",
-				"destinationLongitude": "{{destinationLongitude}}",
-				"origin": "{{origiin}}",
-				"originLatitude": "{{originLatitude}}",
-				"originLongitude": "{{originLongitude}}",
+				"userId": "3",
+				"name": "ndifreke",
+				"destination": "Lagos",
+				"destinationLatitude": "1457865",
+				"destinationLongitude": "1457858",
+				"origin": "Abuja",
+				"originLatitude": "787898",
+				"originLongitude": "4896598",
+				"status": "CANCELLED",
+				"createdAt": "Fri Nov 16 2018"
+			}
+		},
+		"5": {
+			"parcel": {
+				"userId": "3",
+				"name": "ndifreke",
+				"destination": "Lagos",
+				"destinationLatitude": "1457865",
+				"destinationLongitude": "1457858",
+				"origin": "Abuja",
+				"originLatitude": "787898",
+				"originLongitude": "4896598",
+				"status": "PENDING",
+				"createdAt": "Fri Nov 16 2018"
+			}
+		},
+		"6": {
+			"parcel": {
+				"userId": "3",
+				"name": "ndifreke",
+				"destination": "Lagos",
+				"destinationLatitude": "1457865",
+				"destinationLongitude": "1457858",
+				"origin": "Abuja",
+				"originLatitude": "787898",
+				"originLongitude": "4896598",
 				"status": "PENDING",
 				"createdAt": "Fri Nov 16 2018"
 			}

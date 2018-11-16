@@ -1,3 +1,8 @@
+import http from 'http';
+import express from 'express';
+import path from 'path';
+import bodyParser from 'body-parser';
+
 import {
   cancelParcel,
   createParcel,
@@ -17,15 +22,6 @@ import {
   changeStatus,
   changeLocation,
 } from './controller/users';
-
-const http = require('http');
-const express = require('express');
-const path = require('path');
-const bcrypt = require('bcrypt');
-const cookieParser = require('cookie-parser');
-const bodyParser = require('body-parser');
-const parcel = require('./controller/parcel');
-
 
 const app = express();
 

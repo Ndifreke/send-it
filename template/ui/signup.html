@@ -35,7 +35,7 @@
                   Account </h2>
                <div class="inline">
                   <div>
-                     <label id="input-title">FIRST NAME</label>
+                     <label id="input-title" oninput="validateName">FIRST NAME</label>
                      <input type="text" name="signupName" placeholder="Alice">
                   </div>
                   <div>
@@ -47,7 +47,7 @@
                <div>
                   <div>
                      <label id="input-title">LOGIN EMAIL</label>
-                     <input type="email" name='signupEmail' placeholder="username@domain.com">
+                     <input type="email" name='signupEmail' oninput="validateEmail" placeholder="username@domain.com">
                   </div>
                </div>
                <div >
@@ -62,8 +62,8 @@
                      <input type="password" name='signupPassword' placeholder="Alphebets only">
                   </div>
                   <div>
-                     <label id="input-title">CONFIRM</label>
-                     <input type="password" name='signupComfirmpassword' placeholder="Confirm password">
+                     <label id="input-title"  >CONFIRM</label>
+                     <input type="password" name='signupComfirmpassword' oninput="confirmPassword" placeholder="Confirm password">
                   </div>
 
                </div>

@@ -6,7 +6,7 @@
       <link type="text/css" rel="stylesheet" href="../stylesheet/shared.css">
       <link type="text/css" rel="stylesheet" href="../stylesheet/main.css">
       <script type="text/javascript" src="../javascript/ui_render.js"></script>
-      <script type="text/javascript" src="../javascript/client_server.js"></script>
+      <script type="text/javascript" src="../javascript/authenication.js"></script>
       <script type="text/javascript" src="../javascript/location_services.js"></script>
       <meta charset="UTF-8">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -29,27 +29,31 @@
       <!--*********************************************************************************************-->
       <main id="main">
 
-            <div style="margin-top:68px;">
-                  <div id="loginUI" class="elevate">
-                     <h2 class="align-center"> Sign into SendIt Account </h2>
-                     <form class="align-center" id='loginForm'>
-                        <label id="input-title">Email</label><br />
-                        <input type="email" id="login-email" placeholder="Email" />
-                        <label id="input-title">Password</label><br />
-                        <input type="password" name="login-password" placeholder="password" />
-                        <p>
-                           <a class="anchor" href="packages.html">
-                              <input type="button" name="signin-btn" onclick='verifySignIn()'
-                                 class="prim-btn botton" value='Submit'>
-                           </a>
-                        </p>
-            
-                        <p class="align-right anchor"> <a href=""> Recover Account</a>
-                        </p>
-                     </form>
-                  </div>
-            
-               </div>
+         <div style="margin-top:68px;">
+            <div id="loginUI" class="elevate">
+               <h2 class="align-center"> Sign into SendIt Account </h2>
+               <form class="align-center" id='loginForm'>
+
+                  <label id="input-title">Email</label><br />
+                  <input type="email" id="login-email" placeholder="Email" oninput="emailInput('login-email','login-email-info')" />
+                  </br>
+                  <span id="login-email-info"></span>
+
+                  <input type="password" name="login-password" placeholder="password" />
+                  <label id='input-title'>Password</label><br />
+                  <p>
+                     <!-- href="packages.html"-->
+                     <a class="anchor">
+                        <input type="button" name="signin-btn" onclick='onLoginSubmit("login-email")'
+                           class="prim-btn botton" value='Submit'>
+                     </a>
+                     <p class="align-right anchor"> <a href=""> Recover Account</a>
+                  </p>
+                  </p>
+               </form>
+            </div>
+
+         </div>
 
       </main>
 
