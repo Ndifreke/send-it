@@ -12,14 +12,17 @@
     "contributors": [],
     "dependencies": {},
     "scripts": {
+        "nodemon": "nodemon start.js",
         "lint": "eslint .",
-
         "test": "mocha ./test",
         "start": "node app.js",
+        "transpile":"nodemon start.js",
         "coverage": "node node_modules/.bin/istanbul cover _mocha -- -R spec",
         "coveralls": "cat ./coverage/lcov.info | node node_modules/.bin/coveralls"
     },
     "devDependencies": {
+        "babel-preset-env": "^1.7.0",
+        "babel-register": "^6.26.0",
         "chai": "latest",
         "eslint": "^5.9.0",
         "eslint-config-airbnb": "^17.1.0",

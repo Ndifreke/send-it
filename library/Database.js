@@ -11,17 +11,17 @@ class DB {
       fileSystem.writeFile( path, data );
    }
 
-   initDb( path, any ) {
+   initDb( path) {
       let parcelPath = require( "./Parcel" ).path;
       let userPath = require( "./User" ).path;
       let dbTemplate = undefined;
       /* dertermine which db to initialize base on the caller */
-      if ( path === parcelPath || !any ) {
+      if ( path === parcelPath ) {
          dbTemplate = {
             lastId: 0,
             parcelList: {}
          }
-      } else if ( path === userPath || !any ) {
+      } else if ( path === userPath ) {
          dbTemplate = {
             lastId: 0,
             userList: {}

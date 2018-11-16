@@ -1,0 +1,19 @@
+{
+	"lastId": 1,
+	"parcelList": {
+		"1": {
+			"parcel": {
+				"userId": "15",
+				"name": "/lm",
+				"destination": "Lagos",
+				"destinationLatitude": "1457865",
+				"destinationLongitude": "1457858",
+				"origin": "Abuja",
+				"originLatitude": "787898",
+				"originLongitude": "4896598",
+				"status": "PENDING",
+				"createdAt": "Thu Nov 15 2018"
+			}
+		}
+	}
+}
