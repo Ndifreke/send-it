@@ -65,16 +65,16 @@ li.divider{
 
 /************Admin section ***************/
 .search-icon {   
- background: url(../images/search.svg) no-repeat;
- cursor: pointer;
- background-size: 51px 45px;
- width: 45px;
- top: 11px;
- height: 58px;
- border-style: none;
- position: absolute;
- outline: none;
- border: none;
+    background: url(../images/search.svg) no-repeat;
+    cursor: pointer;
+    background-size: 39px 35px;
+    width: 45px;
+    top: 11px;
+    height: 58px;
+    border-style: none;
+    position: absolute;
+    outline: none;
+    border: none;
 }
 form#search{
  width: 300px;
@@ -85,6 +85,7 @@ form#search{
 form#search input[type=text]{
  margin-right: 22px;
  border-bottom: 2px solid #FF5722;
+ padding-right: 29px;
 }
 
 .package-content hr{
