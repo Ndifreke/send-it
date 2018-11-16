@@ -1,24 +1,29 @@
-var cachedDisplayStyle = {};
+/* eslint-disable no-unused-vars */
+/* eslint-disable no-undef */
+/* eslint-disable prefer-destructuring */
+/* eslint-disable default-case */
+
+const cachedDisplayStyle = {};
 
 
 function verifySignIn() {
-    let loginForm = document.forms[ 'loginForm' ];
-    let loginEmail = loginForm[ 'login-email' ].value;
-    let loginPassword = loginForm[ 'login-password' ].value;
-    console.log( `${loginPassword + loginEmail}` );
+  const loginForm = document.forms.loginForm;
+  const loginEmail = loginForm['login-email'].value;
+  const loginPassword = loginForm['login-password'].value;
+  console.log(`${loginPassword + loginEmail}`);
 }
 
 function signupUser() {
-    let signupForm = document.forms[ 'signupForm' ]
-    let signupFirstName = signupForm[ 'signupName' ].value;
-    let signupLastName = signupForm[ 'signupLastName' ].value;
-    let signupEmail = signupForm[ 'signupEmail' ].value;
-    let signupNumber = signupForm[ 'signupNumber' ].value;
-    let signupPassword = signupForm[ 'signupPassword' ].value;
-    let signupComfirmPassword = signupForm[ 'signupComfirmpassword' ].value;
+  const signupForm = document.forms.signupForm;
+  const signupFirstName = signupForm.signupName.value;
+  const signupLastName = signupForm.signupLastName.value;
+  const signupEmail = signupForm.signupEmail.value;
+  const signupNumber = signupForm.signupNumber.value;
+  const signupPassword = signupForm.signupPassword.value;
+  const signupComfirmPassword = signupForm.signupComfirmpassword.value;
 
-    console.log( `${signupFirstName + signupEmail + signupLastName + signupNumber +
-        signupPassword + signupComfirmPassword}` )
+  console.log(`${signupFirstName + signupEmail + signupLastName + signupNumber
+        + signupPassword + signupComfirmPassword}`);
 }
 
 
@@ -27,23 +32,24 @@ function signupUser() {
  * and the display property is the type of display. By default an id withoud display is set to
  * block display
  *  */
-function getElement( identifier, attribute ) {
-    switch ( attribute ) {
-        case "class":
-            return document.getElementsByClassName( identifier );
-        case "id":
-            return document.getElementById( identifier );
-        case "tag":
-            return document.getElementsByTagName( identifier );
-    }
+function getElement(identifier, attribute) {
+  switch (attribute) {
+    case 'class':
+      return document.getElementsByClassName(identifier);
+    case 'id':
+      return document.getElementById(identifier);
+    case 'tag':
+      return document.getElementsByTagName(identifier);
+  }
+  return null;
 }
 
-function showDashContent( viewID ) {
-    setDisplay( viewID );
+function showDashContent(viewID) {
+  setDisplay(viewID);
 }
 
-function toggle( ui ) {
-    const element = document.getElementById( ui );
-    element.style.display = ( element.style.display !== "block" ) ? "block" : "none";
-    console.log( element.style.display );
+function toggle(ui) {
+  const element = document.getElementById(ui);
+  element.style.display = (element.style.display !== 'block') ? 'block' : 'none';
+  console.log(element.style.display);
 }

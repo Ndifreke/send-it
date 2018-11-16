@@ -1,111 +1,12 @@
 {
-	"lastId": 10,
+	"lastId": 1,
 	"userList": {
-		"15": {
-			"surname": "ekim",
-			"firstname": "Ndifeke",
-			"email": "someone@email",
-			"phone": "00803574754",
+		"1": {
+			"surname": "\"maxman\"",
+			"firstname": "Ndifreke",
+			"email": "nd@gmail.com",
+			"phone": "07035274897",
 			"password": "password",
-			"config": {
-				"acceptsEmails": true,
-				"acceptsAdverts": true
-			}
-		},
-		"2": {
-			"surname": "ekim",
-			"firstname": "Ndifeke",
-			"email": "some@email",
-			"phone": "00803574754",
-			"password": "my password",
-			"config": {
-				"acceptsEmails": true,
-				"acceptsAdverts": true
-			}
-		},
-		"3": {
-			"surname": "ekim",
-			"firstname": "Ndifeke",
-			"email": "some@email",
-			"phone": "00803574754",
-			"password": "my password",
-			"config": {
-				"acceptsEmails": true,
-				"acceptsAdverts": true
-			}
-		},
-		"4": {
-			"surname": "ekim",
-			"firstname": "Ndifeke",
-			"email": "some@email",
-			"phone": "00803574754",
-			"password": "my password",
-			"config": {
-				"acceptsEmails": true,
-				"acceptsAdverts": true
-			}
-		},
-		"5": {
-			"surname": "ekim",
-			"firstname": "Ndifeke",
-			"email": "some@email",
-			"phone": "00803574754",
-			"password": "my password",
-			"config": {
-				"acceptsEmails": true,
-				"acceptsAdverts": true
-			}
-		},
-		"6": {
-			"surname": "ekim",
-			"firstname": "Ndifeke",
-			"email": "some@email",
-			"phone": "00803574754",
-			"password": "my password",
-			"config": {
-				"acceptsEmails": true,
-				"acceptsAdverts": true
-			}
-		},
-		"7": {
-			"surname": "ekim",
-			"firstname": "Ndifeke",
-			"email": "some@email",
-			"phone": "00803574754",
-			"password": "my password",
-			"config": {
-				"acceptsEmails": true,
-				"acceptsAdverts": true
-			}
-		},
-		"8": {
-			"surname": "ekim",
-			"firstname": "Ndifeke",
-			"email": "some@email",
-			"phone": "00803574754",
-			"password": "my password",
-			"config": {
-				"acceptsEmails": true,
-				"acceptsAdverts": true
-			}
-		},
-		"9": {
-			"surname": "ekim",
-			"firstname": "Ndifeke",
-			"email": "some@email",
-			"phone": "00803574754",
-			"password": "my password",
-			"config": {
-				"acceptsEmails": true,
-				"acceptsAdverts": true
-			}
-		},
-		"10": {
-			"surname": "ekim",
-			"firstname": "Ndifeke",
-			"email": "some@email",
-			"phone": "00803574754",
-			"password": "my password",
 			"config": {
 				"acceptsEmails": true,
 				"acceptsAdverts": true

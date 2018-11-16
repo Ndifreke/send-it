@@ -1,23 +1,25 @@
-let fs = require( "fs" );
-let join = require( "path" ).join;
+/* eslint-disable import/prefer-default-export */
+/* eslint-disable class-methods-use-this */
+
+import { writeFileSync, unlinkSync, readFileSync } from 'fs';
+
 
 class FileSystem {
+  writeFile(path, data) {
+    writeFileSync(path, data);
+  }
 
-      writeFile( path, data ) {
-            fs.writeFileSync( path, data );
-      }
+  readFile(path) {
+    return readFileSync(path);
+  }
 
-      readFile( path ) {
-            return fs.readFileSync( path );
-      }
-      
-      remove( path ) {
-            try {
-                  fs.unlinkSync( path );
-            } catch ( e ) {
-
-            }
-      }
+  remove(path) {
+    try {
+      unlinkSync(path);
+    } catch (e) {
+      throw Error(`Could not read ${path} `);
+    }
+  }
 }
-
-exports.fileSystem = new FileSystem();
+const fileSystem = new FileSystem();
+export { fileSystem };
