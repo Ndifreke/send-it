@@ -100,17 +100,3 @@ form#search input[type=text]{
 }
 
 
- form#search{
-  width: 300px;
-@@ -83,8 +83,10 @@ form#search{
- }
-
- form#search input[type=text]{
-- margin-right: 22px;
-- border-bottom: 2px solid #FF5722;
-+    margin-right: -31px;
-+    border-bottom: 2px solid #FF5722;
-+    padding-right: 30px;
-+    border-right: 27px solid darksalmon;
- }
-
