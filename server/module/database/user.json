@@ -1,0 +1,104 @@
+{
+	"lastId": 11,
+	"userList": {
+		"3": {
+			"surname": "{{surname}}",
+			"firstname": "ndifreke",
+			"email": "nd@gmail.com",
+			"phone": "{{phone}}",
+			"password": "{{password}}",
+			"config": {
+				"acceptsEmails": true,
+				"acceptsAdverts": true
+			}
+		},
+		"4": {
+			"surname": "Ekim",
+			"firstname": "Ndifreke",
+			"email": "user@email.com",
+			"phone": "07035478978",
+			"password": "johndoe",
+			"config": {
+				"acceptsEmails": true,
+				"acceptsAdverts": true
+			}
+		},
+		"5": { 
+			"surname": "Ekim",
+			"firstname": "Ndifreke",
+			"email": "user@email.com",
+			"phone": "07035478978",
+			"password": "johndoe",
+			"config": {
+				"acceptsEmails": true,
+				"acceptsAdverts": true
+			}
+		},
+		"6": {
+			"surname": "Ekim",
+			"firstname": "Ndifreke",
+			"email": "user@email.com",
+			"phone": "07035478978",
+			"password": "johndoe",
+			"config": {
+				"acceptsEmails": true,
+				"acceptsAdverts": true
+			}
+		},
+		"7": {
+			"surname": "Ekim",
+			"firstname": "Ndifreke",
+			"email": "user@email.com",
+			"phone": "07035478978",
+			"password": "johndoe",
+			"config": {
+				"acceptsEmails": true,
+				"acceptsAdverts": true
+			}
+		},
+		"8": {
+			"surname": "Ekim",
+			"firstname": "Ndifreke",
+			"email": "user@email.com",
+			"phone": "07035478978",
+			"password": "johndoe",
+			"config": {
+				"acceptsEmails": true,
+				"acceptsAdverts": true
+			}
+		},
+		"9": {
+			"surname": "Ekim",
+			"firstname": "Ndifreke",
+			"email": "user@email.com",
+			"phone": "07035478978",
+			"password": "johndoe",
+			"config": {
+				"acceptsEmails": true,
+				"acceptsAdverts": true
+			}
+		},
+		"10": {
+			"surname": "Ekim",
+			"firstname": "Ndifreke",
+			"email": "user@email.com",
+			"phone": "07035478978",
+			"password": "johndoe",
+			"config": {
+				"acceptsEmails": true,
+				"acceptsAdverts": true
+			}
+		},
+		"11": {
+			"surname": "Ekim",
+			"firstname": "Ndifreke",
+			"email": "user@email.com",
+			"phone": "07035478978",
+			"password": "johndoe",
+			"config": {
+				"acceptsEmails": true,
+				"acceptsAdverts": true
+			}
+		}
+	}
+}

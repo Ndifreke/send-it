@@ -1,11 +1,11 @@
 // const user = require( "../library/User" ).User;
 import {
   Utils,
-} from '../library/utils';
+} from '../module/utils';
 
 import {
   User,
-} from '../library/User';
+} from '../module/User';
 
 function signup(req, res) {
   res.setHeader('Content-Type', 'text/json');

@@ -5,11 +5,14 @@
     background-color: #323544;
     color: white;
     margin-top: 40px;
-    cursor: default;
+    cursor: pointer;
     height: 55px;
     position: relative;
 }
-
+.package-preview:hover{
+    background: #FF5722;
+    transition-duration: 0.2s;
+}
 .package-content{
     background: whitesmoke;
     border-top-style: none;

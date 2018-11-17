@@ -255,6 +255,13 @@ input.prim-btn.botton {}
     div#services {
         display: block;
     }
+    #profile-sumary {
+        /* display: inline-block; */
+        /* width: 50%; */
+        /* min-width: 300px; */
+        padding: 10px;
+        margin-top: 10px;
+    }
     #aveter-container {
         width: 80%;
     }
