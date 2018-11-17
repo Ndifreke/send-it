@@ -8,6 +8,11 @@
     cursor: pointer;
     height: 55px;
     position: relative;
+    border-radius: 4px;
+}
+.package-preview:hover{
+    background: #FF5722;
+    transition-duration: 0.2s;
 }
 .package-preview:hover{
     background: #FF5722;

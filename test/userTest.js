@@ -1,6 +1,6 @@
 /* eslint-disable no-undef */
 import { assert } from 'chai';
-import { User } from '../library/User';
+import { User } from '../server/module/User';
 
 const createOption = {
   firstname: 'Ndifreke',
