@@ -10,7 +10,7 @@ import {
   getUserParcel,
   getAllParcels,
 }
-  from './controller/parcel';
+  from './server/controller/parcel';
 
 
 import {
@@ -21,7 +21,7 @@ import {
   changeSettings,
   changeStatus,
   changeLocation,
-} from './controller/users';
+} from './server/controller/users';
 
 const app = express();
 

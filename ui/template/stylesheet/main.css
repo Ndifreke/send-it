@@ -27,7 +27,6 @@ h4 {
 }
 .bg, body{
     background: url("../images/bg.jpg");
-  //  background-image: url("../images/bg.jpg") repeat-x repeat-y;
 }
 
 .botton,
@@ -109,7 +108,6 @@ main {
     padding: 10px;
     min-width: 259px;
     max-width: 580px;
-    //width: 50%;
     border: none;
     margin: auto;
     background: whitesmoke;

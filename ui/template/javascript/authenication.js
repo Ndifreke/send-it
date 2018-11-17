@@ -21,14 +21,14 @@ function emailInput(id, infoLabel) {
     console.log('invalid');
   } else {
     label.textContent = '';
-    element.style['border'] = 'none';
+    element.style.border = 'none';
     console.log('valid');
   }
 }
 
-function onLoginSubmit(id, label) {
-  if (validateEmail(id)) {
-    window.location = '../ui/admin.html';
+function onLoginSubmit(id, password) {
+  if (validateEmail(id) && !(/^\s+$/.test(document.getElementById(password).value))) {
+    window.location = '../pages/admin.html';
   }
 }
 

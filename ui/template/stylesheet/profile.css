@@ -1,5 +1,5 @@
 #about, #statistics{
-    padding: 25px;
+    padding-top: 25px;
     display: block;
     text-align: center;
     width: -webkit-fill-available;
@@ -19,16 +19,12 @@
 }
 #aveter-container{
     display: inline-block;
-    width: 50%;
     margin: auto;
-    min-width: 300px;
 }
 #profile-sumary{
     display: inline-block;
-    width: 50%;
-    min-width: 300px;
+    width: 80%;
     padding: 10px;
-    margin-top: 10px;
 }
 .badges{
     display: inline;
