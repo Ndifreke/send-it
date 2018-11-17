@@ -25,10 +25,10 @@ import {
 
 const app = express();
 
-app.set('views', path.join(__dirname, './views'));
+app.set('views', path.join(__dirname, './ui/pages'));
 app.set('view engine', 'ejs');
-app.set('port', process.env.PORT);
-app.use(express.static(path.join(__dirname, 'template')));
+app.set('port', process.env.PORT || 8080);
+app.use(express.static(path.join(__dirname)));
 app.use(bodyParser());
 
 /* Parcel Routes  */
@@ -46,8 +46,12 @@ app.put('/api/v1/parcels/:id/status', changeStatus);
 app.put('/api/v1/parcels/:id/destination', changeDestination);
 app.put('/api/v1/parcels/:id/presentLocation', changeLocation);
 
+app.get('/', (req, res) => {
+  res.render('admin.html');
+});
+
+/* handle errors */
 app.use((err, req, res) => {
-  res.setHeader('Content-Type', 'text/json');
   const message = err.message;
   res.end(JSON.stringify({
     status: 'error',
