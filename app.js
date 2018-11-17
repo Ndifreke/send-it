@@ -49,7 +49,7 @@ app.get('/', (req, res) => {
   res.render('index.html');
 });
 
-/*
+
 app.use((err, req, res) => {
   const message = err.message;
   res.end(JSON.stringify({
@@ -65,5 +65,5 @@ app.use((req, res) => {
   };
   res.end(JSON.stringify(msg), null, '\t');
 });
-*/
+
 app.listen( process.env.PORT);
