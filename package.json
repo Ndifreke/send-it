@@ -11,10 +11,14 @@
     "author": "ndifreke",
     "contributors": [],
     "dependencies": {
+        "ejs": "latest",
         "body-parser": "latest",
         "express": "latest",
         "serve-static": "latest"
     },
+    "engines": {
+        "node": "10.x"
+      },
     "scripts": {
         "nodemon": "nodemon --exec babel-node start.js",
         "lint": "eslint .",
