@@ -27,7 +27,6 @@ const app = express();
 
 app.set('views', path.join(__dirname, './ui/pages'));
 app.set('view engine', 'ejs');
-app.set('port', process.env.PORT || 8080);
 app.use(express.static(path.join(__dirname)));
 app.use(bodyParser());
 
@@ -47,7 +46,7 @@ app.put('/api/v1/parcels/:id/destination', changeDestination);
 app.put('/api/v1/parcels/:id/presentLocation', changeLocation);
 
 app.get('/', (req, res) => {
-  res.render('admin.html');
+  res.render('index.html');
 });
 
 /* handle errors */
@@ -67,4 +66,4 @@ app.use((req, res) => {
   };
   res.end(JSON.stringify(msg), null, '\t');
 });
-http.createServer(app).listen(app.get('port'));
+http.createServer(app).listen( process.env.PORT);
