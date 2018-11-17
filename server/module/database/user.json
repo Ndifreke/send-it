@@ -1,5 +1,5 @@
 {
-	"lastId": 11,
+	"lastId": 12,
 	"userList": {
 		"3": {
 			"surname": "{{surname}}",
@@ -23,7 +23,7 @@
 				"acceptsAdverts": true
 			}
 		},
-		"5": { 
+		"5": {
 			"surname": "Ekim",
 			"firstname": "Ndifreke",
 			"email": "user@email.com",
@@ -90,6 +90,17 @@
 			}
 		},
 		"11": {
+			"surname": "Ekim",
+			"firstname": "Ndifreke",
+			"email": "user@email.com",
+			"phone": "07035478978",
+			"password": "johndoe",
+			"config": {
+				"acceptsEmails": true,
+				"acceptsAdverts": true
+			}
+		},
+		"12": {
 			"surname": "Ekim",
 			"firstname": "Ndifreke",
 			"email": "user@email.com",
