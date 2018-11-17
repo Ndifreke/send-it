@@ -1,4 +1,3 @@
-import http from 'http';
 import express from 'express';
 import path from 'path';
 import bodyParser from 'body-parser';
@@ -25,9 +24,8 @@ import {
 
 const app = express();
 
-app.set('views', path.join(__dirname, './ui/pages'));
-app.set('view engine', 'ejs');
-app.set('port', process.env.PORT || 8080);
+//app.set('views', path.join(__dirname, './ui/pages'));
+//app.set('view engine', 'ejs');
 app.use(express.static(path.join(__dirname)));
 app.use(bodyParser());
 
@@ -47,17 +45,17 @@ app.put('/api/v1/parcels/:id/destination', changeDestination);
 app.put('/api/v1/parcels/:id/presentLocation', changeLocation);
 
 app.get('/', (req, res) => {
-  res.render('admin.html');
+  console.log(req.method);
+  res.render('index.html');
 });
 
-/* handle errors */
+/*
 app.use((err, req, res) => {
   const message = err.message;
   res.end(JSON.stringify({
     status: 'error',
   }));
 });
-
 
 app.use((req, res) => {
   res.statusCode = 500;
@@ -67,4 +65,5 @@ app.use((req, res) => {
   };
   res.end(JSON.stringify(msg), null, '\t');
 });
-http.createServer(app).listen(app.get('port'));
+*/
+app.listen( process.env.PORT);
