@@ -15,13 +15,12 @@
         "nodemonB": "nodemon --exec babel-node start.js",
         "nodemon": "nodemon start.js",
         "lint": "eslint .",
-        "testB": "mocha ./test --exit --compilers js:babel-core/register",
+        "testB": "mocha ./test  --exit --compilers js:babel-core/register",
         "test": "mocha ./test",
         "start": "node app.js",
         "transpile": "nodemon start.js"
     },
     "devDependencies": {
-        "babel-preset-es2015": "6.3.13",
         "@babel/cli": "7.1.5",
         "@babel/core": "7.1.5",
         "@babel/node": "7.0.0",

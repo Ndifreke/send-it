@@ -1,12 +1,12 @@
 {
-	"lastId": 1,
+	"lastId": 3,
 	"userList": {
-		"1": {
-			"surname": "\"maxman\"",
-			"firstname": "Ndifreke",
+		"3": {
+			"surname": "{{surname}}",
+			"firstname": "ndifreke",
 			"email": "nd@gmail.com",
-			"phone": "07035274897",
-			"password": "password",
+			"phone": "{{phone}}",
+			"password": "{{password}}",
 			"config": {
 				"acceptsEmails": true,
 				"acceptsAdverts": true
