@@ -3,11 +3,10 @@
 
    <head>
       <title>Create Account </title>
-      <link type="text/css" rel="stylesheet" href="../stylesheet/shared.css">
-      <link type="text/css" rel="stylesheet" href="../stylesheet/main.css">
-      <link type="text/css" rel="stylesheet" href="../stylesheet/signup.css">
-      <script type="text/javascript" src="../javascript/ui_render.js"></script>
-      <script type="text/javascript" src="../javascript/client_server.js"></script>
+      <link type="text/css" rel="stylesheet" href="../template/stylesheet/shared.css">
+      <link type="text/css" rel="stylesheet" href="../template/stylesheet/main.css">
+      <link type="text/css" rel="stylesheet" href="../template/stylesheet/signup.css">
+      <script type="text/javascript" src="../template/javascript/ui_render.js"></script>
       <meta charset="UTF-8">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
    </head>
@@ -33,6 +32,7 @@
             <form class="align-center" id="signupForm">
                <h2 class="align-center"> Create Your SendIt
                   Account </h2>
+                  
                <div class="inline">
                   <div>
                      <label id="input-title" oninput="validateName">FIRST NAME</label>
@@ -44,18 +44,20 @@
                   </div>
 
                </div>
+
                <div>
-                  <div>
-                     <label id="input-title">LOGIN EMAIL</label>
+                  <div class="inline">
+                     <label id="input-title">EMAIL</label>
                      <input type="email" name='signupEmail' oninput="validateEmail" placeholder="username@domain.com">
                   </div>
-               </div>
-               <div >
-                  <label id="input-title">MOBILE NUMBER</label>
-                  <input type="tel" name='signupNumber' placeholder="+23470123481458"
-                     class="fit-width">
-               </div>
 
+                  <div >
+                        <label id="input-title">MOBILE NUMBER</label>
+                        <input type="tel" name='signupNumber' placeholder="+23470123481458"
+                           class="fit-width">
+                     </div>
+               </div>
+              
                <div class="inline">
                   <div>
                      <label id="input-title">PASSWORD</label>

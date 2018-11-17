@@ -1,8 +1,8 @@
 /* eslint-disable no-fallthrough */
 /* eslint-disable default-case */
-import { Utils } from '../library/utils';
+import { Utils } from '../module/utils';
 
-import { Parcel } from '../library/Parcel';
+import { Parcel } from '../module/Parcel';
 
 function createParcel(req, res) {
   res.setHeader('Content-Type', 'text/json');
@@ -129,4 +129,4 @@ export {
   getAllParcels,
   getUserParcel,
   createParcel,
-}
+};

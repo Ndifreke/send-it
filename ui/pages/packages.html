@@ -3,14 +3,13 @@
 
     <head>
         <title>SendIt | Packages</title>
-        <link type="text/css" rel="stylesheet" href="../stylesheet/shared.css">
-        <link type="text/css" rel="stylesheet" href="../stylesheet/main.css">
-        <link type="text/css" rel="stylesheet" href="../stylesheet/packages.css">
-        <script type="text/javascript" src="../javascript/ui_render.js"></script>
-        <script type="text/javascript" src="../javascript/client_server.js"></script>
-        <script type="text/javascript" src="../javascript/responsive_ui.js"></script>
+        <link type="text/css" rel="stylesheet" href="../template/stylesheet/shared.css">
+        <link type="text/css" rel="stylesheet" href="../template/stylesheet/main.css">
+        <link type="text/css" rel="stylesheet" href="../template/stylesheet/packages.css">
+        <script type="text/javascript" src="../template/javascript/ui_render.js"></script>
+        <script type="text/javascript" src="../template/javascript/responsive_ui.js"></script>
         <!--
-      <script type="text/javascript" src="../javascript/location_services.js"></script>
+      <script type="text/javascript" src="../template/javascript/location_services.js"></script>
       -->
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -81,20 +80,21 @@
                     <h2> Packages </h2>
 
                     <div class="package">
-                        <div class="package-preview">
+                        <div class="package-preview" id="={packageId1}1">
                             <button class="cancel" value="{packageId1}"></button>
-
                             <button class="edit" value="{packageId1}"></button>
                             <span class="preview"> Title1 || ID </span>
                             <button id="expand-btn" onclick='toggle("{packageId1}1")'>
                                 more +</button>
                         </div>
+
                         <div id="{packageId1}1" class="parcel-views">
                             <!--append I again to differenttiate id below-->
                             <div class='package-content elevate' id='{packageId1}'>
                                 <p class="package-description">
                                     Black and white television
                                 </p>
+                            <hr/>
                                 <div class='package-info'>
                                     <p class="meta">
                                         <span class="from">
@@ -118,20 +118,20 @@
                                     </p>
                                 </div>
                             </div>
-
+                        </div>
                         </div>
                     </div>
+              
 
-                    <div class="package">
-                        <div class="package-preview">
+                    <div class="package" >
+                        <div class="package-preview" id="={packageId5}5">
                             <button class="cancel" value="{packageId5}"></button>
                             <button class="edit" value="{packageId5}"></button>
-                            <button id="expand-btn" onclick='toggle( "{packageId5}5")'>
-                                more
-                                +</button>
                             <span class="preview"> Title1 || ID </span>
+                            <button id="expand-btn" onclick='toggle("{packageId1}1")'>
+                                    more +</button>
                         </div>
-                        <div id="{packageId5}5" class="parcel-views">
+                        <div id="{packageId5}5" class="parcel-viewss">
                             <!--append I again to differenttiate id below-->
                             <div class='package-content elevate' id='{packageId5}'>
                                 <p class="package-description">
@@ -169,58 +169,9 @@
                                     </p>
                                 </div>
                             </div>
-                        </div>
-                    </div>
-
-
-                    <div class="package">
-                        <div class="package-preview">
-                            <button class="cancel" value="{packageId2}"></button>
-                            <button class="edit" value="{packageId2}"></button>
-                            <span class="preview"> Title1 || ID </span>
-                            <button id="expand-btn" onclick='toggle( "{packageId2}2")'>
-                                more
-                                +</button>
-                        </div>
-                        <div id="{packageId2}2" class="parcel-views">
-                            <!--append I again to differenttiate id below-->
-                            <div class='package-content elevate' id='{packageId2}'>
-                                <p class="package-description">
-                                    Three eggs coupled with an ice
-                                    tea in a sandwitch form
-                                    reader
-                                    to explode on the very basic
-                                    time it has
-                                </p>
-                                <hr />
-
-                                <div class='package-info'>
-                                    <p class="meta">
-                                        <span class="from">
-                                            From:</span> Abuja
-                                        <br />
-                                        <span class="destination">
-                                            Destination:
-                                        </span> Canada<br />
-                                        <span class="sender">
-                                            Sender </span>
-                                        Anthony Ekim <br />
-                                        <span class="date"> Date
-                                        </span> 16, July, 2018
-                                        <br />
-                                        <span class="location">
-                                            Location </span>
-                                        currently in
-                                        warehouse<br />
-                                        <span class="status">
-                                            Status </span>
-                                        Processing <br />
-                                    </p>
-                                </div>
                             </div>
                         </div>
                     </div>
-
                 </section>
 
             </section>

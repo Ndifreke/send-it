@@ -10,15 +10,16 @@
     ],
     "author": "ndifreke",
     "contributors": [],
-    "dependencies": {},
+    "dependencies": {
+        "body-parser": "latest",
+        "express": "latest",
+        "serve-static": "latest"
+    },
     "scripts": {
-        "nodemonB": "nodemon --exec babel-node start.js",
-        "nodemon": "nodemon start.js",
+        "nodemon": "nodemon --exec babel-node start.js",
         "lint": "eslint .",
-        "testB": "mocha ./test --exit --compilers js:babel-core/register",
-        "test": "mocha ./test",
-        "start": "node app.js",
-        "transpile": "nodemon start.js"
+        "test": "mocha ./test --exit --compilers js:babel-core/register",
+        "start": "babel-node app.js"
     },
     "devDependencies": {
         "babel-preset-es2015": "6.3.13",
