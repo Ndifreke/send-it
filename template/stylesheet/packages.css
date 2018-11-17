@@ -65,7 +65,7 @@ li.divider{
 
 /************Admin section ***************/
 .search-icon {   
-    background: url(../images/search.svg) no-repeat;
+    background: url(../images/ic_search.png) no-repeat;
        cursor: pointer;
         background-size: 38px 38px;
         width: 37px;
@@ -84,9 +84,9 @@ form#search{
 
 form#search input[type=text]{
     margin-right: -31px;
-        border-bottom: 2px solid #FF5722;
-        padding-right: 30px;
-        border-right: 27px solid darksalmon;
+    border-bottom: 2px solid #D6D6D6;
+    padding-right: 30px;
+    border-right: 27px solid #D6D6D6;
 }
 
 .package-content hr{

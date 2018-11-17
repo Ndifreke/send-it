@@ -35,16 +35,16 @@
                <form class="align-center" id='loginForm'>
 
                   <label id="input-title">Email</label><br />
-                  <input type="email" id="login-email" placeholder="Email" oninput="emailInput('login-email','login-email-info')" />
+                  <input type="email" id="login-email" placeholder="Email" oninput="emailInput('login-email','login-email-info')" required/>
                   </br>
                   <span id="login-email-info"></span>
 
-                  <input type="password" name="login-password" placeholder="password" />
+                  <input type="password"  name="login-password" placeholder="password" required />
                   <label id='input-title'>Password</label><br />
                   <p>
                      <!-- href="packages.html"-->
                      <a class="anchor">
-                        <input type="button" name="signin-btn" onclick='onLoginSubmit("login-email")'
+                        <input type="submit" name="signin-btn" onclick='onLoginSubmit("login-email")'
                            class="prim-btn botton" value='Submit'>
                      </a>
                      <p class="align-right anchor"> <a href=""> Recover Account</a>

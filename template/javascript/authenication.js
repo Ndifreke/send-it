@@ -21,7 +21,7 @@ function emailInput(id, infoLabel) {
     console.log('invalid');
   } else {
     label.textContent = '';
-    element.style['border-color'] = 'block';
+    element.style['border'] = 'none';
     console.log('valid');
   }
 }
