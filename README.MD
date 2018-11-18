@@ -1,5 +1,6 @@
 [![Build Status](https://travis-ci.org/Ndifreke/sendIt.svg?branch=develop)](https://travis-ci.org/Ndifreke/sendIt)
 [![Maintainability](https://api.codeclimate.com/v1/badges/794eccb03132f5acde0b/maintainability)](https://codeclimate.com/github/Ndifreke/sendIt/maintainability)
+[![Coverage Status](https://coveralls.io/repos/github/Ndifreke/sendIt/badge.svg)](https://coveralls.io/github/Ndifreke/sendIt)
 [![Test Coverage](https://api.codeclimate.com/v1/badges/794eccb03132f5acde0b/test_coverage)](https://codeclimate.com/github/Ndifreke/sendIt/test_coverage)
 
 # SendIt

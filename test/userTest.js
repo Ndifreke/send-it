@@ -1,6 +1,7 @@
 /* eslint-disable no-undef */
 import { assert } from 'chai';
 import { User } from '../server/module/User';
+import 'coveralls';
 
 const createOption = {
   firstname: 'Ndifreke',
@@ -24,8 +25,6 @@ describe('User Api End Points', () => {
   it('That creating the same user fails create a User successfully', () => {
     const created = new User(createOption);
     console.log(created);
-    //assert.isNotTrue(created.create());
+    // assert.isNotTrue(created.create());
   });
-
-
 });
