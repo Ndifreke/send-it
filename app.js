@@ -24,9 +24,9 @@ import {
 
 const app = express();
 
-//app.set('views', path.join(__dirname, './ui/pages'));
-//app.set('view engine', 'ejs');
-app.use(express.static(path.join(__dirname)));
+app.set('views', path.join(__dirname, 'ui/pages'));
+app.set('view engine', 'ejs');
+app.use(express.static(path.join(__dirname, 'ui')));
 app.use(bodyParser());
 
 /* Parcel Routes  */
@@ -46,17 +46,17 @@ app.put('/api/v1/parcels/:id/presentLocation', changeLocation);
 
 app.get('/', (req, res) => {
   console.log(req.method);
-  res.render('index.html');
+  res.render('index.ejs');
 });
 
-
+/*
 app.use((err, req, res) => {
   const message = err.message;
   res.end(JSON.stringify({
     status: 'error',
   }));
 });
-
+*/
 app.use((req, res) => {
   res.statusCode = 500;
   const msg = {

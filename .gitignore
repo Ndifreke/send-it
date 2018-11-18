@@ -3,3 +3,4 @@
 .eslintignore/
 /server/module/database
 /server/module/database/
+/build

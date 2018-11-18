@@ -87,9 +87,11 @@ form#new-percel-viewport.elevate {
 }
 
 #create-sumary {
-  background: white;
+  background:#FFEBAC;
   width: -webkit-fill-available;
   margin: 0 20px;
+  border-style: dashed;
+  border-color: #FFEBAC;
 }
 
 /* mobile screen */
