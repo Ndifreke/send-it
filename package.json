@@ -28,7 +28,8 @@
         "ejs": "latest",
         "express": "latest",
         "pg": "^7.6.1",
-        "serve-static": "latest"
+        "serve-static": "latest",
+        "coveralls":"latest"
     },
     "engines": {
         "node": "10.x"

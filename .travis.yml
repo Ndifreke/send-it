@@ -9,19 +9,23 @@ deploy:
   api_key:
     secure: t3WOGhEFgFVBkoXEjAfbb5ViAcoL4SF0yBSj0pxOa5lJ3//kQzVaumj0DUhys3uIWbXBILqhrXqbTvsJmKTzevg9bU6wuVg35AWxb9dZKvzWIFIhEHcg8w8url+hPq+G/2AYQiwH6ZVEnMjReWSwqh9j8S0kELqza6A976PLewlVODPDknceCxAtA7E01roHTauI7jOw5Tt87a6HULiDFVSMKkxBt73EnDFVQFzDdeRxCx/gH/k0+tnQeSUEguDaJKdItkjdPn0sZ8dF/8Q5HHB0XqKlify5k00Xn81hs6wJGcohN74xJoYH9VO+R7WBs1vdXmESu6/5hYnf/Hy5+ZY6pw82bM0QBhflIFedYTV6VA6tfE+m+WaHiLiwenyOHuGaGHmfIWUNVzbBecWSfq5LEj6osU19pOtDThOs89KaSXgZ5LzDVwlyof36fKkr5haiFMDf6gJDKv2NooqmfDmlQhFgZKAYBC1VX5h7+lY4CFDK36URJhJp5z9GdwhRgrYDt+yJ9Oec15Wu8NGD/+b6baRL8TupgpQNuSBA88aTHgvC/wr3Rrlwd1vy1b5lSVRqEXHb0Y6nY3bFQb2EfnoeFPSfhOEwv51f3fwfLUu91U0a2zSHzpxN6B2FquYLQsNnafOWXmeoXd8vZkinwV0D/kyQPRIl9qlnkP/+4Hc=
 before_script:
-- npm install
-- yarn global add nyc
-- curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
-- chmod +x ./cc-test-reporter
-- ./cc-test-reporter before-build
+  - npm install
+  - yarn global add nyc
+  - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
+  - chmod +x ./cc-test-reporter
+  - ./cc-test-reporter before-build
 env:
   global:
     - CC_TEST_REPORTER_ID=811afe41cee5a354715ee890307d8728e3452e4ee75630e2845b79165a2b0015
 script:
+  - npm install
+  - bundle exec rspec
   - nyc --reporter=lcov yarn run unit
 
 after_script:
   - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT
-
+after_success:
+  - npm run coverage
+  - npm run coveralls
 notifications:
   email: true
