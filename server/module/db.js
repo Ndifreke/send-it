@@ -1,8 +1,6 @@
 /* eslint-disable no-unused-vars */
 
 const { Client } = require('pg');
-
-
 class Database {
   constructor() {
     Database.connectionString = process.env.DATABASE_URL
