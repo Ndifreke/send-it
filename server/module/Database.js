@@ -37,12 +37,13 @@ CREATE TABLE IF NOT EXISTS parcels(
 
 class Database {
   constructor() {
-    Database.connectionString = 'postgres://wwzadobbosojdc:3f63098901d24c14455fd61e5ee46305872a12aa8e1fc55c518ba71ce427767a@ec2-54-235-193-0.compute-1.amazonaws.com:5432/d5j9tbmmtor4f1'
-      || 'tcp://ndifreke:root@localhost:5432/sendit';
+
     if (Database.client) {
       this.client = Database.client;
     } else {
-      this.client = new Client(Database.connectionString);
+      this.client = new Client(
+        process.env.DATABASE_URL || 'tcp://ndifreke:root@localhost:5432/sendit'
+      );
       this.client.connect();
       this.client.query(userShema);
       this.client.query(parcelShema);

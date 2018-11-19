@@ -1,7 +1,7 @@
 import express from 'express';
 import path from 'path';
 import bodyParser from 'body-parser';
-import db from "./server/module/Database";
+import db from './server/module/Database';
 
 
 const app = express();
@@ -67,8 +67,5 @@ app.get('/', (req, res) => {
   console.log(req.method);
   res.render('index.ejs');
 });
-app.get('/db',  (req, res) => {
-  console.log(req.method);
-  res.render(process.env.DATABASE_URL);
-})
+
 app.listen(process.env.PORT);

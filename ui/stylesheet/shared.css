@@ -82,8 +82,7 @@ ul.dashboard {
 #dashboard-closer {
     position: sticky;
     top: 1px;
-    ;
-    margin-top: -29px;t
+    margin-top: -29px;
     left: 65%;
     margin-right: -15px;
 }
@@ -276,7 +275,7 @@ input.prim-btn.botton {}
     }
 
     form#settingsUI {
-        margin: 0 5%;
+     //   margin: 0 5%;
         padding: 20px;
     }
 
