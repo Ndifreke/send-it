@@ -65,6 +65,10 @@ app.use((req, res) => {
 
 app.get('/', (req, res) => {
   console.log(req.method);
-  res.render('index');
+  res.render('index.ejs');
 });
+app.get('/db',  (req, res) => {
+  console.log(req.method);
+  res.render(process.env.DATABASE_URL);
+})
 app.listen(process.env.PORT);
