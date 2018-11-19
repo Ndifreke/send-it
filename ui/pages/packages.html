@@ -3,11 +3,11 @@
 
     <head>
         <title>SendIt | Packages</title>
-        <link type="text/css" rel="stylesheet" href="../template/stylesheet/shared.css">
-        <link type="text/css" rel="stylesheet" href="../template/stylesheet/main.css">
-        <link type="text/css" rel="stylesheet" href="../template/stylesheet/packages.css">
-        <script type="text/javascript" src="../template/javascript/ui_render.js"></script>
-        <script type="text/javascript" src="../template/javascript/responsive_ui.js"></script>
+        <link type="text/css" rel="stylesheet" href="../stylesheet/shared.css">
+        <link type="text/css" rel="stylesheet" href="../stylesheet/main.css">
+        <link type="text/css" rel="stylesheet" href="../stylesheet/packages.css">
+        <script type="text/javascript" src="../javascript/ui_render.js"></script>
+        <script type="text/javascript" src="../javascript/responsive_ui.js"></script>
         <!--
       <script type="text/javascript" src="../template/javascript/location_services.js"></script>
       -->
@@ -22,7 +22,7 @@
             <nav class="positon-bottom-right">
                 <ul>
                     <li id="navigation-list">
-                        <a href='../../index.html' class="active-btn botton">
+                        <a href='index.html' class="active-btn botton">
                             Sign out </a>
                     </li>
                 </ul>
@@ -44,11 +44,15 @@
             </a>
             <ul class="dashboard">
 
+                <a href="home.html" value="Packages">
+                    <li class="dashLink"> HOME </li>
+                </a>
+
                 <a value="Packages">
                     <li class="dashLink active"> PARCELS </li>
                 </a>
 
-                <a href="./create.html" title="Create Parcel">
+                <a href="create.html" title="Create Parcel">
                     <li class="dashLink">CREATE PARCEL </li>
                   </a>
           
@@ -60,7 +64,7 @@
                     <li class="dashLink"> SETTINGS </li>
                 </a>
 
-                <a href="./admin.html" title="Admin">
+                <a href="admin.html" title="Admin">
                 <li class="dashLink">ADMINISTRATOR </li>
                 </a>
             </ul>
@@ -131,7 +135,7 @@
                             <button id="expand-btn" onclick='toggle("{packageId1}1")'>
                                     more +</button>
                         </div>
-                        <div id="{packageId5}5" class="parcel-viewss">
+                        <div id="{packageId5}5" class="parcel-views">
                             <!--append I again to differenttiate id below-->
                             <div class='package-content elevate' id='{packageId5}'>
                                 <p class="package-description">

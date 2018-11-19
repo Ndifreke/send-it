@@ -33,57 +33,22 @@ class User {
       password: this.password,
       config: this.config,
     };
-    const id = parseInt(User.getDB().lastId) + 1;
-    return User.add(id, user);
+   
   }
 
   static getId(email) {
-    const userDb = User.getDB();
-    const userList = userDb.userList;
-    for (const userId in userList) {
-      if (userList[userId].email === email) { return userId; }
-    }
-    return 0;
   }
 
   static login(email, password) {
-    const userId = User.getId(email);
-    if (userId) {
-      const data = JSON.parse(User.fetchById(userId));
-      if (data.user.password === password) {
-        // successfull login
-        return userId;
-      }
-    }
-    return 0;
+
   }
 
   static add(id, user) {
-    let isSaved = true;
-    try {
-      const database = User.getDB();
-      database.userList[id] = user;
-    
-      User.save(database);
-    } catch (e) {
-      // Something happened which prevented saving this parcel
-      isSaved = false;
-    } finally {
-      if (isSaved) {
-        const db = User.getDB();
-        db.lastId = parseInt(db.lastId) + 1;
-        User.save(db);
-        return true;
-      }
-      return false;
-    }
+   
   }
 
-  static save(data) {
-    db.writeToDb(JSON.stringify(data, null, '\t'), User.path);
-  }
-
-  static fetchById(userId) {
+  
+  static searchById(userId) {
     userId = userId.toString();
     const result = {
       status: 'error',
@@ -100,10 +65,6 @@ class User {
     return JSON.stringify(result, null, '\t');
   }
 
-  static getDB() {
-    return db.readDb(User.path);
-  }
-
   static changePassword(userid, newPassword) {
     return User.update(userid, 'password', newPassword);
   }
@@ -117,20 +78,6 @@ class User {
   }
 
   static update(userId, field, value) {
-    const userObject = JSON.parse(User.fetchById(userId));
-    if (userObject.status !== 'error') {
-      const user = userObject.user;
-      if (field in user) {
-        user[field] = value;
-        const database = User.getDB();
-        database.userList[userId] = user;
-        User.save(database);
-        return true;
-      }
-      return false;
-    }
-    return false;
-  }
 }
 
 User.ADMIN = 'ADMIN';
@@ -146,15 +93,3 @@ export {
   User,
   userPath,
 };
-
-/*
-new User( {
-   firstname: "Ndifeke",
-   surname: "ekim",
-   email: "some@email",
-   password: "my password",
-   phone: "00803574754"
-} ).create()
-*/
-
-// console.log( User.login( "nm", "my password" ) )

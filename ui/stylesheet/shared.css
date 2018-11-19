@@ -70,6 +70,7 @@ ol {
     width: 270px;
     z-index: 4001;
     height: 100vh;
+    display: none;
 }
 
 ul.dashboard {
@@ -82,7 +83,7 @@ ul.dashboard {
     position: sticky;
     top: 1px;
     ;
-    margin-top: -29px;
+    margin-top: -29px;t
     left: 65%;
     margin-right: -15px;
 }
