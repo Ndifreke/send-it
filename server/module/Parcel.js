@@ -6,12 +6,13 @@
 /* eslint-disable no-restricted-syntax */
 /* eslint-disable prefer-destructuring */
 
-import { db } from './Database';
-import { util } from "./utils";
+import db from './Database';
+import util from "./utils";
+import User from './User';
 
 class Parcel {
-  constructor(option) {
-    util.validateParcel(option);
+  constructor( option ) {
+    util.validateParcel( option );
     this.shortname = option.shortname;
     this.destination = option.destination;
     this.destination_lat = option.destination_lat;
@@ -57,38 +58,68 @@ class Parcel {
         '${this.owner}'
       )
     `;
-    return db.query(insertQuery);
+    return db.query( insertQuery );
+  }
+
+  static update( id, table, fieldName, value ) {
+    let updateQuery;
+    switch ( table ) {
+
+      case 'parcels':
+        switch ( fieldName ) {
+          case "location":
+            updateQuery = `UPDATE parcels SET location='${value}' WHERE id='${id}'`;
+            break;
+          case 'status':
+            updateQuery = `UPDATE parcels SET status='${value}' WHERE id='${id}'`;
+            break;
+            default:return undefined;
+        }
+
+      case 'users':
+        switch ( fieldName ) {
+          case 'password':
+            updateQuery = `UPDATE users SET password='${value}' WHERE id='${id}'`
+            break;
+          case 'email':
+            updateQuery = `UPDATE users SET email='${value}' WHERE id='${id}'`
+            break;
+          case 'mobile':
+            updateQuery = `UPDATE users SET mobile='${value}' WHERE id='${id}'`
+            break;
+          case 'is_admin':
+            updateQuery = `UPDATE users SET is_admin='${value}' WHERE id='${id}'`
+            break;
+            default:break;
+        }
+        default: break;
+    }
+    return db.query(updateQuery);
   }
 
   /*  fetch parcels by it id */
-  static fetchById(parcelId) {
+  static fetchById( parcelId ) {
     const query = `SELECT * FROM parcels WHERE id = ${parcelId}`;
-    return db.query(query);
+    return db.query( query ); 
   }
 
 
   /* fetch parcels owned by user Identified by userId */
-  static fetchByUserId(userId) {
+  static fetchByUserId( userId ) {
 
   }
 
-  static changeStatus(parcelId, status) {
+  static changeStatus( parcelId, status ) {
 
   }
 
-  static changeDestination(parcelId, options) {
+  static changeDestination( parcelId, options ) {
 
   }
 
-  static fetchAllparcel(cb) {
-    const result = db.query('SELECT * FROM parcels');
-
-    result.then((result) => {
-      cb(result);
-    })
-      .catch((err) => {
-        cb(err);
-      });
+  /* get all parcels from the databas */
+  static fetchAllparcel() {
+    const result = db.query( 'SELECT * FROM parcels' );
     return result;
   }
 }

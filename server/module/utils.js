@@ -57,7 +57,7 @@ class Utils {
       testValue = options[field];
       switch (field) {
         case 'email':
-          return Utils.validateEmail(testValue);
+          return Utils.isEmail(testValue);
         case 'firstname':
         case 'surname':
           return Utils.validateName(testValue);
@@ -73,7 +73,7 @@ class Utils {
     return (/^\d+$/.test(value));
   }
 
-  static validateEmail(email) {
+  static isEmail(email) {
     const emailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     return emailRegex.test(String(email).toLowerCase());
   }
@@ -90,7 +90,5 @@ class Utils {
     return (/^[a-zA-Z0-9]+$/.test(name));
   }
 }
-
-export {
-  Utils as util,
-};
+const util = Utils;
+export default util;

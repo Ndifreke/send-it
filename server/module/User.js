@@ -4,17 +4,13 @@
 /* eslint-disable prefer-destructuring */
 /* eslint-disable radix */
 
-import {
-  db,
-} from './Database';
-
-import {
-  util,
-} from './utils';
+import db from './Database';
+import util from './utils';
 
 class User {
-  constructor(options) {
-    util.validateCreateUser(options);
+  constructor( options ) {
+    // validate user input before inserting into the database
+    util.validateCreateUser( options );
     this.firstname = options.firstname;
     this.surname = options.surname;
     this.email = options.email;
@@ -33,39 +29,56 @@ class User {
       '${this.password}',
       '${this.mobile}',
       '${this.is_admin}'
-    )
-    `;
-    return db.query(createUser);
+    )`;
+    return db.query( createUser );
   }
 
-  static getId(email) {}
+   static is_admin( id ) {
+    return this.getId(id);    
+  }
 
-  static login(email, password) {
+  static getId( identifier) {
+    try {
+      if ( util.isEmail( identifier ) ) {
+        const query = `SELECT id from users where email = ${identifier}`;
+        return db.query( query );
+      }
+      if ( util.isInteger( identifier ) ) {
+        const query = `SELECT id from users where id = ${identifier}`;
+        return db.query( query );
+      }
+    } catch ( e ) {
+      throw Error( "Something happend in User.getId " + e.message )
+    }
+    return null;
+  }
+
+  static login( email, password ) {
 
   }
 
-  static add(id, user) {
+  static add( id, user ) {
 
   }
 
 
-  static searchById(userId) {
+  static searchById( userId ) {
 
   }
 
-  static changePassword(userid, newPassword) {
-    return User.update(userid, 'password', newPassword);
+  static changePassword( userid, newPassword ) {
+    return User.update( userid, 'password', newPassword );
   }
 
-  static changeEmail(userid, newEmail) {
-    return User.update(userid, 'email', newEmail);
+  static changeEmail( userid, newEmail ) {
+    return User.update( userid, 'email', newEmail );
   }
 
-  static changePhone(userId, newPhone) {
-    return User.update(userId, 'phone', newPhone);
+  static changePhone( userId, newPhone ) {
+    return User.update( userId, 'phone', newPhone );
   }
 
-  static update(userId, field, value) {}
+  static update( userId, field, value ) {}
 }
 
 
