@@ -3,66 +3,54 @@
 /* eslint-disable no-restricted-syntax */
 /* eslint-disable prefer-destructuring */
 /* eslint-disable radix */
-import { db } from './Database';
 
 import {
-  Utils,
+  db,
+} from './Database';
+
+import {
+  util,
 } from './utils';
 
 class User {
   constructor(options) {
-    const fields = ['firstname', 'surname', 'email', 'password', 'phone'];
-    Utils.validateHasRequiredFields(fields, options);
+    util.validateCreateUser(options);
     this.firstname = options.firstname;
     this.surname = options.surname;
     this.email = options.email;
     this.password = options.password;
-    this.config = {
-      acceptsEmails: true,
-      acceptsAdverts: true,
-    };
-    this.phone = options.phone;
+    this.mobile = options.mobile;
+    this.is_admin = 0;
   }
 
   create() {
-    const user = {
-      surname: this.surname,
-      firstname: this.firstname,
-      email: this.email,
-      phone: this.phone,
-      password: this.password,
-      config: this.config,
-    };
-   
+    const createUser = `
+    INSERT INTO users(firstname,surname,email,password,mobile,is_admin)
+    VALUES(
+      '${this.firstname}',
+      '${this.surname}',
+      '${this.email}',
+      '${this.password}',
+      '${this.mobile}',
+      '${this.is_admin}'
+    )
+    `;
+    return db.query(createUser);
   }
 
-  static getId(email) {
-  }
+  static getId(email) {}
 
   static login(email, password) {
 
   }
 
   static add(id, user) {
-   
+
   }
 
-  
+
   static searchById(userId) {
-    userId = userId.toString();
-    const result = {
-      status: 'error',
-      user: {},
-    };
-    const userDb = User.getDB();
-    const userList = userDb.userList;
-    if (userId in userList) {
-      result.status = 'ok';
-      result.user = userList[userId];
-      return JSON.stringify(result, null, '\t');
-    }
-    /* No result was found */
-    return JSON.stringify(result, null, '\t');
+
   }
 
   static changePassword(userid, newPassword) {
@@ -77,19 +65,8 @@ class User {
     return User.update(userId, 'phone', newPhone);
   }
 
-  static update(userId, field, value) {
+  static update(userId, field, value) {}
 }
 
-User.ADMIN = 'ADMIN';
-User.CUSTOMER = 'CUSTOMER';
-User.path = `${__dirname}/database/user.json`;
-const userPath = User.path;
 
-module.exports.User = User;
-module.exports.path = User.path;
-
-
-export {
-  User,
-  userPath,
-};
+export default User;
