@@ -70,6 +70,7 @@ ol {
     width: 270px;
     z-index: 4001;
     height: 100vh;
+    display: none;
 }
 
 ul.dashboard {
@@ -81,7 +82,6 @@ ul.dashboard {
 #dashboard-closer {
     position: sticky;
     top: 1px;
-    ;
     margin-top: -29px;
     left: 65%;
     margin-right: -15px;
@@ -275,7 +275,7 @@ input.prim-btn.botton {}
     }
 
     form#settingsUI {
-        margin: 0 5%;
+     //   margin: 0 5%;
         padding: 20px;
     }
 

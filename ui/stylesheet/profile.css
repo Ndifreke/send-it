@@ -9,13 +9,14 @@
 }
 
 .stats-badge{
-    padding: 3px;
-    width: 100px;
-    height: 100px;
-    display: table-cell;
-    vertical-align: middle;
-    border-radius: 50%;
-    border:5px solid #FF5722;
+        padding: 5px;
+        width: 133px;
+        height: 133px;
+        display: table-cell;
+        vertical-align: middle;
+        border-radius: 50%;
+        border: 5px solid #FF5722;
+    
 }
 #aveter-container{
     display: inline-block;

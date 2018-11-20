@@ -3,12 +3,12 @@
 
     <head>
         <title>SendIt | Administrator</title>
-        <link type="text/css" rel="stylesheet" href="../template/stylesheet/shared.css">
-        <link type="text/css" rel="stylesheet" href="../template/stylesheet/main.css">
-        <link type="text/css" rel="stylesheet" href="../template/stylesheet/packages.css">
-        <script type="text/javascript" src="../template/javascript/ui_render.js"></script>
-        <script type="text/javascript" src="../template/javascript/responsive_ui.js"></script>
-        <script type="text/javascript" src="../template/javascript/location_services.js"></script>
+        <link type="text/css" rel="stylesheet" href="/stylesheet/shared.css">
+        <link type="text/css" rel="stylesheet" href="/stylesheet/main.css">
+        <link type="text/css" rel="stylesheet" href="/stylesheet/packages.css">
+        <script type="text/javascript" src="/javascript/ui_render.js"></script>
+        <script type="text/javascript" src="/javascript/responsive_ui.js"></script>
+        <script type="text/javascript" src="/javascript/location_services.js"></script>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
@@ -20,8 +20,7 @@
             <nav class="positon-bottom-right">
                 <ul>
                     <li>
-                        <!-- can use href to separate page at public/ui/login.html-->
-                        <a href='../index.html' class="active-btn botton">
+                        <a href='index.html' class="active-btn botton">
                             SIGN OUT </a>
                     </li>
                 </ul>
@@ -33,11 +32,11 @@
             </a>
             <ul class="dashboard">
                 <a 
-               href="./packages.html" value="Packages">
+               href="packages.html" value="Packages">
                     <li class="dashLink"> PARCELS </li>
                 </a>
 
-                <a href="./create.html" title="Create Parcel">
+                <a href="create.html" title="Create Parcel">
                     <li class="dashLink">CREATE PARCEL </li>
                 </a>
 
@@ -73,15 +72,15 @@
                         <h2> Packages </h2>
     
                         <div class="package">
-                            <div class="package-preview" id="={packageId1}1">
-                                <button class="cancel" value="{packageId1}"></button>
+                            <div class="package-preview" id="={packageId1}1" data-preview="id">
+                                <button class="cancel" value="{packageId1}" ></button>
                                 <button class="edit" value="{packageId1}"></button>
                                 <span class="preview"> Title1 || ID </span>
                                 <button id="expand-btn" onclick='toggle("{packageId1}1")'>
                                     more +</button>
                             </div>
     
-                            <div id="{packageId1}1" class="parcel-views">
+                            <div id="{packageId1}1" class="parcel-views" data-view="id" >
                                 <!--append I again to differenttiate id below-->
                                 <div class='package-content elevate' id='{packageId1}'>
                                     <p class="package-description">
@@ -123,7 +122,7 @@
                                 <button id="expand-btn" onclick='toggle("{packageId1}1")'>
                                         more +</button>
                             </div>
-                            <div id="{packageId5}5" class="parcel-viewss">
+                            <div id="{packageId5}5" class="parcel-views">
                                 <!--append I again to differenttiate id below-->
                                 <div class='package-content elevate' id='{packageId5}'>
                                     <p class="package-description">

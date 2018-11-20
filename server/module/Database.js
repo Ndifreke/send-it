@@ -1,52 +1,59 @@
-/* eslint-disable no-param-reassign */
-/* eslint-disable class-methods-use-this */
-/* eslint-disable import/no-cycle */
-import { fileSystem } from './FileSystem';
+/* eslint-disable no-unused-vars */
 
-import { parcelPath } from './Parcel';
+const { Client } = require('pg');
 
-import { userPath } from './User';
+const userShema = `
+CREATE TABLE IF NOT EXISTS users(
+  id SERIAL PRIMARY KEY, 
+  firstname VARCHAR(50) NOT NULL,
+  surname VARCHAR(50) NOT NULL,
+  email text NOT NULL,
+  password text NOT NULL,
+  mobile VARCHAR NULL NULL,
+  is_admin BOOLEAN NOT NULL
+  )  
+`;
 
-class DB {
-  // eslint-disable-next-line no-useless-constructor
-  constructor() {}
+const parcelShema = `
+CREATE TABLE IF NOT EXISTS parcels(
+  id SERIAL,
+  owner INT REFERENCES users(id) ON DELETE RESTRICT,
+  shortname VARCHAR(50) NOT NULL,
+  destination TEXT NOT NULL,
+  destination_Lat  TEXT ,
+  destination_lng TEXT ,
+  origin TEXT NOT NULL,
+  origin_Lat TEXT ,
+  origin_lng TEXT ,
+  description TEXT,
+  distance NUMERIC NOT NULL,
+  status INT DEFAULT 1,
+  weight NUMERIC NOT NULL,
+  created_At DATE DEFAULT current_date,
+  delivered_On DATE ,
+  location TEXT DEFAULT 'WAREHOUSE',
+  price NUMERIC NOT NULL
+  );
+`;
 
-  // write parcel file to flat databasee
-  writeToDb(data, path) {
-    if (typeof data === 'object') {
-      data = JSON.stringify(data, null, '\t');
+class Database {
+  constructor() {
+
+    if (Database.client) {
+      this.client = Database.client;
+    } else {
+      this.client = new Client(
+        process.env.DATABASE_URL || 'tcp://ndifreke:root@localhost:5432/sendit'
+      );
+      this.client.connect();
+      this.client.query(userShema);
+      this.client.query(parcelShema);
     }
-    fileSystem.writeFile(path, data);
   }
 
-  initDb(path) {
-     console.log(userPath)
-    let dbTemplate;
-    /* dertermine which db to initialize base on the caller */
-    if (path === parcelPath) {
-      dbTemplate = {
-        lastId: 0,
-        parcelList: {},
-      };
-    } else if (path === userPath) {
-      dbTemplate = {
-        lastId: 0,
-        userList: {},
-      };
-    }
-    fileSystem.writeFile(path, JSON.stringify(dbTemplate));
-  }
-
-  // read percel from flat databse
-  readDb(path) {
-    try {
-      return JSON.parse(fileSystem.readFile(path));
-    } catch (exception) {
-      // db may not be a valid json create one and return it;
-      this.initDb(path);
-      return JSON.parse(fileSystem.readFile(path));
-    }
+  query(query) {
+    return this.client.query(query);
   }
 }
-const db = new DB();
-export { db };
+
+module.exports.db = new Database();

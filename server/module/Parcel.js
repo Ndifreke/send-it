@@ -7,160 +7,95 @@
 /* eslint-disable prefer-destructuring */
 
 import { db } from './Database';
+import { util } from "./utils";
 
 class Parcel {
   constructor(option) {
-    this.name = option.name;
+    util.validateParcel(option);
+    this.shortname = option.shortname;
     this.destination = option.destination;
-    this.destinatiionLatitude = option.destinationLatitude;
-    this.destinationLongitude = option.destinationLongitude;
+    this.destination_lat = option.destination_lat;
+    this.destination_lng = option.destination_lng;
     this.description = option.description;
     this.origin = option.origin;
-    this.originLatitude = option.originLatitude;
-    this.originLongitude = option.originLongitude;
-    this.user = option.user;
-    this.createdAt = new Date().toDateString();
+    this.origin_lat = option.origin_lat;
+    this.origin_lng = option.origin_lng;
+    this.distance = option.distance;
+    this.weight = option.weight;
+    this.price = option.price;
+    this.owner = option.owner;
   }
 
   /* Create a new Parcel and save it to the database */
   create() {
-    const parcel = {
-      parcel: {
-        userId: this.user,
-        name: this.name,
-        destination: this.destination,
-        destinationLatitude: this.destinatiionLatitude,
-        destinationLongitude: this.destinationLongitude,
-        origin: this.origin,
-        originLatitude: this.originLatitude,
-        originLongitude: this.originLongitude,
-        status: Parcel.PENDING,
-        description: this.description,
-        createdAt: this.createdAt,
-      },
-    };
-    const id = parseInt(Parcel.getDB().lastId) + 1;
-    return Parcel.add(id, parcel);
-  }
-
-  /* Add a new Parcel to parcel database */
-  static add(id, parcel) {
-    let isSaved = true;
-    try {
-      const database = this.getDB();
-      database.parcelList[id] = parcel;
-      this.save(database);
-    } catch (e) {
-      // Something happened which prevented saving this parcel
-      isSaved = false;
-    } finally {
-      if (isSaved) {
-        const db = Parcel.getDB();
-        db.lastId = parseInt(db.lastId) + 1;
-        this.save(db);
-        return true;
-      }
-      return false;
-    }
+    const insertQuery = `
+    INSERT INTO parcels (
+      shortname,
+      destination,
+      destination_lat,
+      destination_lng,
+      origin,origin_lat,
+      origin_lng, 
+      description, 
+      distance, 
+      weight,
+      price,
+      owner 
+      )
+      VALUES(
+        '${this.shortname}',
+        '${this.destination}',
+        '${this.destination_lat}',
+        '${this.destination_lng}',
+        '${this.origin}',
+        '${this.origin_lat}',
+        '${this.origin_lng}',
+        '${this.description}',
+        '${this.distance}',
+        '${this.weight}',
+        '${this.price}',
+        '${this.owner}'
+      )
+    `;
+    return db.query(insertQuery);
   }
 
   /*  fetch parcels by it id */
   static fetchById(parcelId) {
-    parcelId = parcelId.toString();
-    const result = {
-      status: 'error',
-      items: {},
-    };
-    const database = Parcel.getDB();
-    if (parcelId in database.parcelList) {
-      result.status = 'ok';
-      const item = database.parcelList[parcelId];
-      result.items[parcelId] = item;
-      return JSON.stringify(result, null, '\t');
-    }
-    return JSON.stringify(result);
+    const query = `SELECT * FROM parcels WHERE id = ${parcelId}`;
+    return db.query(query);
   }
 
-  static getDB() {
-    return db.readDb(Parcel.path);
-  }
 
   /* fetch parcels owned by user Identified by userId */
   static fetchByUserId(userId) {
-    userId = userId.toString();
-    const result = {
-      status: 'error',
-      items: {},
-    };
-    const parcelList = Parcel.getDB().parcelList;
-    for (const parcelId in parcelList) {
-      if (userId == parcelList[parcelId].parcel.userId) {
-        result.status = 'ok';
-        result.items[parcelId] = parcelList[parcelId];
-        continue;
-      }
-    }
-    /* No result was found */
-    return JSON.stringify(result, null, '\t');
+
   }
 
   static changeStatus(parcelId, status) {
-    switch (status) {
-      // fall throw any of the known statuses
-      case Parcel.CANCELLED:
-      case Parcel.DELIVERED:
-      case Parcel.PENDING:
-      case Parcel.SHIPPED:
-        return Parcel.update(parcelId, 'status', status);
-    }
-    return false;
+
   }
 
   static changeDestination(parcelId, options) {
-    let isUpdated = false;
-    if (options) {
-      if (options.destination) {
-        isUpdated = Parcel.update(parcelId, 'destination', options.destination);
-      }
-      if (options.destinationLatitude) {
-        isUpdated = Parcel.update(parcelId, 'destinationLatitude', options.destinationLatitude);
-      }
-      if (options.destinationLongitude) {
-        isUpdated = Parcel.update(parcelId, 'destinationLongitude', options.destinationLongitude);
-      }
-    }
-    return isUpdated;
+
   }
 
-  /* Write file back to the this Parcels database */
-  static save(data) {
-    db.writeToDb(JSON.stringify(data, null, '\t'), Parcel.path);
-  }
+  static fetchAllparcel(cb) {
+    const result = db.query('SELECT * FROM parcels');
 
-  /* Update any fields of a parcel Identified by ID */
-  static update(parcelId, fieldName, value) {
-    const result = JSON.parse(Parcel.fetchById(parcelId));
-    if (result.status !== 'error') {
-      const itemUpdate = result.items[parcelId];
-
-      if (fieldName in itemUpdate.parcel) {
-        itemUpdate.parcel[fieldName] = value; // what to change
-        const database = Parcel.getDB();
-        database.parcelList[parcelId] = itemUpdate;
-        Parcel.save(database);
-        return true;
-      }
-      return false;
-    }
-    return false;
+    result.then((result) => {
+      cb(result);
+    })
+      .catch((err) => {
+        cb(err);
+      });
+    return result;
   }
 }
-Parcel.path = `${__dirname}/database/parcel.json`;
-Parcel.PENDING = 'PENDING';
-Parcel.DELIVERED = 'DELIVERED';
-Parcel.SHIPPED = 'SHIPPED';
-Parcel.CANCELLED = 'CANCELLED';
-const parcelPath = Parcel.path;
-const _Parcel = Parcel;
-export { _Parcel as Parcel , parcelPath };
 
+Parcel.PENDING = 1;
+Parcel.DELIVERED = 3;
+Parcel.SHIPPED = 2;
+Parcel.CANCELLED = 0;
+
+export default Parcel;
