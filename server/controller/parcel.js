@@ -2,7 +2,7 @@
 /* eslint-disable default-case */
 import { Utils } from '../module/utils';
 
-import { Parcel } from '../module/Parcel';
+import Parcel from '../module/Parcel';
 
 function createParcel(req, res) {
   res.setHeader('Content-Type', 'text/json');
@@ -69,10 +69,13 @@ function getOneParcel(req, res) {
 }
 
 function getAllParcels(req, res) {
-  res.setHeader('Content-Type', 'text/json');
-  res.statusCode = 200;
-  res.end(Utils.formatJson(Parcel.getDB()));
-  // next();
+  Parcel.fetchAllparcel(handler);
+  function handler(result) {
+    res.setHeader('Content-Type', 'text/json');
+    res.statusCode = 200;
+    const rows = result.rows;
+    res.json(rows);
+  }
 }
 
 function cancelParcel(req, res) {

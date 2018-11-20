@@ -4,14 +4,6 @@ import bodyParser from 'body-parser';
 import db from './server/module/Database';
 
 
-const app = express();
-
-app.set('views', path.join(__dirname, 'ui/pages'));
-app.set('view engine', 'ejs');
-app.use(express.static(path.join(__dirname, 'ui')));
-app.use(bodyParser());
-
-/*
 import {
   cancelParcel,
   createParcel,
@@ -20,7 +12,6 @@ import {
   getAllParcels,
 }
   from './server/controller/parcel';
-
 
 import {
   signup,
@@ -31,6 +22,14 @@ import {
   changeStatus,
   changeLocation,
 } from './server/controller/users';
+
+
+const app = express();
+
+app.set('views', path.join(__dirname, 'ui/pages'));
+app.set('view engine', 'ejs');
+app.use(express.static(path.join(__dirname, 'ui')));
+app.use(bodyParser());
 
 app.post('/api/v1/parcels', createParcel);
 app.get('/api/v1/parcels', getAllParcels);
@@ -61,7 +60,6 @@ app.use((req, res) => {
   };
   res.end(JSON.stringify(msg), null, '\t');
 });
-*/
 
 app.get('/', (req, res) => {
   console.log(req.method);

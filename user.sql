@@ -1,9 +1,10 @@
 CREATE TABLE users(
 id SERIAL PRIMARY KEY, 
-first_name VARCHAR(50) NOT NULL,
+firstname VARCHAR(50) NOT NULL,
+surname VARCHAR(50) NOT NULL,
 email text NOT NULL,
 password text NOT NULL,
-mobile_number VARCHAR NULL NULL,
+mobile VARCHAR NULL NULL,
 is_admin BOOLEAN NOT NULL
 )
 
