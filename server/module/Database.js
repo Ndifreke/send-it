@@ -56,4 +56,6 @@ class Database {
   }
 }
 
-module.exports.db = new Database();
+const db = new Database();
+// module.exports.db = db;
+export default db ;

@@ -33,7 +33,7 @@ class Utils {
       case 'origin':
       case 'shortname':
       case 'destination':
-        return Utils.validateText(value);
+        return Utils.isText(value);
       case 'destination_lat':
       case 'destination_lng':
       case 'origin_lat':
@@ -57,13 +57,13 @@ class Utils {
       testValue = options[field];
       switch (field) {
         case 'email':
-          return Utils.validateEmail(testValue);
+          return Utils.isEmail(testValue);
         case 'firstname':
         case 'surname':
-          return Utils.validateName(testValue);
+          return Utils.isName(testValue);
         case 'mobile':
           return Utils.isInteger(testValue);
-        default: return Utils.validateText(testValue);
+        default: return Utils.isText(testValue);
       }
     });
     if (!valid) { throw Error(`Field ${testField} does not meet requirent value: ${testValue}`); }
@@ -73,7 +73,7 @@ class Utils {
     return (/^\d+$/.test(value));
   }
 
-  static validateEmail(email) {
+  static isEmail(email) {
     const emailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     return emailRegex.test(String(email).toLowerCase());
   }
@@ -82,15 +82,15 @@ class Utils {
     return /^[0-9]+\.[\d]+$/.test(cord);
   }
 
-  static validateText(text) {
+  static isText(text) {
     return (/^[a-zA-Z0-9\s\.,\+\-\(\)]+$/.test(text));
   }
 
-  static validateName(name) {
-    return (/^[a-zA-Z0-9]+$/.test(name));
+  static isName(name) {
+    return (/^[a-zA-Z0-9-_]+$/.test(name));
   }
 }
 
-export {
-  Utils as util,
-};
+const util = Utils;
+//module.exports.util = util;
+ export default util;

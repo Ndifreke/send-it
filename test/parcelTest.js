@@ -25,11 +25,14 @@ describe('Parcel Model', () => {
   it('Should save a parcel to the database', () => {
     const ob = Object.assign({}, parcelObject);
     ob.owner = 1;
+
     return new Parcel(ob).create().then((result) => {
       assert.equal(result.rowCount, 1);
     }, (err) => {
       throw err;
     });
+    done();
+
   });
 
   it('Should not save parcel if the owner does not exist in user database', () => {
@@ -51,5 +54,6 @@ describe('User Model', () => {
     return new User(userObject).create().then((result) => {
       assert.equal(result.rowCount, 1);
     });
+    done();
   });
 });

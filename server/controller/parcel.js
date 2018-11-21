@@ -1,135 +1,57 @@
 /* eslint-disable no-fallthrough */
 /* eslint-disable default-case */
-import { Utils } from '../module/utils';
-
+import util from '../module/utils';
 import Parcel from '../module/Parcel';
+import User from '../module/User';
 
-function createParcel(req, res) {
-  res.setHeader('Content-Type', 'text/json');
-  const requiredParam = [
-    'name',
-    'destination',
-    'destinationLatitude', 'destinationLongitude',
-    'origin',
-    'originLatitude',
-    'originLongitude',
-    'user',
-  ];
-  const reply = {
-    status: 'ok',
-    message: 'success',
-  };
-  try {
-    Utils.validateHasRequiredFields(requiredParam, req.body);
-    const args = {};
-    requiredParam.forEach((param) => {
-      args[param] = req.body[param];
-    });
-    if (new Parcel(args).create()) {
-      res.statusCode = 201;
-      res.end(Utils.formatJson(reply));
-    } else {
-      res.statusCode = 500;
-      reply.status = 'error';
-      reply.message = 'Unkown Error Occured';
-      res.end(Utils.formatJson(reply));
-    }
-  } catch (e) {
-    res.statusCode = 400;
-    reply.status = 'error';
-    reply.message = e.message;
-    res.end(Utils.formatJson(reply));
-  }
-  // next();
+//done
+async function createParcel( req, res ) {
+   console.log(req.body)
+  const created = await new Parcel(req.body).create();
+  res.json(created);
 }
 
-function getOneParcel(req, res) {
-  res.setHeader('Content-Type', 'text/json');
-  const id = req.params.id;
-  if (Utils.isInteger(id)) {
-    const json = Parcel.fetchById(id);
-    switch (JSON.parse(json).status) {
-      case 'ok':
-        res.statusCode = 200;
-        res.end(json);
-        break;
-      case 'error':
-        res.statusCode = 404;
-        const obj = JSON.parse(json);
-        obj.status = 'Not Found';
-        res.end(Utils.formatJson(obj));
-    }
-  }
-  const reply = {};
-  res.statusCode = 400;
-  reply.status = 'error';
-  reply.message = 'Invalid request format or Argument';
-  res.end(Utils.formatJson(reply));
-  // next();
+//done
+async function getOneParcel( req, res ) {
+   // res.setHeader( 'Content-Type', 'text/json' );
+   const id = req.params.id;
+   if ( util.isInteger( id ) ) {
+      const result = await Parcel.fetchById(id);
+     res.json(result)
+   }
+   res.end( '{}');
+   // next();
 }
 
-function getAllParcels(req, res) {
-  Parcel.fetchAllparcel(handler);
-  function handler(result) {
-    res.setHeader('Content-Type', 'text/json');
-    res.statusCode = 200;
-    const rows = result.rows;
-    res.json(rows);
-  }
+//done
+async function getAllParcels( req, res ) {
+   const result = await Parcel.fetchAllparcel();
+   res.json( result);
 }
-
-function cancelParcel(req, res) {
-  const id = req.params.id;
-  res.setHeader('Content-Type', 'text/json');
-  const reply = {
-    status: 'ok',
-    message: 'success',
-  };
-  if (Utils.isInteger(id)) {
-    if (Parcel.changeStatus(id, Parcel.CANCELLED)) {
-      res.statusCode = 201;
-      res.end(Utils.formatJson(reply));
-    }
-    // parcel does not exist
-    res.statusCode = 404;
-    reply.status = 'error';
-    reply.message = `Parcel with id ${id} does not exist`;
-    res.end(Utils.formatJson(reply));
-  } else {
-    res.statusCode = 400;
-    reply.status = 'error';
-    reply.message = 'Invalid request format or Argument';
-    res.end(Utils.formatJson(reply));
-  }
+//done
+async function getUserParcels( req, res ) {
+   res.setHeader( 'Content-Type', 'text/json' );
+   const id = req.params.id;
+      const result = await Parcel.fetchUserParcels( id );
+      res.json(result);
 }
-
-function getUserParcel(req, res) {
-  res.setHeader('Content-Type', 'text/json');
-  const id = req.params.id;
-
-  if (Utils.isInteger(id)) {
-    const parcels = Parcel.fetchByUserId(id);
-    const json = JSON.parse(parcels);
-    switch (json.status) {
-      case 'error':
-        json.status = 'Not Found';
-        res.statusCode = 404;
-        res.end(Utils.formatJson(json));
-      default:
-        res.end(parcels);
-    }
-  }
-  const reply = {};
-  res.statusCode = 400;
-  reply.status = 'error';
-  reply.message = 'Invalid character found in request';
-  res.end(Utils.formatJson(reply));
+//done
+async function cancelParcel( req, res ) {
+   console.log(User)
+   const id = req.params.id;
+   /*
+      const isAdmin =  await User.is_admin( id );
+      if (!isAdmin ) {
+         */
+        res.statusCode = 201;
+         const result = await Parcel.changeStatus( id, Parcel.CANCELLED );
+         res.json( result );
 }
 
 export {
-  getOneParcel,
-  cancelParcel,
-  getAllParcels,
-  getUserParcel,
-  createParcel,
+   getOneParcel,
+   cancelParcel,
+   getAllParcels,
+   getUserParcels,
+   createParcel,
 };

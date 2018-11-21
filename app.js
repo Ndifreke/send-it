@@ -8,7 +8,7 @@ import {
   cancelParcel,
   createParcel,
   getOneParcel,
-  getUserParcel,
+  getUserParcels,
   getAllParcels,
 }
   from './server/controller/parcel';
@@ -21,7 +21,7 @@ import {
   changeSettings,
   changeStatus,
   changeLocation,
-} from './server/controller/users';
+} from './server/controller/user';
 
 
 const app = express();
@@ -35,7 +35,7 @@ app.post('/api/v1/parcels', createParcel);
 app.get('/api/v1/parcels', getAllParcels);
 app.get('/api/v1/parcels/:id', getOneParcel);
 app.put('/api/v1/parcels/:id', cancelParcel);
-app.use('/api/v1/users/:id/parcels', getUserParcel);
+app.use('/api/v1/users/:id/parcels', getUserParcels);
 
 
 app.post('/api/v1/auth/signup', signup);

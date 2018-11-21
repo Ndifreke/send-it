@@ -13,27 +13,29 @@
     "author": "ndifreke",
     "contributors": [],
     "dependencies": {
-        "babel-cli": "^6.26.0",
-        "body-parser": "latest",
-        "ejs": "latest",
-        "express": "latest",
-        "pg": "latest",
-        "serve-static": "latest",
         "@babel/cli": "7.1.5",
         "@babel/core": "7.1.5",
         "@babel/node": "7.0.0",
         "@babel/preset-env": "^7.1.6",
         "@babel/register": "^7.0.0",
+        "babel-cli": "^6.26.0",
         "babel-eslint": "^10.0.1",
         "babel-preset-env": "^1.7.0",
         "babel-preset-es2015": "6.3.13",
-        "babel-register": "^6.26.0"
+        "babel-register": "^6.26.0",
+        "body-parser": "latest",
+        "chai": "^4.2.0",
+        "coveralls": "^3.0.2",
+        "ejs": "latest",
+        "express": "latest",
+        "pg": "latest",
+        "serve-static": "latest"
     },
     "engines": {
         "node": "10.x"
     },
     "scripts": {
-        "nodemonB": "nodemon --exec babel-node start.js",
+        "nodemonB": "nodemon --exec babel-node app.js",
         "test": "mocha ./test --exit --compilers js:babel-core/register",
         "start": "babel-node app.js",
         "lint": "eslint .",
@@ -43,8 +45,6 @@
         "startBuild": "npm run build && node ./build/app.js"
     },
     "devDependencies": {
-        "chai": "latest",
-        "coveralls": "^3.0.2",
         "eslint": "^5.9.0",
         "eslint-config-airbnb": "^17.1.0",
         "eslint-plugin-import": "^2.14.0",
