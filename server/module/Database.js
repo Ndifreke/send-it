@@ -37,8 +37,8 @@ CREATE TABLE IF NOT EXISTS parcels(
 `;
 
 class Database {
+  
   constructor() {
-
     if (Database.client) {
       this.client = Database.client;
     } else {

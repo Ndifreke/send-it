@@ -19,9 +19,6 @@ function createParcel( req, res ) {
 
 }
 
-function changeDestination( req, res ) {
-
-}
 
 function changeSettings( req, res ) {
 
@@ -31,20 +28,11 @@ function createParcelOrder( req, res ) {
 
 }
 
-function changeStatus( req, res ) {
 
-}
-
-function changeLocation( req, res ) {
-
-}
 
 export {
   signup,
   login,
   createParcelOrder,
-  changeDestination,
   changeSettings,
-  changeStatus,
-  changeLocation,
 };

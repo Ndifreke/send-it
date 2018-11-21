@@ -83,7 +83,7 @@ class Utils {
   }
 
   static isText(text) {
-    return (/^[a-zA-Z0-9\s\.,\+\-\(\)]+$/.test(text));
+    return (/^[a-zA-Z0-9\s\.,\+\-\(\)_\w]+$/.test(text));
   }
 
   static isName(name) {

@@ -25,9 +25,8 @@ describe('Parcel Model', () => {
   it('Should save a parcel to the database', () => {
     const ob = Object.assign({}, parcelObject);
     ob.owner = 1;
-
     return new Parcel(ob).create().then((result) => {
-      assert.equal(result.rowCount, 1);
+      assert.equal(result, 1);
     }, (err) => {
       throw err;
     });
