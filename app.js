@@ -21,7 +21,7 @@ import {
   changeSettings,
   changeStatus,
   changeLocation,
-} from './server/controller/users';
+} from './server/controller/user';
 
 
 const app = express();

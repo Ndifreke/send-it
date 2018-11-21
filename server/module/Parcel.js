@@ -12,7 +12,7 @@ import User from './User';
 
 class Parcel {
   constructor( option ) {
-    util.validateParcel( option );
+   this.options = option;
     this.shortname = option.shortname;
     this.destination = option.destination;
     this.destination_lat = option.destination_lat;
@@ -28,7 +28,7 @@ class Parcel {
   }
 
   /* Create a new Parcel and save it to the database */
-  create() {
+  async create() {
     const insertQuery = `
     INSERT INTO parcels (
       shortname,
@@ -58,75 +58,87 @@ class Parcel {
         '${this.owner}'
       )
     `;
-    return db.query( insertQuery );
+    try{
+    util.validateParcel( this.options );
+    }catch(e){
+      console.log(e)
+      return 0;
+    }
+    const query = await db.query( insertQuery )
+    return Promise.resolve(query.rowCount);
+  
   }
 
-  static update( id, table, fieldName, value ) {
+  static update( id, fieldName, value ) {
     let updateQuery;
-    switch ( table ) {
-
-      case 'parcels':
-        switch ( fieldName ) {
+    switch ( fieldName ) {
           case "location":
             updateQuery = `UPDATE parcels SET location='${value}' WHERE id='${id}'`;
             break;
           case 'status':
             updateQuery = `UPDATE parcels SET status='${value}' WHERE id='${id}'`;
             break;
-            default:return undefined;
+            case "destination": 
+            updateQuery =`UPDATE parcels SET status='${value}' WHERE id='${id}'`;
+            break;
+          default:
+            return undefined;
         }
-
-      case 'users':
-        switch ( fieldName ) {
-          case 'password':
-            updateQuery = `UPDATE users SET password='${value}' WHERE id='${id}'`
-            break;
-          case 'email':
-            updateQuery = `UPDATE users SET email='${value}' WHERE id='${id}'`
-            break;
-          case 'mobile':
-            updateQuery = `UPDATE users SET mobile='${value}' WHERE id='${id}'`
-            break;
-          case 'is_admin':
-            updateQuery = `UPDATE users SET is_admin='${value}' WHERE id='${id}'`
-            break;
-            default:break;
-        }
-        default: break;
+        return db.query( updateQuery );
     }
-    return db.query(updateQuery);
+  
+    /*  fetch parcels by it id */
+    static async fetchById( parcelId ) {
+      const query = `SELECT * FROM parcels WHERE id = ${parcelId}`;
+      const result = await db.query( query );
+      return Promise.resolve(result.rows);
+    }
+
+
+    /* fetch parcels owned by user Identified by userId */
+    static async fetchUserParcels( userId ) {
+      const query = `SELECT * FROM parcels WHERE owner = ${userId}`;
+      const result = await db.query( query );
+      return Promise.resolve(result.rows);
+    }
+
+    static async changeStatus( parcelId, status ) {
+      if ( util.isInteger( parcelId ) ) {
+        const result = await Parcel.update( parcelId, 'status', status );
+        return Promise.resolve( result.rowCount );
+      } else {
+        return Promise.resolve( 0 );
+      }
+    }
+
+    static async changeDestination( parcelId, cordinate ) {
+      if ( util.isNumeric( cordinate.lng ) && util.isNumeric( cordinate.lat ) ) {
+        const result = await Parcel.update( parcelId, 'destination', status );
+        return Promise.resolve( result.rowCount );
+      } else {
+        return Promise.resolve( 0 );
+      }
+    }
+
+    static async changeLocation( parcelId, location ) {
+      if ( util.isText( location) ) {
+        const result = await Parcel.update( parcelId, 'location', status );
+        return Promise.resolve( result.rowCount );
+      } else {
+        return Promise.resolve( 0 );
+      }
+    }
+
+    /* get all parcels from the databas done */ 
+    static async fetchAllparcel() {
+      const result = await db.query( 'SELECT * FROM parcels' );
+     return Promise.resolve(result.rows);
+    }
   }
 
-  /*  fetch parcels by it id */
-  static fetchById( parcelId ) {
-    const query = `SELECT * FROM parcels WHERE id = ${parcelId}`;
-    return db.query( query ); 
-  }
+  Parcel.PENDING = 'PENDING';
+  Parcel.DELIVERED = 'DELIVERED';
+  Parcel.SHIPPED = 'SHIPPED';
+  Parcel.CANCELLED = 'CANCELLED';
 
-
-  /* fetch parcels owned by user Identified by userId */
-  static fetchByUserId( userId ) {
-
-  }
-
-  static changeStatus( parcelId, status ) {
-
-  }
-
-  static changeDestination( parcelId, options ) {
-
-  }
-
-  /* get all parcels from the databas */
-  static fetchAllparcel() {
-    const result = db.query( 'SELECT * FROM parcels' );
-    return result;
-  }
-}
-
-Parcel.PENDING = 1;
-Parcel.DELIVERED = 3;
-Parcel.SHIPPED = 2;
-Parcel.CANCELLED = 0;
-
-export default Parcel;
+  export default Parcel;

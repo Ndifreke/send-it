@@ -33,7 +33,7 @@ class Utils {
       case 'origin':
       case 'shortname':
       case 'destination':
-        return Utils.validateText(value);
+        return Utils.isText(value);
       case 'destination_lat':
       case 'destination_lng':
       case 'origin_lat':
@@ -60,10 +60,10 @@ class Utils {
           return Utils.isEmail(testValue);
         case 'firstname':
         case 'surname':
-          return Utils.validateName(testValue);
+          return Utils.isName(testValue);
         case 'mobile':
           return Utils.isInteger(testValue);
-        default: return Utils.validateText(testValue);
+        default: return Utils.isText(testValue);
       }
     });
     if (!valid) { throw Error(`Field ${testField} does not meet requirent value: ${testValue}`); }
@@ -82,13 +82,15 @@ class Utils {
     return /^[0-9]+\.[\d]+$/.test(cord);
   }
 
-  static validateText(text) {
+  static isText(text) {
     return (/^[a-zA-Z0-9\s\.,\+\-\(\)]+$/.test(text));
   }
 
-  static validateName(name) {
-    return (/^[a-zA-Z0-9]+$/.test(name));
+  static isName(name) {
+    return (/^[a-zA-Z0-9-_]+$/.test(name));
   }
 }
+
 const util = Utils;
-export default util;
+//module.exports.util = util;
+ export default util;

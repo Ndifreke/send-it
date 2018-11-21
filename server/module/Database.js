@@ -57,4 +57,5 @@ class Database {
 }
 
 const db = new Database();
+// module.exports.db = db;
 export default db ;
