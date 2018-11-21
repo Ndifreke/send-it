@@ -25,6 +25,7 @@
         "babel-register": "^6.26.0",
         "body-parser": "latest",
         "chai": "^4.2.0",
+        "chai-http": "^4.2.0",
         "coveralls": "^3.0.2",
         "ejs": "latest",
         "express": "latest",

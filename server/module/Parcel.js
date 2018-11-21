@@ -10,6 +10,7 @@ import db from './Database';
 import util from "./utils";
 import User from './User';
 
+
 class Parcel {
   constructor( option ) {
    this.options = option;
@@ -66,10 +67,9 @@ class Parcel {
     }
     const query = await db.query( insertQuery )
     return Promise.resolve(query.rowCount);
-  
   }
 
-  static update( id, fieldName, value ) {
+  static async update( id, fieldName, value ) {
     let updateQuery;
     switch ( fieldName ) {
           case "location":
@@ -79,13 +79,21 @@ class Parcel {
             updateQuery = `UPDATE parcels SET status='${value}' WHERE id='${id}'`;
             break;
             case "destination": 
-            updateQuery =`UPDATE parcels SET status='${value}' WHERE id='${id}'`;
+            updateQuery =`UPDATE parcels SET destination='${value}' WHERE id='${id}'`;
+            break;
+            case "destination_lat": 
+            updateQuery =`UPDATE parcels SET destination_lat='${value}' WHERE id='${id}'`;
+            break;
+            case "destination_lng": 
+            updateQuery =`UPDATE parcels SET destination_lng='${value}' WHERE id='${id}'`;
             break;
           default:
             return undefined;
         }
-        return db.query( updateQuery );
-    }
+        const result = await db.query( updateQuery );
+        return Promise.resolve(result.rowCount);
+      }
+
   
     /*  fetch parcels by it id */
     static async fetchById( parcelId ) {
@@ -93,7 +101,6 @@ class Parcel {
       const result = await db.query( query );
       return Promise.resolve(result.rows);
     }
-
 
     /* fetch parcels owned by user Identified by userId */
     static async fetchUserParcels( userId ) {
@@ -103,27 +110,32 @@ class Parcel {
     }
 
     static async changeStatus( parcelId, status ) {
+      console.log(status)
       if ( util.isInteger( parcelId ) ) {
         const result = await Parcel.update( parcelId, 'status', status );
-        return Promise.resolve( result.rowCount );
+        return Promise.resolve( result);
       } else {
         return Promise.resolve( 0 );
       }
     }
 
-    static async changeDestination( parcelId, cordinate ) {
+    //done
+    static async changeCords( parcelId, cordinate ) {
       if ( util.isNumeric( cordinate.lng ) && util.isNumeric( cordinate.lat ) ) {
-        const result = await Parcel.update( parcelId, 'destination', status );
-        return Promise.resolve( result.rowCount );
+        const latChange = await Parcel.update( parcelId, 'destination_lat', cordinate.lat );
+        const lngChange = await Parcel.update( parcelId, 'destination_lng', cordinate.lng );
+        return Promise.resolve(  ( latChange &&  lngChange));
       } else {
         return Promise.resolve( 0 );
       }
     }
 
     static async changeLocation( parcelId, location ) {
-      if ( util.isText( location) ) {
-        const result = await Parcel.update( parcelId, 'location', status );
-        return Promise.resolve( result.rowCount );
+      //undefined in absence of input
+      if ( util.isText( location) && util.isInteger(parcelId)) {
+        console.log(location)
+        const result = await Parcel.update( parcelId, 'location', location );
+        return Promise.resolve( result);
       } else {
         return Promise.resolve( 0 );
       }
@@ -134,7 +146,9 @@ class Parcel {
       const result = await db.query( 'SELECT * FROM parcels' );
      return Promise.resolve(result.rows);
     }
+
   }
+
 
   Parcel.PENDING = 'PENDING';
   Parcel.DELIVERED = 'DELIVERED';

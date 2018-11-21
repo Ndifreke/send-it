@@ -3,10 +3,10 @@
 import util from '../module/utils';
 import Parcel from '../module/Parcel';
 import User from '../module/User';
+import view from '../module/views';
 
 //done
 async function createParcel( req, res ) {
-   console.log(req.body)
   const created = await new Parcel(req.body).create();
   res.json(created);
 }
@@ -39,19 +39,37 @@ async function getUserParcels( req, res ) {
 async function cancelParcel( req, res ) {
    console.log(User)
    const id = req.params.id;
-   /*
-      const isAdmin =  await User.is_admin( id );
-      if (!isAdmin ) {
-         */
+
         res.statusCode = 201;
          const result = await Parcel.changeStatus( id, Parcel.CANCELLED );
          res.json( result );
 }
+//done
+async function changeCordinate( req, res ) {
+   const id = req.params.id;
+   const {lat,lng} = req.body;
+   const confirm = await Parcel.changeCords(req.params.id, {lat, lng});
+   res.json(confirm);
+}
+//done
+async function changePresentLocation(req,res){
+   const changed = await Parcel.changeLocation(req.params.id, req.body.presentLocation)
+   res.json(changed);
+}
+
+//done
+async function updateStatus(req, resp){
+   const result = await Parcel.changeStatus(req.params.id, req.body.status);
+   resp.json(result);
+}
 
 export {
+   changePresentLocation,
+   changeCordinate,
    getOneParcel,
    cancelParcel,
    getAllParcels,
    getUserParcels,
+   updateStatus, 
    createParcel,
 };
