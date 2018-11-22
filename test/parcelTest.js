@@ -42,7 +42,7 @@ describe( 'Parcel Model', () => {
     const request = chai.request( server );
      request.get( '/api/v1/users/2/parcels' )
       .end( function ( err, res ) {
-        console.log( res);
+      //  console.log( res);
         done();
         assert.equal( res.status, 200 ); 
       } )

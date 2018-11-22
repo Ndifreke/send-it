@@ -20,15 +20,19 @@
         "@babel/register": "^7.0.0",
         "babel-cli": "^6.26.0",
         "babel-eslint": "^10.0.1",
+        "babel-plugin-istanbul": "^5.1.0",
         "babel-preset-env": "^1.7.0",
         "babel-preset-es2015": "6.3.13",
         "babel-register": "^6.26.0",
         "body-parser": "latest",
         "chai": "^4.2.0",
         "chai-http": "^4.2.0",
+        "cross-env": "^5.2.0",
         "ejs": "latest",
         "express": "latest",
+        "istanbul": "^0.4.5",
         "jsonwebtoken": "^8.4.0",
+        "nyc": "^13.1.0",
         "pg": "latest",
         "serve-static": "latest"
     },
@@ -36,14 +40,29 @@
         "node": "10.x"
     },
     "scripts": {
+        "coverage": "nyc report --reporter=text-lcov | coveralls",
         "nodemonB": "nodemon --exec babel-node app.js",
-        "test": "mocha mocha --timeout 10000 --recursive ./test --exit --compilers js:babel-core/register",
+        "test": "cross-env NODE_ENV=test nyc mocha  ./test/parcelTest.js --timeout 10000 --recursive  --exit --compilers js:babel-core/register",
         "start": "babel-node app.js",
         "lint": "eslint .",
         "clean": "rm -rf -d build",
         "cover": "istanbul cover _mocha",
         "build": "npm run clean && babel ./ -d build  --ignore-files node_modules --copy-files",
         "startBuild": "npm run build && node ./build/app.js"
+    },
+    "nyc": {
+        "exclude": [
+            "ui"
+        ],
+        "require": [
+            "babel-register"
+        ],
+        "reporter": [
+            "Icov",
+            "text"
+        ],
+        "sourceMap": false,
+        "instrument": false
     },
     "devDependencies": {
         "coveralls": "^3.0.2",
@@ -52,7 +71,6 @@
         "eslint-plugin-import": "^2.14.0",
         "eslint-plugin-jsx-a11y": "^6.1.2",
         "eslint-plugin-react": "^7.11.1",
-        "istanbul": "^0.4.5",
         "mocha": "latest",
         "mocha-lcov-reporter": "^1.3.0"
     }
