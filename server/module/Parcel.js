@@ -31,7 +31,7 @@ class Parcel {
   }
 
   /* Create a new Parcel and save it to the database */
-  async create() {
+  async create( res ) {
     const insertQuery = `
     INSERT INTO parcels (
       shortname,
@@ -63,13 +63,16 @@ class Parcel {
     `;
     try {
       util.validateParcel( this.options );
+      res.statusCode = 201;
       const query = await db.query( insertQuery )
       return Promise.resolve( util.response( 'ok', 'Parcel Created successfully', query.rowCount ) );
     } catch ( e ) {
       let message;
       if ( e.message.search( 'update' ) > -1 ) {
+        res.statusCode = 404;
         message = 'User does not exists';
       } else {
+        res.statusCode = 400;
         message = e.message;
       }
       return Promise.resolve( util.response( 'error', message ) );
@@ -104,8 +107,9 @@ class Parcel {
 
 
   /*  fetch parcels by it id */
-  static async fetchById( parcelId ) {
+  static async fetchById( parcelId, res ) {
     if ( !util.isInteger( parcelId ) ) {
+      res.statusCode = 400;
       return Promise.resolve( util.response( 'error', 'Invalid Id Provided', [] ) );
     }
     const query = `SELECT * FROM parcels WHERE id = ${parcelId}`;
@@ -114,8 +118,9 @@ class Parcel {
   }
 
   /* fetch parcels owned by user Identified by userId */
-  static async fetchUserParcels( userId ) {
+  static async fetchUserParcels( userId, res ) {
     if ( !util.isInteger( userId ) ) {
+      res.statusCode = 400;
       return Promise.resolve( util.response( "error", "Invalid Id provided" ) );
     }
     const query = `SELECT * FROM parcels WHERE owner = ${userId}`;
@@ -124,24 +129,29 @@ class Parcel {
   }
 
 
-  static async changeStatus( parcelId, status ) {
+  static async changeStatus( parcelId, status, res ) {
     if ( !util.isInteger( parcelId ) ) {
+      res.statusCode = 400;
       return Promise.resolve( util.response( 'error', 'invalid character found in id' ) );
     }
     const result = await Parcel.update( parcelId, 'status', status );
+    if ( !result )
+      res.statusCode = 404;
     return Promise.resolve(
       util.response( 'ok', result ? 'Parcel cancelled' : 'No Parcel Affected', result ) );
   }
 
 
   //done
-  static async changeCords( parcelId, cordinate ) {
+  static async changeCords( parcelId, cordinate, res ) {
     let response;
     if ( !util.isInteger( parcelId ) ) {
+      res.statusCode = 400;
       response = util.response( 'error', 'Invalid character in Parcel ID' );
       return Promise.resolve( response );
     }
     if ( !util.isNumeric( cordinate.lng ) || !util.isNumeric( cordinate.lat ) ) {
+      res.statusCode = 400;
       console.log( cordinate.lat )
       response = util.response( 'error', 'Invalid cordinate provided' );
       return Promise.resolve( response );
@@ -150,6 +160,7 @@ class Parcel {
     const lngChange = await Parcel.update( parcelId, 'destination_lng', cordinate.lng );
 
     if ( !( latChange && lngChange ) ) {
+      res.statusCode = 404;
       const response = util.response( 'ok', 'No Parcel matching that ID' );
       return Promise.resolve( response );
     }
@@ -157,10 +168,11 @@ class Parcel {
     return Promise.resolve( response );
   }
 
-  static async changeLocation( parcelId, location ) {
+  static async changeLocation( parcelId, location,res ) {
     //undefined in absence of input
     let response;
     if ( !util.isInteger( parcelId ) ) {
+      res.statusCode = 400;
       response = util.response( "error", 'invalid ID provided' );
       return Promise.resolve( response );
     }

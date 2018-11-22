@@ -20,7 +20,7 @@ class User {
     this.is_admin = 0;
   }
 
-  async create() {
+  async create(res) {
     let message;
     const createUser = `
     INSERT INTO users(firstname,surname,email,password,mobile,is_admin)
@@ -35,6 +35,7 @@ class User {
     try {
       util.validateCreateUser( this.options );
     } catch ( e ) {
+      res.statusCode = 400;
       return Promise.resolve( util.response( 'error', e.message, 0 ) );
     }
     const exist = await User.exists( this.options.email );
@@ -46,6 +47,7 @@ class User {
       return Promise.resolve( message );
     }
     //Another user with email exists
+    res.statusCode = 401;
     message = util.response( 'error', 'Another User with this Email exist', 0 );
     return Promise.resolve( message );
   }
