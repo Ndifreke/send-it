@@ -26,7 +26,6 @@
         "body-parser": "latest",
         "chai": "^4.2.0",
         "chai-http": "^4.2.0",
-        "coveralls": "^3.0.2",
         "ejs": "latest",
         "express": "latest",
         "pg": "latest",
@@ -46,6 +45,7 @@
         "startBuild": "npm run build && node ./build/app.js"
     },
     "devDependencies": {
+        "coveralls": "^3.0.2",
         "eslint": "^5.9.0",
         "eslint-config-airbnb": "^17.1.0",
         "eslint-plugin-import": "^2.14.0",

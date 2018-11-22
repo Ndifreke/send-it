@@ -9,9 +9,9 @@ async function signup( req, res ) {
 
 /* Log a user in using his email and password */
 async function login( req, res ) {
-  const logins = Object.assign({},req.body);
-  const id = await User.authLogin(logins.email, logins.password,res);
-  res.json(id);
+  const loginData = Object.assign({},req.body);
+  const data = await User.authLogin(loginData.email, loginData.password,res);
+  res.json(data);
 }
 
 function changeSettings( req, res ) {
