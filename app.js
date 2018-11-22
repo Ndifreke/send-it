@@ -47,6 +47,7 @@ app.put('/api/v1/parcels/:id/destination', changeCordinate);
 app.put('/api/v1/parcels/:id/presentLocation', changePresentLocation);
 
 app.use((req, res) => {
+  console.log(req.url)
   res.statusCode = 500;
   const msg = {
     status: 'error',

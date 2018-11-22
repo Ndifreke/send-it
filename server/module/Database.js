@@ -27,7 +27,7 @@ CREATE TABLE IF NOT EXISTS parcels(
   origin_lng TEXT ,
   description TEXT,
   distance NUMERIC NOT NULL,
-  status INT DEFAULT 1,
+  status VARCHAR(20) DEFAULT PENDING,
   weight NUMERIC NOT NULL,
   created_At DATE DEFAULT current_date,
   delivered_On DATE ,

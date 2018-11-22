@@ -15,13 +15,9 @@ async function createParcel( req, res ) {
 async function getOneParcel( req, res ) {
    // res.setHeader( 'Content-Type', 'text/json' );
    const id = req.params.id;
-   if ( util.isInteger( id ) ) {
       const result = await Parcel.fetchById(id);
      res.json(result)
    }
-   res.end( '{}');
-   // next();
-}
 
 //done
 async function getAllParcels( req, res ) {
@@ -37,9 +33,7 @@ async function getUserParcels( req, res ) {
 }
 //done
 async function cancelParcel( req, res ) {
-   console.log(User)
    const id = req.params.id;
-
         res.statusCode = 201;
          const result = await Parcel.changeStatus( id, Parcel.CANCELLED );
          res.json( result );

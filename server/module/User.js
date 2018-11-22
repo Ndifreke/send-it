@@ -21,6 +21,7 @@ class User {
   }
 
   async create() {
+    let message;
     const createUser = `
     INSERT INTO users(firstname,surname,email,password,mobile,is_admin)
     VALUES(
@@ -34,20 +35,19 @@ class User {
     try {
       util.validateCreateUser( this.options );
     } catch ( e ) {
-      console.log( e );
-      return Promise.resolve( 0 );
+      return Promise.resolve( util.response( 'error', e.message, 0 ) );
     }
     const exist = await User.exists( this.options.email );
     //prevent creating a user if a user by this email exist
     console.log( exist )
     if ( !exist.length ) {
-      console.log( "exists" )
       const result = await db.query( createUser );
-      return Promise.resolve( result.rowCount );
+      message = util.response( 'ok', 'User created succesfully', result.rowCount );
+      return Promise.resolve( message );
     }
     //Another user with email exists
-    return Promise.resolve( 0 );
-
+    message = util.response( 'error', 'Another User with this Email exist', 0 );
+    return Promise.resolve( message );
   }
 
 
@@ -138,19 +138,28 @@ class User {
   }
 
   static async authLogin( signInEmail, signInPassword ) {
+    let message;
+    if ( !util.isEmail( signInEmail ) ) {
+      message = util.response( 'error', 'Invalid Email provided' )
+      return Promise.resolve( message );
+    }
     const result = await User.exists( signInEmail );
-    if ( result[ 0 ] !== undefined) {
+    if ( result[ 0 ] !== undefined ) {
       const id = result[ 0 ].id;
       if ( util.isInteger( id ) && id !== 0 ) {
         const pass = await User.getPassword( id );
         if ( signInPassword === pass ) {
-          return Promise.resolve( id );
+          message = util.response( 'ok', 'login successfull', id )
+          return Promise.resolve( message );
         }
       }
-       //user exist but entered wrong password
+      //user exist but entered wrong password
+      message = util.response( 'error', 'Email or Password is wrong' )
+      return Promise.resolve( message );
     }
-     //User does not exist
-    return Promise.resolve( 0 );
+    //User does not exist
+    message = util.response( 'error', 'No such User with email ' + signInEmail )
+    return Promise.resolve( message );
   }
 
   static async getPassword( id ) {
