@@ -25,40 +25,13 @@ const parcels = {
   owner: parseInt( Math.random(), 10 ),
 };
 
-
-const server = 'https://send-app.herokuapp.com';
+function toJSON( text ) {
+  return JSON.stringify( text );
+}
 
 describe( 'Parcel Model', () => {
+  it('should add two numbers', ()=>{
+    assert.equal(1,1);
+  })
 
-  it( 'Should save a parcel to the database', (done) => {
-    let response = chai.request(ser).get( '/api/v1/parcels' );
-      response.end( function ( err, res ) {
-        assert.equal(res.body.status, 'ok')
-        done();
-      } );
-  } );
-  
-    it( 'Should not save parcel if the owner does not exist in user database', (done) => {
-    chai.request()
-    } );
-    
-} );
-/*
-describe( 'User Model', () => {
-  const email = `user${Math.random(100) * 1000}@domain.com`;
-  const userObject = {
-    firstname: email.slice( 0, 6 ),
-    surname: 'Ekim',
-    email,
-    password: 'password',
-    mobile: Math.random().toString().slice( 2 ),
-  };
-
-  it( 'Should Create a User with valid Credential', () => {
-    return new User( userObject ).create().then( ( result ) => {
-      assert.equal( result.rowCount, 1 );
-    } );
-    done();
-  } );
-} );
-*/
+})
