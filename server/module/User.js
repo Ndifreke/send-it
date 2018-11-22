@@ -6,6 +6,7 @@
 
 import db from './Database';
 import util from './utils';
+import tokenizer from './authenticate';
 
 
 class User {
@@ -20,7 +21,7 @@ class User {
     this.is_admin = 0;
   }
 
-  async create(res) {
+  async create( res ) {
     let message;
     const createUser = `
     INSERT INTO users(firstname,surname,email,password,mobile,is_admin)

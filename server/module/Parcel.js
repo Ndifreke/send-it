@@ -12,6 +12,7 @@ import User from './User';
 
 const response = {};
 
+
 class Parcel {
 
   constructor( option ) {
@@ -61,6 +62,7 @@ class Parcel {
         '${this.owner}'
       )
     `;
+    
     try {
       util.validateParcel( this.options );
       res.statusCode = 201;

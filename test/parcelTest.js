@@ -24,14 +24,29 @@ const parcels = {
   distance: '350',
   owner: parseInt( Math.random(), 10 ),
 };
-
+const server =  'https://send-app.herokuapp.com';
+const localhost = 'http://localhost:8080';
 function toJSON( text ) {
   return JSON.stringify( text );
 }
 
-describe( 'Parcel Model', () => {
-  it('should add two numbers', ()=>{
-    assert.equal(1,1);
-  })
+describe( 'Parcels', function () {
+  it( 'Should fetch all users parcel', function () {} )
+} )
 
-})
+
+describe( 'Parcel Model', () => {
+
+  it( 'should add two numbers', ( done ) => {
+
+    const request = chai.request( server );
+     request.get( '/api/v1/users/2/parcels' )
+      .end( function ( err, res ) {
+        console.log( res);
+        done();
+        assert.equal( res.status, 200 ); 
+      } )
+      
+  } )
+
+} )
