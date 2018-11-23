@@ -16,7 +16,6 @@ import { authenticate } from '../module/authenticate';
  */
 async function createParcel( req, res ) {
    async function createCallback(accessToken ) {
-      console.log(token)
       const created = await new Parcel( req.body ).create( res );
       res.json( created );
    }

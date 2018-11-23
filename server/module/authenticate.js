@@ -9,6 +9,8 @@ import util from './utils';
  * @param {request} id - The users id which this token will be vaoid for
  * @returns {Promise}
  */
+const SECRET = process.env.SECRET || 'topdog';
+
 async function tokenize( id ) {
  const isAdmin = await User.is_admin( id )
  const payload = {
@@ -16,7 +18,7 @@ async function tokenize( id ) {
   is_admin: isAdmin,
   email: User.exists( id )
  }
- const SECRET = process.env.SECRET;
+ 
  const token = jwt.sign( payload, SECRET );
  return Promise.resolve( token );
 }
@@ -30,8 +32,8 @@ async function tokenize( id ) {
  * @returns {void}
  */
 function authenticate( req, resp, cb ) {
- const token = req.headers[ 'x-access-token' ];
- jwt.verify( token, function ( err, userToken ) {
+ const token = req.headers[ 'x-access-token' ] || "error"; 
+ jwt.verify( token, SECRET, function ( err, userToken ) {
   if ( err ) {
    resp.json( util.response( "error", "Access denied", 0 ) )
   } else {
