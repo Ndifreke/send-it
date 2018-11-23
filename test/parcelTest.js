@@ -4,6 +4,7 @@ import chai from 'chai';
 import httpChai from 'chai-http';
 import Parcel from '../server/module/Parcel';
 import User from '../server/module/User';
+import app from '../app';
 
 
 const assert = chai.assert;
@@ -34,17 +35,15 @@ describe( 'Parcels', function () {
   it( 'Should fetch all users parcel', function () {} )
 } )
 
-
 describe( 'Parcel Model', () => {
-
   it( 'should add two numbers', ( done ) => {
-
-    const request = chai.request( server );
+    const request = chai.request( app );
      request.get( '/api/v1/users/2/parcels' )
       .end( function ( err, res ) {
-        console.log( res);
+        console.log( 'body', res);
+      
+        assert.equal( res.statusCode, '200' ); 
         done();
-        assert.equal( res.status, 200 ); 
       } )
       
   } )

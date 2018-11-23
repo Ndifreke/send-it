@@ -4,6 +4,7 @@ import bodyParser from 'body-parser';
 import db from './server/module/Database';
 
 import view from './server/module/views';
+import {authenticateRoute} from './server/module/authenticate';
 
 
 import {
@@ -21,7 +22,6 @@ import {
 import {
   signup,
   login,
-  changeSettings,
 } from './server/controller/user';
 
 
@@ -36,13 +36,12 @@ app.post('/api/v1/parcels', createParcel);
 app.get('/api/v1/parcels', getAllParcels);
 app.get('/api/v1/parcels/:id', getOneParcel);
 app.put('/api/v1/parcels/:id', cancelParcel);
-app.use('/api/v1/users/:id/parcels', getUserParcels);
+app.use('/api/v1/users/:id/parcels', getUserParcels); 
 
 app.get('/', view.renderHome);
 
 app.post('/api/v1/auth/signup', signup);
 app.post('/api/v1/auth/login', login);
-app.put('/api/v1/settings', changeSettings);
 app.put('/api/v1/parcels/:id/status', updateStatus);
 app.put('/api/v1/parcels/:id/destination', changeCordinate);
 app.put('/api/v1/parcels/:id/presentLocation', changePresentLocation);
@@ -59,3 +58,5 @@ app.use((req, res) => {
 
 
 app.listen(process.env.PORT);
+
+export default app;

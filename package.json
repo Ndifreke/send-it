@@ -27,7 +27,7 @@
         "chai": "^4.2.0",
         "chai-http": "^4.2.0",
         "ejs": "latest",
-        "express": "latest",
+        "express": "^4.16.4",
         "jsonwebtoken": "^8.4.0",
         "pg": "latest",
         "serve-static": "latest"
@@ -37,7 +37,7 @@
     },
     "scripts": {
         "nodemonB": "nodemon --exec babel-node app.js",
-        "test": "mocha mocha --timeout 10000 --recursive ./test --exit --compilers js:babel-core/register",
+        "test": "mocha --timeout 10000 --recursive ./test --exit --compilers js:babel-core/register",
         "start": "babel-node app.js",
         "lint": "eslint .",
         "clean": "rm -rf -d build",
