@@ -29,7 +29,7 @@ async function tokenize( id ) {
  * @returns {void}
  */
 function authenticate( req, resp, cb ) {
- const token = req.headers[ 'x-access-token' ];
+ const token = req.headers[ 'x-request-id' ];
  jwt.verify( token, 'takeit', function ( err, userToken ) {
   if ( err ) {
    resp.json( util.response( "error", "Access denied", 0 ) )
