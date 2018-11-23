@@ -40,9 +40,9 @@ class User {
       return Promise.resolve( util.response( 'error', e.message, 0 ) );
     }
     const exist = await User.exists( this.options.email );
+    console.log(!exist);
     //prevent creating a user if a user by this email exist
-    console.log( exist )
-    if ( !exist.length ) {
+    if (! exist ) {
       const result = await db.query( createUser );
       message = util.response( 'ok', 'User created succesfully', result.rowCount );
       return Promise.resolve( message );
