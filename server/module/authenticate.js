@@ -16,7 +16,8 @@ async function tokenize( id ) {
   is_admin: isAdmin,
   email: User.exists( id )
  }
- const token = jwt.sign( payload, "takeit" );
+ const SECRET = process.env.SECRET;
+ const token = jwt.sign( payload, SECRET );
  return Promise.resolve( token );
 }
 
@@ -29,8 +30,8 @@ async function tokenize( id ) {
  * @returns {void}
  */
 function authenticate( req, resp, cb ) {
-// const token = req.headers[ 'x-request-id' ];
- jwt.verify( '123556789', 'takeit', function ( err, userToken ) {
+ const token = req.headers[ 'x-access-token' ];
+ jwt.verify( token, function ( err, userToken ) {
   if ( err ) {
    resp.json( util.response( "error", "Access denied", 0 ) )
   } else {
