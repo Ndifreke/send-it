@@ -1,132 +1,165 @@
 /* eslint-disable no-fallthrough */
 /* eslint-disable default-case */
-import { Utils } from '../module/utils';
+import util from '../module/utils';
+import Parcel from '../module/Parcel';
+import User from '../module/User';
+import view from '../module/views';
+import { authenticate } from '../module/authenticate';
 
-import { Parcel } from '../module/Parcel';
+/**
+ * Create A parcel order from options supplied in req.body
+ * options needed include.
+ *   
+ * @param {response} res - Request object
+ * @param {request} req - Response object.
+ * @returns {void}
+ */
+async function createParcel( req, res ) {
+   async function createCallback(accessToken ) {
+      const created = await new Parcel( req.body ).create( res );
+      res.json( created );
+   }
+   authenticate( req, res, createCallback );
+}
 
-function createParcel(req, res) {
-  res.setHeader('Content-Type', 'text/json');
-  const requiredParam = [
-    'name',
-    'destination',
-    'destinationLatitude', 'destinationLongitude',
-    'origin',
-    'originLatitude',
-    'originLongitude',
-    'user',
-  ];
-  const reply = {
-    status: 'ok',
-    message: 'success',
-  };
-  try {
-    Utils.validateHasRequiredFields(requiredParam, req.body);
-    const args = {};
-    requiredParam.forEach((param) => {
-      args[param] = req.body[param];
-    });
-    if (new Parcel(args).create()) {
+/**
+ * Get a One parcel Order Identified by @param {id} 
+ * contained in Request object
+ * @constructor
+ * @param {response} res - Request object
+ * @param {request} req - Response object.
+ * @returns {void}
+ */
+ function getOneParcel( req, res ) {
+   // res.setHeader( 'Content-Type', 'text/json' );
+   async function getOneCallback( accessToken ) {
+      const id = req.params.id;
+      const result = await Parcel.fetchById( id, res );
+      res.json( result )
+   }
+   authenticate( req, res, getOneCallback );
+
+}
+
+
+/**
+ * Get all parcels contain in the database
+ * 
+ * @param {response} res - Request object
+ * @param {request} req - Response object.
+ * @returns {void}
+ */
+function getAllParcels( req, res ) {
+   async function getAllCallback( accessToken ) {
+      const result = await Parcel.fetchAllparcel( res );
+      res.json( result );
+   }
+   authenticate( req, res, getAllCallback );
+}
+
+/**
+ * Get all parcels owned by a User identified by id in res.body
+ * 
+ * @param {response} res - Request object
+ * @param {request} req - Response object.
+ * @returns {void}
+ */
+ function getUserParcels( req, res ) {
+   async function getUsersCallback( accessToken ) {
+      res.setHeader( 'Content-Type', 'text/json' );
+      const {
+         id
+      } = req.params;
+      const result = await Parcel.fetchUserParcels( id, res );
+      res.json( result );
+   } 
+   authenticate( req, res, getUsersCallback );
+}
+
+/**
+ * Change the status of a parcel order
+ * 
+ * @param {response} res - Request object
+ * @param {request} req - Response object.
+ * @returns {void}
+ */
+function cancelParcel( req, res ) {
+   async function cancelCallback( accessToken ) {
+     if(!accessToken.is_admin){
+      const id = req.params.id;
       res.statusCode = 201;
-      res.end(Utils.formatJson(reply));
-    } else {
-      res.statusCode = 500;
-      reply.status = 'error';
-      reply.message = 'Unkown Error Occured';
-      res.end(Utils.formatJson(reply));
-    }
-  } catch (e) {
-    res.statusCode = 400;
-    reply.status = 'error';
-    reply.message = e.message;
-    res.end(Utils.formatJson(reply));
-  }
-  // next();
+      const result = await Parcel.changeStatus( id, Parcel.CANCELLED, res );
+      res.json( result );
+     }else{
+        res.json(util.response("error",'Admin cannot cancel parcel',0))
+     }
+   }
+   authenticate( req, res, cancelCallback );
+
 }
 
-function getOneParcel(req, res) {
-  res.setHeader('Content-Type', 'text/json');
-  const id = req.params.id;
-  if (Utils.isInteger(id)) {
-    const json = Parcel.fetchById(id);
-    switch (JSON.parse(json).status) {
-      case 'ok':
-        res.statusCode = 200;
-        res.end(json);
-        break;
-      case 'error':
-        res.statusCode = 404;
-        const obj = JSON.parse(json);
-        obj.status = 'Not Found';
-        res.end(Utils.formatJson(obj));
-    }
-  }
-  const reply = {};
-  res.statusCode = 400;
-  reply.status = 'error';
-  reply.message = 'Invalid request format or Argument';
-  res.end(Utils.formatJson(reply));
-  // next();
+/**
+ * Change the destination of parcel order
+ * 
+ * @param {response} res - Request object
+ * @param {request} req - Response object.
+ * @returns {void}
+ */
+async function changeCordinate( req, res ) {
+   async function changeCordCallback( accessToken ) {
+      const id = req.params.id;
+      const {
+         lat,
+         lng
+      } = req.body;
+      const confirm = await Parcel.changeCords( req.params.id, {
+         lat,
+         lng
+      }, res );
+      res.json( confirm );
+   }
+   authenticate( req, res, changeCordCallback )
 }
 
-function getAllParcels(req, res) {
-  res.setHeader('Content-Type', 'text/json');
-  res.statusCode = 200;
-  res.end(Utils.formatJson(Parcel.getDB()));
-  // next();
+/**
+ * Change the current location of a parcel order
+ * 
+ * @param {response} res - Request object
+ * @param {request} req - Response object.
+ * @returns {void}
+ */
+async function changePresentLocation( req, res ) {
+   async function changePresentLocationCallback(accessToken) {
+      const changed = await Parcel.changeLocation( req.params.id, req.body.presentLocation, res )
+      res.json( changed );
+   }
+   authenticate( req, res, changePresentLocationCallback );
 }
 
-function cancelParcel(req, res) {
-  const id = req.params.id;
-  res.setHeader('Content-Type', 'text/json');
-  const reply = {
-    status: 'ok',
-    message: 'success',
-  };
-  if (Utils.isInteger(id)) {
-    if (Parcel.changeStatus(id, Parcel.CANCELLED)) {
-      res.statusCode = 201;
-      res.end(Utils.formatJson(reply));
-    }
-    // parcel does not exist
-    res.statusCode = 404;
-    reply.status = 'error';
-    reply.message = `Parcel with id ${id} does not exist`;
-    res.end(Utils.formatJson(reply));
-  } else {
-    res.statusCode = 400;
-    reply.status = 'error';
-    reply.message = 'Invalid request format or Argument';
-    res.end(Utils.formatJson(reply));
-  }
-}
+/**
+ * Change the status of parcel order. identified by an Id
+ * 
+ * @param {response} res - Request object
+ * @param {request} req - Response object.
+ * @returns {void}
+ */
+async function updateStatus( req, res ) {
 
-function getUserParcel(req, res) {
-  res.setHeader('Content-Type', 'text/json');
-  const id = req.params.id;
+   async function updateStatusCallback(accessToken) {
+      const result = await Parcel.changeStatus( req.params.id, req.body.status, res );
+      res.json( result );
+   }
 
-  if (Utils.isInteger(id)) {
-    const parcels = Parcel.fetchByUserId(id);
-    const json = JSON.parse(parcels);
-    switch (json.status) {
-      case 'error':
-        json.status = 'Not Found';
-        res.statusCode = 404;
-        res.end(Utils.formatJson(json));
-      default:
-        res.end(parcels);
-    }
-  }
-  const reply = {};
-  res.statusCode = 400;
-  reply.status = 'error';
-  reply.message = 'Invalid character found in request';
-  res.end(Utils.formatJson(reply));
+   const id = authenticate( req, res, updateStatusCallback );
 }
 
 export {
-  getOneParcel,
-  cancelParcel,
-  getAllParcels,
-  getUserParcel,
-  createParcel,
+   changePresentLocation,
+   changeCordinate,
+   getOneParcel,
+   cancelParcel,
+   getAllParcels,
+   getUserParcels,
+   updateStatus,
+   createParcel,
 };

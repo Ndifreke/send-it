@@ -2,37 +2,53 @@
 <html>
 
    <head>
-      <title>SendIt | Administrator</title>
-      <link type="text/css" rel="stylesheet" href="/stylesheet/shared.css">
-      <link type="text/css" rel="stylesheet" href="/stylesheet/main.css">
-      <link type="text/css" rel="stylesheet" href="/stylesheet/packages.css">
-      <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
-      <script type="text/javascript" src="/javascript/ui_render.js"></script>
-      <script type="text/javascript" src="/javascript/responsive_ui.js"></script>
-      <script type="text/javascript" src="/javascript/location_services.js"></script>
+      <title>SendIt | Packages</title>
+      <link type="text/css" rel="stylesheet" href="../stylesheet/shared.css">
+      <link type="text/css" rel="stylesheet" href="../stylesheet/main.css">
+      <link type="text/css" rel="stylesheet" href="../stylesheet/packages.css">
+      <script type="text/javascript" src="../javascript/ui_render.js"></script>
+      <script type="text/javascript" src="../javascript/responsive_ui.js"></script>
+      <!--
+      <script type="text/javascript" src="template/javascript/location_services.js"></script>
+      -->
       <meta charset="UTF-8">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
    </head>
 
-   <body class="bg">
+   <body>
 
       <header>
          <a href='#' id="logo"> </a>
          <nav class="positon-bottom-right">
             <ul>
-               <li>
+               <li id="navigation-list">
                   <a href='index.html' class="active-btn botton">
-                     SIGN OUT </a>
+                     Sign out </a>
                </li>
             </ul>
          </nav>
       </header>
 
+      <!---
+        <h4> Sort By</h4>
+            <span> Status </span>
+            <input type="checkbox" id="accept-mail-btn" name="accept-email">
+            <br>
+            <span> Date </span>
+            <input type="checkbox" class="switch-btn" />
+          </li>
+        -->
+
       <aside id='dashboard'>
          <a class="close-btn" id='dashboard-closer' onclick="toggle('dashboard')">
          </a>
          <ul class="dashboard">
-            <a href="packages.html" value="Packages">
+
+            <a href="home.html" value="Packages">
+               <li class="dashLink active"> HOME </li>
+            </a>
+
+            <a value="Packages">
                <li class="dashLink"> PARCELS </li>
             </a>
 
@@ -48,10 +64,9 @@
                <li class="dashLink"> SETTINGS </li>
             </a>
 
-            <a title="Admin">
-               <li class="dashLink active">ADMINISTRATOR </li>
+            <a href="admin.html" title="Admin">
+               <li class="dashLink">ADMINISTRATOR </li>
             </a>
-
          </ul>
       </aside>
       <!--*********************************************************************************************-->
@@ -59,20 +74,17 @@
 
          <!-- event in internal.js useMobileView() -->
 
+
          <button type="button" id="flow-btn"> </button>
 
-         <section id="main-content">
 
-            <form id="search">
-               <input type="text" id="search-parcel" placeholder="Email or Percel ID">
-               <input type="submit" class="search-icon" value="" input>
-            </form>
+         <section id="main-content">
 
             <section id='packages'>
                <h2> Packages </h2>
 
                <div class="package">
-                  <div class="package-preview" id="={packageId1}1" data-preview="id">
+                  <div class="package-preview" id="={packageId1}1">
                      <button class="cancel" value="{packageId1}"></button>
                      <button class="edit" value="{packageId1}"></button>
                      <span class="preview"> Title1 || ID </span>
@@ -80,27 +92,40 @@
                         more +</button>
                   </div>
 
-                  <div id="{packageId1}1" class="parcel-views" data-view="id">
+                  <div id="{packageId1}1" class="parcel-views">
                      <!--append I again to differenttiate id below-->
                      <div class='package-content elevate' id='{packageId1}'>
                         <p class="package-description">
                            Black and white television
                         </p>
+                        <hr />
                         <div class='package-info'>
                            <p class="meta">
-                              <strong class="meta-label"> From: </strong> <span class="from"> Accra </span>  <br/>
-                              <strong class="meta-label"> Destination: </strong> <span class="destination"> Lagos </span> <br />
-                              <strong class="meta-label"> Sender </strong> <span class="sender"> Mc </span> <br/>
-                              <strong class="meta-label"> Date </strong> <span class="date"> 24, August, 2018 </span> <br/>
-                              <strong class="meta-label"> Location </strong> <span class="location"> Lagos Custome </span> <br/>
-                              <strong class="meta-label"> Status </strong>  <span class="status">  Proccessing</span>  
+                              <span class="from">
+                                 From:</span> Accra
+                              <br />
+                              <span class="destination">
+                                 Destination:
+                              </span> Lagos<br />
+                              <span class="sender">
+                                 Sender </span> Mc
+                              spender <br />
+                              <span class="date"> Date
+                              </span> 24, August, 2018
+                              <br />
+                              <span class="location">
+                                 Location </span>
+                              Lagos Custome<br />
+                              <span class="status">
+                                 Status </span>
+                              Proccessing <br />
                            </p>
-                           </hr>
                         </div>
                      </div>
                   </div>
                </div>
                </div>
+
 
                <div class="package">
                   <div class="package-preview" id="={packageId5}5">
@@ -126,30 +151,41 @@
 
                         <div class='package-info'>
                            <p class="meta">
-                              <strong class="meta-label"> From: </strong> <span class="from"> Accra </span>  <br/>
-                              <strong class="meta-label"> Destination: </strong> <span class="destination"> Lagos </span> <br />
-                              <strong class="meta-label"> Sender </strong> <span class="sender"> Mc </span> <br/>
-                              <strong class="meta-label"> Date </strong> <span class="date"> 24, August, 2018 </span> <br/>
-                              <strong class="meta-label"> Location </strong> <span class="location"> Lagos Custome </span> <br/>
-                              <strong class="meta-label"> Status </strong>  <span class="status">  Proccessing</span>  
+                              <span class="from">
+                                 From:</span> Lekki
+                              Lagos <br />
+                              <span class="destination">
+                                 Destination:
+                              </span> Ibadan
+                              <br />
+                              <span class="sender">
+                                 Sender </span>
+                              Andela <br />
+                              <span class="date"> Date
+                              </span> 15, Jan, 2017
+                              <br />
+                              <span class="location">
+                                 Location </span>
+                              Delivered <br />
+                              <span class="status">
+                                 Status </span>
+                              Completed <br />
                            </p>
                         </div>
                      </div>
                   </div>
                </div>
                </div>
-
             </section>
-         </section>
-         </section>
 
          </section>
+
 
       </main>
+
       <footer>
 
       </footer>
-
 
    </body>
 

@@ -5,10 +5,11 @@ const { Client } = require('pg');
 const userShema = `
 CREATE TABLE IF NOT EXISTS users(
   id SERIAL PRIMARY KEY, 
-  first_name VARCHAR(50) NOT NULL,
+  firstname VARCHAR(50) NOT NULL,
+  surname VARCHAR(50) NOT NULL,
   email text NOT NULL,
   password text NOT NULL,
-  mobile_number VARCHAR NULL NULL,
+  mobile VARCHAR NULL NULL,
   is_admin BOOLEAN NOT NULL
   )  
 `;
@@ -26,7 +27,7 @@ CREATE TABLE IF NOT EXISTS parcels(
   origin_lng TEXT ,
   description TEXT,
   distance NUMERIC NOT NULL,
-  status INT DEFAULT 1,
+  status VARCHAR(20) DEFAULT 'PENDING',
   weight NUMERIC NOT NULL,
   created_At DATE DEFAULT current_date,
   delivered_On DATE ,
@@ -36,8 +37,8 @@ CREATE TABLE IF NOT EXISTS parcels(
 `;
 
 class Database {
+  
   constructor() {
-
     if (Database.client) {
       this.client = Database.client;
     } else {
@@ -55,4 +56,6 @@ class Database {
   }
 }
 
-module.exports.db = new Database();
+const db = new Database();
+// module.exports.db = db;
+export default db ;

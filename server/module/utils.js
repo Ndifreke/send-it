@@ -1,53 +1,108 @@
+/* eslint-disable no-unused-vars */
+/* eslint-disable default-case */
 /* eslint-disable import/prefer-default-export */
 
 class Utils {
-  static validateHasRequiredFields(required, inputOptions) {
-    let missingField;
-    if (required.indexOf('email') !== -1) {
-      Utils.validateEmail(inputOptions.email);
+  static validateParcel( options ) {
+    const requireFields = [
+      'shortname',
+      'destination',
+      'destination_lat',
+      'destination_lng',
+      'origin',
+      'origin_lat',
+      'origin_lng',
+      'description',
+      'distance',
+      'weight',
+      'price',
+    ];
+    let testField;
+    const validated = requireFields.every( ( field ) => {
+      testField = field;
+      return Utils.filterParcelInput( field, options[ field ] );
+    } );
+    if ( !validated ) {
+      throw Error( `${testField} field is required to create a Parcel` );
     }
-    const hasRequiredField = required.every((field) => {
-      missingField = field;
-      return (field in inputOptions) && !Utils.isEmpty(inputOptions[field]);
-    });
-    if (!hasRequiredField) { throw Error(`${missingField} field is required to create a user`); }
   }
 
-  static formatJson(json) {
-    return JSON.stringify(json, null, '\t');
+  static filterParcelInput( field, value ) {
+    switch ( field ) {
+      case 'description':
+      case 'origin':
+      case 'shortname':
+      case 'destination':
+        return Utils.isText( value );
+      case 'destination_lat':
+      case 'destination_lng':
+      case 'origin_lat':
+      case 'origin_lng':
+        return Utils.isNumeric( value );
+      case 'distance':
+      case 'weight':
+      case 'price':
+        return ( Utils.isNumeric( value ) || Utils.isInteger( value ) );
+    }
+    // any other field is not our concern ignore it
+    return true;
   }
 
-  static isInteger(value) {
-    return (/^\d+$/.test(value));
+  static validateCreateUser( options ) {
+    const requireFields = [ 'firstname', 'email', 'password', 'surname', 'mobile' ];
+    let testField;
+    let testValue;
+
+    const valid = requireFields.every( ( field ) => {
+      testField = field;
+      testValue = options[ field ];
+      switch ( field ) {
+        case 'email':
+          return Utils.isEmail( testValue );
+        case 'firstname':
+        case 'surname':
+          return Utils.isName( testValue );
+        case 'mobile':
+          return Utils.isInteger( testValue );
+        default:
+          return Utils.isText( testValue );
+      }
+    } );
+    if ( !valid ) {
+      throw Error( `Field ${testField} does not meet requirement value: ${testValue}` );
+    }
   }
 
-  static respondWith(status, message) {
-    return JSON.stringify({
-      status,
-      message,
-    });
+  static isInteger( value ) {
+    return ( /^\d+$/.test( value ) );
   }
 
-  static validateEmail(email) {
+  static isEmail( email ) {
     const emailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-    if (!emailRegex.test(String(email).toLowerCase())) {
-      throw new Error('Invalid email Address');
-    }
+    return emailRegex.test( String( email ).toLowerCase() );
   }
 
-  static validateName(name) {
-    if (!/^[a-zA-Z]+$/.test(name)) {
-      throw new Error('Invalid character found in input');
-    }
+  static isNumeric( cord ) {
+    return /^[0-9]+\.[\d]+$/.test( cord );
   }
 
-  static isEmpty(input) {
-    if (/^(\s)*$/.test(input)) {
-      throw Error('Empty Field found');
+  static isText( text ) {
+    return ( /^[a-zA-Z0-9\s\.,\+\-\(\)_\w]+$/.test( text ) );
+  }
+
+  static isName( name ) {
+    return ( /^[a-zA-Z0-9-_]+$/.test( name ) );
+  }
+  static response( status, message, body ) {
+    return {
+      status: status,
+      message: message,
+      response:  (body instanceof Array) ?  body : [ body ] 
     }
   }
 }
 
-export {
-  Utils,
-};
+
+const util = Utils;
+//module.exports.util = util;
+export default util;
