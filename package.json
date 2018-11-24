@@ -40,14 +40,15 @@
     },
     "scripts": {
         "coverage": "nyc report --reporter=text-lcov | coveralls",
-        "nodemonB": "nodemon --exec babel-node app.js",
-        "test": "mocha --timeout 10000 --recursive ./test --exit --compilers js:babel-core/register",
-        "start": "babel-node app.js",
+        "nodemon": "nodemon --exec babel-node app.js",
+        "test:dev": "mocha --timeout 10000 --recursive ./test --exit --compilers js:babel-core/register",
+        "start:dev": "babel-node app.js",
         "lint": "eslint .",
         "clean": "rm -rf -d build",
-        "cover": "istanbul cover _mocha",
-        "build": "npm run clean && babel ./ -d build  --ignore-files node_modules --copy-files",
-        "startBuild": "npm run build && node ./build/app.js"
+        "transpile": "babel ./ --out-dir build  --ignore node_modules --copy-files",
+        "build": "npm run clean && npm run transpile",
+        "start": "npm run build && node ./build/app.js",
+        "test": "npm run build && mocha build/test/. --timeout 10000 --recursive --exit"
     },
     "nyc": {
         "exclude": [

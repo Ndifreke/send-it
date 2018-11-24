@@ -4,3 +4,6 @@
 /server/module/database
 /server/module/database/
 /build
+.nyc_output
+/coverage
+/scandir
