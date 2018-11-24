@@ -4,13 +4,9 @@ import bodyParser from 'body-parser';
 import db from './server/module/Database';
 
 import view from './server/module/views';
-<<<<<<< Updated upstream
-=======
-import {
-  authenticateRoute
-} from './server/module/authenticate';
->>>>>>> Stashed changes
 
+
+import {authenticateRoute} from './server/module/authenticate';
 
 import {
   cancelParcel,
@@ -27,7 +23,6 @@ from './server/controller/parcel';
 import {
   signup,
   login,
-  changeSettings,
 } from './server/controller/user';
 
 
@@ -38,36 +33,25 @@ app.set( 'view engine', 'ejs' );
 app.use( express.static( path.join( __dirname, 'ui' ) ) );
 app.use( bodyParser() );
 
-<<<<<<< Updated upstream
-app.post('/api/v1/parcels', createParcel);
-app.get('/api/v1/parcels', getAllParcels);
-app.get('/api/v1/parcels/:id', getOneParcel);
-app.put('/api/v1/parcels/:id', cancelParcel);
+
 app.use('/api/v1/users/:id/parcels', getUserParcels);
-=======
+
 app.post( '/api/v1/parcels', createParcel );
 app.get( '/api/v1/parcels', getAllParcels );
 app.get( '/api/v1/parcels/:id', getOneParcel );
 app.put( '/api/v1/parcels/:id', cancelParcel );
 app.use( '/api/v1/users/:id/parcels', getUserParcels );
->>>>>>> Stashed changes
+
+app.use('/api/v1/users/:id/parcels', getUserParcels); 
+
 
 app.get( '/', view.renderHome );
 
-<<<<<<< Updated upstream
-app.post('/api/v1/auth/signup', signup);
-app.post('/api/v1/auth/login', login);
-app.put('/api/v1/settings', changeSettings);
-app.put('/api/v1/parcels/:id/status', updateStatus);
-app.put('/api/v1/parcels/:id/destination', changeCordinate);
-app.put('/api/v1/parcels/:id/presentLocation', changePresentLocation);
-=======
 app.post( '/api/v1/auth/signup', signup );
 app.post( '/api/v1/auth/login', login );
 app.put( '/api/v1/parcels/:id/status', updateStatus );
 app.put( '/api/v1/parcels/:id/destination', changeCordinate );
 app.put( '/api/v1/parcels/:id/presentLocation', changePresentLocation );
->>>>>>> Stashed changes
 
 app.use( ( req, res ) => {
   console.log( req.url )
@@ -80,10 +64,10 @@ app.use( ( req, res ) => {
 } );
 
 
-<<<<<<< Updated upstream
 app.listen(process.env.PORT);
-=======
+
 app.listen( process.env.PORT );
 
 export default app;
->>>>>>> Stashed changes
+export default app;
+

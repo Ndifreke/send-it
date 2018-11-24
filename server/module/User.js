@@ -6,7 +6,7 @@
 
 import db from './Database';
 import util from './utils';
-import tokenizer from './authenticate';
+
 
 
 class User {
@@ -40,9 +40,9 @@ class User {
       return Promise.resolve( util.response( 'error', e.message, 0 ) );
     }
     const exist = await User.exists( this.options.email );
+    console.log(!exist);
     //prevent creating a user if a user by this email exist
-    console.log( exist )
-    if ( !exist.length ) {
+    if (! exist ) {
       const result = await db.query( createUser );
       message = util.response( 'ok', 'User created succesfully', result.rowCount );
       return Promise.resolve( message );
@@ -55,18 +55,9 @@ class User {
 
 
   /* check by email or id if this user is an admin */
-  static is_admin( identity ) {
-    return new Promise( ( resolve ) => {
-      User.exists( identity ).then( ( result ) => {
-        if ( result.length === 0 ) {
-          resolve( false );
-        } else if ( 'id' in result[ 0 ] ) {
-          resolve( User.checkAdminById( result[ 0 ].id ) )
-        } else if ( 'email' in result[ 0 ] ) {
-          resolve( User.checkAdminByEmail( result[ 0 ].email ) )
-        }
-      } )
-    } )
+  static async is_admin( identity ) {
+    const query = await db.query(`SELECT is_admin from users where id='${identity}'`);
+    return Promise.resolve(query.rows[0].is_admin);
   }
 
   /* Check if the admin status of user identified by id is true */
@@ -98,10 +89,11 @@ class User {
         return Promise.resolve( result.rowCount );
       } else if ( util.isEmail( identifier ) ) {
         result = await User.promiseId( identifier );
-        return Promise.resolve( result );
+        return Promise.resolve( result[ 0 ] ? result[ 0 ].id : 0 );
       }
     } catch ( error ) {
-      throw Error( "Something wrong happend at Exist " + error );
+      console.log( "Something wrong happend at Exist " + error );
+      return Promise.resolve( 0 );
     }
     return Promise.resolve( [] );
   }
@@ -116,10 +108,6 @@ class User {
     const query = `SELECT email from users where id ='${identifier}'`;
     const result = await db.query( query );
     return Promise.resolve( result.rows );
-  }
-
-  static login( email, password ) {
-
   }
 
   static async changePassword( userid, newPassword ) {
@@ -147,15 +135,12 @@ class User {
       return Promise.resolve( message );
     }
     const result = await User.exists( signInEmail );
-    if ( result[ 0 ] !== undefined ) {
-      const id = result[ 0 ].id;
-      if ( util.isInteger( id ) && id !== 0 ) {
-        const pass = await User.getPassword( id );
+    if ( result > 0 ) {
+        const pass = await User.getPassword( result );
         if ( signInPassword === pass ) {
-          message = util.response( 'ok', 'login successfull', id )
+          message = util.response( 'ok', 'login successfull', result )
           return Promise.resolve( message );
         }
-      }
       //user exist but entered wrong password
       message = util.response( 'error', 'Email or Password is wrong' )
       return Promise.resolve( message );

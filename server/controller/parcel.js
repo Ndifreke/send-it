@@ -4,9 +4,7 @@ import util from '../module/utils';
 import Parcel from '../module/Parcel';
 import User from '../module/User';
 import view from '../module/views';
-import {
-   authenticate
-} from '../module/authenticate';
+import { authenticate } from '../module/authenticate';
 
 /**
  * Create A parcel order from options supplied in req.body
@@ -16,12 +14,12 @@ import {
  * @param {request} req - Response object.
  * @returns {void}
  */
-async function createParcel(req, res) {
-   async function createCallback(accessToken) {
-      const created = await new Parcel(req.body).create(res);
-      res.json(created);
+async function createParcel( req, res ) {
+   async function createCallback(accessToken ) {
+      const created = await new Parcel( req.body ).create( res );
+      res.json( created );
    }
-   authenticate(req, res, createCallback);
+   authenticate( req, res, createCallback );
 }
 
 /**
@@ -32,14 +30,14 @@ async function createParcel(req, res) {
  * @param {request} req - Response object.
  * @returns {void}
  */
-function getOneParcel(req, res) {
+ function getOneParcel( req, res ) {
    // res.setHeader( 'Content-Type', 'text/json' );
-   async function getOneCallback(accessToken) {
+   async function getOneCallback( accessToken ) {
       const id = req.params.id;
-      const result = await Parcel.fetchById(id, res);
-      res.json(result)
+      const result = await Parcel.fetchById( id, res );
+      res.json( result )
    }
-   authenticate(req, res, getOneCallback);
+   authenticate( req, res, getOneCallback );
 
 }
 
@@ -51,12 +49,12 @@ function getOneParcel(req, res) {
  * @param {request} req - Response object.
  * @returns {void}
  */
-function getAllParcels(req, res) {
-   async function getAllCallback(accessToken) {
-      const result = await Parcel.fetchAllparcel(res);
-      res.json(result);
+function getAllParcels( req, res ) {
+   async function getAllCallback( accessToken ) {
+      const result = await Parcel.fetchAllparcel( res );
+      res.json( result );
    }
-   authenticate(req, res, getAllCallback);
+   authenticate( req, res, getAllCallback );
 }
 
 /**
@@ -66,16 +64,16 @@ function getAllParcels(req, res) {
  * @param {request} req - Response object.
  * @returns {void}
  */
-function getUserParcels(req, res) {
-   async function getUsersCallback(accessToken) {
-      res.setHeader('Content-Type', 'text/json');
+ function getUserParcels( req, res ) {
+   async function getUsersCallback( accessToken ) {
+      res.setHeader( 'Content-Type', 'text/json' );
       const {
          id
       } = req.params;
-      const result = await Parcel.fetchUserParcels(id, res);
-      res.json(result);
-   }
-   authenticate(req, res, getUsersCallback);
+      const result = await Parcel.fetchUserParcels( id, res );
+      res.json( result );
+   } 
+   authenticate( req, res, getUsersCallback );
 }
 
 /**
@@ -85,18 +83,19 @@ function getUserParcels(req, res) {
  * @param {request} req - Response object.
  * @returns {void}
  */
-function cancelParcel(req, res) {
-   async function cancelCallback(accessToken) {
-      if (!accessToken.is_admin) {
-         const id = req.params.id;
-         res.statusCode = 201;
-         const result = await Parcel.changeStatus(id, Parcel.CANCELLED, res);
-         res.json(result);
-      } else {
-         res.json(util.response("error", 'Admin cannot cancel parcel', 0))
-      }
+function cancelParcel( req, res ) {
+   async function cancelCallback( accessToken ) {
+     if(!accessToken.is_admin){
+      const id = req.params.id;
+      res.statusCode = 201;
+      const result = await Parcel.changeStatus( id, Parcel.CANCELLED, res );
+      res.json( result );
+     }else{
+        res.json(util.response("error",'Admin cannot cancel parcel',0))
+     }
    }
-   authenticate(req, res, cancelCallback);
+   authenticate( req, res, cancelCallback );
+
 }
 
 /**
@@ -106,20 +105,20 @@ function cancelParcel(req, res) {
  * @param {request} req - Response object.
  * @returns {void}
  */
-async function changeCordinate(req, res) {
-   async function changeCordCallback(accessToken) {
+async function changeCordinate( req, res ) {
+   async function changeCordCallback( accessToken ) {
       const id = req.params.id;
       const {
          lat,
          lng
       } = req.body;
-      const confirm = await Parcel.changeCords(req.params.id, {
+      const confirm = await Parcel.changeCords( req.params.id, {
          lat,
          lng
-      }, res);
-      res.json(confirm);
+      }, res );
+      res.json( confirm );
    }
-   authenticate(req, res, changeCordCallback)
+   authenticate( req, res, changeCordCallback )
 }
 
 /**
@@ -129,12 +128,12 @@ async function changeCordinate(req, res) {
  * @param {request} req - Response object.
  * @returns {void}
  */
-async function changePresentLocation(req, res) {
+async function changePresentLocation( req, res ) {
    async function changePresentLocationCallback(accessToken) {
-      const changed = await Parcel.changeLocation(req.params.id, req.body.presentLocation, res)
-      res.json(changed);
+      const changed = await Parcel.changeLocation( req.params.id, req.body.presentLocation, res )
+      res.json( changed );
    }
-   authenticate(req, res, changePresentLocationCallback);
+   authenticate( req, res, changePresentLocationCallback );
 }
 
 /**
@@ -144,14 +143,14 @@ async function changePresentLocation(req, res) {
  * @param {request} req - Response object.
  * @returns {void}
  */
-async function updateStatus(req, res) {
+async function updateStatus( req, res ) {
 
    async function updateStatusCallback(accessToken) {
-      const result = await Parcel.changeStatus(req.params.id, req.body.status, res);
-      res.json(result);
+      const result = await Parcel.changeStatus( req.params.id, req.body.status, res );
+      res.json( result );
    }
 
-   const id = authenticate(req, res, updateStatusCallback);
+   const id = authenticate( req, res, updateStatusCallback );
 }
 
 export {
