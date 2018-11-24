@@ -2,8 +2,6 @@
 /* eslint-disable default-case */
 import util from '../module/utils';
 import Parcel from '../module/Parcel';
-import User from '../module/User';
-import view from '../module/views';
 import {
    authenticate
 } from '../module/authenticate';
@@ -121,6 +119,7 @@ function changeCordinate(req, res) {
  * @param {request} req - Response object.
  * @returns {void}
  */
+
 function changePresentLocation(req, res) {
    async function changePresentLocationCallback(accessToken) {
       const changed = await Parcel.changeLocation(req.params.id, req.body.presentLocation, res)
@@ -135,7 +134,10 @@ function changePresentLocation(req, res) {
  * @param {request} req - Response object.
  * @returns {void}
  */
+
+
 function updateStatus(req, res) {
+
    async function updateStatusCallback(accessToken) {
       const result = await Parcel.changeStatus(req.params.id, req.body.status, res);
       res.json(result);
