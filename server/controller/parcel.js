@@ -15,7 +15,11 @@ import {
  * @param {request} req - Response object.
  * @returns {void}
  */
+<<<<<<< HEAD
 function createParcel(req, res) {
+=======
+async function createParcel(req, res) {
+>>>>>>> 65d86b50d8248bd4dff6f3612ec119bc05d067a7
    async function createCallback(accessToken) {
       const created = await new Parcel(req.body).create(res);
       res.json(created);
@@ -39,6 +43,10 @@ function getOneParcel(req, res) {
       res.json(result)
    }
    authenticate(req, res, getOneCallback);
+<<<<<<< HEAD
+=======
+
+>>>>>>> 65d86b50d8248bd4dff6f3612ec119bc05d067a7
 }
 
 /**
@@ -91,6 +99,10 @@ function cancelParcel(req, res) {
       }
    }
    authenticate(req, res, cancelCallback);
+<<<<<<< HEAD
+=======
+
+>>>>>>> 65d86b50d8248bd4dff6f3612ec119bc05d067a7
 }
 
 /**
@@ -99,7 +111,11 @@ function cancelParcel(req, res) {
  * @param {request} req - Response object.
  * @returns {void}
  */
+<<<<<<< HEAD
 function changeCordinate(req, res) {
+=======
+async function changeCordinate(req, res) {
+>>>>>>> 65d86b50d8248bd4dff6f3612ec119bc05d067a7
    async function changeCordCallback(accessToken) {
       const id = req.params.id;
       const {
@@ -121,7 +137,11 @@ function changeCordinate(req, res) {
  * @param {request} req - Response object.
  * @returns {void}
  */
+<<<<<<< HEAD
 function changePresentLocation(req, res) {
+=======
+async function changePresentLocation(req, res) {
+>>>>>>> 65d86b50d8248bd4dff6f3612ec119bc05d067a7
    async function changePresentLocationCallback(accessToken) {
       const changed = await Parcel.changeLocation(req.params.id, req.body.presentLocation, res)
       res.json(changed);
@@ -135,11 +155,20 @@ function changePresentLocation(req, res) {
  * @param {request} req - Response object.
  * @returns {void}
  */
+<<<<<<< HEAD
 function updateStatus(req, res) {
+=======
+async function updateStatus(req, res) {
+
+>>>>>>> 65d86b50d8248bd4dff6f3612ec119bc05d067a7
    async function updateStatusCallback(accessToken) {
       const result = await Parcel.changeStatus(req.params.id, req.body.status, res);
       res.json(result);
    }
+<<<<<<< HEAD
+=======
+
+>>>>>>> 65d86b50d8248bd4dff6f3612ec119bc05d067a7
    const id = authenticate(req, res, updateStatusCallback);
 }
 
