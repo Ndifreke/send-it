@@ -2,7 +2,7 @@
 
 const { Client } = require('pg');
 
-const userShema = `
+const usersTableShema = `
 CREATE TABLE IF NOT EXISTS users(
   id SERIAL PRIMARY KEY, 
   firstname VARCHAR(50) NOT NULL,
@@ -14,7 +14,7 @@ CREATE TABLE IF NOT EXISTS users(
   )  
 `;
 
-const parcelShema = `
+const parcelsTableShema = `
 CREATE TABLE IF NOT EXISTS parcels(
   id SERIAL,
   owner INT REFERENCES users(id) ON DELETE RESTRICT,
@@ -43,11 +43,11 @@ class Database {
       this.client = Database.client;
     } else {
       this.client = new Client(
-        process.env.DATABASE_URL || 'tcp://ndifreke:root@localhost:5432/sendit'
+        process.env.DATABASE_URL || process.env.DATABASE_URL_DEV
       );
       this.client.connect();
-      this.client.query(userShema);
-      this.client.query(parcelShema);
+      this.client.query(usersTableShema);
+      this.client.query(parcelsTableShema);
     }
   }
 
@@ -57,5 +57,4 @@ class Database {
 }
 
 const db = new Database();
-// module.exports.db = db;
 export default db ;

@@ -1,12 +1,8 @@
 import express from 'express';
 import path from 'path';
 import bodyParser from 'body-parser';
-import db from './server/module/Database';
 
 import view from './server/module/views';
-
-
-import {authenticateRoute} from './server/module/authenticate';
 
 import {
   cancelParcel,
@@ -65,9 +61,6 @@ app.use( ( req, res ) => {
 
 
 app.listen(process.env.PORT);
-
-app.listen( process.env.PORT );
-
 export default app;
-export default app;
+
 

@@ -1,18 +1,34 @@
 {
     "name": "sendIt",
     "version": "1.0.0",
-    "keywords": [
-        "util",
-        "functional",
-        "server",
-        "client",
-        "browser"
-    ],
     "repository": {},
     "license": "MIT",
     "author": "ndifreke",
     "contributors": [],
+
     "dependencies": {
+        "ejs": "latest",
+        "express": "^4.16.4",
+        "jsonwebtoken": "^8.4.0",
+        "pg": "latest",
+        "serve-static": "latest"
+    },
+    "engines": {
+        "node": "10.x"
+    },
+    "scripts": {
+        "coverage": "nyc report --reporter=text-lcov | coveralls",
+        "nodemon": "nodemon --exec babel-node app.js",
+        "test:dev": "mocha --timeout 10000 --recursive ./test --exit --compilers js:babel-core/register",
+        "start:dev": "babel-node app.js",
+        "lint": "eslint .",
+        "clean": "rm -rf -d build",
+        "transpile": "babel ./ --out-dir build  --ignore node_modules --copy-files",
+        "build": "npm run clean && npm run transpile",
+        "start": "npm run build && node ./build/app.js",
+        "test": "npm run build && mocha build/test/. --timeout 10000 --recursive --exit"
+    },
+    "devDependencies": {
         "@babel/cli": "7.1.5",
         "@babel/core": "7.1.5",
         "@babel/node": "7.0.0",
@@ -27,44 +43,6 @@
         "body-parser": "latest",
         "chai": "^4.2.0",
         "chai-http": "^4.2.0",
-        "cross-env": "^5.2.0",
-        "ejs": "latest",
-        "express": "^4.16.4",
-        "jsonwebtoken": "^8.4.0",
-        "nyc": "^13.1.0",
-        "pg": "latest",
-        "serve-static": "latest"
-    },
-    "engines": {
-        "node": "10.x"
-    },
-    "scripts": {
-        "coverage": "nyc report --reporter=text-lcov | coveralls",
-        "nodemonB": "nodemon --exec babel-node app.js",
-        "test": "mocha --timeout 10000 --recursive ./test --exit --compilers js:babel-core/register",
-        "start": "babel-node app.js",
-        "lint": "eslint .",
-        "clean": "rm -rf -d build",
-        "cover": "istanbul cover _mocha",
-        "build": "npm run clean && babel ./ -d build  --ignore-files node_modules --copy-files",
-        "startBuild": "npm run build && node ./build/app.js"
-    },
-    "nyc": {
-        "exclude": [
-            "ui"
-        ],
-        "require": [
-            "babel-register"
-        ],
-        "reporter": [
-            "Icov",
-            "text"
-        ],
-        "sourceMap": false,
-        "instrument": false
-    },
-    "devDependencies": {
-        "coveralls": "^3.0.2",
         "eslint": "^5.9.0",
         "eslint-config-airbnb": "^17.1.0",
         "eslint-plugin-import": "^2.14.0",
