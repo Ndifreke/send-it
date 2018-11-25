@@ -25,7 +25,7 @@
         "clean": "rm -rf -d build",
         "transpile": "babel ./ --out-dir build  --ignore node_modules --copy-files",
         "build": "npm run clean && npm run transpile",
-        "start": "npm run build && node ./build/app.js",
+        "start": "npm run build && cp node_modules -r build/ && node ./build/app.js",
         "test": "npm run build && mocha build/test/. --timeout 10000 --recursive --exit"
     },
     "devDependencies": {

@@ -1,7 +1,7 @@
 // const user = require( "../library/User" ).User;
 import util from '../module/utils';
 import User from '../module/User';
-import {tokenize}  from '../module/authenticate';
+import {issueAccessToken}  from '../module/authenticate';
 
 /**
  * Signup A User to Send-It, given the users signup information
@@ -28,7 +28,7 @@ async function login( req, res ) {
   if ( data.response[ 0 ] ) {
     const id = data.response[ 0 ];
     delete data.response;
-    const token = await tokenize(id);
+    const token = await issueAccessToken(id);
     data.token = token;
   }
   res.json( data );

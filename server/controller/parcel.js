@@ -3,7 +3,7 @@
 import util from '../module/utils';
 import Parcel from '../module/Parcel';
 import {
-   authenticate
+   verifyAccessToken
 } from '../module/authenticate';
 
 /**
@@ -18,7 +18,7 @@ function createParcel(req, res) {
       const created = await new Parcel(req.body).create(res);
       res.json(created);
    }
-   authenticate(req, res, createCallback);
+   verifyAccessToken(req, res, createCallback);
 }
 
 /**
@@ -36,7 +36,7 @@ function getOneParcel(req, res) {
       const result = await Parcel.fetchById(id, res);
       res.json(result)
    }
-   authenticate(req, res, getOneCallback);
+   verifyAccessToken(req, res, getOneCallback);
 }
 
 /**
@@ -50,7 +50,7 @@ function getAllParcels(req, res) {
       const result = await Parcel.fetchAllparcel(res);
       res.json(result);
    }
-   authenticate(req, res, getAllCallback);
+   verifyAccessToken(req, res, getAllCallback);
 }
 
 /**
@@ -68,7 +68,7 @@ function getUserParcels(req, res) {
       const result = await Parcel.fetchUserParcels(id, res);
       res.json(result);
    }
-   authenticate(req, res, getUsersCallback);
+   verifyAccessToken(req, res, getUsersCallback);
 }
 
 /**
@@ -88,7 +88,7 @@ function cancelParcel(req, res) {
          res.json(util.response("error", 'Admin cannot cancel parcel', 0))
       }
    }
-   authenticate(req, res, cancelCallback);
+   verifyAccessToken(req, res, cancelCallback);
 }
 
 /**
@@ -110,7 +110,7 @@ function changeCordinate(req, res) {
       }, res);
       res.json(confirm);
    }
-   authenticate(req, res, changeCordCallback)
+   verifyAccessToken(req, res, changeCordCallback)
 }
 
 /**
@@ -125,7 +125,7 @@ function changePresentLocation(req, res) {
       const changed = await Parcel.changeLocation(req.params.id, req.body.presentLocation, res)
       res.json(changed);
    }
-   authenticate(req, res, changePresentLocationCallback);
+   verifyAccessToken(req, res, changePresentLocationCallback);
 }
 
 /**
@@ -142,7 +142,7 @@ function updateStatus(req, res) {
       const result = await Parcel.changeStatus(req.params.id, req.body.status, res);
       res.json(result);
    }
-   const id = authenticate(req, res, updateStatusCallback);
+   const id = verifyAccessToken(req, res, updateStatusCallback);
 }
 
 export {

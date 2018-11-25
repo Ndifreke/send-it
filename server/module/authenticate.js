@@ -11,16 +11,16 @@ import util from './utils';
  */
 const SECRET = process.env.SECRET || 'topdog';
 
-async function tokenize( id ) {
- const isAdmin = await User.is_admin( id )
+async function issueAccessToken(id) {
+ const isAdmin = await User.is_admin(id)
  const payload = {
   id: id,
   is_admin: isAdmin,
-  email: User.exists( id )
+  email: User.exists(id)
  }
- 
- const token = jwt.sign( payload, SECRET );
- return Promise.resolve( token );
+
+ const token = jwt.sign(payload, SECRET);
+ return Promise.resolve(token);
 }
 
 /**
@@ -31,19 +31,19 @@ async function tokenize( id ) {
  * @param {request} cb - Callback function which the verified token will be passed to
  * @returns {void}
  */
-function authenticate( req, resp, cb ) {
- const token = req.headers[ 'x-access-token' ] || "error"; 
- jwt.verify( token, SECRET, function ( err, userToken ) {
-  if ( err ) {
-   resp.json( util.response( "error", "Access denied", 0 ) )
+function verifyAccessToken(req, resp, cb) {
+ const token = req.headers['x-access-token'] || "error";
+ jwt.verify(token, SECRET, function (err, userToken) {
+  if (err) {
+   resp.json(util.response("error", "Access denied", 0))
   } else {
-   cb( userToken );
+   cb(userToken);
   }
- } );
+ });
 
 }
 
 export {
- authenticate,
- tokenize
+ verifyAccessToken,
+ issueAccessToken
 }
