@@ -242,7 +242,8 @@ footer {
 }
 
 #services {
-    height: 44%;
+    position: absolute;
+    bottom: 0px;
     background: seashell;
     display: flex;
     opacity: 0.9;
@@ -256,7 +257,7 @@ footer {
     padding: 9px;
     text-align: center;
     display: table-row-group;
-    height: 100%;
+    height: auto;
     background: white;
     margin: auto;
 }
@@ -270,7 +271,6 @@ hr.divider{
 }
 
 .welcome {
-   // font-size: 55px;
     background: #FF5708;
     padding: 0px;
     display: inline;
