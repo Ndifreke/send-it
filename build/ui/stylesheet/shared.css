@@ -1,0 +1,306 @@
+html {
+    width: 100%;
+    height: 100%;
+    max-width: 100%;
+    max-height: 100%;
+    margin: 0px;
+    padding: 0px;
+}
+
+body {
+    width: 100%;
+    height: 100%;
+    max-width: 100%;
+    min-width: 100%;
+    height: 100%;
+    max-width: 100%;
+    max-height: 100%;
+    margin: 0px;
+    padding: 0px;
+}
+
+td,
+th {
+    padding: 8px 2vh;
+}
+
+#signupUI,
+#signinUi {
+    padding: 7%;
+}
+
+li,
+ul,
+ol {
+    list-style: none;
+}
+
+#navigation-list {
+    margin-right: 20px;
+}
+
+.dashLink {
+    padding-top: 25px;
+    padding-bottom: 25px;
+    padding-left: 15%;
+    color: ghostwhite;
+    border: 1px solid white;
+    margin: 5px;
+    border-radius: 2px;
+}
+
+.dashLink:hover,
+.active {
+    background-color: #FF5722;
+    color: white;
+    font-weight: bolder;
+}
+
+#input-title {
+    text-align: start !important;
+    font-weight: bolder;
+}
+
+#dashboard {
+    padding-top: 5vh;
+    background-color: #323544;
+    position: fixed;
+    top: 0;
+    left: 0px;
+    width: 270px;
+    z-index: 4001;
+    height: 100vh;
+    display: none;
+}
+
+ul.dashboard {
+    position: sticky;
+    margin-top: 16px;
+    padding: 0px;
+}
+
+#dashboard-closer {
+    position: sticky;
+    top: 1px;
+    margin-top: -29px;
+    left: 65%;
+    margin-right: -15px;
+}
+
+#flow-btn {
+    z-index: 2;
+    position: sticky;
+    top: 0;
+    margin-left: -4px;
+    background: url(../images/overflow.svg) no-repeat;
+    background-size: 35px 35px;
+    width: 31px;
+    height: 26px;
+    cursor: pointer;
+    outline: none;
+    border-style: none;
+}
+
+#expand-btn {
+    cursor: pointer;
+    border: none;
+    outline: none;
+    position: absolute;
+    right: 3px;
+    bottom: 8px;
+    height: 45px;
+}
+
+#dash-expand {
+    cursor: pointer;
+    border: none;
+    outline: none;
+    position: static;
+    background: none;
+    margin-left: 98px;
+}
+
+hr {
+    background: #BDBDBD;
+}
+
+.icon,
+button.cancel,
+button.edit,
+.place-picker {
+    background-size: 24px 45px;
+    width: 45px;
+    height: 25px;
+    border-style: none;
+    right: 78px;
+    top: 0px;
+}
+
+input[type=checkbox] {
+    display: none;
+}
+
+input[type=checkbox]+label {
+    background: url("../images/unchecked.svg") no-repeat;
+    background-size: 45px 45px;
+    min-width: 45px;
+    min-height: 45px;
+    display: inline-block;
+}
+
+form#settingsUI {
+    background: whitesmoke;
+}
+
+input.prim-btn.botton {}
+
+.inline {
+    display: inline-flex;
+}
+
+.inline-block {
+    display: inline-block;
+}
+
+.block {
+    display: block;
+}
+
+/* for desktop */
+
+@media screen and (min-width:1000px) {
+    #settingsUI * {
+        width: 70%;
+    }
+
+    #logo {
+        left: 290px;
+    }
+
+    form#settingsUI {
+        margin: 0 20%;
+        padding: 20px;
+    }
+
+    #about {
+        display: flex;
+    }
+
+    #aveter-container {
+        width: 50%;
+    }
+}
+
+@media screen and (min-width:760px) {
+
+   
+
+    form#settingsUI {
+        margin: 0 14%;
+        padding: 20px;
+    }
+
+    #about {
+        display: flex;
+    }
+
+    #dash-expand {
+        display: none;
+    }
+
+    .package-content hr {
+        margin: 15px;
+    }
+
+    .package-content {
+        display: flex;
+    }
+
+    #main-content {
+        margin-left: 250px;
+    }
+
+    #dashboard-closer {
+        display: none;
+    }
+
+    #reveal-btn {
+        display: inline;
+    }
+
+    .package-description {
+        width: 45%;
+    }
+
+    #new-parcel-viewport {
+        display: block;
+    }
+
+    aside#dashboard {
+        display: block;
+    }
+
+    #new-parcel-viewport {
+        display: flex;
+    }
+
+    #main {
+        margin-left: 4%;
+    }
+}
+
+
+/* for mobile */
+@media screen and (max-width : 760px) {
+    div#services {
+        display: block;
+    }
+    #profile-sumary {
+        /* display: inline-block; */
+        /* width: 50%; */
+        /* min-width: 300px; */
+        padding: 10px;
+        margin-top: 10px;
+    }
+    #aveter-container {
+        width: 80%;
+    }
+
+    #settingsUI * {
+        width: -webkit-fill-available;
+    }
+
+    #signupUI {
+        width: 80%;
+    }
+
+    form#settingsUI {
+     //   margin: 0 5%;
+        padding: 20px;
+    }
+
+    #new-parcel-viewport {
+        display: block;
+    }
+
+    .inline {
+        display: block;
+    }
+
+    #main-content {
+        margin-left: 1%;
+    }
+
+    #dashboard-closer {
+        display: block;
+    }
+
+    .package-content {
+        display: block;
+    }
+
+    .package-description {
+        width: 100%;
+    }
+
+}

@@ -1,0 +1,39 @@
+#about, #statistics{
+    padding-top: 25px;
+    display: block;
+    text-align: center;
+    width: -webkit-fill-available;
+    min-width: 193px;
+    padding-bottom: 30px;
+    background: whitesmoke;
+}
+
+.stats-badge{
+        padding: 5px;
+        width: 133px;
+        height: 133px;
+        display: table-cell;
+        vertical-align: middle;
+        border-radius: 50%;
+        border: 5px solid #FF5722;
+    
+}
+#aveter-container{
+    display: inline-block;
+    margin: auto;
+}
+#profile-sumary{
+    display: inline-block;
+    width: 80%;
+    padding: 10px;
+}
+.badges{
+    display: inline;
+   
+}
+#profile{
+    display: block;
+}
+#profile h1{
+    display: block;
+}

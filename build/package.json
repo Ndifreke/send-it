@@ -1,0 +1,54 @@
+{
+    "name": "sendIt",
+    "version": "1.0.0",
+    "repository": {},
+    "license": "MIT",
+    "author": "ndifreke",
+    "contributors": [],
+
+    "dependencies": {
+        "ejs": "latest",
+        "express": "^4.16.4",
+        "jsonwebtoken": "^8.4.0",
+        "pg": "latest",
+        "serve-static": "latest"
+    },
+    "engines": {
+        "node": "10.x"
+    },
+    "scripts": {
+        "coverage": "nyc report --reporter=text-lcov | coveralls",
+        "nodemon": "nodemon --exec babel-node app.js",
+        "test:dev": "mocha --timeout 10000 --recursive ./test --exit --compilers js:babel-core/register",
+        "sstart": "babel-node app.js",
+        "lint": "eslint .",
+        "clean": "rm -rf -d build",
+        "transpile": "babel ./ --out-dir build  --ignore node_modules --copy-files",
+        "build": "npm run clean && npm run transpile",
+        "start": "npm run build && cp node_modules -r ./build/ && node ./build/app.js",
+        "test": "npm run build && mocha build/test/. --timeout 10000 --recursive --exit"
+    },
+    "devDependencies": {
+        "@babel/cli": "7.1.5",
+        "@babel/core": "7.1.5",
+        "@babel/node": "7.0.0",
+        "@babel/preset-env": "^7.1.6",
+        "@babel/register": "^7.0.0",
+        "babel-cli": "^6.26.0",
+        "babel-eslint": "^10.0.1",
+        "babel-plugin-istanbul": "^5.1.0",
+        "babel-preset-env": "^1.7.0",
+        "babel-preset-es2015": "6.3.13",
+        "babel-register": "^6.26.0",
+        "body-parser": "latest",
+        "chai": "^4.2.0",
+        "chai-http": "^4.2.0",
+        "eslint": "^5.9.0",
+        "eslint-config-airbnb": "^17.1.0",
+        "eslint-plugin-import": "^2.14.0",
+        "eslint-plugin-jsx-a11y": "^6.1.2",
+        "eslint-plugin-react": "^7.11.1",
+        "mocha": "latest",
+        "mocha-lcov-reporter": "^1.3.0"
+    }
+}
