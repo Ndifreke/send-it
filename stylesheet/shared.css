@@ -54,6 +54,7 @@ ol {
     background-color: #FF5722;
     color: white;
     font-weight: bolder;
+    transition: 0.4s;
 }
 
 #input-title {

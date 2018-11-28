@@ -27,29 +27,4 @@ function signupUser() {
 }
 
 
-/* Set the display of an html element identified by the id or class name passed in as
- * argument. if an arguments contains object. the id field should be the elements id or class
- * and the display property is the type of display. By default an id withoud display is set to
- * block display
- *  */
-function getElement(identifier, attribute) {
-  switch (attribute) {
-    case 'class':
-      return document.getElementsByClassName(identifier);
-    case 'id':
-      return document.getElementById(identifier);
-    case 'tag':
-      return document.getElementsByTagName(identifier);
-  }
-  return null;
-}
 
-function showDashContent(viewID) {
-  setDisplay(viewID);
-}
-
-function toggle(ui) {
-  const element = document.getElementById(ui);
-  element.style.display = (element.style.display !== 'block') ? 'block' : 'none';
-  console.log(element.style.display);
-}
