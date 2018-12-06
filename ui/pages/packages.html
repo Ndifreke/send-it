@@ -7,8 +7,7 @@
       <link href="https://fonts.googleapis.com/css?family=Roboto:300" rel="stylesheet">
       <link type="text/css" rel="stylesheet" href="../stylesheet/main.css">
       <link type="text/css" rel="stylesheet" href="../stylesheet/packages.css">
-      <script type="text/javascript" src="../javascript/ui_render.js"></script>
-      <script type="text/javascript" src="../javascript/responsive_ui.js"></script>
+      <script type="text/javascript" src="../javascript/parcelUIBuilder.js"></script>
       <!--
       <script type="text/javascript" src="template/javascript/location_services.js"></script>
       -->
@@ -83,11 +82,13 @@
                   </div>
 
                   <div id="1" class="parcel-views">
-                     <div class='package-content elevate'>
+
+                     <div class='package-content'>
                         <p class="package-description">
                            Black and white television
                         </p>
                         <hr />
+
                         <div class="meta">
                            <strong> From: </strong> <span class="from"> Accra </span> <br />
                            <strong> Destination: </strong> <span class="destination"> Lagos </span>
@@ -98,12 +99,13 @@
                            <br />
                            <strong> Status </strong> <span class="status"> Proccessing</span>
                         </div>
-
-                        <div class="edit">
-                           <button class="cancel" value="{packageId1}"></button>
-                           <button class="edit" value="{packageId1}"></button>
-                        </div>
+                        <div class='parcel-action'>
+                           <hr/>
+                              <div class="cancel" title='cancel parcel' data-parcel-id="{packageId1}"></div>
+                              <div class="edit" title='edit parcel' data-parcel-id="{packageId1}"></div>
+                           </div>
                      </div>
+                     
                   </div>
 
                </div>
