@@ -3,13 +3,13 @@
 
    <head>
       <title>SendIt | Administrator</title>
-      <link type="text/css" rel="stylesheet" href="/stylesheet/shared.css">
-      <link type="text/css" rel="stylesheet" href="/stylesheet/main.css">
-      <link type="text/css" rel="stylesheet" href="/stylesheet/packages.css">
+      <link type="text/css" rel="stylesheet" href="../stylesheet/shared.css">
+      <link type="text/css" rel="stylesheet" href="../stylesheet/main.css">
+      <link type="text/css" rel="stylesheet" href="../stylesheet/packages.css">
       <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
-      <script type="text/javascript" src="/javascript/ui_render.js"></script>
-      <script type="text/javascript" src="/javascript/responsive_ui.js"></script>
-      <script type="text/javascript" src="/javascript/location_services.js"></script>
+      <script type="text/javascript" src="../javascript/ui_render.js"></script>
+      <script type="text/javascript" src="../javascript/responsive_ui.js"></script>
+      <script type="text/javascript" src="../javascript/location_services.js"></script>
       <meta charset="UTF-8">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
    </head>
@@ -21,7 +21,7 @@
          <nav class="positon-bottom-right">
             <ul>
                <li>
-                  <a href='index.html' class="active-btn botton">
+                  <a href='../index.html' class="active-btn botton">
                      SIGN OUT </a>
                </li>
             </ul>
@@ -29,122 +29,124 @@
       </header>
 
       <aside id='dashboard'>
-         <a class="close-btn" id='dashboard-closer' onclick="toggle('dashboard')">
+         <a class="close-btn" id='dashboard-closer' onclick="toggle( 'dashboard' )">
          </a>
          <ul class="dashboard">
-            <a href="packages.html" value="Packages">
-               <li class="dashLink"> PARCELS </li>
-            </a>
 
-            <a href="create.html" title="Create Parcel">
-               <li class="dashLink">CREATE PARCEL </li>
-            </a>
+            <li class="dashLink">
+               <a href="./packages.html"> PARCELS </a>
+            </li>
 
-            <a href="profile.html" title="Profile">
-               <li class="dashLink"> PROFILE </li>
-            </a>
+            <li class="dashLink">
+               <a href="./create.html" title="Create Parcel">
+                  CREATE PARCEL
+               </a>
+            </li>
 
-            <a href="settings.html" title="Settings">
-               <li class="dashLink"> SETTINGS </li>
-            </a>
+            <li class="dashLink">
+               <a href="./profile.html" title="Profile">
+                  PROFILE
+               </a>
+            </li>
 
-            <a title="Admin">
-               <li class="dashLink active">ADMINISTRATOR </li>
-            </a>
+            <li class="dashLink">
+               <a href="./settings.html" title="Settings">
+                  SETTINGS
+               </a>
+            </li>
+
+            <li class="dashLink active">
+               <a title="Admin">
+                  ADMIN
+               </a> </li>
 
          </ul>
       </aside>
       <!--*********************************************************************************************-->
       <main id="main">
 
-         <!-- event in internal.js useMobileView() -->
-
          <button type="button" id="flow-btn"> </button>
 
          <section id="main-content">
 
             <form id="search">
-               <input type="text" id="search-parcel" placeholder="Email or Percel ID">
-               <input type="submit" class="search-icon" value="" input>
+               <input type="text" id="search-parcel" placeholder="Email or Percel ID" />
+               <input type="submit" class="search-icon" value="">
             </form>
 
             <section id='packages'>
                <h2> Packages </h2>
 
                <div class="package">
-                  <div class="package-preview" id="={packageId1}1" data-preview="id">
+                  <div class="package-preview" data-parcel-id="1">
                      <button class="cancel" value="{packageId1}"></button>
                      <button class="edit" value="{packageId1}"></button>
                      <span class="preview"> Title1 || ID </span>
-                     <button id="expand-btn" onclick='toggle("{packageId1}1")'>
-                        more +</button>
                   </div>
 
-                  <div id="{packageId1}1" class="parcel-views" data-view="id">
-                     <!--append I again to differenttiate id below-->
-                     <div class='package-content elevate' id='{packageId1}'>
+                  <div id="1" class="parcel-views">
+                     <div class='package-content elevate'>
                         <p class="package-description">
                            Black and white television
                         </p>
-                        <div class='package-info'>
-                           <p class="meta">
-                              <strong class="meta-label"> From: </strong> <span class="from"> Accra </span>  <br/>
-                              <strong class="meta-label"> Destination: </strong> <span class="destination"> Lagos </span> <br />
-                              <strong class="meta-label"> Sender </strong> <span class="sender"> Mc </span> <br/>
-                              <strong class="meta-label"> Date </strong> <span class="date"> 24, August, 2018 </span> <br/>
-                              <strong class="meta-label"> Location </strong> <span class="location"> Lagos Custome </span> <br/>
-                              <strong class="meta-label"> Status </strong>  <span class="status">  Proccessing</span>  
-                           </p>
-                           </hr>
+                        <hr />
+                        <div class="meta">
+                           <strong> From: </strong> <span class="from"> Accra </span>
+                           <br />
+                           <strong> Destination: </strong>
+                           <span class="destination"> Lagos </span> <br />
+                           <strong> Sender </strong> <span class="sender"> Mc </span>
+                           <br />
+                           <strong> Date </strong> <span class="date">
+                              24, August, 2018 </span> <br />
+                           <strong> Location </strong> <span class="location"> Lagos
+                              Custome </span> <br />
+                           <strong> Status </strong> <span class="status">
+                              Proccessing</span>
                         </div>
                      </div>
                   </div>
-               </div>
-               </div>
+                  </div>
 
                <div class="package">
-                  <div class="package-preview" id="={packageId5}5">
-                     <button class="cancel" value="{packageId5}"></button>
-                     <button class="edit" value="{packageId5}"></button>
-                     <span class="preview"> Title1 || ID </span>
-                     <button id="expand-btn" onclick='toggle("{packageId1}1")'>
-                        more +</button>
-                  </div>
-                  <div id="{packageId5}5" class="parcel-views">
-                     <!--append I again to differenttiate id below-->
-                     <div class='package-content elevate' id='{packageId5}'>
-                        <p class="package-description">
-                           This is the view for a product
-                           that has been delivered to
-                           the owner
-                           this view does not have edit
-                           or delete button like the rest
-                           of other
-                           views
-                        </p>
-                        <hr />
-
-                        <div class='package-info'>
-                           <p class="meta">
-                              <strong class="meta-label"> From: </strong> <span class="from"> Accra </span>  <br/>
-                              <strong class="meta-label"> Destination: </strong> <span class="destination"> Lagos </span> <br />
-                              <strong class="meta-label"> Sender </strong> <span class="sender"> Mc </span> <br/>
-                              <strong class="meta-label"> Date </strong> <span class="date"> 24, August, 2018 </span> <br/>
-                              <strong class="meta-label"> Location </strong> <span class="location"> Lagos Custome </span> <br/>
-                              <strong class="meta-label"> Status </strong>  <span class="status">  Proccessing</span>  
+                     <div class="package-preview" data-parcel-id="2">
+                        <button class="cancel" value="{packageId1}"></button>
+                        <button class="edit" value="{packageId1}"></button>
+                        <span class="preview"> Title1 || ID </span>
+                     </div>
+   
+                     <div id="2" class="parcel-views">
+                        <div class='package-content elevate'>
+                           <p class="package-description">
+                                 This is the view for a product
+                                 that has been delivered to
+                                 the owner
+                                 this view does not have edit
+                                 or delete button like the rest
+                                 of other
+                                 views
                            </p>
+                           <hr />
+                           <div class="meta">
+                              <strong> From: </strong> <span class="from"> Accra </span>
+                              <br />
+                              <strong> Destination: </strong>
+                              <span class="destination"> Lagos </span> <br />
+                              <strong> Sender </strong> <span class="sender"> Mc </span>
+                              <br />
+                              <strong> Date </strong> <span class="date">
+                                 24, August, 2018 </span> <br />
+                              <strong> Location </strong> <span class="location"> Lagos
+                                 Custome </span> <br />
+                              <strong> Status </strong> <span class="status">
+                                 Proccessing</span>
+                           </div>
                         </div>
                      </div>
-                  </div>
-               </div>
-               </div>
+                     </div>
 
             </section>
          </section>
-         </section>
-
-         </section>
-
       </main>
       <footer>
 
