@@ -1,0 +1,124 @@
+#packageOption{
+ display: block;
+}
+.package-preview{
+    background-color: #323544;
+    color: white;
+    margin-top: 40px;
+    cursor: pointer;
+    height: 55px;
+    position: relative;
+    border-radius: 4px;
+}
+.package-preview:hover{
+    background: #FF5722;
+    transition-duration: 0.2s;
+}
+.package-preview:hover{
+    background: #FF5722;
+    transition-duration: 0.2s;
+}
+.package-content{
+    background: whitesmoke;
+    border-top-style: none;
+    border-top-left-radius: 0px;
+    border-bottom-right-radius: 0px;
+    padding: 10px;
+}
+
+.package{
+ display: block;
+}
+#package-btn{
+ display: flex;
+}
+
+.meta {
+ display: inline-block;
+}
+
+section.package{
+ margin: 16px;
+}
+.cancel{
+ width: 100px;
+ background: url("../images/bin.png") no-repeat;
+ text-transform: uppercase;
+}
+.edit{
+ width: 100px;
+ background: url("../images/edit.png") no-repeat;
+ text-transform: uppercase;
+}
+
+#percel-description-input{
+ font-family: cursive;
+ border-radius: 4px;
+ font-size: 20px;
+ width: 90%;
+ outline: none;
+ overflow: auto;
+ padding:2% 5%;
+}
+table#sort-table td, table#sort-table th{
+ padding:0px;
+}
+
+
+li.divider{
+ margin-left: -20px;
+ padding-left: -10px;
+ width: 200px;
+ margin-bottom: 80px
+}
+
+/************Admin section ***************/
+.search-icon {   
+    background: url(../images/ic_search.png) no-repeat;
+       cursor: pointer;
+        background-size: 38px 38px;
+        width: 37px;
+        top: 11px;
+        height: 60px;
+        border-style: none;
+        position: absolute;
+        outline: none;
+        border: none;
+}
+form#search{
+ width: 300px;
+    position: absolute;
+    right: 0px;
+}
+
+form#search input[type=text]{
+    margin-right: -31px;
+    border-bottom: 2px solid #D6D6D6;
+    padding-right: 30px;
+    border-right: 27px solid #D6D6D6;
+}
+
+.package-content hr{
+ margin:15px;
+}
+.adminOption{
+ display: block;
+}
+.parcel-views{
+ display: none;
+}
+
+form[name='edit-prompt']{
+    background: gray;
+    width: fit-content;
+    padding: 10px;
+    border-radius: 4px;
+    text-align: center;
+    color:rgb(255, 87, 34);
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    z-index: 5;
+}
+
+
