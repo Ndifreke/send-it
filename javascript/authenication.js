@@ -3,7 +3,7 @@
 /* eslint-disable no-undef */
 
 
-function validateEmail(id) {
+function isValidEmail(id) {
   const element = document.getElementById(id);
   const emailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
   return emailRegex.test(String(element.value).toLowerCase());
@@ -12,7 +12,7 @@ function validateEmail(id) {
 function emailInput(id, infoLabel) {
   const element = document.getElementById(id);
   const label = document.getElementById(infoLabel);
-  if (!validateEmail(id)) {
+  if (!isValidEmail(id)) {
     label.style['font-size'] = '17px';
     element.style['border-color'] = 'red';
     label.style.color = 'red';
@@ -27,7 +27,7 @@ function emailInput(id, infoLabel) {
 }
 
 function onLoginSubmit(id, password) {
-  if (validateEmail(id) && !(/^\s+$/.test(document.getElementById(password).value))) {
+  if (isValidEmail(id) && !(/^\s+$/.test(document.getElementById(password).value))) {
     window.location = '../pages/admin.html';
   }
 }
