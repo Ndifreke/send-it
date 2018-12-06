@@ -7,3 +7,6 @@
 .nyc_output
 /coverage
 /scandir
+/build
+/nbproject/private/
+./package-lock.json

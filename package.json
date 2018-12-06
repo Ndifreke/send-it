@@ -6,8 +6,6 @@
   "author": "ndifreke",
   "contributors": [],
   "dependencies": {
-    "@babel/core": "^7.0.0",
-    "@babel/preset-es2015": "^7.0.0-beta.53",
     "ejs": "latest",
     "express": "^4.16.4",
     "jsonwebtoken": "^8.4.0",
@@ -31,8 +29,9 @@
   },
   "devDependencies": {
     "@babel/cli": "7.1.5",
+    "@babel/core": "^7.0.0",
     "@babel/node": "7.0.0",
-    "@babel/preset-env": "^7.1.6",
+    "@babel/preset-env": "^7.2.0",
     "@babel/register": "^7.0.0",
     "babel-eslint": "^10.0.1",
     "body-parser": "latest",
