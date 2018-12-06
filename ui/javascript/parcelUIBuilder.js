@@ -5,7 +5,6 @@ window.onload = function () {
   menuButton.onclick = function () {
     toggle('dashboard');
   };
-
 };
 
 
