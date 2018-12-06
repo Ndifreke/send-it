@@ -126,15 +126,15 @@ hr {
 }
 
 .icon,
-button.cancel,
-button.edit,
+.cancel,
+.edit,
 .place-picker {
-    background-size: 24px 45px;
     width: 45px;
-    height: 25px;
+    height: 45px;
     border-style: none;
-    right: 78px;
-    top: 0px;
+    background-position-x: center;
+    background-position-y: center;
+    outline: none;
 }
 
 input[type=checkbox] {
@@ -153,8 +153,6 @@ form#settingsUI {
     background: whitesmoke;
 }
 
-input.prim-btn.botton {}
-
 .inline {
     display: inline-flex;
 }
@@ -172,6 +170,10 @@ input.prim-btn.botton {}
 @media screen and (min-width:1000px) {
     #settingsUI * {
         width: 70%;
+    }
+
+    .parcel-action {
+        position: absolute;
     }
 
     #logo {
@@ -193,9 +195,6 @@ input.prim-btn.botton {}
 }
 
 @media screen and (min-width:760px) {
-
-   
-
     form#settingsUI {
         margin: 0 14%;
         padding: 20px;
@@ -253,9 +252,21 @@ input.prim-btn.botton {}
 
 /* for mobile */
 @media screen and (max-width : 760px) {
+    .parcel-action {
+        position: inherit;
+        text-align: center;
+    }
+
+    .cancel,
+    .edit {
+        display: inline-flex;
+        margin:0 45px;
+    }
+
     div#services {
         display: block;
     }
+
     #profile-sumary {
         /* display: inline-block; */
         /* width: 50%; */
@@ -263,6 +274,7 @@ input.prim-btn.botton {}
         padding: 10px;
         margin-top: 10px;
     }
+
     #aveter-container {
         width: 80%;
     }
@@ -276,7 +288,7 @@ input.prim-btn.botton {}
     }
 
     form#settingsUI {
-     //   margin: 0 5%;
+        //   margin: 0 5%;
         padding: 20px;
     }
 
