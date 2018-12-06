@@ -1,5 +1,13 @@
 /build
 /nbproject
-"package-lock.json"
-"package.json"
 /node_modules
+.eslintignore/
+/server/module/database
+/server/module/database/
+/build
+.nyc_output
+/coverage
+/scandir
+/build
+/nbproject/private/
+./package-lock.json
