@@ -1,5 +1,5 @@
 function renderHome(req,res){
- res.render('login.html');
+ res.render('index.ejs');
 }
 
 const view = {
