@@ -2,8 +2,6 @@ import express from 'express';
 import path from 'path';
 import bodyParser from 'body-parser';
 
-import view from './server/module/views';
-
 import {
   cancelParcel,
   createParcel,
