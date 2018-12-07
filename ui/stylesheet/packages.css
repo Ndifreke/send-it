@@ -39,7 +39,7 @@
 }
 
 .meta {
- display: inline-block;
+    display: inline-block;
 }
 
 section.package {
@@ -124,19 +124,19 @@ form#search input[type=text] {
     display: block;
 }
 
-form[name='edit-prompt']{
+.parcel-views {
+    display: none;
+}
+
+form[name='edit-prompt'] {
     background: gray;
     width: fit-content;
     padding: 10px;
     border-radius: 4px;
     text-align: center;
-    color:rgb(255, 87, 34);
+    color: rgb(255, 87, 34);
     position: fixed;
     top: 50%;
     left: 50%;
     z-index: 5;
-}
-
-.parcel-views {
-    display: none;
 }
