@@ -10,4 +10,4 @@
 /scandir
 /build
 /nbproject/private/
-./package-lock.json
+/package-lock.json
