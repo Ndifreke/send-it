@@ -174,12 +174,12 @@ header {
 }
 
 .close-btn {
-    background: url("../images/close.svg") no-repeat;
+    background: url("../images/icons/close.svg") no-repeat;
     background-size: 35px 35px;
 }
 
 .close-btn:hover {
-    background: url("../images/close_hover.svg") no-repeat;
+    background: url("../images/icons/close_hover.svg") no-repeat;
     background-size: 35px 35px;
 }
 

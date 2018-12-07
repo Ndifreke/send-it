@@ -1,15 +1,19 @@
-window.onload = function () {
-  highlightParcelHeader();
+document.addEventListener('DOMContentLoaded', function () {
+  const parcelHeaders = document.getElementsByClassName('package-preview');
+
+  highlightParcelHeader(parcelHeaders);
+
+  promptEdit(document.querySelectorAll('.cancel, .edit'));
 
   const menuButton = document.getElementById('flow-btn');
   menuButton.onclick = function () {
     toggle('dashboard');
   };
-};
+
+});
 
 
-function highlightParcelHeader() {
-  const parcelHeaders = document.getElementsByClassName('package-preview');
+function highlightParcelHeader(parcelHeaders) {
 
   for (const parcelHeader of parcelHeaders) {
     parcelHeader.onclick = function () {
@@ -51,6 +55,17 @@ function toggle(eltId) {
   element.style.display = (element.style.display !== 'block') ? 'block' : 'none';
 }
 
-function parcelEditPrompt() {
-  console.log(this)
+function promptEdit(actionButtons) {
+  actionButtons.forEach(function (action) {
+    action.addEventListener('click', editFormAck);
+  })
+
+  function editFormAck() {
+    const promptForm = document.forms['edit-prompt'];
+    promptForm.querySelector('span').innerText = this.getAttribute('class');
+    const parcelHeight = this.parentElement.parentElement.getBoundingClientRect().y;
+    promptForm.style.top = parcelHeight -20 + 'px';
+    promptForm.style.left = (window.screen.width / 2 - 120) + 'px';
+    promptForm.style.display = 'block';
+  }
 }

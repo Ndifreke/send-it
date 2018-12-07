@@ -47,23 +47,35 @@ section.package {
 }
 
 .cancel {
-    background: url("../images/bin.svg") no-repeat;
+    background: url("../images/icons/bin.svg") no-repeat;
     text-transform: uppercase;
 }
 
 .cancel,
-.edit {
+.edit,
+.ack-cancel,
+.ack-delete {
     cursor: pointer;
 }
 
 .edit {
-    background: url("../images/edit.svg") no-repeat;
+    background: url("../images/icons/edit.svg") no-repeat;
     text-transform: uppercase;
 }
 
 .parcel-action {
     right: 2%;
-    margin-top: 25px;
+}
+
+.ack-cancel {
+    display: inline-block;
+    margin:0 18px;
+    background-image: url('../images/icons/cancel.svg');
+}
+.ack-delete {
+    display: inline-block;
+    margin:0 18px;
+    background-image: url('../images/icons/accept.svg');
 }
 
 #percel-description-input {
@@ -129,14 +141,15 @@ form#search input[type=text] {
 }
 
 form[name='edit-prompt'] {
-    background: gray;
-    width: fit-content;
-    padding: 10px;
-    border-radius: 4px;
+    font-size: 20px;
+    background:whitesmoke;
+    width: 250px;
+    height: 90px;
+    padding: 5px;
+    border-radius: 3px;
     text-align: center;
     color: rgb(255, 87, 34);
-    position: fixed;
-    top: 50%;
-    left: 50%;
+    position: absolute;
+    display: none;
     z-index: 5;
 }

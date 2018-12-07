@@ -93,7 +93,7 @@ ul.dashboard {
     position: sticky;
     top: 0;
     margin-left: -4px;
-    background: url(../images/overflow.svg) no-repeat;
+    background: url(../images/icons/overflow.svg) no-repeat;
     background-size: 35px 35px;
     width: 31px;
     height: 26px;
@@ -125,16 +125,20 @@ hr {
     background: #BDBDBD;
 }
 
+.ack-delete,
+.ack-cancel,
 .icon,
 .cancel,
 .edit,
 .place-picker {
-    width: 45px;
-    height: 45px;
+    width: 21px;
+    height: 21px;
     border-style: none;
     background-position-x: center;
     background-position-y: center;
     outline: none;
+    background-repeat: no-repeat;
+
 }
 
 input[type=checkbox] {
@@ -142,7 +146,7 @@ input[type=checkbox] {
 }
 
 input[type=checkbox]+label {
-    background: url("../images/unchecked.svg") no-repeat;
+    background: url("../images/icons/unchecked.svg") no-repeat;
     background-size: 45px 45px;
     min-width: 45px;
     min-height: 45px;
@@ -174,6 +178,11 @@ form#settingsUI {
 
     .parcel-action {
         position: absolute;
+    }
+    .cancel,
+    .edit {
+        top: 0px;
+     padding:15px 0;
     }
 
     #logo {
@@ -261,6 +270,7 @@ form#settingsUI {
     .edit {
         display: inline-flex;
         margin:0 45px;
+
     }
 
     div#services {
@@ -288,7 +298,6 @@ form#settingsUI {
     }
 
     form#settingsUI {
-        //   margin: 0 5%;
         padding: 20px;
     }
 
