@@ -8,15 +8,11 @@
       <link type="text/css" rel="stylesheet" href="../stylesheet/main.css">
       <link type="text/css" rel="stylesheet" href="../stylesheet/packages.css">
       <script type="text/javascript" src="../javascript/UIBuilder.js"></script>
-      <!--
-      <script type="text/javascript" src="template/javascript/location_services.js"></script>
-      -->
       <meta charset="UTF-8">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
    </head>
 
    <body>
-
       <header>
          <a href='#' id="logo"> </a>
          <nav class="positon-bottom-right">
@@ -30,7 +26,7 @@
       </header>
 
       <aside id='dashboard'>
-         <a class="close-btn" id='dashboard-closer' onclick="toggle('dashboard')">
+         <a class="close-btn" id='dashboard-closer' onclick="toggle( 'dashboard' )">
          </a>
          <ul class="dashboard">
 
@@ -61,17 +57,15 @@
       </aside>
       <!--*********************************************************************************************-->
       <main id="main">
-         <!-- event in internal.js useMobileView() -->
          <button type="button" id="flow-btn"> </button>
          <section id="main-content">
 
             <section id='packages'>
                <form name="edit-prompt" class="elevate">
-                  <p>
-                     Are you sure you want to <message> this Parcel ?
-                  </p>
-                  <input class='active-btn' onclick='parcelEditPrompt()' type="button" value="YES">
-                  <input class='active-btn' onclick='parcelEditPrompt()' type='button' value='NO'>
+                  <strong> Are you sure you want to <span class="message"></span> this Parcel ? </strong>
+                  <p> </p>
+                  <label class='ack-delete'> </label>
+                  <label class='ack-cancel'> </label>
                </form>
 
                <h2> Packages </h2>
@@ -99,12 +93,12 @@
                            <strong> Status </strong> <span class="status"> Proccessing</span>
                         </div>
                         <div class='parcel-action'>
-                           <hr/>
-                              <div class="cancel" title='cancel parcel' data-parcel-id="{packageId1}"></div>
-                              <div class="edit" title='edit parcel' data-parcel-id="{packageId1}"></div>
-                           </div>
+                           <hr />
+                           <div class="cancel" title='cancel parcel' data-action-id="{packageId1}"></div>
+                           <div class="edit" title='edit parcel' data-action-id="{packageId1}"></div>
+                        </div>
                      </div>
-                     
+
                   </div>
 
                </div>

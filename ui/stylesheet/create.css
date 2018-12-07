@@ -2,7 +2,7 @@
   display: inline-flex;
   outline: none;
   background-size: 25px 25px;
-  background: url("../images/location.svg") no-repeat;
+  background: url("../images/icons/location.svg") no-repeat;
   width: 20px;
   height: 25px;
 }
