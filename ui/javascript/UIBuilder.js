@@ -1,13 +1,13 @@
 document.addEventListener('DOMContentLoaded', function () {
+
+  document.body.addEventListener('click', hideMenus, true);
+
   const parcelHeaders = document.getElementsByClassName('package-preview');
-
   highlightParcelHeader(parcelHeaders);
-
   promptEdit(document.querySelectorAll('.cancel, .edit'));
-
   const menuButton = document.getElementById('flow-btn');
   menuButton.onclick = function () {
-    toggle('dashboard');
+    toggleDisplay('dashboard');
   };
 
 });
@@ -24,7 +24,7 @@ function highlightParcelHeader(parcelHeaders) {
         }
       }
       const parcelContainerId = parcelHeader.dataset.parcelId;
-      toggle(parcelContainerId);
+      toggleDisplay(parcelContainerId);
       const parcelContainer = document.getElementById(parcelContainerId);
       (parcelContainer.style.display === 'block') ?
       this.style['background-color'] = '#FF5722': this.style['background-color'] = '#323544';
@@ -49,10 +49,17 @@ function getElement(identifier, attribute) {
   return null;
 }
 
-function toggle(eltId) {
-  console.log(this);
-  const element = document.getElementById(eltId);
-  element.style.display = (element.style.display !== 'block') ? 'block' : 'none';
+function hideMenus(event) {
+  document.querySelector("form[name='edit-prompt'").style.display = 'none';
+  console.log(event.target)
+}
+
+function toggleDisplay(elm, display) {
+  const element = (typeof elm === 'string') ? document.getElementById(elm) : elm;
+  if (!display)
+    element.style.display = (element.style.display !== 'block') ? 'block' : 'none';
+  else
+    element.style.display = display;
 }
 
 function promptEdit(actionButtons) {
@@ -63,9 +70,10 @@ function promptEdit(actionButtons) {
   function editFormAck() {
     const promptForm = document.forms['edit-prompt'];
     promptForm.querySelector('span').innerText = this.getAttribute('class');
-    const parcelHeight = this.parentElement.parentElement.getBoundingClientRect().y;
-    promptForm.style.top = parcelHeight -20 + 'px';
-    promptForm.style.left = (window.screen.width / 2 - 120) + 'px';
+    const parcelPosition = this.parentElement.parentElement.getBoundingClientRect();
+    const parcelCenter = (parcelPosition.x + (parcelPosition.width / 2)) - 125 /* half of prompt */ ;
+    promptForm.style.top = parcelPosition.y + window.pageYOffset + 55 + 'px';
+    promptForm.style.left = parcelCenter + 'px';
     promptForm.style.display = 'block';
   }
 }
