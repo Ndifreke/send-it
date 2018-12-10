@@ -3,11 +3,16 @@
     width: 100vw;
 }
 
+div {
+    margin: 10px 0;
+}
+
 h1,
 h2,
 h3,
-h4 {
-  font-family: 'Roboto', sans-serif;;
+h4{
+    font-family: 'Roboto', sans-serif;
+    font-weight: 300;
     color: #FF5708;
 
 }
@@ -18,14 +23,14 @@ h4 {
     background: snow;
 }
 
-#home {
-    
-}
+#home {}
 
 .accent {
     color: #FF5708;
 }
-.bg, body{
+
+.bg,
+body {
     background: url("../images/bg.jpg");
 }
 
@@ -93,7 +98,8 @@ li#create-package {
     right: 5px;
     bottom: 0px;
 }
-header-align-content{
+
+header-align-content {
     width: 100%
 }
 
@@ -110,10 +116,19 @@ main {
     max-width: 580px;
     border: none;
     margin: auto;
+    text-align: center;
     background: whitesmoke;
 }
-.align-center {
+
+.centered {
     text-align: center;
+}
+
+.title-header {
+    padding: 2% 0;
+    color: white;
+    background: #FF5708;
+    border-radius: 3px;
 }
 
 .align-right {
@@ -121,7 +136,7 @@ main {
 }
 
 .fit-width {
-    width: fit-content;
+    width: 100%;
 }
 
 input[type='text'],
@@ -129,7 +144,6 @@ input[type='email'],
 input[type='tel'],
 input[type='password'] {
     font-family: serif;
-    width: 90%;
     border-top: none;
     border-right: none;
     border-left: none;
@@ -138,12 +152,9 @@ input[type='password'] {
     outline: none;
     color: rgb(50, 50, 50);
     font-weight: 100;
-    margin: 5px;
-    border-radius: 5px;
-    height: 45px;
-    padding: 0 10px;
-    box-sizing: border-box;
-
+    border-radius: 3px;
+    height: 35px;
+    text-align: center;
 }
 
 #logo {
@@ -259,8 +270,9 @@ footer {
     background: white;
     margin: auto;
 }
-hr{
-    margin:0px;
+
+hr {
+    margin: 0px;
 
 }
 

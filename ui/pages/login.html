@@ -33,26 +33,25 @@
          <div style="margin-top:68px;">
             <div id="loginUI" class="elevate">
                <h2 class="align-center"> Sign into SendIt Account </h2>
-               <form class="align-center" id='loginForm'>
+               <form class="align-center" name='login'>
 
-                  <label id="input-title">Email</label><br />
-                  <input type="email" id="login-email" placeholder="Email" oninput="emailInput('login-email','login-email-info')"
-                     required />
-                  </br>
-                  <span id="login-email-info"></span>
+                  <fieldset>
+                     <legend> Email </legend>
+                     <input type="email" name="email" class='fit-width centered' placeholder="example@gmail.com"
+                        required />
+                  </fieldset>
 
-                  <input type="password" id="login-password" placeholder="password"
-                     required />
-                  <label id='input-title'>Password</label><br />
-                  <p>
-                     <!-- href="packages.html"-->
-                     <a class="anchor">
-                        <input type="submit" name="signin-btn" onclick='onLoginSubmit("login-email", "login-password")'
-                           class="prim-btn botton" value='Submit'>
-                     </a>
-                     <p class="align-right anchor"> <a href=""> Recover Account</a>
-                     </p>
-                  </p>
+                  <fieldset>
+                     <legend>password</legend>
+                     <input type="password" name='password' class='fit-width centered' placeholder="password"
+                        required />
+                  </fieldset>
+
+
+                  <div>
+                     <input type="submit" class="prim-btn botton" value='Continue'>
+                  </div>
+                  <a href=""> Recover Account</a>
                </form>
             </div>
 
