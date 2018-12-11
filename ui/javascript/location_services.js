@@ -23,15 +23,22 @@ class LocationFinder {
 
   /* initialize a new map centered at longitude and latitude */
   initMap(Map, latitude, longitude) {
-    const location = { lat: latitude, lng: longitude };
-    this.map = new Map(getElement('map-ui', 'id'),
-      { center: location, zoom: 8 });
+    const location = {
+      lat: latitude,
+      lng: longitude
+    };
+    this.map = new Map(getElement('map-ui', 'id'), {
+      center: location,
+      zoom: 8
+    });
 
     return this.map;
   }
 
   getLatandLong() {
-    if (this.map === undefined) { this.initMa(); }
+    if (this.map === undefined) {
+      this.initMa();
+    }
   }
 
   setLatandLong(lat, lng) {
@@ -44,7 +51,11 @@ class LocationFinder {
     // console.log( json );
 
     JSON.parse(json).results.forEach((address) => {
-      if (address.formatted_address.indexOf('Unnamed') === -1) { result.push({ [address.formatted_address]: address.geometry.location }); }
+      if (address.formatted_address.indexOf('Unnamed') === -1) {
+        result.push({
+          [address.formatted_address]: address.geometry.location
+        });
+      }
     });
     return result;
   }
@@ -52,17 +63,25 @@ class LocationFinder {
   placeMarker(location, map = this.map) {
     // center map and place marker in result position
     map.setCenter(location);
-    if (this.marker) { this.marker.setMap(null); }
+    if (this.marker) {
+      this.marker.setMap(null);
+    }
     /* remove old marker before adding a new one can later
             which marker to use or not use choosen marker to determine */
-    this.marker = new this.maps.Marker({ map, position: location, label: 'P' });
+    this.marker = new this.maps.Marker({
+      map,
+      position: location,
+      label: 'P'
+    });
   }
 
   useGeocode(addressName, cb) {
 
     const geocoder = new this.maps.Geocoder();
     return new Promise((resolve) => {
-      geocoder.geocode({ address: addressName }, (results, status) => {
+      geocoder.geocode({
+        address: addressName
+      }, (results, status) => {
         if (status === 'OK') {
           const result = {
             lat: results[0].geometry.location.lat(),
@@ -70,7 +89,9 @@ class LocationFinder {
           };
           resolve(result);
           // set the cordinate on this callback function
-          if (cb) { cb(result); }
+          if (cb) {
+            cb(result);
+          }
         }
       });
     });
@@ -82,7 +103,10 @@ class LocationFinder {
       self.map.addListener('click', (event) => {
         const latitude = event.latLng.lat();
         const longitude = event.latLng.lng();
-        const location = { lat: latitude, lng: longitude };
+        const location = {
+          lat: latitude,
+          lng: longitude
+        };
         self.placeMarker(location, self.map);
         self.positionFromCordinate(location).then((locations) => {
           cb(locations);
@@ -104,7 +128,9 @@ class LocationFinder {
       req.onreadystatechange = function () {
         if (req.status === 200 && req.readyState === 4) {
           const result = self.parseResults(req.responseText);
-          if (cb) { cb(result); }
+          if (cb) {
+            cb(result);
+          }
           resolve(result);
         }
       };
@@ -159,10 +185,15 @@ class Label {
       cord = cordinate;
     } else {
       placeName = Object.keys(cordinate);
-      cord = { lat: cordinate[placeName].lat, lng: cordinate[placeName].lng };
+      cord = {
+        lat: cordinate[placeName].lat,
+        lng: cordinate[placeName].lng
+      };
     }
-    const positionLabel = setAttributes(document.createElement('div'),
-      { id: cord, class: 'position-label' });
+    const positionLabel = setAttributes(document.createElement('div'), {
+      id: cord,
+      class: 'position-label'
+    });
     const anch = document.createElement('a');
     anch.textContent = placeName;
     const span = document.createElement('span');
@@ -178,7 +209,10 @@ class Label {
                    and store its location in the class attribute */
       if (activeInputElement !== undefined) {
         activeInputElement.value = placeName;
-        setAttributes(activeInputElement, { class: JSON.stringify(cord), name: placeName });
+        setAttributes(activeInputElement, {
+          class: JSON.stringify(cord),
+          name: placeName
+        });
       }
       // place a marker on the map where the label points
       Label.map.placeMarker(cord);

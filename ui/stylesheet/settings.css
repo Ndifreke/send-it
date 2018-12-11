@@ -1,9 +1,21 @@
-
-#settingsUI *{
- display: block;
- margin: auto;
- margin-top: 20px;
+input {
+ width: 50%;
 }
 
-#update-mail, #update-phone, #update-password, #update-password-confirm{
+@media screen and (max-width: 760px) {
+ input {
+  width: 100%;
+ }
+
+ form#settingsUI {
+  padding: 20px;
+ }
+ 
+}
+
+@media screen and (min-width:1000px) {
+ form#settingsUI {
+  margin: 0 20%;
+  padding: 20px;
+ }
 }
