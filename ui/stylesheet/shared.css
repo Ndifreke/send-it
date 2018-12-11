@@ -1,4 +1,3 @@
-
 html {
     width: 100%;
     height: 100%;
@@ -123,27 +122,28 @@ hr {
 
 .ack-delete,
 .ack-cancel,
+.profile-icon,
 .icon,
 .cancel,
 .edit,
 .place-picker {
-    width: 21px;
-    height: 21px;
+    width: 24px;
+    height: 24px;
     border-style: none;
     background-position-x: center;
     background-position-y: center;
     outline: none;
     background-repeat: no-repeat;
-
+    //  display: inline-block;
 }
 
 input[type=checkbox] {
     display: none;
 }
 
-fieldset{
- border: none;
-  width:-webkit-fill-available;
+fieldset {
+    border: none;
+    width: -webkit-fill-available;
 }
 
 input[type=checkbox]+label {
@@ -161,7 +161,8 @@ form#settingsUI {
 .inline {
     display: inline-flex;
 }
-.flex{
+
+.flex {
     display: flex;
     width: 100%;
 }
@@ -177,6 +178,15 @@ form#settingsUI {
 /* for desktop */
 
 @media screen and (min-width:1000px) {
+    #statistics {
+        /* display: block; */
+        /* width: -webkit-fill-available; */
+        /* min-width: 193px; */
+        /* padding-bottom: 30px; */
+        /* background: whitesmoke; */
+        margin-left: 50px;
+    }
+
     #settingsUI * {
         width: 70%;
     }
@@ -201,7 +211,7 @@ form#settingsUI {
     }
 
     #about {
-        display: flex;
+       // display: flex;
     }
 
     #aveter-container {
@@ -210,13 +220,18 @@ form#settingsUI {
 }
 
 @media screen and (min-width:760px) {
+
+    .hide-in-desktop {
+        display: none;
+    }
+
     form#settingsUI {
         margin: 0 14%;
         padding: 20px;
     }
 
     #about {
-        display: flex;
+        // display: flex;
     }
 
     #dash-expand {
@@ -264,7 +279,6 @@ form#settingsUI {
     }
 }
 
-
 /* for mobile */
 @media screen and (max-width : 760px) {
     .parcel-action {
@@ -283,14 +297,13 @@ form#settingsUI {
     }
 
     #profile-sumary {
-        /* display: inline-block; */
-        /* width: 50%; */
-        /* min-width: 300px; */
-        padding: 10px;
-        margin-top: 10px;
+        display: none;
+        padding: 0;
+        width: initial;
+        box-shadow: none;
     }
 
-    #aveter-container {
+    .profile-image-container {
         width: 80%;
     }
 
@@ -310,7 +323,9 @@ form#settingsUI {
         display: block;
     }
 
-    .inline, .flex {
+    .inline,
+    /* .flex */
+        {
         display: block;
     }
 
