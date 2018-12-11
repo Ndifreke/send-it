@@ -66,14 +66,29 @@ function promptEdit(actionButtons) {
   actionButtons.forEach(function (action) {
     action.addEventListener('click', editFormAck);
   })
+}
 
-  function editFormAck() {
-    const promptForm = document.forms['edit-prompt'];
-    promptForm.querySelector('span').innerText = this.getAttribute('class');
-    const parcelPosition = this.parentElement.parentElement.getBoundingClientRect();
-    const parcelCenter = (parcelPosition.x + (parcelPosition.width / 2)) - 125 /* half of prompt */ ;
-    promptForm.style.top = parcelPosition.y + window.pageYOffset + 55 + 'px';
-    promptForm.style.left = parcelCenter + 'px';
-    promptForm.style.display = 'block';
+
+function showProfile(element) {
+  const profile = document.querySelector("#profile-sumary");
+  const stats = document.querySelector("#statistics");
+  switch (element.getAttribute('name')) {
+    case 'profile':
+      toggleDisplay(stats, 'none');
+      toggleDisplay(profile, 'block');
+      break;
+    case 'stats':
+      toggleDisplay(profile, 'none');
+      toggleDisplay(stats, 'block');
   }
+}
+
+function editFormAck() {
+  const promptForm = document.forms['edit-prompt'];
+  promptForm.querySelector('span').innerText = this.getAttribute('class');
+  const parcelPosition = this.parentElement.parentElement.getBoundingClientRect();
+  const parcelCenter = (parcelPosition.x + (parcelPosition.width / 2)) - 125 /* half of prompt */ ;
+  promptForm.style.top = parcelPosition.y + window.pageYOffset + 55 + 'px';
+  promptForm.style.left = parcelCenter + 'px';
+  promptForm.style.display = 'block';
 }
