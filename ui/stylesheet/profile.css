@@ -1,4 +1,4 @@
-#about, #statistics{
+#about {
     padding-top: 25px;
     display: block;
     text-align: center;
@@ -8,32 +8,56 @@
     background: whitesmoke;
 }
 
-.stats-badge{
-        padding: 5px;
-        width: 133px;
-        height: 133px;
-        display: table-cell;
-        vertical-align: middle;
-        border-radius: 50%;
-        border: 5px solid #FF5722;
-    
+#statistics {
+    display: none;
+    text-align: center;
 }
-#aveter-container{
-    display: inline-block;
-    margin: auto;
+
+.profile-icon {
+    background: url('../images/icons/profile.svg');
 }
-#profile-sumary{
-    display: inline-block;
-    width: 80%;
-    padding: 10px;
+
+.stats-badge {
+    padding: 5px;
+    width: 133px;
+    height: 133px;
+    display: table-cell;
+    vertical-align: middle;
+    border-radius: 50%;
+    border: 5px solid #FF5722;
 }
-.badges{
+
+.badges {
     display: inline;
-   
 }
-#profile{
+
+#profile {
     display: block;
 }
-#profile h1{
+
+#profile h1 {
     display: block;
 }
+
+.hide-in-desktop {
+    display: flex;
+}
+
+/* tablet */
+@media screen and (min-width:1000px) {
+    #statistics {
+        display: block;
+    }
+}
+
+/* mobile */
+
+@media screen and (min-width:760px) {
+    form#settingsUI {
+        margin: 0 14%;
+        padding: 20px;
+    }
+}
+
+/* desktop */
+@media screen and (min-width:1500px) {}

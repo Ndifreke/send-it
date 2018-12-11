@@ -7,11 +7,7 @@
       <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
       <link type="text/css" rel="stylesheet" href="../stylesheet/profile.css">
       <link type="text/css" rel="stylesheet" href="../stylesheet/shared.css">
-      <script type="text/javascript" src="../javascript/ui_render.js"></script>
-      <script type="text/javascript" src="../javascript/responsive_ui.js"></script>
-      <!--
-      <script type="text/javascript" src="template/javascript/location_services.js"></script>
-      -->
+      <script type="text/javascript" src="../javascript/UIBuilder.js"></script>
       <meta charset="UTF-8">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
    </head>
@@ -32,34 +28,34 @@
       </header>
 
       <aside id='dashboard'>
-         <a class="close-btn" id='dashboard-closer' onclick="toggle('dashboard')">
+         <a class="close-btn" id='dashboard-closer' onclick="toggleDisplay('dashboard')">
          </a>
-   
+
          <ul class="dashboard">
-   
-           <li>
-             <a class="dashLink" href="./packages.html" value="Packages"> Parcels </a>
-           </li>
-   
-           <li>
-             <a class="dashLink" href="./create.html"> New Parcel </a>
-           </li>
-   
-           <li>
-             <a class="dashLink active" href="#"> Profile </a>
-           </li>
-   
-           <li>
-             <a class="dashLink" href="./settings.html"> Settings </a>
-           </li>
-   
-           <li>
-             <a class="dashLink" href="./admin.html" title="Admin">Admin </a>
-           </li>
-   
+
+            <li>
+               <a class="dashLink" href="./packages.html" value="Packages"> Parcels </a>
+            </li>
+
+            <li>
+               <a class="dashLink" href="./create.html"> New Parcel </a>
+            </li>
+
+            <li>
+               <a class="dashLink active" href="#"> Profile </a>
+            </li>
+
+            <li>
+               <a class="dashLink" href="./settings.html"> Settings </a>
+            </li>
+
+            <li>
+               <a class="dashLink" href="./admin.html" title="Admin">Admin </a>
+            </li>
+
          </ul>
-   
-       </aside>
+
+      </aside>
       <!--*********************************************************************************************-->
       <main id="main">
 
@@ -67,17 +63,27 @@
 
          <section id="main-content">
             <h2> Profile Information </h2>
-            <section id='profile'>
 
+            <section id='profile'>
                <div id="about" class="elevate">
                   <h3>About</h3>
-
-                  <div id="aveter-container">
-                     <img src="../images/photo.gif" alt="Profile Image" width="250"
-                        height="300" />
+                  <div class="profile-image-container">
+                     <img src="../images/photo.gif" alt="Profile Image" width="250" height="300" />
                   </div>
 
-                  <div id="profile-sumary" class="elevate">
+                  <div class="hide-in-desktop">
+                     <div class='active-btn button fit-width' data-profile onclick="showProfile(this)">
+                        <input class="profile-icon" />
+                        <span> Profile</span>
+                     </div>
+
+                     <div class='active-btn button fit-width' data-stats onclick="showProfile(this)">
+                        <input class="profile-icon" />
+                        <span> Statistics</span>
+                     </div>
+                  </div>
+
+                  <div id="profile-sumary">
                      <p>
                         <strong> Name :</strong> <br />
                         <span id="name"> Ndifreke Anthony</span>
@@ -90,32 +96,34 @@
                         <strong> Email :</strong> <br />
                         <span>user@domain.com</span>
                      </p>
-
                   </div>
 
-               </div>
 
-               <div id="statistics" class="elevate">
-                  <h3>Profile Statistics</h3>
-                  <div class="badges">
-                     <div class="stats-badge elevate">
-                        <span> Total Number of Percels
-                        </span>
-                        <span>588 </span>
-                     </div>
-                     <br>
-                     <div class="stats-badge elevate">
-                        <span> Percels Delivered </span>
-                        <span>15 </span>
-                     </div>
+                  <div id="statistics">
 
-                     <div class="stats-badge elevate">
-                        <span> Percel In Process </span>
-                        <span> 5 </span>
+                     <h3 class="title-header">Profile Statistics</h3>
+                     <div class="badges">
+                        <div class="stats-badge elevate">
+                           <span> TOTAL
+                           </span>
+                           <span>588 </span>
+                        </div>
+                        <br>
+                        <div class="stats-badge elevate">
+                           <span> Delivered </span>
+                           <span>15 </span>
+                        </div>
 
+                        <div class="stats-badge elevate">
+                           <span> Percel In Process </span>
+                           <span> 5 </span>
+
+                        </div>
                      </div>
                   </div>
                </div>
+
+
 
 
             </section>
