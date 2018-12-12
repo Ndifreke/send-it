@@ -67,43 +67,41 @@
             <section id='profile'>
                <div id="about" class="elevate">
                   <h3>About</h3>
+                  <div class="profile-image-container">
+                     <img src="../images/photo.gif" alt="Profile Image" width="250" height="300" />
+                  </div>
 
-         
-                     <div class="profile-image-container">
-                        <img src="../images/photo.gif" alt="Profile Image" width="250" height="300" />
+                  <div class="hide-in-desktop">
+                     <div class='active-btn button fit-width' data-profile onclick="showProfile(this)">
+                        <input class="profile-icon" />
+                        <span> Profile</span>
                      </div>
 
-                     <div class="flex hide-in-desktop">
-                        <div class='active-btn button fit-width' data-profile onclick="showProfile(this)">
-                           <input class="profile-icon" />
-                           <span> Profile</span>
-                        </div>
-
-                        <div class='active-btn button fit-width' data-stats onclick="showProfile(this)">
-                           <input class="profile-icon" />
-                           <span> Statistics</span>
-                        </div>
+                     <div class='active-btn button fit-width' data-stats onclick="showProfile(this)">
+                        <input class="profile-icon" />
+                        <span> Statistics</span>
                      </div>
+                  </div>
 
-                     <div id="profile-sumary">
-                        <p>
-                           <strong> Name :</strong> <br />
-                           <span id="name"> Ndifreke Anthony</span>
-                        </p>
-                        <p>
-                           <strong> Phone </strong> <br />
-                           <span> 23470352748987 </span>
-                        </p>
-                        <p>
-                           <strong> Email :</strong> <br />
-                           <span>user@domain.com</span>
-                        </p>
-                     </div>
-     
+                  <div id="profile-sumary">
+                     <p>
+                        <strong> Name :</strong> <br />
+                        <span id="name"> Ndifreke Anthony</span>
+                     </p>
+                     <p>
+                        <strong> Phone </strong> <br />
+                        <span> 23470352748987 </span>
+                     </p>
+                     <p>
+                        <strong> Email :</strong> <br />
+                        <span>user@domain.com</span>
+                     </p>
+                  </div>
+
 
                   <div id="statistics">
 
-                     <h3>Profile Statistics</h3>
+                     <h3 class="title-header">Profile Statistics</h3>
                      <div class="badges">
                         <div class="stats-badge elevate">
                            <span> TOTAL

@@ -69,12 +69,13 @@ section.package {
 
 .ack-cancel {
     display: inline-block;
-    margin:0 18px;
+    margin: 0 18px;
     background-image: url('../images/icons/cancel.svg');
 }
+
 .ack-delete {
     display: inline-block;
-    margin:0 18px;
+    margin: 0 18px;
     background-image: url('../images/icons/accept.svg');
 }
 
@@ -116,7 +117,7 @@ li.divider {
 }
 
 form#search {
- text-align: right;
+    text-align: right;
 }
 
 form#search input[type=text] {
@@ -138,7 +139,7 @@ form#search input[type=text] {
 
 form[name='edit-prompt'] {
     font-size: 20px;
-    background:whitesmoke;
+    background: whitesmoke;
     width: 250px;
     height: 90px;
     padding: 5px;
@@ -150,3 +151,27 @@ form[name='edit-prompt'] {
     z-index: 5;
 }
 
+/* mobile */
+@media screen and (max-width: 760px) {
+
+    .parcel-action {
+        position: inherit;
+        text-align: center;
+    }
+
+    .cancel,
+    .edit {
+        display: inline-flex;
+        margin: 0 45px;
+    }
+
+    #new-parcel-viewport {
+        display: block;
+    }
+}
+
+/* tablet */
+@media screen and (min-width:1000px) {}
+
+/* desktop */
+@media screen and (min-width:1500px) {}

@@ -125,7 +125,7 @@ main {
 }
 
 .title-header {
-    padding: 2% 0;
+   // padding: 2% 0;
     color: white;
     background: #FF5708;
     border-radius: 3px;
@@ -276,11 +276,6 @@ footer {
     height: auto;
     background: white;
     margin: auto;
-}
-
-hr {
-    margin: 0px;
-
 }
 
 .slogan {

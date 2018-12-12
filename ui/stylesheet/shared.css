@@ -122,9 +122,6 @@ ul.dashboard {
     margin-left: 98px;
 }
 
-hr {
-    background: #BDBDBD;
-}
 
 .ack-delete,
 .ack-cancel,
@@ -183,8 +180,13 @@ form#settingsUI {
 
 /* for desktop */
 
-@media screen and (min-width:1000px) {
+@media screen and(min-width:1500px) {}
 
+/*   tablet size */
+@media screen and (min-width:1000px) {
+    .hide-in-desktop {
+        display: none;
+    }
     .parcel-action {
         position: absolute;
     }
@@ -198,19 +200,10 @@ form#settingsUI {
     #logo {
         left: 290px;
     }
-
 }
 
+
 @media screen and (min-width:760px) {
-
-    .hide-in-desktop {
-        display: none;
-    }
-
-    form#settingsUI {
-        margin: 0 14%;
-        padding: 20px;
-    }
 
     #dash-expand {
         display: none;
@@ -259,31 +252,14 @@ form#settingsUI {
 
 /* for mobile */
 @media screen and (max-width : 760px) {
-    .parcel-action {
-        position: inherit;
-        text-align: center;
-    }
 
-    .cancel,
-    .edit {
-        display: inline-flex;
-        margin: 0 45px;
-    }
 
     div#services {
         display: block;
     }
 
-    #settingsUI * {
-        margin: 5px auto;
-    }
-
     #signupUI {
         width: 80%;
-    }
-
-    #new-parcel-viewport {
-        display: block;
     }
 
     .inline,
@@ -298,14 +274,6 @@ form#settingsUI {
 
     #dashboard-closer {
         display: block;
-    }
-
-    .package-content {
-        display: block;
-    }
-
-    .package-description {
-        width: 100%;
     }
 
 }
