@@ -8,6 +8,7 @@ html {
 }
 
 body {
+    background: whitesmoke;
     width: 100%;
     height: 100%;
     max-width: 100%;
@@ -75,11 +76,13 @@ ul.dashboard li {
     display: none;
 }
 
+/*
 ul.dashboard {
     position: sticky;
     margin-top: 16px;
     padding: 0px;
 }
+*/
 
 #dashboard-closer {
     position: sticky;
@@ -129,7 +132,10 @@ ul.dashboard {
 .icon,
 .cancel,
 .edit,
-.place-picker {
+.place-picker,
+.ferry-icon,
+.processed-icon,
+.unprocessed-icon {
     width: 24px;
     height: 24px;
     border-style: none;
@@ -137,11 +143,14 @@ ul.dashboard {
     background-position-y: center;
     outline: none;
     background-repeat: no-repeat;
-    //  display: inline-block;
 }
 
 input[type=checkbox] {
     display: none;
+}
+
+strong {
+    font-size: smaller;
 }
 
 fieldset {
@@ -184,9 +193,11 @@ form#settingsUI {
 
 /*   tablet size */
 @media screen and (min-width:1000px) {
+
     .hide-in-desktop {
         display: none;
     }
+
     .parcel-action {
         position: absolute;
     }
@@ -202,6 +213,11 @@ form#settingsUI {
     }
 }
 
+@media screen and (max-width:1000px) {
+    .hide-in-mobile {
+        display: none;
+    }
+}
 
 @media screen and (min-width:760px) {
 
@@ -252,7 +268,6 @@ form#settingsUI {
 
 /* for mobile */
 @media screen and (max-width : 760px) {
-
 
     div#services {
         display: block;
