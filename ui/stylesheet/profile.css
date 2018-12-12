@@ -8,23 +8,35 @@
     background: whitesmoke;
 }
 
+
 #statistics {
     display: none;
-    text-align: center;
 }
 
 .profile-icon {
     background: url('../images/icons/profile.svg');
 }
 
+.ferry-icon {
+    background-image: url('../images/icons/ferry.svg');
+}
+
+.processed-icon {
+    background-image: url('../images/icons/processed.svg');
+}
+
+.unprocessed-icon {
+    background-image: url('../images/icons/unprocess.svg');
+}
+
 .stats-badge {
     padding: 5px;
-    width: 133px;
-    height: 133px;
+    width: 31px;
+    height: 31px;
     display: table-cell;
     vertical-align: middle;
     border-radius: 50%;
-    border: 5px solid #FF5722;
+    border: 1px solid #FF5722;
 }
 
 .badges {
@@ -53,6 +65,7 @@
 /* mobile */
 
 @media screen and (min-width:760px) {
+
     form#settingsUI {
         margin: 0 14%;
         padding: 20px;
@@ -60,4 +73,10 @@
 }
 
 /* desktop */
-@media screen and (min-width:1500px) {}
+@media screen and (min-width:1500px) {
+   
+    #about {
+        width: 50%;
+        margin: auto;
+    }
+}

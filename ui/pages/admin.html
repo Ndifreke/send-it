@@ -2,27 +2,24 @@
 <html>
 
    <head>
-      <title>SendIt | Administrator</title>
+      <title>SendIt | Packages</title>
       <link type="text/css" rel="stylesheet" href="../stylesheet/shared.css">
+      <link href="https://fonts.googleapis.com/css?family=Roboto:300" rel="stylesheet">
       <link type="text/css" rel="stylesheet" href="../stylesheet/main.css">
       <link type="text/css" rel="stylesheet" href="../stylesheet/packages.css">
-      <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
-      <script type="text/javascript" src="../javascript/ui_render.js"></script>
       <script type="text/javascript" src="../javascript/UIBuilder.js"></script>
-      <script type="text/javascript" src="../javascript/location_services.js"></script>
       <meta charset="UTF-8">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
    </head>
 
-   <body class="bg">
-
+   <body>
       <header>
          <a href='#' id="logo"> </a>
          <nav class="positon-bottom-right">
             <ul>
-               <li>
+               <li id="navigation-list">
                   <a href='../index.html' class="active-btn botton">
-                     SIGN OUT </a>
+                     Sign out </a>
                </li>
             </ul>
          </nav>
@@ -31,38 +28,37 @@
       <aside id='dashboard'>
          <a class="close-btn" id='dashboard-closer' onclick="toggleDisplay('dashboard')">
          </a>
-   
-         <ul class="dashboard">
-   
-           <li>
-             <a class="dashLink" href="./packages.html" value="Packages"> Parcels </a>
-           </li>
-   
-           <li>
-             <a class="dashLink" href="./create.html"> New Parcel </a>
-           </li>
-   
-           <li>
-             <a class="dashLink" href="./profile.html"> Profile </a>
-           </li>
-   
-           <li>
-             <a class="dashLink" href="./settings.html"> Settings </a>
-           </li>
-   
-           <li>
-             <a class="dashLink active" href="#" title="Admin">Admin </a>
-           </li>
-   
+
+         <ul class="dashboard elevate">
+
+            <li>
+               <a class="dashLink active" href="#"> Parcels </a>
+            </li>
+
+            <li>
+               <a class="dashLink" href="./create.html"> New Parcel </a>
+            </li>
+
+            <li>
+               <a class="dashLink" href="./profile.html"> Profile </a>
+            </li>
+
+            <li>
+               <a class="dashLink" href="./settings.html"> Settings </a>
+            </li>
+
+            <li>
+               <a class="dashLink" href="./admin.html" title="Admin">Admin </a>
+            </li>
+
          </ul>
-   
-       </aside>
+
+      </aside>
       <!--*********************************************************************************************-->
       <main id="main">
-
          <button type="button" id="flow-btn"> </button>
-
          <section id="main-content">
+            <h2 class="centered"> Packages </h2>
 
             <form id="search">
                <input type="text" id="search-parcel" placeholder="Email or Percel ID" />
@@ -70,19 +66,63 @@
             </form>
 
             <section id='packages'>
-               <h2> Packages </h2>
+               <form name="edit-prompt" class="elevate">
+                  <strong> Are you sure you want to <span class="message"></span> this Parcel ?
+                  </strong>
+                  <p> </p>
+                  <label class='ack-delete'> </label>
+                  <label class='ack-cancel'> </label>
+               </form>
+               <div class="package elevate">
+                  <div class="package-preview" data-parcel-id="1">
+                     <span class="preview"> Title1 || ID </span>
+                  </div>
+
+                  <div id="1" class="parcel-views">
+
+                     <div class='package-content'>
+                        <p class="package-description">
+                           Black and white television
+                        </p>
+                        <hr />
+                        <div class="meta">
+                           <strong> From: </strong> <span class="from"> Accra </span> <br />
+                           <strong> Destination: </strong> <span class="destination"> Lagos </span>
+                           <br />
+                           <strong> Sender </strong> <span class="sender"> Mc </span> <br />
+                           <strong> Date </strong> <span class="date">24, August, 2018 </span> <br />
+                           <strong> Location </strong> <span class="location"> Lagos Custome </span>
+                           <br />
+                           <strong> Status </strong> <span class="status"> Proccessing</span>
+                        </div>
+                        <div class='parcel-action'>
+                           <hr />
+                           <div class="cancel" title='cancel parcel' data-action-id="{packageId1}"></div>
+                           <div class="edit" title='edit parcel' data-action-id="{packageId1}"></div>
+                        </div>
+                     </div>
+
+                  </div>
+
+               </div>
 
                <div class="package">
-                  <div class="package-preview" data-parcel-id="1">
+                  <div class="package-preview" data-parcel-id="2">
                      <button class="cancel" value="{packageId1}"></button>
                      <button class="edit" value="{packageId1}"></button>
                      <span class="preview"> Title1 || ID </span>
                   </div>
 
-                  <div id="1" class="parcel-views">
+                  <div id="2" class="parcel-views">
                      <div class='package-content elevate'>
                         <p class="package-description">
-                           Black and white television
+                           This is the view for a product
+                           that has been delivered to
+                           the owner
+                           this view does not have edit
+                           or delete button like the rest
+                           of other
+                           views
                         </p>
                         <hr />
                         <div class="meta">
@@ -101,52 +141,18 @@
                         </div>
                      </div>
                   </div>
-                  </div>
-
-               <div class="package">
-                     <div class="package-preview" data-parcel-id="2">
-                        <button class="cancel" value="{packageId1}"></button>
-                        <button class="edit" value="{packageId1}"></button>
-                        <span class="preview"> Title1 || ID </span>
-                     </div>
-   
-                     <div id="2" class="parcel-views">
-                        <div class='package-content elevate'>
-                           <p class="package-description">
-                                 This is the view for a product
-                                 that has been delivered to
-                                 the owner
-                                 this view does not have edit
-                                 or delete button like the rest
-                                 of other
-                                 views
-                           </p>
-                           <hr />
-                           <div class="meta">
-                              <strong> From: </strong> <span class="from"> Accra </span>
-                              <br />
-                              <strong> Destination: </strong>
-                              <span class="destination"> Lagos </span> <br />
-                              <strong> Sender </strong> <span class="sender"> Mc </span>
-                              <br />
-                              <strong> Date </strong> <span class="date">
-                                 24, August, 2018 </span> <br />
-                              <strong> Location </strong> <span class="location"> Lagos
-                                 Custome </span> <br />
-                              <strong> Status </strong> <span class="status">
-                                 Proccessing</span>
-                           </div>
-                        </div>
-                     </div>
-                     </div>
+               </div>
 
             </section>
+
          </section>
+
+
       </main>
+
       <footer>
 
       </footer>
-
 
    </body>
 
