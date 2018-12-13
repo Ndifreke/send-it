@@ -91,3 +91,9 @@ function editFormAck() {
   promptForm.style.left = parcelCenter + 'px';
   promptForm.style.display = 'block';
 }
+
+function setAttributes(element, attributeOption) {
+  for (const attribute in attributeOption)
+    element.setAttribute(attribute, attributeOption[attribute]);
+  return element;
+}
