@@ -32,7 +32,8 @@ async function issueAccessToken(id) {
  * @returns {void}
  */
 function verifyAccessToken(req, resp, cb) {
- const token = req.headers['x-access-token'] || "error";
+ const token = req.headers['authorization'] || "error";
+ console.log("authorization" in req.headers, req.headers['authorization'])
  jwt.verify(token, SECRET, function (err, userToken) {
   if (err) {
    resp.json(util.response("error", "Access denied", 0))

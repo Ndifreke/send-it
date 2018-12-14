@@ -1,7 +1,7 @@
 import express from 'express';
 import path from 'path';
 import bodyParser from 'body-parser';
-import view from './server/module/views';
+//import view from './server/module/views';
 
 import {
   cancelParcel,
@@ -40,7 +40,7 @@ app.use('/api/v1/users/:id/parcels', getUserParcels);
 app.use('/api/v1/users/:id/parcels', getUserParcels);
 
 
-app.get('/', view.renderHome);
+//app.get('/', view.renderHome);
 
 app.post('/api/v1/auth/signup', signup);
 app.post('/api/v1/auth/login', login);
