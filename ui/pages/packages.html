@@ -26,35 +26,34 @@
       </header>
 
       <aside id='dashboard'>
-         <a class="close-btn" id='dashboard-closer' onclick="toggle( 'dashboard' )">
+         <a class="close-btn" id='dashboard-closer' onclick="toggleDisplay('dashboard')">
          </a>
+   
          <ul class="dashboard">
-
-            <a href="./home.html" value="Packages">
-               <li class="dashLink"> HOME </li>
-            </a>
-
-            <a value="Packages">
-               <li class="dashLink active"> PARCELS </li>
-            </a>
-
-            <a href="./create.html" title="Create Parcel">
-               <li class="dashLink">CREATE PARCEL </li>
-            </a>
-
-            <a href="profile.html" title="Profile">
-               <li class="dashLink"> PROFILE </li>
-            </a>
-
-            <a href="./settings.html" title="Settings">
-               <li class="dashLink"> SETTINGS </li>
-            </a>
-
-            <a href="./admin.html" title="Admin">
-               <li class="dashLink">ADMINISTRATOR </li>
-            </a>
+   
+           <li>
+             <a class="dashLink active" href="#"> Parcels </a>
+           </li>
+   
+           <li>
+             <a class="dashLink" href="./create.html"> New Parcel </a>
+           </li>
+   
+           <li>
+             <a class="dashLink" href="./profile.html"> Profile </a>
+           </li>
+   
+           <li>
+             <a class="dashLink" href="./settings.html"> Settings </a>
+           </li>
+   
+           <li>
+             <a class="dashLink" href="./admin.html" title="Admin">Admin </a>
+           </li>
+   
          </ul>
-      </aside>
+   
+       </aside>
       <!--*********************************************************************************************-->
       <main id="main">
          <button type="button" id="flow-btn"> </button>
@@ -62,7 +61,8 @@
 
             <section id='packages'>
                <form name="edit-prompt" class="elevate">
-                  <strong> Are you sure you want to <span class="message"></span> this Parcel ? </strong>
+                  <strong> Are you sure you want to <span class="message"></span> this Parcel ?
+                  </strong>
                   <p> </p>
                   <label class='ack-delete'> </label>
                   <label class='ack-cancel'> </label>

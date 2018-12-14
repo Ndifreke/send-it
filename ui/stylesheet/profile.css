@@ -1,4 +1,4 @@
-#about, #statistics{
+#about {
     padding-top: 25px;
     display: block;
     text-align: center;
@@ -8,32 +8,49 @@
     background: whitesmoke;
 }
 
-.stats-badge{
-        padding: 5px;
-        width: 133px;
-        height: 133px;
-        display: table-cell;
-        vertical-align: middle;
-        border-radius: 50%;
-        border: 5px solid #FF5722;
-    
+#statistics {
+    /* display: block; */
+    text-align: center;
+    /* width: -webkit-fill-available; */
+    /* min-width: 193px; */
+    /* padding-bottom: 30px; */
+    /* background: whitesmoke; */
 }
-#aveter-container{
-    display: inline-block;
-    margin: auto;
+
+.profile-icon {
+    background: url('../images/icons/profile.svg')
 }
-#profile-sumary{
+
+.stats-badge {
+    padding: 5px;
+    width: 133px;
+    height: 133px;
+    display: table-cell;
+    vertical-align: middle;
+    border-radius: 50%;
+    border: 5px solid #FF5722;
+
+}
+
+.profile-image-container {
     display: inline-block;
-    width: 80%;
+   // margin: auto;
+}
+
+#profile-sumary {
     padding: 10px;
+    vertical-align: top;
 }
-.badges{
+
+.badges {
     display: inline;
-   
+
 }
-#profile{
+
+#profile {
     display: block;
 }
-#profile h1{
+
+#profile h1 {
     display: block;
 }

@@ -27,61 +27,60 @@
       </header>
       <!--*********************************************************************************************-->
       <main id="main">
-            <div style="margin-top:68px;">
-         <div id="signupUI" class="elevate">
+         <div style="margin-top:68px;">
+            <div id="signupUI" class="elevate">
 
-            <form class="align-center" id="signupForm">
-               <h2 class="align-center"> Create Your SendIt
-                  Account </h2>
-                  
-               <div class="inline">
-                  <div>
-                     <label id="input-title" oninput="validateName">FIRST NAME</label>
-                     <input type="text" name="signupName" placeholder="Alice">
-                  </div>
-                  <div>
-                     <label id="input-title">LAST NAME </label>
-                     <input type="text" name='signupLastName' placeholder="Becker">
-                  </div>
+               <form class="align-center" id="signupForm">
+                  <h2 class="align-center"> Create Your SendIt
+                     Account </h2>
 
-               </div>
+                  <div class="inline fit-width">
+                     <fieldset>
+                        <legend> First Name </legend>
+                        <input class="fit-width" type="text" name="signupName" placeholder="Alice">
+                     </fieldset>
 
-               <div>
-                  <div>
-                     <label id="input-title">EMAIL</label>
-                     <input type="email" name='signupEmail' oninput="validateEmail" placeholder="username@domain.com">
+                     <fieldset>
+                        <legend>Last Name </legend>
+                        <input class="fit-width" type="text" name='signupLastName' placeholder="Becker">
+                     </fieldset>
                   </div>
 
-                  <div >
-                        <label id="input-title">MOBILE NUMBER</label>
-                        <input type="tel" name='signupNumber' placeholder="+23470123481458"
-                           class="fit-width">
-                     </div>
-               </div>
-              
-               <div class="inline">
-                  <div>
-                     <label id="input-title">PASSWORD</label>
-                     <input type="password" name='signupPassword' placeholder="Alphebets only">
-                  </div>
-                  <div>
-                     <label id="input-title"  >CONFIRM</label>
-                     <input type="password" name='signupComfirmpassword' oninput="confirmPassword" placeholder="Confirm password">
+                  <div class="inline fit-width">
+                     <fieldset>
+                        <legend>Email</legend>
+                        <input class="fit-width" type="email" name='signupEmail' placeholder="username@domain.com">
+                     </fieldset>
+                     <fieldset>
+                        <legend>Phone Number </legend>
+                        <input class="fit-width" type="tel" name='signupNumber' placeholder="+23470123481458">
+                     </fieldset>
                   </div>
 
-               </div>
+                  <div class="inline fit-width">
+                     <fieldset>
+                        <legend>Password</legend>
+                        <input class="fit-width" type="password" name='signupPassword' placeholder="Alphebets only">
+                     </fieldset>
 
-               <p>
-                  <input type="button" name="register" class="botton prim-btn" value='Register'
-                     onclick="signupUser()">
-               </p>
-            </form>
+                     <fieldset>
+                        <legend>Confirm</legend>
+                        <input class="fit-width" type="password" name='signupComfirmpassword' oninput="confirmPassword"
+                           placeholder="Confirm password">
+                     </fieldset>
+                  </div>
+
+                  <p>
+                     <input type="button" name="register" class="botton prim-btn" value='Register'
+                        onclick="signupUser()">
+                  </p>
+               </form>
             </div>
          </div>
       </main>
       <footer>
-            
-         </footer>
+
+      </footer>
    </body>
 
 </html>

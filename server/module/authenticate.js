@@ -32,7 +32,8 @@ async function issueAccessToken(id) {
  * @returns {void}
  */
 function verifyAccessToken(req, resp, cb) {
- const token = req.headers['x-access-token'] || "error";
+ const token = req.headers['authorization'] || "error";
+ console.log("authorization" in req.headers, req.headers['authorization'])
  jwt.verify(token, SECRET, function (err, userToken) {
   if (err) {
    resp.json(util.response("error", "Access denied", 0))
@@ -43,7 +44,21 @@ function verifyAccessToken(req, resp, cb) {
 
 }
 
+function cors(req,res,next) {
+ //preflight sniffing
+ if (req.method.search(/^options$/gi) != -1) {
+  res.setHeader("Access-Control-Allow-Origin", '*');
+  res.setHeader('Access-Control-Allow-Methods', 'POST,GET,,PUT');
+  res.setHeader("Access-Control-Allow-Credentials", true)
+  resp.statusCode = 200;
+  resp.end();
+ }
+  res.setHeader("Access-Control-Allow-Origin", req.headers['origin'] || "*");
+  next();
+}
+
 export {
  verifyAccessToken,
- issueAccessToken
+ issueAccessToken,
+ cors
 }

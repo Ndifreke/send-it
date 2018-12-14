@@ -19,10 +19,6 @@ body {
     padding: 0px;
 }
 
-td,
-th {
-    padding: 8px 2vh;
-}
 
 #signupUI,
 #signinUi {
@@ -33,6 +29,7 @@ li,
 ul,
 ol {
     list-style: none;
+    padding: 0px;
 }
 
 #navigation-list {
@@ -40,21 +37,19 @@ ol {
 }
 
 .dashLink {
-    padding-top: 25px;
-    padding-bottom: 25px;
-    padding-left: 15%;
+    padding: 20px;
+    margin: 2px;
     color: ghostwhite;
-    border: 1px solid white;
-    margin: 5px;
-    border-radius: 2px;
+    display: block;
 }
 
 .dashLink:hover,
 .active {
     background-color: #FF5722;
     color: white;
-    font-weight: bolder;
     transition: 0.4s;
+    text-transform: uppercase;
+
 }
 
 #input-title {
@@ -127,22 +122,28 @@ hr {
 
 .ack-delete,
 .ack-cancel,
+.profile-icon,
 .icon,
 .cancel,
 .edit,
 .place-picker {
-    width: 21px;
-    height: 21px;
+    width: 24px;
+    height: 24px;
     border-style: none;
     background-position-x: center;
     background-position-y: center;
     outline: none;
     background-repeat: no-repeat;
-
+    //  display: inline-block;
 }
 
 input[type=checkbox] {
     display: none;
+}
+
+fieldset {
+    border: none;
+    width: -webkit-fill-available;
 }
 
 input[type=checkbox]+label {
@@ -161,6 +162,11 @@ form#settingsUI {
     display: inline-flex;
 }
 
+.flex {
+    display: flex;
+    width: 100%;
+}
+
 .inline-block {
     display: inline-block;
 }
@@ -172,6 +178,15 @@ form#settingsUI {
 /* for desktop */
 
 @media screen and (min-width:1000px) {
+    #statistics {
+        /* display: block; */
+        /* width: -webkit-fill-available; */
+        /* min-width: 193px; */
+        /* padding-bottom: 30px; */
+        /* background: whitesmoke; */
+        margin-left: 50px;
+    }
+
     #settingsUI * {
         width: 70%;
     }
@@ -179,10 +194,11 @@ form#settingsUI {
     .parcel-action {
         position: absolute;
     }
+
     .cancel,
     .edit {
         top: 0px;
-     padding:15px 0;
+        padding: 15px 0;
     }
 
     #logo {
@@ -195,7 +211,7 @@ form#settingsUI {
     }
 
     #about {
-        display: flex;
+       // display: flex;
     }
 
     #aveter-container {
@@ -204,13 +220,18 @@ form#settingsUI {
 }
 
 @media screen and (min-width:760px) {
+
+    .hide-in-desktop {
+        display: none;
+    }
+
     form#settingsUI {
         margin: 0 14%;
         padding: 20px;
     }
 
     #about {
-        display: flex;
+        // display: flex;
     }
 
     #dash-expand {
@@ -258,7 +279,6 @@ form#settingsUI {
     }
 }
 
-
 /* for mobile */
 @media screen and (max-width : 760px) {
     .parcel-action {
@@ -269,8 +289,7 @@ form#settingsUI {
     .cancel,
     .edit {
         display: inline-flex;
-        margin:0 45px;
-
+        margin: 0 45px;
     }
 
     div#services {
@@ -278,14 +297,13 @@ form#settingsUI {
     }
 
     #profile-sumary {
-        /* display: inline-block; */
-        /* width: 50%; */
-        /* min-width: 300px; */
-        padding: 10px;
-        margin-top: 10px;
+        display: none;
+        padding: 0;
+        width: initial;
+        box-shadow: none;
     }
 
-    #aveter-container {
+    .profile-image-container {
         width: 80%;
     }
 
@@ -305,7 +323,9 @@ form#settingsUI {
         display: block;
     }
 
-    .inline {
+    .inline,
+    /* .flex */
+        {
         display: block;
     }
 

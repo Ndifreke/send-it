@@ -1,7 +1,9 @@
 import express from 'express';
 import path from 'path';
 import bodyParser from 'body-parser';
-import view from './server/module/views';
+
+const app = express();
+app.use(bodyParser());
 
 import {
   cancelParcel,
@@ -20,14 +22,15 @@ import {
   login,
 } from './server/controller/user';
 
+import {
+  cors
+} from './server/module/authenticate';
 
-const app = express();
+app.use(cors);
+app.use(express.static(path.join(__dirname, 'ui')));
 
 app.set('views', path.join(__dirname, 'ui/pages'));
 app.set('view engine', 'ejs');
-app.use(express.static(path.join(__dirname, 'ui')));
-app.use(bodyParser());
-
 
 app.use('/api/v1/users/:id/parcels', getUserParcels);
 
@@ -40,7 +43,8 @@ app.use('/api/v1/users/:id/parcels', getUserParcels);
 app.use('/api/v1/users/:id/parcels', getUserParcels);
 
 
-app.get('/', view.renderHome);
+//app.get('/', view.renderHome);
+
 
 app.post('/api/v1/auth/signup', signup);
 app.post('/api/v1/auth/login', login);
@@ -49,7 +53,7 @@ app.put('/api/v1/parcels/:id/destination', changeCordinate);
 app.put('/api/v1/parcels/:id/presentLocation', changePresentLocation);
 
 app.use((req, res) => {
-  console.log(req.url)
+  console.log(req.body)
   res.statusCode = 500;
   const msg = {
     status: 'error',
