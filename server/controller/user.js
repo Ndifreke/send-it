@@ -26,6 +26,7 @@ async function signup(req, res) {
  */
 async function login(req, res) {
   const {email, password } = req.body;
+  console.log(req.body) 
   const data = await User.authLogin(email, password, res);
   if (data.response[0]) {
     const id = data.response[0];
@@ -33,6 +34,7 @@ async function login(req, res) {
     const token = await issueAccessToken(id);
     res.setHeader("Authorization", token);
   }
+  res.setHeader('content-type',"Application/json");
   res.json(data);
 }
 
