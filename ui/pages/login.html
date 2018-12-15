@@ -6,9 +6,8 @@
       <link type="text/css" rel="stylesheet" href="../stylesheet/shared.css">
       <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
       <link type="text/css" rel="stylesheet" href="../stylesheet/main.css">
-      <script type="text/javascript" src="../javascript/ui_render.js"></script>
-      <script type="text/javascript" src="../javascript/authenication.js"></script>
-      <script type="text/javascript" src="../javascript/location_services.js"></script>
+      <script type="text/javascript" src="../javascript/authLogin.js"></script>
+      <script type="text/javascript" src="../javascript/request.js"></script>
       <meta charset="UTF-8">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
    </head>
@@ -33,23 +32,20 @@
          <div style="margin-top:68px;">
             <div id="loginUI" class="elevate">
                <h2 class="align-center"> Sign into SendIt Account </h2>
-               <form class="align-center" name='login'>
 
+               <form class="align-center" method='POST' name='login'>
                   <fieldset>
                      <legend> Email </legend>
                      <input type="email" name="email" class='fit-width centered' placeholder="example@gmail.com"
-                        required />
+                        value='new@emai.com' required />
                   </fieldset>
-
                   <fieldset>
                      <legend>password</legend>
                      <input type="password" name='password' class='fit-width centered' placeholder="password"
-                        required />
+                        value='password' required />
                   </fieldset>
-
-
                   <div>
-                     <input type="submit" class="prim-btn botton" value='Continue'>
+                     <input type="button" name='submit' class="prim-btn botton" value='Continue'>
                   </div>
                   <a href=""> Recover Account</a>
                </form>
