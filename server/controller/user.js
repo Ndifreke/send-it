@@ -25,16 +25,20 @@ async function signup(req, res) {
  * @returns {void}
  */
 async function login(req, res) {
-  const {email, password } = req.body;
-  console.log(req.body) 
+  const {
+    email,
+    password
+  } = req.body;
+  console.log(req.body)
   const data = await User.authLogin(email, password, res);
-  if (data.response[0]) {
-    const id = data.response[0];
+  const userId = data.response[0]
+  if (userId) {
     delete data.response;
-    const token = await issueAccessToken(id);
+    const token = await issueAccessToken(userId);
+    data.token = token;
     res.setHeader("Authorization", token);
   }
-  res.setHeader('content-type',"Application/json");
+  res.setHeader('content-type', "Application/json");
   res.json(data);
 }
 
