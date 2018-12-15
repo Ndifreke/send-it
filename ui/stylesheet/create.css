@@ -49,11 +49,6 @@ input#createMap.prim-btn.botton {
   font-weight: 200;
 }
 
-#percel-form {
-  padding-top: 25px;
-  padding-bottom: 25px;
-}
-
 #mapviewport {
   width: 100%;
   height: 100%;

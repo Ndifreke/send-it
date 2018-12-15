@@ -48,6 +48,11 @@ h4 {
     padding: 9px 35px;
     font-size: 15px;
 }
+.prim-btn:active, .prim-btn:hover{
+    transition: 0.5s;
+    background: rgb(55, 182, 0);
+    box-shadow: none;
+}
 
 .minor-btn {
     padding: 8px;
@@ -55,12 +60,10 @@ h4 {
 }
 
 .elevate,
-.active-btn:hover,
-.prim-btn:hover,
-.package-preview:hover,
-.position-label:hover {
-    box-shadow: 0px 1px 8px rgba(0, 0, 0, 0.20);
-
+.position-label,
+.prim-btn {
+    //box-shadow: 0px 1px 8px rgba(0, 0, 0, 0.20);
+    box-shadow: 1px 10px 20px 0 rgba(0, 0, 0, 0.5);
 }
 
 .active-btn:hover,
@@ -92,7 +95,7 @@ li#create-package {
 .positon-bottom-right {
     position: absolute;
     right: 5px;
-    bottom: 0px;
+    // bottom: 0px;
 }
 
 header-align-content {
@@ -147,18 +150,20 @@ input[type='password'] {
     font-size: 17px;
     display: inline-flex;
     outline: none;
-    color: rgb(50, 50, 50);
+    color: rgb(55, 65, 65);
     font-weight: 100;
-    border-radius: 3px;
+    border-radius: 2px;
     height: 35px;
     text-align: center;
+    border: 1px solid #ccc;
 }
 
 input[type='text']:focus,
 input[type='email']:focus,
 input[type='tel']:focus,
 input[type='password']:focus {
-    border-bottom: 1px solid rgb(55, 160, 0);
+    border: none;
+    border-bottom: 1px solid #ccc;
 }
 
 #logo {

@@ -5,7 +5,7 @@
 /* eslint-disable no-undef */
 /* eslint-disable class-methods-use-this */
 
-let activeInputElement;
+let activeElement;
 let locationMap;
 let label;
 
@@ -164,57 +164,40 @@ class Label {
     const labelContainer = document.getElementById('position-container');
     labelContainer.innerHTML = '';
     clickedCordinates.forEach((cordinate) => {
-      labelContainer.appendChild(Label.labelViewFrom(cordinate));
+      labelContainer.appendChild(Label.positionOnTile(cordinate));
     });
   }
 
   static displayLabalFromCordinate(cordinate) {
     const labelContainer = document.getElementById('position-container');
-    labelContainer.innerHTML = '';
-    console.log(cordinate);
-    labelContainer.appendChild(Label.labelViewFrom(cordinate));
+    labelContainer.appendChild(Label.positionOnTile(cordinate));
     Label.map.placeMarker(cordinate);
   }
 
-  static labelViewFrom(cordinate) {
-    const brk = document.createElement('br');
-    let cord = '';
-    let placeName = '';
+  /* create mini label on map where clicked position will be displayed*/
+  static positionOnTile(cordinate) {
+    const positionLabel = setAttributes(document.createElement('div'), {
+      'class': 'position-label'
+    });
+
+    let cord, locationName;
+
     if ('lat' in cordinate) {
-      placeName = activeInputElement.value;
+      locationName = activeElement.value;
       cord = cordinate;
     } else {
-      placeName = Object.keys(cordinate);
+      //grab position names from google location search
+      locationName = Object.keys(cordinate);
       cord = {
-        lat: cordinate[placeName].lat,
-        lng: cordinate[placeName].lng
+        lat: cordinate[locationName].lat,
+        lng: cordinate[locationName].lng
       };
     }
-    const positionLabel = setAttributes(document.createElement('div'), {
-      id: cord,
-      class: 'position-label'
-    });
-    const anch = document.createElement('a');
-    anch.textContent = placeName;
-    const span = document.createElement('span');
-    span.style.display = 'inline-block';
-    anch.style.display = 'inline-block';
-    span.textContent = `${cord.lat} , ${cord.lng}`;
-    positionLabel.appendChild(anch);
-    positionLabel.appendChild(brk);
-    positionLabel.appendChild(span);
+    positionLabel.innerHTML = `<span> ${locationName}</span> <br/> 
+      <span> ${cord.lat} , ${cord.lng} </span>`;
 
     positionLabel.onclick = function () {
-      /* set the value of this active input field
-                   and store its location in the class attribute */
-      if (activeInputElement !== undefined) {
-        activeInputElement.value = placeName;
-        setAttributes(activeInputElement, {
-          class: JSON.stringify(cord),
-          name: placeName
-        });
-      }
-      // place a marker on the map where the label points
+      storeLocationData(activeElement, locationName, cord);
       Label.map.placeMarker(cord);
     };
     return positionLabel;
@@ -235,10 +218,9 @@ function initMap() {
   locationMap.positionsOnclick(label.showOnMap);
 }
 
-
-function setActivePosition(inputBoxId) {
-  activeInputElement = document.getElementById(inputBoxId);
-  if (!(/^(\s)*$/.test(activeInputElement.value) || activeInputElement.value === undefined)) {
-    locationMap.useGeocode(activeInputElement.value, label.showOnMap);
+function focusedInput(inputName) {
+  activeElement = document.querySelector(`input[name="${inputName}"]`);
+  if (!(/^(\s)*$/.test(activeElement.value) || activeElement.value === undefined)) {
+    locationMap.useGeocode(activeElement.value, label.showOnMap);
   }
 }

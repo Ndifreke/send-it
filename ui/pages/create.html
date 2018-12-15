@@ -6,7 +6,7 @@
     <link type="text/css" rel="stylesheet" href="../stylesheet/shared.css">
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
     <link type="text/css" rel="stylesheet" href="../stylesheet/create.css">
-    <script type="text/javascript" src="../javascript/ui_render.js"></script>
+    <script type="text/javascript" src="../javascript/authCreate.js"></script>
     <script type="text/javascript" src="../javascript/UIBuilder.js"></script>
     <script type="text/javascript" src="../javascript/location_services.js"></script>
 
@@ -64,33 +64,34 @@
 
       <section id="main-content">
 
-        <div id="new-parcel-viewport" style="margin-top: -20px" >
-        
-            <h2 class="centered"> Create New Percel </h2>
-          <form class="align-center" id="percel-form">
-           
+        <div id="new-parcel-viewport" style="margin-top: -20px">
+
+          <h2 class="centered"> Create New Percel </h2>
+          <form class="align-center" id="percel-form" name='createParcel'>
+
             <div id="create-field1" class="elevate">
-              <input type="text" class="fit-width" id="percel-name" placeholder="Percel Title">
+              <input type="text" class="fit-width" name="shortname" placeholder="Percel Title">
               <br />
 
-              <a href="#map-ui" class="place-picker" onclick="setActivePosition('parcel-origin')"></a>
-              <input type="text" class="fit-width" id="parcel-origin" placeholder="Parcel Origin">
+              <a href="#map-ui" class="place-picker" onclick="focusedInput('origin')"></a>
+              <input type="text" class="fit-width" name="origin" placeholder="Parcel Origin">
+              <input type="hidden" name='origin-lat'/>
+              <input type="hidden" name='origin-lng' />
               <label for="parcel-origin"></label>
               <br />
 
-              <a href="#map-ui" class="place-picker" onclick="setActivePosition('parcel-destination')">
+              <a href="#map-ui" class="place-picker" onclick="focusedInput('destination')">
               </a>
-              <input type="text" class="fit-width" id="parcel-destination" placeholder="Parcel Destination">
-
+              <input type="text" class="fit-width" name="destination" placeholder="Parcel Destination">
+              <input type="hidden" name='destination-lat' />
+              <input type="hidden" name='destination-lng' />
               <br />
 
               <div>
-                <textarea rows="10" class='fit-width' placeholder="More information About this percel">
-                                    Some description of what the content or the state of the content
-                                </textarea>
+                <textarea rows="10" class='fit-width'>  </textarea>
               </div>
 
-              <div id="create-sumary" >
+              <div id="create-sumary">
                 <h4 class="centered title-header">Order Summary</h4>
 
                 <div class="item-summary">
@@ -111,13 +112,13 @@
               </div>
 
               <p>
-                <input type="button" onclick="initMap" class="botton prim-btn" value='Create It' id="createMap">
+                <button class="botton prim-btn" type="submit">Create It </button>
               </p>
 
             </div>
 
             <div id="mapviewport" class="elevate">
-              <div id="position-container" class="elevate" >
+              <div id="position-container" class="elevate">
                 <div class="position-label" id="map-tip">
                   <p><strong></strong>Tip: USE ANY OF
                     BELLOW METHOD
@@ -137,7 +138,7 @@
 
                 </div>
               </div>
-              <div id="map-ui" >
+              <div id="map-ui">
 
               </div>
             </div>
