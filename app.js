@@ -3,7 +3,7 @@ import path from 'path';
 import bodyParser from 'body-parser';
 
 const app = express();
-app.use(bodyParser());
+
 
 import {
   cancelParcel,
@@ -23,28 +23,26 @@ import {
 } from './server/controller/user';
 
 import {
-  cors
+  cors,
+  oauthToken
 } from './server/module/authenticate';
 
 app.use(cors);
+
+app.use(bodyParser());
 app.use(express.static(path.join(__dirname, 'ui')));
 
 app.set('views', path.join(__dirname, 'ui/pages'));
 app.set('view engine', 'ejs');
 
-app.use('/api/v1/users/:id/parcels', getUserParcels);
+app.get('/api/v1/oauth', oauthToken);
 
 app.post('/api/v1/parcels', createParcel);
 app.get('/api/v1/parcels', getAllParcels);
 app.get('/api/v1/parcels/:id', getOneParcel);
 app.put('/api/v1/parcels/:id', cancelParcel);
-app.use('/api/v1/users/:id/parcels', getUserParcels);
 
-app.use('/api/v1/users/:id/parcels', getUserParcels);
-
-
-//app.get('/', view.renderHome);
-
+app.get('/api/v1/users/:id/parcels', getUserParcels);
 
 app.post('/api/v1/auth/signup', signup);
 app.post('/api/v1/auth/login', login);

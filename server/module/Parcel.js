@@ -20,7 +20,7 @@ const response = {};
  */
 class Parcel {
 
-  constructor( option ) {
+  constructor( option, ownerId ) {
     this.options = option;
     this.shortname = option.shortname;
     this.destination = option.destination;
@@ -33,7 +33,7 @@ class Parcel {
     this.distance = option.distance;
     this.weight = option.weight;
     this.price = option.price;
-    this.owner = option.owner;
+    this.owner = ownerId;
   }
  /**
  * Save a parcel to the database

@@ -15,7 +15,7 @@ import {
  */
 function createParcel(req, res) {
    async function createCallback(accessToken) {
-      const created = await new Parcel(req.body).create(res);
+      const created = await new Parcel(req.body, accessToken.id).create(res);
       res.json(created);
    }
    verifyAccessToken(req, res, createCallback);
