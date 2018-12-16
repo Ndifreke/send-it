@@ -245,23 +245,7 @@ form#settingsUI {
 
 /* for desktop */
 
-<<<<<<< HEAD
-@media screen and (min-width:1000px) {
-    #statistics {
-        /* display: block; */
-        /* width: -webkit-fill-available; */
-        /* min-width: 193px; */
-        /* padding-bottom: 30px; */
-        /* background: whitesmoke; */
-        margin-left: 50px;
-    }
-
-    #settingsUI * {
-        width: 70%;
-    }
-=======
 @media screen and(min-width:1500px) {}
->>>>>>> gh-pages
 
 /*   tablet size */
 @media screen and (min-width:1000px) {
@@ -275,43 +259,13 @@ form#settingsUI {
     }
 }
 
-<<<<<<< HEAD
-    form#settingsUI {
-        margin: 0 20%;
-        padding: 20px;
-    }
-
-    #about {
-       // display: flex;
-    }
-
-    #aveter-container {
-        width: 50%;
-=======
 @media screen and (max-width:1000px) {
     .hide-in-mobile {
         display: none;
->>>>>>> gh-pages
     }
 }
 
 @media screen and (min-width:760px) {
-<<<<<<< HEAD
-
-    .hide-in-desktop {
-        display: none;
-    }
-
-    form#settingsUI {
-        margin: 0 14%;
-        padding: 20px;
-    }
-
-    #about {
-        // display: flex;
-    }
-=======
->>>>>>> gh-pages
 
     #dash-expand {
         display: none;
@@ -365,39 +319,10 @@ form#settingsUI {
         display: block;
     }
 
-<<<<<<< HEAD
-    #profile-sumary {
-        display: none;
-        padding: 0;
-        width: initial;
-        box-shadow: none;
-    }
-
-    .profile-image-container {
-        width: 80%;
-    }
-
-    #settingsUI * {
-        width: -webkit-fill-available;
-    }
-
-=======
->>>>>>> gh-pages
     #signupUI {
         width: 80%;
     }
 
-<<<<<<< HEAD
-    form#settingsUI {
-        padding: 20px;
-    }
-
-    #new-parcel-viewport {
-        display: block;
-    }
-
-=======
->>>>>>> gh-pages
     .inline,
     /* .flex */
         {
