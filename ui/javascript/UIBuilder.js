@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
   const parcelHeaders = document.getElementsByClassName('package-preview');
   highlightParcelHeader(parcelHeaders);
-  promptEdit(document.querySelectorAll('.cancel, .edit'));
+  promptEdit(document.querySelectorAll('.steer-cancel-icon, .steer-icon'));
   const menuButton = document.getElementById('flow-btn');
   menuButton.onclick = function () {
     toggleDisplay('dashboard');

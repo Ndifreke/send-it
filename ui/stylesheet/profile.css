@@ -13,22 +13,6 @@
     display: none;
 }
 
-.profile-icon {
-    background: url('../images/icons/profile.svg');
-}
-
-.ferry-icon {
-    background-image: url('../images/icons/ferry.svg');
-}
-
-.processed-icon {
-    background-image: url('../images/icons/processed.svg');
-}
-
-.unprocessed-icon {
-    background-image: url('../images/icons/unprocess.svg');
-}
-
 .stats-badge {
     padding: 5px;
     width: 31px;
@@ -74,7 +58,7 @@
 
 /* desktop */
 @media screen and (min-width:1500px) {
-   
+
     #about {
         width: 50%;
         margin: auto;
