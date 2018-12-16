@@ -18,7 +18,12 @@
          <a href='#' id="logo"> </a>
          <nav class="positon-bottom-right">
             <ul>
-
+               <li>
+                  <svg width='40px' height='40px'>
+                     <circle cx='20' cy='20' r='20' fill='red' />
+                     <text x='10px' y='25px' fill='white'>10</text>
+                  </svg>
+               </li>
                <li id="navigation-list">
                   <a href='../index.html' class="active-btn botton">
                      Sign out </a>
@@ -30,7 +35,6 @@
       <aside id='dashboard'>
          <a class="close-btn" id='dashboard-closer' onclick="toggleDisplay('dashboard')">
          </a>
-         
          <ul class="dashboard">
 
             <li>
@@ -62,31 +66,29 @@
          <button type="button" id="flow-btn"> </button>
 
          <section id="main-content">
-            <h2> Profile Information </h2>
+            <section id='profile'>
 
             <section id='profile'>
                <div id="about" class="elevate">
-                  <h3>About</h3>
-
+                  <h2> Profile Information </h2>
+                  <h3 class="hide-in-mobile title-header">About</h3>
                   <div class="profile-image-container">
                      <img src="../images/photo.gif" alt="Profile Image" width="250" height="300" />
                   </div>
 
-                  <div class="flex hide-in-desktop">
-
+                  <div class="hide-in-desktop">
                      <div class='active-btn button fit-width' data-profile onclick="showProfile(this)">
-                        <input class="profile-icon" />
+                        <span class="profile-icon"></span>
                         <span> Profile</span>
                      </div>
 
                      <div class='active-btn button fit-width' data-stats onclick="showProfile(this)">
-                        <input class="profile-icon" />
+                        <span class="stats-icon"> </span>
                         <span> Statistics</span>
                      </div>
                   </div>
 
-
-                  <div id="profile-sumary" class="elevate">
+                  <div id="profile-sumary">
                      <p>
                         <strong> Name :</strong> <br />
                         <span id="name"> Ndifreke Anthony</span>
@@ -99,35 +101,57 @@
                         <strong> Email :</strong> <br />
                         <span>user@domain.com</span>
                      </p>
-
                   </div>
 
-                  <div id="statistics">
 
-                     <h3>Profile Statistics</h3>
-                     <div class="badges">
-                        <div class="stats-badge elevate">
-                           <span> TOTAL
-                           </span>
-                           <span>588 </span>
-                        </div>
-                        <br>
-                        <div class="stats-badge elevate">
-                           <span> Delivered </span>
-                           <span>15 </span>
-                        </div>
-
-                        <div class="stats-badge elevate">
-                           <span> Percel In Process </span>
-                           <span> 5 </span>
+                  <div id="statistics" class="centered">
+                     <h3 class="title-header hide-in-mobile">Profile Statistics</h3>
+                     <p></p>
+                     <fieldset>
+                        <legend>
+                           <div class="processed-icon inline-block">
+                           </div>
+                           <br />
+                           <strong>DELIVERED</strong>
+                        </legend>
+                        <div class="badges">
+                           <div class="stats-badge elevate">
+                              <span>588 </span>
+                           </div>
 
                         </div>
-                     </div>
+                     </fieldset>
+                     <fieldset>
+                        <legend>
+                           <div class="ferry-icon inline-block">
+                           </div>
+                           </br>
+                           <strong>PROCESSING</strong>
+                        </legend>
+                        <div class="badges">
+                           <div class="stats-badge elevate">
+                              <span>15 </span>
+                           </div>
+                        </div>
+                     </fieldset>
+
+                     <fieldset>
+                        <legend>
+                           <div class="unprocessed-icon inline-block">
+                           </div>
+                           <br />
+                           <strong>CANCELLED</strong>
+                        </legend>
+
+                        <div class="badges">
+                           <div class="stats-badge elevate">
+                              <span> 5 </span>
+                           </div>
+                        </div>
+                     </fieldset>
                   </div>
                </div>
-
-
-
+               </div>
 
             </section>
 

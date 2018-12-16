@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
   const parcelHeaders = document.getElementsByClassName('package-preview');
   highlightParcelHeader(parcelHeaders);
-  promptEdit(document.querySelectorAll('.cancel, .edit'));
+  promptEdit(document.querySelectorAll('.steer-cancel-icon, .steer-icon'));
   const menuButton = document.getElementById('flow-btn');
   menuButton.onclick = function () {
     toggleDisplay('dashboard');
@@ -72,16 +72,15 @@ function promptEdit(actionButtons) {
 function showProfile(element) {
   const profile = document.querySelector("#profile-sumary");
   const stats = document.querySelector("#statistics");
-  switch (element.getAttribute('name')) {
-    case 'profile':
-      toggleDisplay(stats, 'none');
-      toggleDisplay(profile, 'block');
-      break;
-    case 'stats':
-      toggleDisplay(profile, 'none');
-      toggleDisplay(stats, 'block');
+  if ('profile' in element.dataset) {
+    toggleDisplay(stats, 'none');
+    toggleDisplay(profile, 'block');
+  } else if ('stats' in element.dataset) {
+    toggleDisplay(profile, 'none');
+    toggleDisplay(stats, 'block');
   }
 }
+
 
 function editFormAck() {
   const promptForm = document.forms['edit-prompt'];
@@ -91,4 +90,10 @@ function editFormAck() {
   promptForm.style.top = parcelPosition.y + window.pageYOffset + 55 + 'px';
   promptForm.style.left = parcelCenter + 'px';
   promptForm.style.display = 'block';
+}
+
+function setAttributes(element, attributeOption) {
+  for (const attribute in attributeOption)
+    element.setAttribute(attribute, attributeOption[attribute]);
+  return element;
 }

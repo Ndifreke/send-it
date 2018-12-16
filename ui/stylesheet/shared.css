@@ -8,6 +8,7 @@ html {
 }
 
 body {
+    background: whitesmoke;
     width: 100%;
     height: 100%;
     max-width: 100%;
@@ -31,6 +32,12 @@ ol {
     list-style: none;
     padding: 0px;
 }
+
+ul.dashboard li {
+    border-bottom: 1px solid lightsteelblue;
+}
+
+
 
 #navigation-list {
     margin-right: 20px;
@@ -69,11 +76,13 @@ ol {
     display: none;
 }
 
+/*
 ul.dashboard {
     position: sticky;
     margin-top: 16px;
     padding: 0px;
 }
+*/
 
 #dashboard-closer {
     position: sticky;
@@ -116,29 +125,88 @@ ul.dashboard {
     margin-left: 98px;
 }
 
-hr {
-    background: #BDBDBD;
-}
 
 .ack-delete,
 .ack-cancel,
 .profile-icon,
 .icon,
-.cancel,
-.edit,
-.place-picker {
-    width: 24px;
+.steer-cancel-icon,
+.steer-icon,
+.ferry-icon,
+.processed-icon,
+.unprocessed-icon,
+.stats-icon,
+.money-icon,
+.phone-icon,
+.parcel-icon,
+.search-icon,
+.home-icon,
+.distance-icon,
+.email-icon,
+.scale-icon,
+.location-icon {
+    display: inline-block;
+    background-image: url("../images/icons/sprite.svg");
+    width: 30px;
     height: 24px;
     border-style: none;
-    background-position-x: center;
-    background-position-y: center;
+    background-position-x: 4px;
     outline: none;
     background-repeat: no-repeat;
-    //  display: inline-block;
 }
+
+.steer-cancel-icon{
+    background-position-y: -89px;
+}
+.steer-icon{
+    background-position-y: -281px;
+}
+.stats-icon {
+    background-position-y: -29px;
+}
+
+.profile-icon {
+    background-position-y: -250px;
+    ;
+}
+.home-icon{
+    background-position-y: -330px;
+}
+.money-icon{
+    background-position-y: -306px
+}
+
+.ferry-icon {
+    background-position-y: 0px;
+}
+
+.processed-icon {
+    background-position-y: -112px;
+}
+
+.unprocessed-icon {
+    background-position-y: -91px;
+}
+
+.location-icon {
+    background-position-y: -61px;
+}
+
+.distance-icon {
+    background-position-y: -359px;
+}
+
+.scale-icon {
+    background-position-y:  -414px;
+}
+
 
 input[type=checkbox] {
     display: none;
+}
+
+strong {
+    font-size: smaller;
 }
 
 fieldset {
@@ -177,6 +245,7 @@ form#settingsUI {
 
 /* for desktop */
 
+<<<<<<< HEAD
 @media screen and (min-width:1000px) {
     #statistics {
         /* display: block; */
@@ -190,21 +259,23 @@ form#settingsUI {
     #settingsUI * {
         width: 70%;
     }
+=======
+@media screen and(min-width:1500px) {}
+>>>>>>> gh-pages
 
-    .parcel-action {
-        position: absolute;
-    }
+/*   tablet size */
+@media screen and (min-width:1000px) {
 
-    .cancel,
-    .edit {
-        top: 0px;
-        padding: 15px 0;
+    .hide-in-desktop {
+        display: none;
     }
 
     #logo {
         left: 290px;
     }
+}
 
+<<<<<<< HEAD
     form#settingsUI {
         margin: 0 20%;
         padding: 20px;
@@ -216,10 +287,16 @@ form#settingsUI {
 
     #aveter-container {
         width: 50%;
+=======
+@media screen and (max-width:1000px) {
+    .hide-in-mobile {
+        display: none;
+>>>>>>> gh-pages
     }
 }
 
 @media screen and (min-width:760px) {
+<<<<<<< HEAD
 
     .hide-in-desktop {
         display: none;
@@ -233,6 +310,8 @@ form#settingsUI {
     #about {
         // display: flex;
     }
+=======
+>>>>>>> gh-pages
 
     #dash-expand {
         display: none;
@@ -281,21 +360,12 @@ form#settingsUI {
 
 /* for mobile */
 @media screen and (max-width : 760px) {
-    .parcel-action {
-        position: inherit;
-        text-align: center;
-    }
-
-    .cancel,
-    .edit {
-        display: inline-flex;
-        margin: 0 45px;
-    }
 
     div#services {
         display: block;
     }
 
+<<<<<<< HEAD
     #profile-sumary {
         display: none;
         padding: 0;
@@ -311,10 +381,13 @@ form#settingsUI {
         width: -webkit-fill-available;
     }
 
+=======
+>>>>>>> gh-pages
     #signupUI {
         width: 80%;
     }
 
+<<<<<<< HEAD
     form#settingsUI {
         padding: 20px;
     }
@@ -323,6 +396,8 @@ form#settingsUI {
         display: block;
     }
 
+=======
+>>>>>>> gh-pages
     .inline,
     /* .flex */
         {
@@ -335,14 +410,6 @@ form#settingsUI {
 
     #dashboard-closer {
         display: block;
-    }
-
-    .package-content {
-        display: block;
-    }
-
-    .package-description {
-        width: 100%;
     }
 
 }

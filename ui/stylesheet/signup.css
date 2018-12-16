@@ -1,0 +1,7 @@
+/* tablet */
+
+@media screen and (min-width:620px) {
+ .multi-display {
+  display: inline-flex;
+ }
+}
