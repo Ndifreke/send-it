@@ -1,9 +1,15 @@
 import express from 'express';
-import path from 'path';
 import bodyParser from 'body-parser';
+import path from 'path';
 
 const app = express();
 
+app.use(bodyParser());
+app.use(cors);
+
+const UIPath = path.join(__dirname, 'ui');
+app.use(express.static(UIPath));
+app.use(express.static(UIPath + '/pages'));
 
 import {
   cancelParcel,
@@ -14,8 +20,7 @@ import {
   changePresentLocation,
   updateStatus,
   changeCordinate
-}
-from './server/controller/parcel';
+} from './server/controller/parcel';
 
 import {
   signup,
@@ -27,35 +32,31 @@ import {
   oauthToken
 } from './server/module/authenticate';
 
-app.use(cors);
+import view from './server/controller/view';
 
-app.use(bodyParser());
-app.use(express.static(path.join(__dirname, 'ui')));
+view(app);
 
-app.set('views', path.join(__dirname, 'ui/pages'));
-app.set('view engine', 'ejs');
 
 app.get('/api/v1/oauth', oauthToken);
-
-app.post('/api/v1/parcels', createParcel);
 app.get('/api/v1/parcels', getAllParcels);
 app.get('/api/v1/parcels/:id', getOneParcel);
-app.put('/api/v1/parcels/:id', cancelParcel);
-
 app.get('/api/v1/users/:id/parcels', getUserParcels);
 
+app.post('/api/v1/parcels', createParcel);
 app.post('/api/v1/auth/signup', signup);
 app.post('/api/v1/auth/login', login);
+
+app.put('/api/v1/parcels/:id', cancelParcel);
 app.put('/api/v1/parcels/:id/status', updateStatus);
 app.put('/api/v1/parcels/:id/destination', changeCordinate);
 app.put('/api/v1/parcels/:id/presentLocation', changePresentLocation);
 
 app.use((req, res) => {
-  console.log(req.body)
-  res.statusCode = 500;
+  res.statusCode = 308;
+  res.setHeader('location', "/")
   const msg = {
-    status: 'error',
-    message: 'we dont quiit understand your request at this time. Project is WIP',
+    status: 'ok',
+    message: 'Redirect',
   };
   res.end(JSON.stringify(msg), null, '\t');
 });
