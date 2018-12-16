@@ -67,20 +67,20 @@
         <div id="new-parcel-viewport" style="margin-top: -20px">
 
           <h2 class="centered"> Create New Percel </h2>
-          <form class="align-center" id="percel-form" name='createParcel'>
+          <form class="align-center elevate" id="percel-form" name='createParcel'>
 
-            <div id="create-field1" class="elevate">
+            <div id="create-field1">
               <input type="text" class="fit-width" name="shortname" placeholder="Percel Title">
               <br />
 
-              <a href="#map-ui" class="place-picker" onclick="focusedInput('origin')"></a>
+              <a href="#map-ui" class="location-icon" onclick="focusedInput('origin')"></a>
               <input type="text" class="fit-width" name="origin" placeholder="Parcel Origin">
-              <input type="hidden" name='origin-lat'/>
+              <input type="hidden" name='origin-lat' />
               <input type="hidden" name='origin-lng' />
               <label for="parcel-origin"></label>
               <br />
 
-              <a href="#map-ui" class="place-picker" onclick="focusedInput('destination')">
+              <a href="#map-ui" class="location-icon" onclick="focusedInput('destination')">
               </a>
               <input type="text" class="fit-width" name="destination" placeholder="Parcel Destination">
               <input type="hidden" name='destination-lat' />
@@ -93,22 +93,35 @@
 
               <div id="create-sumary">
                 <h4 class="centered title-header">Order Summary</h4>
+                <div class="item-summary">
+                  <span type="button" class="home-icon"></span> <br />
+                  <span id='distance'> Disney Land</span>
+                </div>
 
                 <div class="item-summary">
-                  <strong> Price </strong> <span id='price'>$100</span>
+                  <span type="button" class="scale-icon"></span> <br />
+                  <span id='distance'>100kg</span>
                 </div>
+
                 <div class="item-summary">
-                  <strong> Distance </strong> <span id='price'>$100</span>
+                  <span type="button" class="ferry-icon"></span> <br />
+                  <span id='distance'>Wakanda</span>
                 </div>
+
                 <div class="item-summary">
-                  <strong> Weight </strong> <span id='distance'>100kg</span>
+                  <span type="button" class="distance-icon"></span> <br />
+                  <span id='price'>100km</span>
                 </div>
+
                 <div class="item-summary">
-                  <strong> Destination </strong> <span id='distance'>Wakanda</span>
+                  <span type="button" class="money-icon"></span> <br />
+
+                  <span id='price'>$100</span>
                 </div>
-                <div class="item-summary">
-                  <strong> Origin </strong> <span id='distance'> Disney Land</span>
-                </div>
+
+
+
+
               </div>
 
               <p>
@@ -117,7 +130,7 @@
 
             </div>
 
-            <div id="mapviewport" class="elevate">
+            <div id="mapviewport">
               <div id="position-container" class="elevate">
                 <div class="position-label" id="map-tip">
                   <p><strong></strong>Tip: USE ANY OF

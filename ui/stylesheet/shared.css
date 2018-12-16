@@ -130,20 +130,76 @@ ul.dashboard {
 .ack-cancel,
 .profile-icon,
 .icon,
-.cancel,
-.edit,
-.place-picker,
+.steer-cancel-icon,
+.steer-icon,
 .ferry-icon,
 .processed-icon,
-.unprocessed-icon {
-    width: 24px;
+.unprocessed-icon,
+.stats-icon,
+.money-icon,
+.phone-icon,
+.parcel-icon,
+.search-icon,
+.home-icon,
+.distance-icon,
+.email-icon,
+.scale-icon,
+.location-icon {
+    display: inline-block;
+    background-image: url("../images/icons/sprite.svg");
+    width: 30px;
     height: 24px;
     border-style: none;
-    background-position-x: center;
-    background-position-y: center;
+    background-position-x: 4px;
     outline: none;
     background-repeat: no-repeat;
 }
+
+.steer-cancel-icon{
+    background-position-y: -89px;
+}
+.steer-icon{
+    background-position-y: -281px;
+}
+.stats-icon {
+    background-position-y: -29px;
+}
+
+.profile-icon {
+    background-position-y: -250px;
+    ;
+}
+.home-icon{
+    background-position-y: -330px;
+}
+.money-icon{
+    background-position-y: -306px
+}
+
+.ferry-icon {
+    background-position-y: 0px;
+}
+
+.processed-icon {
+    background-position-y: -112px;
+}
+
+.unprocessed-icon {
+    background-position-y: -91px;
+}
+
+.location-icon {
+    background-position-y: -61px;
+}
+
+.distance-icon {
+    background-position-y: -359px;
+}
+
+.scale-icon {
+    background-position-y:  -414px;
+}
+
 
 input[type=checkbox] {
     display: none;
@@ -196,16 +252,6 @@ form#settingsUI {
 
     .hide-in-desktop {
         display: none;
-    }
-
-    .parcel-action {
-        position: absolute;
-    }
-
-    .cancel,
-    .edit {
-        top: 0px;
-        padding: 15px 0;
     }
 
     #logo {
