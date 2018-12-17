@@ -7,9 +7,8 @@ const app = express();
 app.use(bodyParser());
 app.use(cors);
 
-const UIPath = path.join(__dirname, 'ui');
-app.use(express.static(UIPath));
-app.use(express.static(UIPath + '/pages'));
+const UI_PATH = path.join(__dirname, 'ui');
+app.use(express.static(UI_PATH));
 
 import {
   cancelParcel,
@@ -34,7 +33,7 @@ import {
 
 import view from './server/controller/view';
 
-view(app);
+view(app, UI_PATH);
 
 
 app.get('/api/v1/oauth', oauthToken);
@@ -51,14 +50,9 @@ app.put('/api/v1/parcels/:id/status', updateStatus);
 app.put('/api/v1/parcels/:id/destination', changeCordinate);
 app.put('/api/v1/parcels/:id/presentLocation', changePresentLocation);
 
+
 app.use((req, res) => {
-  res.statusCode = 308;
-  res.setHeader('location', "/")
-  const msg = {
-    status: 'ok',
-    message: 'Redirect',
-  };
-  res.end(JSON.stringify(msg), null, '\t');
+res.redirect("/");
 });
 
 
