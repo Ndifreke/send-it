@@ -97,3 +97,21 @@ function setAttributes(element, attributeOption) {
     element.setAttribute(attribute, attributeOption[attribute]);
   return element;
 }
+
+function message(msg, type) {
+  let msgElement = document.getElementById("message-alert");
+  const msgClone = msgElement.cloneNode(true);
+  switch (type) {
+    case "fail":
+      msgClone.textContent = (msg || "Operation Failed");
+      msgClone.className  = 'message-failure';
+      msgElement.replaceWith(msgClone);
+      break;
+    case "success":
+      msgClone.textContent = (msg || "Successfull");
+      msgClone.className = 'message-success';
+      msgElement.replaceWith(msgClone);
+      break;
+  }
+
+}

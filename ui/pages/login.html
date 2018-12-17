@@ -8,6 +8,7 @@
       <link type="text/css" rel="stylesheet" href="../stylesheet/main.css">
       <script type="text/javascript" src="../javascript/authLogin.js"></script>
       <script type="text/javascript" src="../javascript/request.js"></script>
+      <script type="text/javascript" src="../javascript/UIBuilder.js"></script>
       <meta charset="UTF-8">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
    </head>
@@ -31,13 +32,17 @@
 
          <div style="margin-top:68px;">
             <div id="loginUI" class="elevate">
+
+               <span id='message-alert'>#</span>
+
                <h2 class="align-center"> Sign into SendIt Account </h2>
+
 
                <form class="align-center" method='POST' name='login'>
                   <fieldset>
                      <legend> Email </legend>
-                     <input type="email" name="email" class='fit-width centered' placeholder="example@gmail.com"
-                        value='new@emai.com' required />
+                     <input type="email" name="email" class='fit-width centered' placeholder="new@emai.com"
+                        required />
                   </fieldset>
                   <fieldset>
                      <legend>password</legend>
@@ -45,7 +50,7 @@
                         value='password' required />
                   </fieldset>
                   <fieldset>
-                     <input type="button" name='submit' class="prim-btn botton" value='Continue'>
+                     <input type="button" name='submitButton' class="prim-btn botton" value='Continue'>
                   </fieldset>
                   <a href=""> Recover Account</a>
                </form>

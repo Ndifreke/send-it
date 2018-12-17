@@ -76,13 +76,48 @@ ul.dashboard li {
     display: none;
 }
 
-/*
-ul.dashboard {
-    position: sticky;
-    margin-top: 16px;
-    padding: 0px;
+@keyframes animate-success {
+    from {
+        visibility: visible;
+        opacity: 0.993;
+    }
+
+    to {
+        opacity: 0.021;
+    }
 }
-*/
+
+@keyframes animate-failure {
+    from {
+        visibility: visible;
+        background: rgba(255, 2, 2, 0.925)
+    }
+
+    to {
+        background: rgba(255, 2, 2, 0.021)
+    }
+}
+
+#message-alert {
+    visibility: hidden;
+    font-size: 16px;
+    font-weight: bolder;
+    padding: 1px;
+    border-radius: 1px;
+    padding: 2px 19px;
+    vertical-align: middle;
+}
+
+.message-failure {
+    color: white;
+    animation: animate-failure 5s;
+}
+
+.message-success {
+    background: rgba(0, 153, 0);
+    color: white;
+    animation: animate-success 5s;
+}
 
 #dashboard-closer {
     position: sticky;
@@ -155,12 +190,14 @@ ul.dashboard {
     background-repeat: no-repeat;
 }
 
-.steer-cancel-icon{
+.steer-cancel-icon {
     background-position-y: -89px;
 }
-.steer-icon{
+
+.steer-icon {
     background-position-y: -281px;
 }
+
 .stats-icon {
     background-position-y: -29px;
 }
@@ -169,10 +206,12 @@ ul.dashboard {
     background-position-y: -250px;
     ;
 }
-.home-icon{
+
+.home-icon {
     background-position-y: -330px;
 }
-.money-icon{
+
+.money-icon {
     background-position-y: -306px
 }
 
@@ -197,7 +236,7 @@ ul.dashboard {
 }
 
 .scale-icon {
-    background-position-y:  -414px;
+    background-position-y: -414px;
 }
 
 
