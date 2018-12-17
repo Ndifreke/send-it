@@ -6,7 +6,7 @@
     <link type="text/css" rel="stylesheet" href="../stylesheet/shared.css">
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
     <link type="text/css" rel="stylesheet" href="../stylesheet/create.css">
-    <script type="text/javascript" src="../javascript/ui_render.js"></script>
+    <script type="text/javascript" src="../javascript/authCreate.js"></script>
     <script type="text/javascript" src="../javascript/UIBuilder.js"></script>
     <script type="text/javascript" src="../javascript/location_services.js"></script>
 
@@ -29,31 +29,33 @@
       </nav>
     </header>
     <aside id='dashboard'>
-      <a class="close-btn" id='dashboard-closer' onclick="toggle('dashboard')">
+      <a class="close-btn" id='dashboard-closer' onclick="toggleDisplay('dashboard')">
       </a>
+
       <ul class="dashboard">
 
-        <a href="./packages.html" value="Packages">
-          <li class="dashLink "> PARCELS </li>
-        </a>
+        <li>
+          <a class="dashLink" href="./packages.html" value="Packages"> Parcels </a>
+        </li>
 
-        <a href="./create.html" title="Create Parcel">
-          <li class="dashLink active">CREATE PARCEL</li>
-        </a>
+        <li>
+          <a class="dashLink active" href="#"> New Parcel </a>
+        </li>
 
-        <a href="./profile.html" title="Profile">
-          <li class="dashLink"> PROFILE </li>
-        </a>
+        <li>
+          <a class="dashLink" href="./profile.html"> Profile </a>
+        </li>
 
-        <a href="./settings.html" title="Settings">
-          <li class="dashLink"> SETTINGS </li>
-        </a>
+        <li>
+          <a class="dashLink" href="./settings.html"> Settings </a>
+        </li>
 
-        <a href="./admin.html" title="Admin">
-          <li class="dashLink">ADMINISTRATOR </li>
-        </a>
+        <li>
+          <a class="dashLink" href="./admin.html" title="Admin">Admin </a>
+        </li>
 
       </ul>
+
     </aside>
     <!--*********************************************************************************************-->
     <main id="main">
@@ -61,68 +63,103 @@
 
 
       <section id="main-content">
-        <h2> Create New Percel </h2>
-        <div id="new-parcel-viewport" style="margin-top: -20px" class="elevate">
 
-          <form class="align-center elevate" id="percel-form">
+        <div id="new-parcel-viewport" style="margin-top: -20px">
+
+          <h2 class="centered"> Create New Percel </h2>
+          <form class="align-center elevate" id="percel-form" name='createParcel'>
 
             <div id="create-field1">
-              <input type="text" id="percel-name" placeholder="Percel Title">
+              <input type="text" class="fit-width" name="shortname" placeholder="Percel Title">
               <br />
 
-              <a href="#map-ui" class="place-picker" onclick="setActivePosition('parcel-origin')"></a>
-              <input type="text" id="parcel-origin" placeholder="Origin">
+              <a href="#map-ui" class="location-icon" onclick="focusedInput('origin')"></a>
+              <input type="text" class="fit-width" name="origin" placeholder="Parcel Origin">
+              <input type="hidden" name='origin-lat' />
+              <input type="hidden" name='origin-lng' />
               <label for="parcel-origin"></label>
               <br />
 
-              <a href="#map-ui" class="place-picker" onclick="setActivePosition('parcel-destination')">
+              <a href="#map-ui" class="location-icon" onclick="focusedInput('destination')">
               </a>
-              <input type="text" id="parcel-destination" placeholder="Destination">
-
+              <input type="text" class="fit-width" name="destination" placeholder="Parcel Destination">
+              <input type="hidden" name='destination-lat' />
+              <input type="hidden" name='destination-lng' />
               <br />
 
               <div>
-                <textarea rows="10" placeholder="More information About this percel" id="percel-description-input">
-                                    Some description of what the content or the state of the content
-                                </textarea>
+                <textarea rows="10" class='fit-width'>  </textarea>
               </div>
+
+              <div id="create-sumary">
+                <h4 class="centered title-header">Order Summary</h4>
+                <div class="item-summary">
+                  <span type="button" class="home-icon"></span> <br />
+                  <span id='distance'> Disney Land</span>
+                </div>
+
+                <div class="item-summary">
+                  <span type="button" class="scale-icon"></span> <br />
+                  <span id='distance'>100kg</span>
+                </div>
+
+                <div class="item-summary">
+                  <span type="button" class="ferry-icon"></span> <br />
+                  <span id='distance'>Wakanda</span>
+                </div>
+
+                <div class="item-summary">
+                  <span type="button" class="distance-icon"></span> <br />
+                  <span id='price'>100km</span>
+                </div>
+
+                <div class="item-summary">
+                  <span type="button" class="money-icon"></span> <br />
+
+                  <span id='price'>$100</span>
+                </div>
+
+
+
+
+              </div>
+
               <p>
-                <input type="button" onclick="initMap" class="botton prim-btn" value='Create It' id="createMap">
+                <button class="botton prim-btn" type="submit">Create It </button>
               </p>
 
             </div>
 
+            <div id="mapviewport">
+              <div id="position-container" class="elevate">
+                <div class="position-label" id="map-tip">
+                  <p><strong></strong>Tip: USE ANY OF
+                    BELLOW METHOD
+                    <hr /></strong></p>
+                  Enter Address into
+                  Destination/Origin input field and
+                  click on Location Picker icon
+                  <a href="#map-ui" class="place-picker"></a>
+                  to see result on this menu and Map.
+                  <hr />
 
+                  Click any location on the Map to get
+                  information displayed in this Menu
+                  <hr />
+                  Select the Place on this menu to
+                  Fill the input box field
 
-            <div id="create-sumary" class="elevate">
-
-            </div>
-          </form>
-          <div id="mapviewport">
-            <div id="position-container" class="elevate">
-              <div class="position-label" id="map-tip">
-                <p><strong></strong>Tip: USE ANY OF
-                  BELLOW METHOD
-                  <hr /></strong></p>
-                Enter Address into
-                Destination/Origin input field and
-                click on Location Picker icon
-                <a href="#map-ui" class="place-picker"></a>
-                to see result on this menu and Map.
-                <hr />
-
-                Click any location on the Map to get
-                information displayed in this Menu
-                <hr />
-                Select the Place on this menu to
-                Fill the input box field
+                </div>
+              </div>
+              <div id="map-ui">
 
               </div>
             </div>
-            <div id="map-ui" class="elevate">
 
-            </div>
-          </div>
+
+
+          </form>
+
 
         </div>
 

@@ -1,11 +1,3 @@
-.place-picker {
-  display: inline-flex;
-  outline: none;
-  background-size: 25px 25px;
-  background: url("../images/icons/location.svg") no-repeat;
-  width: 20px;
-  height: 25px;
-}
 
 input#createMap.prim-btn.botton {
   padding: 12px 70px;
@@ -14,8 +6,6 @@ input#createMap.prim-btn.botton {
 #position-container {
   overflow-y: scroll;
   overflow-x: auto;
-  padding: 6px;
-  border: 1px solid white;
   margin: 11px;
   position: absolute;
   margin-top: 55;
@@ -49,12 +39,6 @@ input#createMap.prim-btn.botton {
   font-weight: 200;
 }
 
-#percel-form {
-  background: whitesmoke;
-  padding-top: 25px;
-  padding-bottom: 25px;
-}
-
 #mapviewport {
   width: 100%;
   height: 100%;
@@ -76,47 +60,51 @@ form#new-percel-viewport.elevate {
   margin-top: -28px
 }
 
-#create-field1{
-  display: inline-block;
-  width: 80%;
+#create-field1 {
+  padding:0 2%;
+  margin: 0 auto;
   text-align: center;
 }
-#create-field1 a{
+.item-summary{
+  text-align: center;
+  padding: 1% 3%;
+  margin-bottom: 2%;
+  border-bottom: 1px solid #F5F5F5;
+}
+
+#create-field1 a {
   display: block;
   margin: auto;
 }
 
 #create-sumary {
-  background:#FFEBAC;
-  width: -webkit-fill-available;
-  margin: 0 20px;
-  border-style: dashed;
-  border-color: #FFEBAC;
+  background: white;
 }
 
 /* mobile screen */
 @media screen and (max-width:500px) {
 
-  #create-sumary{
-    height: 50%;
+  #create-field1 {
+    transition: 0.2s;
+    text-align: center;
+  }
+
+  #create-sumary {
     margin: 10px 0;
-    width: 89%;
-    margin: auto;
   }
 
   textarea {
     height: 25%;
     width: 90%;
-}
+  }
 
-}
-
-textarea#percel-description-input {
-width: 90%;
 }
 
 @media screen and (min-width:500px) {
-  
+  #create-field1 {
+    width: 40%;
+  }
+
   #new-parcel-viewport {
     display: block;
   }
@@ -127,25 +115,4 @@ width: 90%;
 
 }
 
-@media screen and (min-width:1371px) {
-
-  /*
-  #new-parcel-viewport {
-    display: flex;
-  }
-  */
-  /*
-  #percel-form {
-    display: block;
-    width: 45%;
-  }
-*/
-/*
-  #percel-description-input {
-    height: 60%;
-    width: 90%;
-  }
-  */
-
-
-}
+@media screen and (min-width:1371px) {}

@@ -46,35 +46,28 @@ section.package {
     margin: 16px;
 }
 
-.cancel {
-    background: url("../images/icons/bin.svg") no-repeat;
-    text-transform: uppercase;
-}
-
-.cancel,
-.edit,
+.steer-cancel-icon,
+.steer-icon,
 .ack-cancel,
 .ack-delete {
     cursor: pointer;
 }
 
-.edit {
-    background: url("../images/icons/edit.svg") no-repeat;
-    text-transform: uppercase;
-}
-
 .parcel-action {
     right: 2%;
+    position: absolute;
+    display: block;
 }
 
 .ack-cancel {
     display: inline-block;
-    margin:0 18px;
+    margin: 0 18px;
     background-image: url('../images/icons/cancel.svg');
 }
+
 .ack-delete {
     display: inline-block;
-    margin:0 18px;
+    margin: 0 18px;
     background-image: url('../images/icons/accept.svg');
 }
 
@@ -87,12 +80,6 @@ section.package {
     overflow: auto;
     padding: 2% 5%;
 }
-
-table#sort-table td,
-table#sort-table th {
-    padding: 0px;
-}
-
 
 li.divider {
     margin-left: -20px;
@@ -116,15 +103,11 @@ li.divider {
 }
 
 form#search {
-    width: 300px;
-    position: absolute;
-    right: 0px;
+    text-align: right;
 }
 
 form#search input[type=text] {
-    margin-right: -31px;
     border-bottom: 2px solid #D6D6D6;
-    padding-right: 30px;
     border-right: 27px solid #D6D6D6;
 }
 
@@ -142,7 +125,7 @@ form#search input[type=text] {
 
 form[name='edit-prompt'] {
     font-size: 20px;
-    background:whitesmoke;
+    background: whitesmoke;
     width: 250px;
     height: 90px;
     padding: 5px;
@@ -153,3 +136,31 @@ form[name='edit-prompt'] {
     display: none;
     z-index: 5;
 }
+
+/* mobile */
+@media screen and (max-width: 760px) {
+    .parcel-action {
+        position: inherit;
+        text-align: center;
+    }
+    #new-parcel-viewport {
+        display: block;
+    }
+    .steer-cancel-icon,
+    .steer-icon {
+        margin: 0px 40px;
+    }
+}
+
+/* tablet */
+@media screen and (min-width:760px) {
+
+    .steer-cancel-icon,
+    .steer-icon {
+        display: block;
+        margin: 40px 0px;
+    }
+}
+
+/* desktop */
+@media screen and (min-width:1500px) {}

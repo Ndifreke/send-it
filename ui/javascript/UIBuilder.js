@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
   const parcelHeaders = document.getElementsByClassName('package-preview');
   highlightParcelHeader(parcelHeaders);
-  promptEdit(document.querySelectorAll('.cancel, .edit'));
+  promptEdit(document.querySelectorAll('.steer-cancel-icon, .steer-icon'));
   const menuButton = document.getElementById('flow-btn');
   menuButton.onclick = function () {
     toggleDisplay('dashboard');
@@ -66,14 +66,34 @@ function promptEdit(actionButtons) {
   actionButtons.forEach(function (action) {
     action.addEventListener('click', editFormAck);
   })
+}
 
-  function editFormAck() {
-    const promptForm = document.forms['edit-prompt'];
-    promptForm.querySelector('span').innerText = this.getAttribute('class');
-    const parcelPosition = this.parentElement.parentElement.getBoundingClientRect();
-    const parcelCenter = (parcelPosition.x + (parcelPosition.width / 2)) - 125 /* half of prompt */ ;
-    promptForm.style.top = parcelPosition.y + window.pageYOffset + 55 + 'px';
-    promptForm.style.left = parcelCenter + 'px';
-    promptForm.style.display = 'block';
+
+function showProfile(element) {
+  const profile = document.querySelector("#profile-sumary");
+  const stats = document.querySelector("#statistics");
+  if ('profile' in element.dataset) {
+    toggleDisplay(stats, 'none');
+    toggleDisplay(profile, 'block');
+  } else if ('stats' in element.dataset) {
+    toggleDisplay(profile, 'none');
+    toggleDisplay(stats, 'block');
   }
+}
+
+
+function editFormAck() {
+  const promptForm = document.forms['edit-prompt'];
+  promptForm.querySelector('span').innerText = this.getAttribute('class');
+  const parcelPosition = this.parentElement.parentElement.getBoundingClientRect();
+  const parcelCenter = (parcelPosition.x + (parcelPosition.width / 2)) - 125 /* half of prompt */ ;
+  promptForm.style.top = parcelPosition.y + window.pageYOffset + 55 + 'px';
+  promptForm.style.left = parcelCenter + 'px';
+  promptForm.style.display = 'block';
+}
+
+function setAttributes(element, attributeOption) {
+  for (const attribute in attributeOption)
+    element.setAttribute(attribute, attributeOption[attribute]);
+  return element;
 }

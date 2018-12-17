@@ -12,15 +12,15 @@ import util from './utils';
 const SECRET = process.env.SECRET || 'topdog';
 
 async function issueAccessToken(id) {
- const isAdmin = await User.is_admin(id)
- const payload = {
-  id: id,
-  is_admin: isAdmin,
-  email: User.exists(id)
- }
+  const isAdmin = await User.is_admin(id)
+  const payload = {
+    id: id,
+    is_admin: isAdmin,
+    email: User.exists(id)
+  }
 
- const token = jwt.sign(payload, SECRET);
- return Promise.resolve(token);
+  const token = jwt.sign(payload, SECRET);
+  return Promise.resolve(token);
 }
 
 /**
@@ -32,18 +32,46 @@ async function issueAccessToken(id) {
  * @returns {void}
  */
 function verifyAccessToken(req, resp, cb) {
- const token = req.headers['x-access-token'] || "error";
- jwt.verify(token, SECRET, function (err, userToken) {
-  if (err) {
-   resp.json(util.response("error", "Access denied", 0))
-  } else {
-   cb(userToken);
-  }
- });
+  const token = req.headers['authorization'] || "error";
+  console.log("authorization" in req.headers, req.headers['authorization'])
+  jwt.verify(token, SECRET, function (err, userToken) {
+    if (err) {
+      resp.json(util.response("error", "Access denied", 0))
+    } else if (cb) {
+      cb(userToken);
+    }
+  });
+}
 
+function oauthToken(req, resp, next) {
+  function reply(token) {
+    token ? resp.statusCode = 200 : resp.statusCode = 501;
+    resp.json({
+      status: 'ok',
+      message: 'valid token'
+    })
+    resp.end('');
+  }
+  verifyAccessToken(req, resp, reply)
+}
+
+function cors(req, res, next) {
+  //preflight sniffing
+  if (req.method.search(/^options$/gi) != -1) {
+    res.setHeader("Access-Control-Allow-Origin", '*');
+    res.setHeader('Access-Control-Allow-Methods', 'POST,GET,,PUT');
+    res.setHeader("Access-Control-Allow-Credentials", true)
+    resp.statusCode = 200;
+    resp.end();
+  }
+  res.setHeader("Access-Control-Allow-Origin", req.headers['origin'] || "*");
+  //res.setHeader("Access-Control-Allow-Credentials", true);
+  next();
 }
 
 export {
- verifyAccessToken,
- issueAccessToken
+  verifyAccessToken,
+  issueAccessToken,
+  cors,
+  oauthToken
 }

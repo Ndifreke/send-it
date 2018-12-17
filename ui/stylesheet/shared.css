@@ -8,6 +8,7 @@ html {
 }
 
 body {
+    background: whitesmoke;
     width: 100%;
     height: 100%;
     max-width: 100%;
@@ -19,10 +20,6 @@ body {
     padding: 0px;
 }
 
-td,
-th {
-    padding: 8px 2vh;
-}
 
 #signupUI,
 #signinUi {
@@ -33,28 +30,33 @@ li,
 ul,
 ol {
     list-style: none;
+    padding: 0px;
 }
+
+ul.dashboard li {
+    border-bottom: 1px solid lightsteelblue;
+}
+
+
 
 #navigation-list {
     margin-right: 20px;
 }
 
 .dashLink {
-    padding-top: 25px;
-    padding-bottom: 25px;
-    padding-left: 15%;
+    padding: 20px;
+    margin: 2px;
     color: ghostwhite;
-    border: 1px solid white;
-    margin: 5px;
-    border-radius: 2px;
+    display: block;
 }
 
 .dashLink:hover,
 .active {
     background-color: #FF5722;
     color: white;
-    font-weight: bolder;
     transition: 0.4s;
+    text-transform: uppercase;
+
 }
 
 #input-title {
@@ -74,11 +76,13 @@ ol {
     display: none;
 }
 
+/*
 ul.dashboard {
     position: sticky;
     margin-top: 16px;
     padding: 0px;
 }
+*/
 
 #dashboard-closer {
     position: sticky;
@@ -121,28 +125,93 @@ ul.dashboard {
     margin-left: 98px;
 }
 
-hr {
-    background: #BDBDBD;
-}
 
 .ack-delete,
 .ack-cancel,
+.profile-icon,
 .icon,
-.cancel,
-.edit,
-.place-picker {
-    width: 21px;
-    height: 21px;
+.steer-cancel-icon,
+.steer-icon,
+.ferry-icon,
+.processed-icon,
+.unprocessed-icon,
+.stats-icon,
+.money-icon,
+.phone-icon,
+.parcel-icon,
+.search-icon,
+.home-icon,
+.distance-icon,
+.email-icon,
+.scale-icon,
+.location-icon {
+    display: inline-block;
+    background-image: url("../images/icons/sprite.svg");
+    width: 30px;
+    height: 24px;
     border-style: none;
-    background-position-x: center;
-    background-position-y: center;
+    background-position-x: 4px;
     outline: none;
     background-repeat: no-repeat;
-
 }
+
+.steer-cancel-icon{
+    background-position-y: -89px;
+}
+.steer-icon{
+    background-position-y: -281px;
+}
+.stats-icon {
+    background-position-y: -29px;
+}
+
+.profile-icon {
+    background-position-y: -250px;
+    ;
+}
+.home-icon{
+    background-position-y: -330px;
+}
+.money-icon{
+    background-position-y: -306px
+}
+
+.ferry-icon {
+    background-position-y: 0px;
+}
+
+.processed-icon {
+    background-position-y: -112px;
+}
+
+.unprocessed-icon {
+    background-position-y: -91px;
+}
+
+.location-icon {
+    background-position-y: -61px;
+}
+
+.distance-icon {
+    background-position-y: -359px;
+}
+
+.scale-icon {
+    background-position-y:  -414px;
+}
+
 
 input[type=checkbox] {
     display: none;
+}
+
+strong {
+    font-size: smaller;
+}
+
+fieldset {
+    border: none;
+    width: -webkit-fill-available;
 }
 
 input[type=checkbox]+label {
@@ -161,6 +230,11 @@ form#settingsUI {
     display: inline-flex;
 }
 
+.flex {
+    display: flex;
+    width: 100%;
+}
+
 .inline-block {
     display: inline-block;
 }
@@ -171,47 +245,27 @@ form#settingsUI {
 
 /* for desktop */
 
-@media screen and (min-width:1000px) {
-    #settingsUI * {
-        width: 70%;
-    }
+@media screen and(min-width:1500px) {}
 
-    .parcel-action {
-        position: absolute;
-    }
-    .cancel,
-    .edit {
-        top: 0px;
-     padding:15px 0;
+/*   tablet size */
+@media screen and (min-width:1000px) {
+
+    .hide-in-desktop {
+        display: none;
     }
 
     #logo {
         left: 290px;
     }
+}
 
-    form#settingsUI {
-        margin: 0 20%;
-        padding: 20px;
-    }
-
-    #about {
-        display: flex;
-    }
-
-    #aveter-container {
-        width: 50%;
+@media screen and (max-width:1000px) {
+    .hide-in-mobile {
+        display: none;
     }
 }
 
 @media screen and (min-width:760px) {
-    form#settingsUI {
-        margin: 0 14%;
-        padding: 20px;
-    }
-
-    #about {
-        display: flex;
-    }
 
     #dash-expand {
         display: none;
@@ -258,53 +312,20 @@ form#settingsUI {
     }
 }
 
-
 /* for mobile */
 @media screen and (max-width : 760px) {
-    .parcel-action {
-        position: inherit;
-        text-align: center;
-    }
-
-    .cancel,
-    .edit {
-        display: inline-flex;
-        margin:0 45px;
-    }
 
     div#services {
         display: block;
-    }
-
-    #profile-sumary {
-        /* display: inline-block; */
-        /* width: 50%; */
-        /* min-width: 300px; */
-        padding: 10px;
-        margin-top: 10px;
-    }
-
-    #aveter-container {
-        width: 80%;
-    }
-
-    #settingsUI * {
-        width: -webkit-fill-available;
     }
 
     #signupUI {
         width: 80%;
     }
 
-    form#settingsUI {
-        padding: 20px;
-    }
-
-    #new-parcel-viewport {
-        display: block;
-    }
-
-    .inline {
+    .inline,
+    /* .flex */
+        {
         display: block;
     }
 
@@ -314,14 +335,6 @@ form#settingsUI {
 
     #dashboard-closer {
         display: block;
-    }
-
-    .package-content {
-        display: block;
-    }
-
-    .package-description {
-        width: 100%;
     }
 
 }

@@ -7,11 +7,7 @@
       <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
       <link type="text/css" rel="stylesheet" href="../stylesheet/profile.css">
       <link type="text/css" rel="stylesheet" href="../stylesheet/shared.css">
-      <script type="text/javascript" src="../javascript/ui_render.js"></script>
-      <script type="text/javascript" src="../javascript/responsive_ui.js"></script>
-      <!--
-      <script type="text/javascript" src="template/javascript/location_services.js"></script>
-      -->
+      <script type="text/javascript" src="../javascript/UIBuilder.js"></script>
       <meta charset="UTF-8">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
    </head>
@@ -22,7 +18,12 @@
          <a href='#' id="logo"> </a>
          <nav class="positon-bottom-right">
             <ul>
-
+               <li>
+                  <svg width='40px' height='40px'>
+                     <circle cx='20' cy='20' r='20' fill='red' />
+                     <text x='10px' y='25px' fill='white'>10</text>
+                  </svg>
+               </li>
                <li id="navigation-list">
                   <a href='../index.html' class="active-btn botton">
                      Sign out </a>
@@ -32,29 +33,33 @@
       </header>
 
       <aside id='dashboard'>
-         <a class="close-btn" id='dashboard-closer' onclick="toggle('dashboard')">
+         <a class="close-btn" id='dashboard-closer' onclick="toggleDisplay('dashboard')">
          </a>
+
          <ul class="dashboard">
-            <a href="./packages.html" value="Packages">
-               <li class="dashLink "> PARCELS </li>
-            </a>
 
-            <a href="./create.html" title="Create Parcel">
-               <li class="dashLink">CREATE PARCEL </li>
-            </a>
+            <li>
+               <a class="dashLink" href="./packages.html" value="Packages"> Parcels </a>
+            </li>
 
-            <a title="Profile">
-               <li class="dashLink active"> PROFILE </li>
-            </a>
+            <li>
+               <a class="dashLink" href="./create.html"> New Parcel </a>
+            </li>
 
-            <a href="./settings.html" title="Settings">
-               <li class="dashLink"> SETTINGS </li>
-            </a>
+            <li>
+               <a class="dashLink active" href="#"> Profile </a>
+            </li>
 
-            <a href="./admin.html" title="Admin">
-               <li class="dashLink">ADMINISTRATOR </li>
-            </a>
+            <li>
+               <a class="dashLink" href="./settings.html"> Settings </a>
+            </li>
+
+            <li>
+               <a class="dashLink" href="./admin.html" title="Admin">Admin </a>
+            </li>
+
          </ul>
+
       </aside>
       <!--*********************************************************************************************-->
       <main id="main">
@@ -62,18 +67,28 @@
          <button type="button" id="flow-btn"> </button>
 
          <section id="main-content">
-            <h2> Profile Information </h2>
             <section id='profile'>
 
                <div id="about" class="elevate">
-                  <h3>About</h3>
-
-                  <div id="aveter-container">
-                     <img src="../images/photo.gif" alt="Profile Image" width="250"
-                        height="300" />
+                  <h2> Profile Information </h2>
+                  <h3 class="hide-in-mobile title-header">About</h3>
+                  <div class="profile-image-container">
+                     <img src="../images/photo.gif" alt="Profile Image" width="250" height="300" />
                   </div>
 
-                  <div id="profile-sumary" class="elevate">
+                  <div class="hide-in-desktop">
+                     <div class='active-btn button fit-width' data-profile onclick="showProfile(this)">
+                        <span class="profile-icon"></span>
+                        <span> Profile</span>
+                     </div>
+
+                     <div class='active-btn button fit-width' data-stats onclick="showProfile(this)">
+                        <span class="stats-icon"> </span>
+                        <span> Statistics</span>
+                     </div>
+                  </div>
+
+                  <div id="profile-sumary">
                      <p>
                         <strong> Name :</strong> <br />
                         <span id="name"> Ndifreke Anthony</span>
@@ -86,32 +101,62 @@
                         <strong> Email :</strong> <br />
                         <span>user@domain.com</span>
                      </p>
-
                   </div>
 
-               </div>
 
-               <div id="statistics" class="elevate">
-                  <h3>Profile Statistics</h3>
-                  <div class="badges">
-                     <div class="stats-badge elevate">
-                        <span> Total Number of Percels
-                        </span>
-                        <span>588 </span>
-                     </div>
-                     <br>
-                     <div class="stats-badge elevate">
-                        <span> Percels Delivered </span>
-                        <span>15 </span>
-                     </div>
+                  <div id="statistics" class="centered">
+                     <h3 class="title-header hide-in-mobile">Profile Statistics</h3>
+                     <p></p>
+                     <fieldset>
+                        <legend>
+                           <div class="processed-icon inline-block">
+                           </div>
+                           <br />
+                           <strong>DELIVERED</strong>
+                        </legend>
+                        <div class="badges">
+                           <div class="stats-badge elevate">
+                              <span>588 </span>
+                           </div>
 
-                     <div class="stats-badge elevate">
-                        <span> Percel In Process </span>
-                        <span> 5 </span>
+                        </div>
+                     </fieldset>
+                     <fieldset>
+                        <legend>
+                           <div class="ferry-icon inline-block">
+                           </div>
+                           </br>
+                           <strong>PROCESSING</strong>
+                        </legend>
+                        <div class="badges">
+                           <div class="stats-badge elevate">
+                              <span>15 </span>
+                           </div>
+                        </div>
+                     </fieldset>
 
-                     </div>
+                     <fieldset>
+                        <legend>
+                           <div class="unprocessed-icon inline-block">
+                           </div>
+                           <br />
+                           <strong>CANCELLED</strong>
+                        </legend>
+
+                        <div class="badges">
+                           <div class="stats-badge elevate">
+                              <span> 5 </span>
+                           </div>
+                        </div>
+                     </fieldset>
+
+
+
                   </div>
                </div>
+               </div>
+
+
 
 
             </section>

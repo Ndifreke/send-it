@@ -7,9 +7,9 @@ h1,
 h2,
 h3,
 h4 {
-  font-family: 'Roboto', sans-serif;;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 300;
     color: #FF5708;
-
 }
 
 .sec-btn {
@@ -18,14 +18,11 @@ h4 {
     background: snow;
 }
 
-#home {
-    
-}
-
 .accent {
     color: #FF5708;
 }
-.bg, body{
+
+.bg {
     background: url("../images/bg.jpg");
 }
 
@@ -41,14 +38,20 @@ h4 {
     text-decoration: none;
     border-radius: 2px;
     border-style: none;
+    outline: none;
 }
 
 .prim-btn,
 .minor-btn {
     background: rgb(55, 160, 0);
     color: white;
-    padding: 9px 78px;
+    padding: 9px 35px;
     font-size: 15px;
+}
+.prim-btn:active, .prim-btn:hover{
+    transition: 0.5s;
+    background: rgb(55, 182, 0);
+    box-shadow: none;
 }
 
 .minor-btn {
@@ -57,16 +60,17 @@ h4 {
 }
 
 .elevate,
-.active-btn:hover,
-.prim-btn:hover,
-.package-preview:hover,
-.position-label:hover {
-    box-shadow: 0px 1px 8px rgba(0, 0, 0, 0.20);
-
+.position-label,
+.prim-btn {
+    //box-shadow: 0px 1px 8px rgba(0, 0, 0, 0.20);
+    box-shadow: 1px 10px 20px 0 rgba(0, 0, 0, 0.5);
 }
 
-.active-btn:hover {
+.active-btn:hover,
+.active-btn:active {
+    text-transform: uppercase;
     background-color: #FF5722;
+    outline: none;
 }
 
 nav ul {
@@ -91,9 +95,10 @@ li#create-package {
 .positon-bottom-right {
     position: absolute;
     right: 5px;
-    bottom: 0px;
+    // bottom: 0px;
 }
-header-align-content{
+
+header-align-content {
     width: 100%
 }
 
@@ -110,10 +115,20 @@ main {
     max-width: 580px;
     border: none;
     margin: auto;
+    text-align: center;
     background: whitesmoke;
 }
-.align-center {
+
+.centered {
     text-align: center;
+}
+
+.title-header {
+    padding: 4px 20%;
+    color: white;
+    background: #FF5708;
+    border-radius: 3px;
+    display: inline-block;
 }
 
 .align-right {
@@ -121,7 +136,7 @@ main {
 }
 
 .fit-width {
-    width: fit-content;
+    width: 100%;
 }
 
 input[type='text'],
@@ -129,21 +144,26 @@ input[type='email'],
 input[type='tel'],
 input[type='password'] {
     font-family: serif;
-    width: 90%;
     border-top: none;
     border-right: none;
     border-left: none;
     font-size: 17px;
     display: inline-flex;
     outline: none;
-    color: rgb(50, 50, 50);
+    color: rgb(55, 65, 65);
     font-weight: 100;
-    margin: 5px;
-    border-radius: 5px;
-    height: 45px;
-    padding: 0 10px;
-    box-sizing: border-box;
+    border-radius: 2px;
+    height: 35px;
+    text-align: center;
+    border: 1px solid #ccc;
+}
 
+input[type='text']:focus,
+input[type='email']:focus,
+input[type='tel']:focus,
+input[type='password']:focus {
+    border: none;
+    border-bottom: 1px solid #ccc;
 }
 
 #logo {
@@ -258,10 +278,6 @@ footer {
     height: auto;
     background: white;
     margin: auto;
-}
-hr{
-    margin:0px;
-
 }
 
 .slogan {
