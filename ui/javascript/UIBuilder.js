@@ -98,13 +98,13 @@ function setAttributes(element, attributeOption) {
   return element;
 }
 
-function message(msg, type) {
+function alertMessage(msg, type) {
   let msgElement = document.getElementById("message-alert");
   const msgClone = msgElement.cloneNode(true);
   switch (type) {
     case "fail":
       msgClone.textContent = (msg || "Operation Failed");
-      msgClone.className  = 'message-failure';
+      msgClone.className = 'message-failure';
       msgElement.replaceWith(msgClone);
       break;
     case "success":
@@ -114,4 +114,38 @@ function message(msg, type) {
       break;
   }
 
+}
+
+function showViewport() {
+  const waitAnimation = document.getElementById('wait-animation');
+  waitAnimation.parentElement.removeChild(waitAnimation);
+  document.querySelector('div.viewport').style.visibility = 'visible';
+}
+
+async function initPage(redirectSuccess = null, redirectFailure = null) {
+  console.log(document.readyState)
+  /* Attempt to log the user in with available token */
+  const token = window.localStorage.getItem("token");
+  try {
+    if (token) {
+      //host + '/api/v1/oauth'
+      const response = await get('http://facebook.com');
+      if (response.status === 200 && redirectSuccess)
+        window.location = redirectSuccess;
+      if (response.status !== 200 && redirectFailure)
+        window.location = redirectFailure;
+    }
+  } catch (e) {
+    alertMessage('Network Error Occured', 'fail');
+  } finally {
+    showViewport();
+  }
+}
+
+function showSpinner() {
+  document.getElementById('loader').style.visibility = 'visible';
+}
+
+function hideSpinner() {
+  document.getElementById('loader').style.visibility = 'hidden';
 }

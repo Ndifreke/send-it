@@ -20,6 +20,9 @@ body {
     padding: 0px;
 }
 
+.viewport {
+    visibility: hidden;
+}
 
 #signupUI,
 #signinUi {
@@ -96,6 +99,63 @@ ul.dashboard li {
     to {
         background: rgba(255, 2, 2, 0.021)
     }
+}
+
+@keyframes bounce-animation {
+    20% {
+        bottom: 55%;
+    }
+
+    50% {
+        bottom: 47%;
+    }
+
+    75% {
+        bottom: 50%;
+    }
+
+    91% {
+        bottom: 47%;
+    }
+}
+
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.bounce {
+    animation: bounce-animation 2.5s infinite;
+}
+
+.fixed-centered,
+.wait-message {
+    position: fixed;
+    left: 47%;
+    bottom: 47%;
+    z-index: 50;
+}
+
+.wait-message {
+    bottom: 44%;
+    left: 40%;
+}
+
+#loader {
+    visibility: hidden;
+}
+
+.spin {
+    animation: spin 2.5s infinite;
+}
+
+circle[class='c1'] {
+    stroke: #F90044;
 }
 
 #message-alert {

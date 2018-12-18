@@ -1,4 +1,5 @@
 document.addEventListener('DOMContentLoaded', function () {
+  initPage();
 
   document.forms.createParcel.addEventListener('submit', submitParcel);
 })
