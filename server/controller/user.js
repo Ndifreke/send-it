@@ -31,15 +31,19 @@ async function login(req, res) {
   } = req.body;
   console.log(req.body)
   const data = await User.authLogin(email, password, res);
-  const userId = data.response[0]
+  res.setHeader('content-type', "Application/json");
+  const userId = data.response[0];
   if (userId) {
     delete data.response;
     const token = await issueAccessToken(userId);
     data.token = token;
     res.setHeader("Authorization", token);
+    res.statusCode = 200;
+    res.json(data);
+  } else {
+    res.statusCode = 403;
+    res.json(data);
   }
-  res.setHeader('content-type', "Application/json");
-  res.json(data);
 }
 
 export {

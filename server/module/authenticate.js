@@ -28,50 +28,52 @@ async function issueAccessToken(id) {
  * 
  * @param {response} res - Request object
  *  @param {response} resp - Request object
- * @param {request} cb - Callback function which the verified token will be passed to
+ * @param {request} callback - Callback function which the verified token will be passed to
  * @returns {void}
  */
-function verifyAccessToken(req, resp, cb) {
-  const token = req.headers['authorization'] || "error";
-  console.log("authorization" in req.headers, req.headers['authorization'])
+function verifyAccessToken(req, resp, token, callback) {
   jwt.verify(token, SECRET, function (err, userToken) {
     if (err) {
+      resp.statusCode = 403;
       resp.json(util.response("error", "Access denied", 0))
-    } else if (cb) {
-      cb(userToken);
+    } else if (callback) {
+      callback(userToken);
     }
   });
 }
 
-function oauthToken(req, resp, next) {
-  function reply(token) {
+function authToken(req, resp, next) {
+  function callback(token) {
     token ? resp.statusCode = 200 : resp.statusCode = 501;
     resp.json({
       status: 'ok',
       message: 'valid token'
     })
-    resp.end('');
   }
-  verifyAccessToken(req, resp, reply)
+  console.log("authorization", req.headers['authorization'])
+  const token = req.headers['authorization'] || "error";
+  verifyAccessToken(req, resp, token, callback)
 }
 
 function cors(req, res, next) {
   //preflight sniffing
   if (req.method.search(/^options$/gi) != -1) {
-    res.setHeader("Access-Control-Allow-Origin", '*');
+    res.setHeader("Access-Control-Allow-Origin", req.headers['origin'] || "*");
     res.setHeader('Access-Control-Allow-Methods', 'POST,GET,,PUT');
-    res.setHeader("Access-Control-Allow-Credentials", true)
-    resp.statusCode = 200;
-    resp.end();
+    res.setHeader("Access-Control-Allow-Credentials", true);
+    res.setHeader("Access-Control-Allow-Headers", 'authorization')
+    res.statusCode = 200;
+    res.end();
+  } else {
+    res.setHeader("Access-Control-Allow-Origin", req.headers['origin'] || "*");
+    res.setHeader("Access-Control-Allow-Credentials", true);
+    next();
   }
-  res.setHeader("Access-Control-Allow-Origin", req.headers['origin'] || "*");
-  //res.setHeader("Access-Control-Allow-Credentials", true);
-  next();
 }
 
 export {
   verifyAccessToken,
   issueAccessToken,
   cors,
-  oauthToken
+  authToken
 }

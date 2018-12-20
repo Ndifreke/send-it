@@ -32,7 +32,7 @@ function createParcel(req, res) {
 function getOneParcel(req, res) {
    // res.setHeader( 'Content-Type', 'text/json' );
    async function getOneCallback(accessToken) {
-      const id = req.params.id;
+      const id = req.params.parcelID;
       const result = await Parcel.fetchById(id, res);
       res.json(result)
    }
@@ -62,10 +62,8 @@ function getAllParcels(req, res) {
 function getUserParcels(req, res) {
    async function getUsersCallback(accessToken) {
       res.setHeader('Content-Type', 'text/json');
-      const {
-         id
-      } = req.params;
-      const result = await Parcel.fetchUserParcels(id, res);
+      const userID = req.params.userID;
+      const result = await Parcel.fetchUserParcels(userID, res);
       res.json(result);
    }
    verifyAccessToken(req, res, getUsersCallback);
@@ -80,7 +78,7 @@ function getUserParcels(req, res) {
 function cancelParcel(req, res) {
    async function cancelCallback(accessToken) {
       if (!accessToken.is_admin) {
-         const id = req.params.id;
+         const id = req.params.parcelID;
          res.statusCode = 201;
          const result = await Parcel.changeStatus(id, Parcel.CANCELLED, res);
          res.json(result);
@@ -99,7 +97,7 @@ function cancelParcel(req, res) {
  */
 function changeCordinate(req, res) {
    async function changeCordCallback(accessToken) {
-      const id = req.params.id;
+      const id = req.params.parcelID;
       const {
          lat,
          lng
@@ -122,7 +120,7 @@ function changeCordinate(req, res) {
 
 function changePresentLocation(req, res) {
    async function changePresentLocationCallback(accessToken) {
-      const changed = await Parcel.changeLocation(req.params.id, req.body.presentLocation, res)
+      const changed = await Parcel.changeLocation(req.params.parcelID, req.body.presentLocation, res)
       res.json(changed);
    }
    verifyAccessToken(req, res, changePresentLocationCallback);
@@ -139,7 +137,7 @@ function changePresentLocation(req, res) {
 function updateStatus(req, res) {
 
    async function updateStatusCallback(accessToken) {
-      const result = await Parcel.changeStatus(req.params.id, req.body.status, res);
+      const result = await Parcel.changeStatus(req.params.parcelID, req.body.status, res);
       res.json(result);
    }
    const id = verifyAccessToken(req, res, updateStatusCallback);
