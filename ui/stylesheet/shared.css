@@ -101,7 +101,7 @@ ul.dashboard li {
     }
 }
 
-@keyframes bounce-animation {
+@keyframes bounce {
     20% {
         bottom: 55%;
     }
@@ -119,18 +119,44 @@ ul.dashboard li {
     }
 }
 
-@keyframes spin {
-    from {
+@keyframes wait-spin {
+    0% {
         transform: rotate(0deg);
     }
 
-    to {
+    100% {
+        transform: rotate(360deg);
+    }
+
+    50% {
+        transform: rotate(-360deg)
+    }
+
+    100% {
+        transform: rotate(-0deg);
+    }
+}
+
+.wait-spin {
+    animation: wait-spin 2.5s infinite;
+}
+
+@keyframes load-spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
         transform: rotate(360deg);
     }
 }
 
+.load-spin {
+    animation: load-spin 2.5s infinite;
+}
+
 .bounce {
-    animation: bounce-animation 2.5s infinite;
+    animation: bounce 2.5s infinite;
 }
 
 .fixed-centered,
@@ -150,9 +176,7 @@ ul.dashboard li {
     visibility: hidden;
 }
 
-.spin {
-    animation: spin 2.5s infinite;
-}
+
 
 circle[class='c1'] {
     stroke: #F90044;

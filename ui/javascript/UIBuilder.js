@@ -1,36 +1,28 @@
-document.addEventListener('DOMContentLoaded', function () {
+const host = 'http://127.0.0.1:5500';
+const remote = 'http://127.0.0.1:8080';
 
+const option = {
+  defaultRender: false,
+  renderOnFail: false,
+  locationOnFail: null,
+  renderOnError: false,
+  locationOnError: null,
+  renderOnSuccess: false,
+  locationOnSuccess: null,
+}
+
+
+document.addEventListener('DOMContentLoaded', function () {
   document.body.addEventListener('click', hideMenus, true);
 
-  const parcelHeaders = document.getElementsByClassName('package-preview');
-  highlightParcelHeader(parcelHeaders);
-  promptEdit(document.querySelectorAll('.steer-cancel-icon, .steer-icon'));
   const menuButton = document.getElementById('flow-btn');
-  menuButton.onclick = function () {
-    toggleDisplay('dashboard');
-  };
+  if (menuButton)
+    menuButton.onclick = function () {
+      toggleDisplay('dashboard');
+    };
 
 });
 
-
-function highlightParcelHeader(parcelHeaders) {
-
-  for (const parcelHeader of parcelHeaders) {
-    parcelHeader.onclick = function () {
-      // reset other headers colors to dark blue
-      for (const otherParcelHeader of parcelHeaders) {
-        if (parcelHeader !== otherParcelHeader) {
-          otherParcelHeader.style['background-color'] = '#323544';
-        }
-      }
-      const parcelContainerId = parcelHeader.dataset.parcelId;
-      toggleDisplay(parcelContainerId);
-      const parcelContainer = document.getElementById(parcelContainerId);
-      (parcelContainer.style.display === 'block') ?
-      this.style['background-color'] = '#FF5722': this.style['background-color'] = '#323544';
-    };
-  }
-}
 
 /* Set the display of an html element identified by the id or class name passed in as
  * argument. if an arguments contains object. the id field should be the elements id or class
@@ -50,8 +42,15 @@ function getElement(identifier, attribute) {
 }
 
 function hideMenus(event) {
-  document.querySelector("form[name='edit-prompt'").style.display = 'none';
-  console.log(event.target)
+  switch (event.target) {
+    case 'acknowledgeAction':
+      document.querySelector("form[name='edit-prompt'").style.display = 'none';
+      break;
+    case 'sidebar':
+
+      break;
+    default:
+  }
 }
 
 function toggleDisplay(elm, display) {
@@ -62,35 +61,6 @@ function toggleDisplay(elm, display) {
     element.style.display = display;
 }
 
-function promptEdit(actionButtons) {
-  actionButtons.forEach(function (action) {
-    action.addEventListener('click', editFormAck);
-  })
-}
-
-
-function showProfile(element) {
-  const profile = document.querySelector("#profile-sumary");
-  const stats = document.querySelector("#statistics");
-  if ('profile' in element.dataset) {
-    toggleDisplay(stats, 'none');
-    toggleDisplay(profile, 'block');
-  } else if ('stats' in element.dataset) {
-    toggleDisplay(profile, 'none');
-    toggleDisplay(stats, 'block');
-  }
-}
-
-
-function editFormAck() {
-  const promptForm = document.forms['edit-prompt'];
-  promptForm.querySelector('span').innerText = this.getAttribute('class');
-  const parcelPosition = this.parentElement.parentElement.getBoundingClientRect();
-  const parcelCenter = (parcelPosition.x + (parcelPosition.width / 2)) - 125 /* half of prompt */ ;
-  promptForm.style.top = parcelPosition.y + window.pageYOffset + 55 + 'px';
-  promptForm.style.left = parcelCenter + 'px';
-  promptForm.style.display = 'block';
-}
 
 function setAttributes(element, attributeOption) {
   for (const attribute in attributeOption)
@@ -116,30 +86,12 @@ function alertMessage(msg, type) {
 
 }
 
-function showViewport() {
+function renderPage(message, type) {
   const waitAnimation = document.getElementById('wait-animation');
   waitAnimation.parentElement.removeChild(waitAnimation);
   document.querySelector('div.viewport').style.visibility = 'visible';
-}
-
-async function initPage(redirectSuccess = null, redirectFailure = null) {
-  console.log(document.readyState)
-  /* Attempt to log the user in with available token */
-  const token = window.localStorage.getItem("token");
-  try {
-    if (token) {
-      //host + '/api/v1/oauth'
-      const response = await get('http://facebook.com');
-      if (response.status === 200 && redirectSuccess)
-        window.location = redirectSuccess;
-      if (response.status !== 200 && redirectFailure)
-        window.location = redirectFailure;
-    }
-  } catch (e) {
-    alertMessage('Network Error Occured', 'fail');
-  } finally {
-    showViewport();
-  }
+  if (message)
+    alertMessage(message, type);
 }
 
 function showSpinner() {
@@ -148,4 +100,69 @@ function showSpinner() {
 
 function hideSpinner() {
   document.getElementById('loader').style.visibility = 'hidden';
+}
+
+/* Initialize secure page after successfull verification a token */
+async function initPage(option) {
+  const token = window.localStorage.getItem("token");
+
+  if (token) {
+    SendIt.get(remote + '/api/v1/auth').
+    then(function response(res) {
+      if (res.status === 200) {
+        option.locationOnSuccess ? window.location = option.locationOnSuccess : null;
+        option.renderOnSuccess ? renderPage() : null;
+      } else {
+        option.locationOnFail ? window.location = option.locationOnFail : null;
+        option.renderOnFail ? renderPage("Unauthorized", 'fail') : null;
+      }
+    }).
+    catch(function error(err) {
+      option.locationOnError ? window.location = option.locationOnError : null;
+      option.renderOnError ? renderPage('Network Error Occured', 'fail') : null;
+    })
+  } else {
+    option.renderOnFail ? renderPage("Sign in", 'fail') : null;
+    option.locationOnFail ? window.location = option.locationOnFail : null;
+  }
+}
+
+class SendIt {
+  static request(url, data, overrides) {
+    let payload = {
+      method: "POST",
+      mode: "cors",
+      credentials: "include",
+      body: data,
+      headers: {
+        'Content-type': 'application/x-www-form-urlencoded'
+      }
+    }
+    //override default value in payload 
+    let init = overrides ? Object.assign(payload, overrides) : payload;
+    //console.log(init);
+    return fetch(url, init)
+  }
+
+  static get(url) {
+    const override = {
+      method: "GET",
+      headers: {
+        authorization: window.localStorage.getItem('token'),
+        'Content-type': 'application/x-www-form-urlencoded'
+      }
+    }
+    return SendIt.request(url, null, override);
+  }
+
+  static put(url, data) {
+    const override = {
+      method: "GET"
+    }
+    SendIt.request(url, data, override)
+  }
+
+  static post(url, data, override) {
+    return SendIt.request(url, data, override);
+  }
 }

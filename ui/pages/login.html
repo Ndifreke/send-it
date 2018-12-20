@@ -7,7 +7,6 @@
       <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
       <link type="text/css" rel="stylesheet" href="../stylesheet/main.css">
       <script type="text/javascript" src="../javascript/authLogin.js"></script>
-      <script type="text/javascript" src="../javascript/request.js"></script>
       <script type="text/javascript" src="../javascript/UIBuilder.js"></script>
       <meta charset="UTF-8">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -15,10 +14,9 @@
 
    <body id="home">
 
-
       <div id='wait-animation'>
          <div class="fixed-centered bounce">
-            <svg class='spin' width='46' height='46'>
+            <svg class='wait-spin' width='46' height='46'>
                <circle class='c1' cx='23px' cy='23px' r='9' fill='gray' stroke-width='3' />
                <g fill='orange'>
                   <circle cx='4' cy='23' r='4' />
@@ -28,7 +26,6 @@
                </g>
             </svg>
          </div>
-
          <div class="wait-message">
             <strong>Connecting .... </strong>
          </div>
@@ -74,7 +71,7 @@
 
                      <fieldset>
                         <div id='loader'>
-                           <svg class='spin' width='46' height='46'>
+                           <svg class='wait-spin' width='46' height='46'>
                               <circle class='c1' cx='23px' cy='23px' r='3' fill='gray' stroke-width='3' />
                               <g fill='orange'>
                                  <circle cx='14' cy='23' r='3' />
