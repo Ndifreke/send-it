@@ -31,7 +31,9 @@ async function issueAccessToken(id) {
  * @param {request} callback - Callback function which the verified token will be passed to
  * @returns {void}
  */
-function verifyAccessToken(req, resp, token, callback) {
+function verifyAccessToken(req, resp, callback, token) {
+  if (!token)
+    token = req.headers['authorization'];
   jwt.verify(token, SECRET, function (err, userToken) {
     if (err) {
       resp.statusCode = 403;
@@ -50,9 +52,7 @@ function authToken(req, resp, next) {
       message: 'valid token'
     })
   }
-  console.log("authorization", req.headers['authorization'])
-  const token = req.headers['authorization'] || "error";
-  verifyAccessToken(req, resp, token, callback)
+  verifyAccessToken(req, resp, callback)
 }
 
 function cors(req, res, next) {

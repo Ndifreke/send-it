@@ -177,7 +177,7 @@ class Parcel {
     if ( !result )
       res.statusCode = 404;
     return Promise.resolve(
-      util.response( 'ok', result ? 'Parcel cancelled' : 'No Parcel Affected', result ) );
+      util.response( 'ok', result ? 'status updated' : 'No Parcel Affected', result ) );
   }
 
 

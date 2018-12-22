@@ -54,7 +54,8 @@ function getAllParcels(req, res) {
 }
 
 /**
- * Get all parcels owned by a User identified by id in res.body
+ * Get all parcels owned by a User identified by userID
+ * if no userID exist, ID will be looked in accessToken field
  * @param {response} res - Request object
  * @param {request} req - Response object.
  * @returns {void}
@@ -63,7 +64,7 @@ function getUserParcels(req, res) {
    async function getUsersCallback(accessToken) {
       res.setHeader('Content-Type', 'text/json');
       const userID = req.params.userID;
-      const result = await Parcel.fetchUserParcels(userID, res);
+      const result = await Parcel.fetchUserParcels(util.isInteger(userID) || accessToken.id, res);
       res.json(result);
    }
    verifyAccessToken(req, res, getUsersCallback);
@@ -135,7 +136,6 @@ function changePresentLocation(req, res) {
 
 
 function updateStatus(req, res) {
-
    async function updateStatusCallback(accessToken) {
       const result = await Parcel.changeStatus(req.params.parcelID, req.body.status, res);
       res.json(result);

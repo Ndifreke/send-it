@@ -44,7 +44,7 @@ app.post('/api/v1/parcels', createParcel);
 app.post('/api/v1/auth/signup', signup);
 app.post('/api/v1/auth/login', login);
 
-app.put('/api/v1/parcels/:parcelID', cancelParcel);
+app.put('/api/v1/parcels/:parcelID/cancel', cancelParcel);
 app.put('/api/v1/parcels/:parcelID/status', updateStatus);
 app.put('/api/v1/parcels/:parcelID/destination', changeCordinate);
 app.put('/api/v1/parcels/:parcelID/presentLocation', changePresentLocation);
