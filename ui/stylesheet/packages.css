@@ -123,7 +123,7 @@ form#search input[type=text] {
     display: none;
 }
 
-form[name='edit-prompt'] {
+form[name='action-prompt'] {
     font-size: 20px;
     background: whitesmoke;
     width: 250px;

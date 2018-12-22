@@ -40,7 +40,15 @@ ul.dashboard li {
     border-bottom: 1px solid lightsteelblue;
 }
 
-
+.stick-top-centered {
+    top:0;
+    margin-bottom: 0;
+    padding-bottom: 0;
+    z-index: 2;
+    position: sticky;
+    width: fit-content;
+    margin: auto;
+}
 
 #navigation-list {
     margin-right: 20px;
@@ -162,21 +170,18 @@ ul.dashboard li {
 .fixed-centered,
 .wait-message {
     position: fixed;
-    left: 47%;
+    left: 50%;
     bottom: 47%;
     z-index: 50;
 }
 
 .wait-message {
     bottom: 44%;
-    left: 40%;
 }
 
 #loader {
     visibility: hidden;
 }
-
-
 
 circle[class='c1'] {
     stroke: #F90044;
@@ -453,7 +458,7 @@ form#settingsUI {
     }
 
     #main-content {
-        margin-left: 1%;
+   //     margin-left: 1%;
     }
 
     #dashboard-closer {

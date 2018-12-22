@@ -13,8 +13,6 @@ const option = {
 
 
 document.addEventListener('DOMContentLoaded', function () {
-  document.body.addEventListener('click', hideMenus, true);
-
   const menuButton = document.getElementById('flow-btn');
   if (menuButton)
     menuButton.onclick = function () {
@@ -41,17 +39,7 @@ function getElement(identifier, attribute) {
   return null;
 }
 
-function hideMenus(event) {
-  switch (event.target) {
-    case 'acknowledgeAction':
-      document.querySelector("form[name='edit-prompt'").style.display = 'none';
-      break;
-    case 'sidebar':
 
-      break;
-    default:
-  }
-}
 
 function toggleDisplay(elm, display) {
   const element = (typeof elm === 'string') ? document.getElementById(elm) : elm;
@@ -128,41 +116,38 @@ async function initPage(option) {
 }
 
 class SendIt {
-  static request(url, data, overrides) {
+  static request(url, data, overrideHeader) {
     let payload = {
       method: "POST",
       mode: "cors",
       credentials: "include",
       body: data,
       headers: {
-        'Content-type': 'application/x-www-form-urlencoded'
-      }
-    }
-    //override default value in payload 
-    let init = overrides ? Object.assign(payload, overrides) : payload;
-    //console.log(init);
-    return fetch(url, init)
-  }
-
-  static get(url) {
-    const override = {
-      method: "GET",
-      headers: {
         authorization: window.localStorage.getItem('token'),
         'Content-type': 'application/x-www-form-urlencoded'
       }
     }
-    return SendIt.request(url, null, override);
+    //override default value in payload 
+    let init = overrideHeader ? Object.assign(payload, overrideHeader) : payload;
+    console.log(init);
+    return fetch(url, init)
+  }
+
+  static get(url) {
+    return SendIt.request(url, null, {
+      method: "GET"
+    });
   }
 
   static put(url, data) {
-    const override = {
-      method: "GET"
-    }
-    SendIt.request(url, data, override)
+    return SendIt.request(url, data, {
+      method: "PUT"
+    })
   }
 
-  static post(url, data, override) {
-    return SendIt.request(url, data, override);
+  static post(url, data) {
+    return SendIt.request(url, data, {
+      method: 'post'
+    });
   }
 }
