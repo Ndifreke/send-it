@@ -70,6 +70,11 @@ function alertMessage(msg, type) {
       msgClone.className = 'message-success';
       msgElement.replaceWith(msgClone);
       break;
+    case "inform":
+      msgClone.textContent = (msg || "Not Completed");
+      msgClone.className = 'message-inform';
+      msgElement.replaceWith(msgClone);
+      break;
   }
 
 }
@@ -115,12 +120,29 @@ async function initPage(option) {
   }
 }
 
+function xmlGet(url, callback) {
+  const req = new XMLHttpRequest();
+  req.open('GET', url);
+
+  return new Promise((resolve) => {
+    req.onreadystatechange = function () {
+      if (req.status === 200 && req.readyState === 4) {
+        if (callback) {
+          callback(req.responseText);
+        }
+        resolve(req.responseText);
+      }
+    };
+    req.send();
+  });
+}
+
 class SendIt {
   static request(url, data, overrideHeader) {
     let payload = {
       method: "POST",
-      mode: "cors",
-      credentials: "include",
+      //  mode: "no-cors",
+      //   credentials: "include",
       body: data,
       headers: {
         authorization: window.localStorage.getItem('token'),
@@ -129,7 +151,6 @@ class SendIt {
     }
     //override default value in payload 
     let init = overrideHeader ? Object.assign(payload, overrideHeader) : payload;
-    console.log(init);
     return fetch(url, init)
   }
 

@@ -11,12 +11,14 @@ let label;
 
 class LocationFinder {
   constructor(maps, lat = 9.30769, lng = 2.315834) {
+    LocationFinder.maps = maps;
     this.maps = maps;
     this.latitude = lat;
     this.longitude = lng;
     this.geocodingUrl = 'https://maps.googleapis.com/maps/api/geocode/json?';
     this.reversecodingUrl = 'https://maps.googleapis.com/maps/api/geocode/json?';
-    this.key = '&key=AIzaSyCVG4POFIVEKqFALXWDJKSF1o1HPaUI8zk';
+    LocationFinder.apiLocation = 'https://maps.googleapis.com/maps/api';
+    LocationFinder.key = 'AIzaSyCVG4POFIVEKqFALXWDJKSF1o1HPaUI8zk';
     this.map = this.initMap(this.maps.Map, this.latitude, this.longitude);
     // new maps.Marker( { map: this.map, position: location,label:"thanks" } );
   }
@@ -39,6 +41,15 @@ class LocationFinder {
     if (this.map === undefined) {
       this.initMa();
     }
+  }
+
+  async requestDistance(origin = '0.0', destination = '0.0', callback) {
+    const services = new google.maps.DistanceMatrixService();
+    services.getDistanceMatrix({
+      origins: [origin],
+      destinations: [destination],
+      travelMode: 'DRIVING',
+    }, callback)
   }
 
   setLatandLong(lat, lng) {
@@ -116,26 +127,14 @@ class LocationFinder {
     });
   }
 
-  positionFromCordinate(location, cb) {
+  async positionFromCordinate(location, cb) {
     const latlng = `latlng=${location.lat},${location.lng}`;
-
-    const url = this.reversecodingUrl + latlng + this.key;
-    const req = new XMLHttpRequest();
-    console.log(url);
-    req.open('GET', url);
-    const self = this;
-    return new Promise((resolve) => {
-      req.onreadystatechange = function () {
-        if (req.status === 200 && req.readyState === 4) {
-          const result = self.parseResults(req.responseText);
-          if (cb) {
-            cb(result);
-          }
-          resolve(result);
-        }
-      };
-      req.send();
-    });
+    const url = this.reversecodingUrl + latlng + '&key=' + LocationFinder.key;
+    const responseText = await xmlGet(url);
+    const json = this.parseResults(responseText);
+    if (cb)
+      cb(json);
+    return Promise.resolve(json);
   }
 
   promiseAddress(input, cb) {
@@ -213,7 +212,7 @@ class Label {
 }
 
 function initMap() {
-  locationMap = new LocationFinder(google.maps); // .initMap()
+  locationMap = new LocationFinder(google.maps);
   label = new Label(locationMap);
   locationMap.positionsOnclick(label.showOnMap);
 }

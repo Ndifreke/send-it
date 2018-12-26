@@ -41,7 +41,7 @@ ul.dashboard li {
 }
 
 .stick-top-centered {
-    top:0;
+    top: 0;
     margin-bottom: 0;
     padding-bottom: 0;
     z-index: 2;
@@ -180,7 +180,7 @@ ul.dashboard li {
 }
 
 #loader {
-    visibility: hidden;
+    visibility: visible;
 }
 
 circle[class='c1'] {
@@ -199,13 +199,19 @@ circle[class='c1'] {
 
 .message-failure {
     color: white;
-    animation: animate-failure 5s;
+    animation: animate-failure 7s;
 }
 
 .message-success {
     background: rgba(0, 153, 0);
     color: white;
-    animation: animate-success 5s;
+    animation: animate-success 7s;
+}
+
+.message-inform {
+    background: rgb(255, 87, 34);
+    color: white;
+    animation: animate-success 7s;
 }
 
 #dashboard-closer {
@@ -274,7 +280,7 @@ circle[class='c1'] {
     width: 30px;
     height: 24px;
     border-style: none;
-    background-position-x: 4px;
+    background-position-x: -1px;
     outline: none;
     background-repeat: no-repeat;
 }
@@ -288,44 +294,43 @@ circle[class='c1'] {
 }
 
 .stats-icon {
-    background-position-y: -29px;
+    background-position-y: -40px;
 }
 
 .profile-icon {
-    background-position-y: -250px;
-    ;
+    background-position-y: -329px;
 }
 
 .home-icon {
-    background-position-y: -330px;
+    background-position-y: -438px;
 }
 
 .money-icon {
-    background-position-y: -306px
+    background-position-y: -402px;
 }
 
 .ferry-icon {
-    background-position-y: 0px;
+    background-position-y: -4px;
 }
 
 .processed-icon {
-    background-position-y: -112px;
+    background-position-y: -145px;
 }
 
 .unprocessed-icon {
-    background-position-y: -91px;
+    background-position-y: -113px;
 }
 
 .location-icon {
-    background-position-y: -61px;
+    background-position-y: -76px;
 }
 
 .distance-icon {
-    background-position-y: -359px;
+    background-position-y:-476px;
 }
 
 .scale-icon {
-    background-position-y: -414px;
+    background-position-y: -547px;
 }
 
 
@@ -340,6 +345,10 @@ strong {
 fieldset {
     border: none;
     width: -webkit-fill-available;
+}
+
+.no-border {
+    border: none !important;
 }
 
 input[type=checkbox]+label {
@@ -458,7 +467,7 @@ form#settingsUI {
     }
 
     #main-content {
-   //     margin-left: 1%;
+        //     margin-left: 1%;
     }
 
     #dashboard-closer {

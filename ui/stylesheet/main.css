@@ -140,9 +140,10 @@ main {
 
 input[type='text'],
 input[type='email'],
+input[type='number'],
 input[type='tel'],
 input[type='password'] {
-    font-family: serif;
+    font-family: 'roboto', serif;
     border-top: none;
     border-right: none;
     border-left: none;
@@ -150,7 +151,7 @@ input[type='password'] {
     display: inline-flex;
     outline: none;
     color: rgb(55, 65, 65);
-    font-weight: 100;
+    font-weight: lighter;
     border-radius: 2px;
     height: 35px;
     text-align: center;

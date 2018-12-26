@@ -68,9 +68,15 @@ function executeAction(actionType, parcelId, acceptance) {
             }
             break;
         case "edit-prompt":
-        //tochange in server implementation
-        window.localStorage.setItem('')
-            window.location = host + '/ui/pages/create.html'; 
+            //tochange in server implementation
+            if (acceptance == 'accept') {
+                showSpinner();
+                window.localStorage.setItem('id', parcelId)
+                window.location = host + '/ui/pages/create.html';
+            } else {
+                hideSpinner()
+                alertMessage('rejected', 'inform')
+            }
     }
 
 }
@@ -95,10 +101,11 @@ the form where the user will either acccept or reject the action from executeAct
 */
 function promptAction() {
     //this == promptAction Buttons
+    const promptButton = this;
     const actionForm = document.forms['action-prompt'];
-    const action = this.dataset.action;
+    const actionType = promptButton.dataset.action;
 
-    switch (action) {
+    switch (actionType) {
         //Edit message that will be displayed in the promp
         case 'cancel-prompt':
             actionForm.querySelector('.action-message').innerText = 'cancel';
@@ -107,11 +114,11 @@ function promptAction() {
             actionForm.querySelector('.action-message').innerText = 'edit';
             break;
     }
-    actionForm.dataset.actionId = this.dataset.actionId;
-    actionForm.dataset.action = action;
-    actionForm.querySelector('.parcel-name').innerText = this.dataset.actionId;
+    actionForm.dataset.actionId = promptButton.dataset.actionId;
+    actionForm.dataset.action = actionType;
+    actionForm.querySelector('.parcel-name').innerText = promptButton.dataset.name;
 
-    const parcelPosition = this.parentElement.parentElement.getBoundingClientRect();
+    const parcelPosition = promptButton.parentElement.parentElement.getBoundingClientRect();
     const parcelCenter = (parcelPosition.x + (parcelPosition.width / 2)) - 125 /* half of prompt */ ;
     actionForm.style.top = parcelPosition.y + window.pageYOffset + 55 + 'px';
     actionForm.style.left = parcelCenter + 'px';
