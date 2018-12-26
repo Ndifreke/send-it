@@ -54,6 +54,14 @@ app.use((req, res) => {
 res.redirect("/");
 });
 
+/*
+const key = 'AIzaSyCVG4POFIVEKqFALXWDJKSF1o1HPaUI8zk';
+const origin = '8.3022297,2.302446';
+const dest = '8.3022297,2.302446';
+const url = `https://maps.googleapis.com/maps/api/distancematrix/json?origins=${origin}&destinations=${dest}&mode=bicycling&language=fr-FR&key=${key}`;
+setTimeout(xmlGet.bind(null, url, 70000));
+*/
+
 
 app.listen(process.env.PORT);
 export default app;

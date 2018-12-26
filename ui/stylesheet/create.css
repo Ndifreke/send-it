@@ -1,4 +1,3 @@
-
 input#createMap.prim-btn.botton {
   padding: 12px 70px;
 }
@@ -61,11 +60,12 @@ form#new-percel-viewport.elevate {
 }
 
 #create-field1 {
-  padding:0 2%;
+  padding: 0 2%;
   margin: 0 auto;
   text-align: center;
 }
-.item-summary{
+
+.item-summary {
   text-align: center;
   padding: 1% 3%;
   margin-bottom: 2%;
