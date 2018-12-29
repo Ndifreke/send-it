@@ -101,11 +101,11 @@ ul.dashboard li {
 @keyframes animate-failure {
     from {
         visibility: visible;
-        background: rgba(255, 2, 2, 0.925)
+        background: rgba(255, 2, 2, 0.925);
     }
 
     to {
-        background: rgba(255, 2, 2, 0.021)
+        background: rgba(255, 2, 2, 0.021);
     }
 }
 
@@ -175,10 +175,6 @@ ul.dashboard li {
     z-index: 50;
 }
 
-.wait-message {
-    bottom: 44%;
-}
-
 #loader {
     visibility: visible;
 }
@@ -195,23 +191,24 @@ circle[class='c1'] {
     border-radius: 1px;
     padding: 2px 19px;
     vertical-align: middle;
+    z-index: 5000;
 }
 
 .message-failure {
     color: white;
-    animation: animate-failure 7s;
+    animation: animate-failure 20s;
 }
 
 .message-success {
     background: rgba(0, 153, 0);
     color: white;
-    animation: animate-success 7s;
+    animation: animate-success 20s;
 }
 
 .message-inform {
     background: rgb(255, 87, 34);
     color: white;
-    animation: animate-success 7s;
+    animation: animate-success 20s;
 }
 
 #dashboard-closer {
@@ -274,31 +271,58 @@ circle[class='c1'] {
 .distance-icon,
 .email-icon,
 .scale-icon,
-.location-icon {
+.location-icon,
+.refresh-icon {
     display: inline-block;
     background-image: url("../images/icons/sprite.svg");
     width: 30px;
     height: 24px;
     border-style: none;
-    background-position-x: -1px;
+    background-position-x: 4px;
     outline: none;
     background-repeat: no-repeat;
 }
 
 .steer-cancel-icon {
-    background-position-y: -89px;
+    background-position-y: -218px;
+}
+
+.refresh-icon {
+    cursor: pointer;
+    vertical-align: bottom;
+    background-position-y: -715px;
+}
+
+@keyframes tilt {
+    0% {
+        transform: rotate(0deg)
+    }
+
+    50% {
+        transform: rotate(180deg)
+    }
+
+    80% {
+        transform: rotate(0deg)
+    }
+}
+
+.refresh-icon:hover {
+    animation: tilt 1s;
 }
 
 .steer-icon {
-    background-position-y: -281px;
+    background-position-y: -362px;
 }
 
 .stats-icon {
-    background-position-y: -40px;
+    background-position-y: -37px;
 }
-
+.no-padding{
+    padding: 0px !important;
+}
 .profile-icon {
-    background-position-y: -329px;
+    background-position-y: -323px;
 }
 
 .home-icon {
@@ -306,11 +330,11 @@ circle[class='c1'] {
 }
 
 .money-icon {
-    background-position-y: -402px;
+    background-position-y: -395px;
 }
 
 .ferry-icon {
-    background-position-y: -4px;
+    background-position-y: -2px;
 }
 
 .processed-icon {
@@ -322,15 +346,15 @@ circle[class='c1'] {
 }
 
 .location-icon {
-    background-position-y: -76px;
+    background-position-y: -72px;
 }
 
 .distance-icon {
-    background-position-y:-476px;
+    background-position-y: -469px;
 }
 
 .scale-icon {
-    background-position-y: -547px;
+    background-position-y: -539px;
 }
 
 

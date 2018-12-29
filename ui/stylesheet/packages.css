@@ -54,9 +54,7 @@ section.package {
 }
 
 .parcel-action {
-    right: 2%;
-    position: absolute;
-    display: block;
+    text-align: center;
 }
 
 .ack-cancel {
@@ -143,9 +141,11 @@ form[name='action-prompt'] {
         position: inherit;
         text-align: center;
     }
+
     #new-parcel-viewport {
         display: block;
     }
+
     .steer-cancel-icon,
     .steer-icon {
         margin: 0px 40px;
@@ -157,8 +157,7 @@ form[name='action-prompt'] {
 
     .steer-cancel-icon,
     .steer-icon {
-        display: block;
-        margin: 40px 0px;
+        margin: 0px 47px;
     }
 }
 

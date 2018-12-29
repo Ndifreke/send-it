@@ -11,6 +11,16 @@ h4 {
     font-weight: 300;
     color: #FF5708;
 }
+strong{
+    font-family: 'Roboto', sans-serif;
+    font-weight: 900;
+}
+
+span{
+    font-family: 'Roboto', sans-serif;
+    font-weight: 300;
+    font-size: 16px;
+}
 
 .sec-btn {
     border: 1px;
@@ -119,11 +129,11 @@ main {
 }
 
 .centered {
-    text-align: center;
+    text-align: center !important;
 }
 
 .title-header {
-    padding: 4px 20%;
+    padding: 4px 17%;
     color: white;
     background: #FF5708;
     border-radius: 3px;
@@ -139,6 +149,7 @@ main {
 }
 
 input[type='text'],
+input[type='search'],
 input[type='email'],
 input[type='number'],
 input[type='tel'],

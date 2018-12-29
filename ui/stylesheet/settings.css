@@ -2,6 +2,11 @@ input {
  width: 50%;
 }
 
+.title-header {
+ padding: 4px 9%;
+
+}
+
 /* mobile */
 @media screen and (max-width: 760px) {
  input {

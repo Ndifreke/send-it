@@ -10,7 +10,7 @@ let locationMap;
 let label;
 
 class LocationFinder {
-  constructor(maps, lat = 9.30769, lng = 2.315834) {
+  constructor(maps, lat = 6.552723299999999, lng = 3.3664072) {
     LocationFinder.maps = maps;
     this.maps = maps;
     this.latitude = lat;
@@ -31,7 +31,7 @@ class LocationFinder {
     };
     this.map = new Map(getElement('map-ui', 'id'), {
       center: location,
-      zoom: 8
+      zoom: 16
     });
 
     return this.map;
@@ -43,14 +43,28 @@ class LocationFinder {
     }
   }
 
-  async requestDistance(origin = '0.0', destination = '0.0', callback) {
-    const services = new google.maps.DistanceMatrixService();
-    services.getDistanceMatrix({
-      origins: [origin],
-      destinations: [destination],
-      travelMode: 'DRIVING',
-    }, callback)
+  static async requestDistance(origin = '0.0', destination = '0.0', callback) {
+    const org = origin.split(',');
+    const dest = destination.split(',');
+
+    try {
+      const start = new google.maps.LatLng(org[0], org[1]);
+      const end = new google.maps.LatLng(dest[0], dest[1]);
+      const services = new google.maps.DistanceMatrixService();
+      services.getDistanceMatrix({
+        origins: [start],
+        destinations: [end],
+        travelMode: 'DRIVING',
+      }, function (result) {
+        const status = result.rows[0].elements[0].status;
+        const distance = (status === 'OK') ? result.rows[0].elements[0].distance.text : 'Distance Unavailable!';
+        callback(distance);
+      })
+    } catch (e) {
+      alertMessage('Unable to fetch distance information', 'fail')
+    }
   }
+
 
   setLatandLong(lat, lng) {
     this.latitude = lat;
@@ -87,7 +101,6 @@ class LocationFinder {
   }
 
   useGeocode(addressName, cb) {
-
     const geocoder = new this.maps.Geocoder();
     return new Promise((resolve) => {
       geocoder.geocode({
@@ -160,46 +173,22 @@ class Label {
   }
 
   static displayLabelOnclick(clickedCordinates) {
-    const labelContainer = document.getElementById('position-container');
-    labelContainer.innerHTML = '';
+    const places = document.querySelector('.places');
+    places.innerHTML = '';
     clickedCordinates.forEach((cordinate) => {
-      labelContainer.appendChild(Label.positionOnTile(cordinate));
+      places.appendChild(Label.positionOnTile(cordinate));
     });
   }
 
   static displayLabalFromCordinate(cordinate) {
-    const labelContainer = document.getElementById('position-container');
-    labelContainer.appendChild(Label.positionOnTile(cordinate));
+    const places = document.querySelector('.places');
+    places.appendChild(Label.positionOnTile(cordinate));
     Label.map.placeMarker(cordinate);
   }
 
   /* create mini label on map where clicked position will be displayed*/
   static positionOnTile(cordinate) {
-    const positionLabel = setAttributes(document.createElement('div'), {
-      'class': 'position-label'
-    });
-
-    let cord, locationName;
-
-    if ('lat' in cordinate) {
-      locationName = activeElement.value;
-      cord = cordinate;
-    } else {
-      //grab position names from google location search
-      locationName = Object.keys(cordinate);
-      cord = {
-        lat: cordinate[locationName].lat,
-        lng: cordinate[locationName].lng
-      };
-    }
-    positionLabel.innerHTML = `<span> ${locationName}</span> <br/> 
-      <span> ${cord.lat} , ${cord.lng} </span>`;
-
-    positionLabel.onclick = function () {
-      storeLocationData(activeElement, locationName, cord);
-      Label.map.placeMarker(cord);
-    };
-    return positionLabel;
+    return createLabel(cordinate);
   }
 
   showOnMap(cordinate) {
@@ -219,7 +208,29 @@ function initMap() {
 
 function focusedInput(inputName) {
   activeElement = document.querySelector(`input[name="${inputName}"]`);
-  if (!(/^(\s)*$/.test(activeElement.value) || activeElement.value === undefined)) {
-    locationMap.useGeocode(activeElement.value, label.showOnMap);
+}
+
+function createLabel(cordinate) {
+  const positionLabel = setAttributes(document.createElement('div'), {
+    'class': 'position-label'
+  });
+  let cord, locationName;
+  if ('lat' in cordinate) {
+    cord = cordinate;
+  } else {
+    //grab position names from google location search
+    locationName = Object.keys(cordinate);
+    cord = {
+      lat: cordinate[locationName].lat,
+      lng: cordinate[locationName].lng
+    };
   }
+  positionLabel.innerHTML = `<span> ${locationName}</span> <br/> 
+    <span> ${cord.lat} , ${cord.lng} </span>`;
+
+  positionLabel.onclick = function () {
+    storeHiddenCordinate(activeElement, locationName, cord);
+    Label.map.placeMarker(cord);
+  };
+  return positionLabel;
 }

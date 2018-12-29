@@ -15,6 +15,7 @@
   </head>
 
   <body>
+    <div id='message-alert'>#</div>
 
     <div class="fixed-centered bounce" id='wait-animation'>
       <svg class='wait-spin' width='46' height='46'>
@@ -71,7 +72,6 @@
           <li>
             <a class="dashLink" href="./admin.html" title="Admin">Admin </a>
           </li>
-
         </ul>
 
       </aside>
@@ -79,22 +79,14 @@
       <main id="main">
         <button type="button" id="flow-btn"> </button>
 
-
         <section id="main-content">
 
           <div id="new-parcel-viewport" style="margin-top: -56px; height: 70%">
 
-
-
             <h2 class="centered"> Create New Percel </h2>
             <form class="align-center elevate" id="percel-form" name='createParcel'>
 
-              <div id="create-field1">
-                <div class="input-icon">
-                  <input type="text" class="fit-width" name="shortname" placeholder="Percel Title">
-                </div>
-                <br />
-
+              <div id="parcel-inputs">
 
                 <div class="multi-display">
                   <div class="flex  input-icon">
@@ -111,20 +103,32 @@
                     <input type="hidden" name='destination-lng' />
                   </div>
                 </div>
-                <br />
 
                 <div class="flex input-icon">
                   <label class="scale-icon"> </label>
                   <input type='number' class="no-border fit-width" name="weight" placeholder="Weight kg" />
                 </div>
-                <br />
-                <div>
-                  <textarea rows="10" class='fit-width'>  </textarea>
+
+                <div class="flex  input-icon">
+                  <input type="text" class="fit-width  no-border" name="shortname" placeholder="Percel Title">
                 </div>
-                <br />
+
+                <div class=" input-icon">
+                  <textarea rows="10" class='fit-width  no-border' name="description">  </textarea>
+                </div>
+
 
                 <div id="create-sumary">
-                  <h4 class="centered title-header">Order Summary</h4>
+                  <div>
+                    <h4 class="centered title-header">
+                      Order Summary
+                      <span class="refresh-icon" title="refresh summary"> </span>
+                    </h4>
+                  </div>
+
+                  <div class="item-summary centered">
+                    <strong id='shortname-summary'></strong>
+                  </div>
 
                   <div class="item-summary">
                     <span type="button" class="location-icon"></span>
@@ -164,9 +168,8 @@
                         <circle cx='23' cy='32' r='3' />
                       </g>
                     </svg>
-                    <div id='message-alert'>#</div>
                   </div>
-                  <button class="botton prim-btn" type="reset"> Create It </button>
+                  <input class="botton prim-btn" type="button" name="create" Create It value="Create It" />
                 </p>
 
               </div>
@@ -174,23 +177,30 @@
               <div id="mapviewport">
 
                 <div id="position-container" class="elevate">
-                  <div class="position-label" id="map-tip">
-                    <p><strong></strong>Tip: USE ANY OF
-                      BELLOW METHOD
-                      <hr /></strong></p>
-                    Enter Address into
-                    Destination/Origin input field and
-                    click on Location Picker icon
-                    <a href="#map-ui" class="place-picker"></a>
-                    to see result on this menu and Map.
-                    <hr />
+                  <input type="search" class="fit-width" id="search-map" placeholder="Search Place"
+                    onsearch="locationMap.useGeocode(this.value, label.showOnMap)" />
 
-                    Click any location on the Map to get
-                    information displayed in this Menu
-                    <hr />
-                    Select the Place on this menu to
-                    Fill the input box field
+
+                  <div class="places">
+                    <div class="position-label" id="map-tip">
+                      <p><strong></strong>Tip: USE ANY OF
+                        BELLOW METHOD
+                        <hr /></strong></p>
+                      Enter Address into
+                      Destination/Origin input field and
+                      click on Location Picker icon
+                      <a href="#map-ui" class="place-picker"></a>
+                      to see result on this menu and Map.
+                      <hr />
+
+                      Click any location on the Map to get
+                      information displayed in this Menu
+                      <hr />
+                      Select the Place on this menu to
+                      Fill the input box field
+                    </div>
                   </div>
+
                 </div>
 
                 <div id="map-ui">

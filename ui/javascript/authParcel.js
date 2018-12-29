@@ -143,7 +143,9 @@ function buildParcel(json) {
 function buildParcels(parcelJson, template) {
     const parcelPreview = template.querySelector('.package-preview');
     parcelPreview.dataset.parcelId = parcelJson.id;
-    parcelPreview.querySelector('.title').textContent = parcelJson.shortname || parcelJson.id;
+    parcelPreview.querySelector('#preview-title').textContent = parcelJson.shortname || parcelJson.id;
+    parcelPreview.querySelector('#preview-date').textContent = new Date(parcelJson.created_at).toDateString();
+    parcelPreview.querySelector('#preview-status').textContent = parcelJson.status;
     const parcelViews = template.querySelector('.parcel-views');
     parcelViews.setAttribute('id', parcelJson.id);
     const content = parcelViews.querySelector('.package-content');
