@@ -7,7 +7,7 @@
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
     <link type="text/css" rel="stylesheet" href="../stylesheet/create.css">
     <script type="text/javascript" src="../javascript/UIBuilder.js"></script>
-    <script type="text/javascript" defer src="../javascript/authCreate.js"></script>
+    <script type="text/javascript" defer src="../javascript/userUpdate.js"></script>
     <script type="text/javascript" src="../javascript/location_services.js"></script>
 
     <meta charset="UTF-8">
@@ -53,25 +53,10 @@
 
         <ul class="dashboard">
 
-          <li>
-            <a class="dashLink" href="./packages.html" value="Packages"> Parcels </a>
-          </li>
-
-          <li>
-            <a class="dashLink active" href="#"> New Parcel </a>
-          </li>
-
-          <li>
-            <a class="dashLink" href="./profile.html"> Profile </a>
-          </li>
-
-          <li>
-            <a class="dashLink" href="./settings.html"> Settings </a>
-          </li>
-
-          <li>
-            <a class="dashLink" href="./admin.html" title="Admin">Admin </a>
-          </li>
+          <li> <a class="dashLink" href="./packages.html" value="Packages"> Parcel List </a> </li>
+          <li> <a class="dashLink active" href="#"> Update Parcel </a> </li>
+          <li> <a class="dashLink" href="./profile.html"> Profile </a> </li>
+          <li> <a class="dashLink" href="./settings.html"> Settings </a> </li>
         </ul>
 
       </aside>
@@ -88,28 +73,40 @@
 
               <div id="parcel-inputs">
 
+                <div class="flex  input-icon" title="Parcel Current Location">
+                  <a class="location-icon"></a>
+                  <input type="text" class="fit-width no-border" name="location" placeholder="Parcel Origin">
+                  <input type="hidden" name='origin-lat' />
+                  <input type="hidden" name='origin-lng' />
+                </div>
+
                 <div class="multi-display">
-                  <div class="flex  input-icon">
-                    <a href="#map-ui" class="location-icon" onclick="focusedInput('origin')"></a>
-                    <input type="text" class="fit-width no-border" name="origin" placeholder="Parcel Origin">
-                    <input type="hidden" name='origin-lat' />
-                    <input type="hidden" name='origin-lng' />
+                  <div class="flex input-icon" title="Parcel Weight">
+                    <a class="scale-icon"> </a>
+                    <input type='number' class="no-border fit-width" name="weight" placeholder="Weight kg" />
                   </div>
 
-                  <div class="flex input-icon">
-                    <a href="#map-ui" class="ferry-icon" onclick="focusedInput('destination')"></a>
-                    <input type="text" class="fit-width no-border" name="destination" placeholder="Parcel Destination" />
-                    <input type="hidden" name='destination-lat' />
-                    <input type="hidden" name='destination-lng' />
+                  <div class="flex input-icon" title="Delivery Status">
+                      <a class="processing"> </a>
+                    <input type="text" class="fit-width no-border" name="status" />
                   </div>
+                </div>
+
+                <div class="flex input-icon" title="Parcel Delivery Location">
+                  <a href="#map-ui" class="ferry-icon" onclick="focusedInput('destination')"></a>
+                  <input type="text" class="fit-width no-border" name="destination" placeholder="Parcel Destination" />
+                  <input type="hidden" name='destination-lat' />
+                  <input type="hidden" name='destination-lng' />
+                </div>
+
+                <div class="flex  input-icon" title="Origin of Parcel">
+                  <label class="home-icon"></label>
+                  <input type="text" class="fit-width no-border" name="origin" placeholder="Parcel Origin">
+                  <input type="hidden" name='origin-lat' />
+                  <input type="hidden" name='origin-lng' />
                 </div>
 
                 <div class="flex input-icon">
-                  <label class="scale-icon"> </label>
-                  <input type='number' class="no-border fit-width" name="weight" placeholder="Weight kg" />
-                </div>
-
-                <div class="flex  input-icon">
                   <input type="text" class="fit-width  no-border" name="shortname" placeholder="Percel Title">
                 </div>
 
@@ -131,8 +128,13 @@
                   </div>
 
                   <div class="item-summary">
-                    <span type="button" class="location-icon"></span>
+                    <span type="button" class="home-icon"></span>
                     <span id='origin-summary'> Refresh</span>
+                  </div>
+
+                  <div class="item-summary">
+                    <span type="button" class="location-icon"></span>
+                    <span id='location-summary'> Refresh</span>
                   </div>
 
                   <div class="item-summary">
@@ -147,13 +149,13 @@
 
                   <div class="item-summary">
                     <span type="button" class="distance-icon"></span>
-                    <span id='distance-summary'>Refresh</span>
+                    <span id='distance-summary'></span>
                   </div>
 
                   <div class="item-summary">
                     <span type="button" class="money-icon"></span>
 
-                    <span id='price-summary'>Refresh</span>
+                    <span id='price-summary'></span>
                   </div>
                 </div>
 

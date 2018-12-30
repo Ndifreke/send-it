@@ -19,7 +19,7 @@ input#createMap.prim-btn.botton {
 
 .input-icon *{
   padding: 0 5px;
-  text-align: left !important;
+  //text-align: left !important;
 }
 
 #position-container {
@@ -141,12 +141,6 @@ bottom: 50%;
 }
 
 @media screen and (min-width:500px) {
-
-  
-
-  .multi-display {
-    display: block;
-  }
 
   #parcel-inputs {
     width: 75%;

@@ -56,35 +56,60 @@ function setAttributes(element, attributeOption) {
   return element;
 }
 
-function alertMessage(msg, type) {
-  let msgElement = document.getElementById("message-alert");
-  const msgClone = msgElement.cloneNode(true);
-  switch (type) {
-    case "fail":
-      msgClone.textContent = (msg || "Operation Failed");
-      msgClone.className = 'message-failure';
-      msgElement.replaceWith(msgClone);
-      break;
-    case "success":
-      msgClone.textContent = (msg || "Successfull");
-      msgClone.className = 'message-success';
-      msgElement.replaceWith(msgClone);
-      break;
-    case "inform":
-      msgClone.textContent = (msg || "Not Completed");
-      msgClone.className = 'message-inform';
-      msgElement.replaceWith(msgClone);
-      break;
+/* Compute the fixed or absolute left position where the alert message will be displayed  
+  and add event listener to recompute when screen size changes
+*/
+let alertCenter = 0;
+
+function centerAlert(referenceElement) {
+ 
+
+  function computeCenter() {
+    const offsetLeft = referenceElement.offsetLeft;
+    const referenceCenter = (offsetLeft + (referenceElement.clientWidth / 2));
+    return referenceCenter;
   }
 
+  alertCenter = computeCenter();
+  window.onresize = function () {
+    let alert = document.getElementById("message-alert");
+    alert.style.left = computeCenter() - (alert.clientWidth / 2) + "px";
+
+  }
 }
 
-function renderPage(message, type) {
+function alertMessage(msg, type) {
+  let alertMessage = document.getElementById("message-alert");
+  const alertClone = alertMessage.cloneNode(true);
+
+  switch (type) {
+    case "fail":
+      alertClone.textContent = (msg || "Operation Failed");
+      alertClone.className = 'message-failure';
+      alertMessage.replaceWith(alertClone);
+      break;
+    case "success":
+      alertClone.textContent = (msg || "Successfull");
+      alertClone.className = 'message-success';
+      alertMessage.replaceWith(alertClone);
+      break;
+    case "inform":
+      alertClone.textContent = (msg || "Not Completed");
+      alertClone.className = 'message-inform';
+      alertMessage.replaceWith(alertClone);
+      break;
+  }
+  if (alertCenter)
+    alertClone.style.left = alertCenter - (alertClone.clientWidth / 2) + 'px';
+}
+
+
+function renderPage(message, path) {
   const waitAnimation = document.getElementById('wait-animation');
   waitAnimation.parentElement.removeChild(waitAnimation);
   document.querySelector('div.viewport').style.visibility = 'visible';
   if (message)
-    alertMessage(message, type);
+    alertMessage(message + " " + path, "success");
 }
 
 function showSpinner() {
@@ -95,22 +120,31 @@ function hideSpinner() {
   document.getElementById('loader').style.visibility = 'hidden';
 }
 
-/* Initialize secure page after successfull verification a token */
+/* Initialize secure page after successfull verification of token */
 async function initPage(option) {
   const token = window.localStorage.getItem("token");
 
   if (token) {
     SendIt.get(remote + '/api/v1/auth').
-    then(function response(res) {
+    then(async function response(res) {
+      const json = await res.json(); //can use promise to reduce page lag
+      const path = json.isAdmin ? "admin" : "user";
+      sessionStorage.setItem("path", path);
+
+      /** Route to appropraite page path */
+      if (window.location.href.indexOf(path) == -1)
+        window.location = host + "/ui/login.html";
+
       if (res.status === 200) {
-        option.locationOnSuccess ? window.location = option.locationOnSuccess : null;
-        option.renderOnSuccess ? renderPage() : null;
+        option.locationOnSuccess ? window.location = option.locationOnSuccess(path) : null;
+        option.renderOnSuccess ? renderPage("Login as", path) : null;
       } else {
         option.locationOnFail ? window.location = option.locationOnFail : null;
         option.renderOnFail ? renderPage("Unauthorized", 'fail') : null;
       }
     }).
     catch(function error(err) {
+      console.log(err)
       option.locationOnError ? window.location = option.locationOnError : null;
       option.renderOnError ? renderPage('Network Error Occured', 'fail') : null;
     })
@@ -135,6 +169,11 @@ function xmlGet(url, callback) {
     };
     req.send();
   });
+}
+
+function isEmail(email) {
+  const emailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+  return emailRegex.test(String(email).toLowerCase());
 }
 
 class SendIt {

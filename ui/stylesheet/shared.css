@@ -186,7 +186,6 @@ circle[class='c1'] {
 #message-alert {
     visibility: hidden;
     font-size: 16px;
-    font-weight: bolder;
     padding: 1px;
     border-radius: 1px;
     padding: 2px 19px;
@@ -272,7 +271,8 @@ circle[class='c1'] {
 .email-icon,
 .scale-icon,
 .location-icon,
-.refresh-icon {
+.refresh-icon,
+.processing {
     display: inline-block;
     background-image: url("../images/icons/sprite.svg");
     width: 30px;
@@ -281,6 +281,10 @@ circle[class='c1'] {
     background-position-x: 4px;
     outline: none;
     background-repeat: no-repeat;
+}
+
+.processing {
+    background-position-y: -680px;
 }
 
 .steer-cancel-icon {
@@ -318,15 +322,17 @@ circle[class='c1'] {
 .stats-icon {
     background-position-y: -37px;
 }
-.no-padding{
+
+.no-padding {
     padding: 0px !important;
 }
+
 .profile-icon {
     background-position-y: -323px;
 }
 
 .home-icon {
-    background-position-y: -438px;
+    background-position-y: -431px;
 }
 
 .money-icon {

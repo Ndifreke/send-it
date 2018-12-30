@@ -1,0 +1,247 @@
+<html>
+
+  <head>
+    <title> Create It | SendIt </title>
+    <link type="text/css" rel="stylesheet" href="../stylesheet/main.css">
+    <link type="text/css" rel="stylesheet" href="../stylesheet/shared.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+    <link type="text/css" rel="stylesheet" href="../stylesheet/create.css">
+    <script type="text/javascript" src="../javascript/UIBuilder.js"></script>
+    <script type="text/javascript" defer src="../javascript/adminUpdate.js"></script>
+    <script type="text/javascript" src="../javascript/location_services.js"></script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  </head>
+
+  <body>
+    <div id='message-alert'>#</div>
+
+    <div class="fixed-centered bounce" id='wait-animation'>
+      <svg class='wait-spin' width='46' height='46'>
+        <circle class='c1' cx='23px' cy='23px' r='9' fill='gray' stroke-width='3' />
+        <g fill='orange'>
+          <circle cx='4' cy='23' r='4' />
+          <circle cx='23' cy='4' r='4' />
+          <circle cx='42' cy='23' r='4' />
+          <circle cx='23' cy='42' r='4' />
+        </g>
+      </svg>
+
+      <div class="wait-message">
+        <strong>Loading... </strong>
+      </div>
+    </div>
+
+    <div class='viewport'>
+
+      <header>
+        <a href='#' id="logo"> </a>
+        <nav class="positon-bottom-right">
+          <ul>
+            <li>
+              <!-- can use href to separate page at public/ui/login.html-->
+              <a href='../index.html' class="active-btn botton">
+                SIGN OUT </a>
+            </li>
+          </ul>
+        </nav>
+      </header>
+      <aside id='dashboard'>
+        <a class="close-btn" id='dashboard-closer' onclick="toggleDisplay('dashboard')">
+        </a>
+
+        <ul class="dashboard">
+
+          <li> <a class="dashLink" href="./packages.html" value="Packages"> Parcel List </a> </li>
+          <li> <a class="dashLink active" href="#"> Update Parcel </a> </li>
+          <li> <a class="dashLink" href="./profile.html"> Profile </a> </li>
+          <li> <a class="dashLink" href="./settings.html"> Settings </a> </li>
+        </ul>
+
+      </aside>
+      <!--*********************************************************************************************-->
+      <main id="main">
+        <button type="button" id="flow-btn"> </button>
+
+        <section id="main-content">
+
+          <div id="new-parcel-viewport" style="margin-top: -56px; height: 70%">
+
+            <h2 class="centered"> Create New Percel </h2>
+            <form class="align-center elevate" id="percel-form" name='createParcel'>
+
+              <div id="parcel-inputs">
+
+                <div class="flex  input-icon" title="Parcel Current Location">
+                  <a href="#map-ui" class="location-icon"></a>
+                  <input type="text" class="fit-width no-border" name="location" onclick="focusedInput('location')"
+                    placeholder="Parcel Origin">
+                  <input type="hidden" name='location-lat' />
+                  <input type="hidden" name='location-lng' />
+                </div>
+
+                <div class="multi-display">
+                  <div class="flex input-icon" title="Parcel Weight">
+                    <a class="scale-icon"> </a>
+                    <input type='number' class="no-border fit-width" name="weight" placeholder="Weight kg" />
+                  </div>
+
+                  <div class="flex input-icon" title="Delivery Status">
+                    <a class="processing"> </a>
+                    <select class="fit-width no-border" name="status" style="background:white">
+                      <option> Cancelled </option>
+                      <option> Delivered </option>
+                      <option> Pending </option>
+                      <option>Processing </option>
+                    </select>
+                  </div>
+                </div>
+
+                <div class="flex input-icon" title="Parcel Delivery Location">
+                  <a class="ferry-icon"></a>
+                  <input type="text" class="fit-width no-border" name="destination" placeholder="Parcel Destination" />
+                  <input type="hidden" name='destination-lat' />
+                  <input type="hidden" name='destination-lng' />
+                </div>
+
+                <div class="flex  input-icon" title="Origin of Parcel">
+                  <label class="home-icon"></label>
+                  <input type="text" name="origin" class="fit-width no-border" placeholder="Parcel Origin">
+                  <input type="hidden" name='origin-lat' />
+                  <input type="hidden" name='origin-lng' />
+                </div>
+
+                <div class="flex input-icon">
+                  <input type="text" class="fit-width  no-border" name="shortname" placeholder="Percel Title">
+                </div>
+
+                <div class=" input-icon">
+                  <textarea rows="10" class='fit-width  no-border' name="description">  </textarea>
+                </div>
+
+
+                <div id="create-sumary">
+                  <div>
+                    <h4 class="centered title-header">
+                      Order Summary
+                      <span class="refresh-icon" title="refresh summary"> </span>
+                    </h4>
+                  </div>
+
+                  <div class="item-summary centered">
+                    <strong id='shortname-summary'></strong>
+                  </div>
+
+                  <div class="item-summary">
+                    <span type="button" class="home-icon"></span>
+                    <span id='origin-summary'> Refresh</span>
+                  </div>
+
+                  <div class="item-summary">
+                    <span type="button" class="location-icon"></span>
+                    <span id='location-summary'> Refresh</span>
+                  </div>
+
+                  <div class="item-summary">
+                    <span type="button" class="scale-icon"></span>
+                    <span id='weight-summary'>Refresh</span>
+                  </div>
+
+                  <div class="item-summary">
+                    <span type="button" class="ferry-icon"></span>
+                    <span id='destination-summary'>Refresh</span>
+                  </div>
+
+                  <div class="item-summary">
+                    <span type="button" class="distance-icon"></span>
+                    <span id='distance-summary'></span>
+                  </div>
+
+                  <div class="item-summary">
+                    <span type="button" class="money-icon"></span>
+
+                    <span id='price-summary'></span>
+                  </div>
+                </div>
+
+                <p>
+                  <div id='loader'>
+                    <svg class='wait-spin' width='46' height='46'>
+                      <circle class='c1' cx='23px' cy='23px' r='3' fill='gray' stroke-width='3' />
+                      <g fill='orange'>
+                        <circle cx='14' cy='23' r='3' />
+                        <circle cx='23' cy='14' r='3' />
+                        <circle cx='32' cy='23' r='3' />
+                        <circle cx='23' cy='32' r='3' />
+                      </g>
+                    </svg>
+                  </div>
+                  <input class="botton prim-btn" type="button" name="create" Create It value="Create It" />
+                </p>
+
+              </div>
+
+              <div id="mapviewport">
+
+                <div id="position-container" class="elevate">
+                  <input type="search" class="fit-width" id="search-map" placeholder="Search Place"
+                    onsearch="locationMap.useGeocode(this.value, label.showOnMap)" />
+
+
+                  <div class="places">
+                    <div class="position-label" id="map-tip">
+                      <p><strong></strong>Tip: USE ANY OF
+                        BELLOW METHOD
+                        <hr /></strong></p>
+                      Enter Address into
+                      Destination/Origin input field and
+                      click on Location Picker icon
+                      <a href="#map-ui" class="place-picker"></a>
+                      to see result on this menu and Map.
+                      <hr />
+
+                      Click any location on the Map to get
+                      information displayed in this Menu
+                      <hr />
+                      Select the Place on this menu to
+                      Fill the input box field
+                    </div>
+                  </div>
+
+                </div>
+
+                <div id="map-ui">
+                  <div class="bounce" id='map-wait-animation'>
+                    <svg class='wait-spin' width='46' height='46'>
+                      <circle class='c1' cx='23px' cy='23px' r='9' fill='gray' stroke-width='3' />
+                      <g fill='orange'>
+                        <circle cx='4' cy='23' r='4' />
+                        <circle cx='23' cy='4' r='4' />
+                        <circle cx='42' cy='23' r='4' />
+                        <circle cx='23' cy='42' r='4' />
+                      </g>
+                    </svg>
+                    <div>
+                      <br />
+                      <span>Loading Google Map... </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+        </section>
+
+      </main>
+      <footer>
+
+      </footer>
+
+      <script type="text/javascript" defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCVG4POFIVEKqFALXWDJKSF1o1HPaUI8zk&callback=loadMap">
+      </script>
+
+    </div>
+  </body>
+
+</html>
