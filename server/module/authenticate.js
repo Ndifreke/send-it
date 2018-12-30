@@ -45,11 +45,12 @@ function verifyAccessToken(req, resp, callback, token) {
 }
 
 function authToken(req, resp, next) {
-  function callback(token) {
+  async  function callback(token) {
     token ? resp.statusCode = 200 : resp.statusCode = 501;
     resp.json({
       status: 'ok',
-      message: 'valid token'
+      message: 'valid token',
+      isAdmin: await User.is_admin(token.id)
     })
   }
   verifyAccessToken(req, resp, callback)

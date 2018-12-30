@@ -8,6 +8,9 @@ import {
 import {
   utils
 } from 'mocha';
+import {
+  stat
+} from 'fs';
 
 /**
  * Signup A User to Send-It, given the users signup information
@@ -21,47 +24,64 @@ async function signup(req, res) {
   res.json(created);
 }
 
-async function upate(req, resp) {
+async function update(req, resp) {
   async function updateCallback(token) {
-    console.log(token.id)
-    resp.statusCode = 200;
-    let result = {
-      status: 'ok',
-      message: 'updated'
-    }
-    console.log(req.body)
+    let hasUpdate = false;
+    let partialUpdate = false;
+    let responseBody = '';
     for (let data in req.body) {
       switch (data) {
+        //send partial update status
         case 'password':
           User.changePassword(token.id, req.body[data]);
+          responseBody += 'Password Updated\n';
+          hasUpdate = true;
           break;
         case 'email':
           if (util.isEmail(req.body[data])) {
             User.changeEmail(token.id, req.body[data]);
+            responseBody += 'Email Updated\n';
+            hasUpdate = true;
           } else {
-            resp.statusCode = 400;
-            result = util.response('error', 'Invalid Email');
+            partialUpdate = true;
+            responseBody += 'Invalid Email\n';
           }
           break;
         case 'phoneNumber':
           if (util.isInteger(req.body[data])) {
             User.changePhone(token.id, req.body[data]);
+            responseBody += 'PhoneNumber Updated\n';
+            hasUpdate = true;
           } else {
-            resp.statusCode = 400;
-            result = util.response('error', 'Invalid PhoneNumber');
+            partialUpdate = true;
+            responseBody += 'Invalid PhoneNumber';
           }
           break;
         case 'changeMode':
           const isAdmin = await User.is_admin(token.id);
           if (isAdmin) {
             User.changeUserMod(token.id, req.body[data]);
+            responseBody += 'Mode Updated\n';
+            hasUpdate = true;
           } else {
-            result = util.response('error', 'You dont have permission to change admin');
-            resp.statusCode = 400;
+            partialUpdate = true;
+            responseBody += 'You dont have permission to change admin';
           }
       }
     }
-    resp.json(result);
+    let message = '', status ='';
+    if (hasUpdate && partialUpdate) {
+      responseBody += 'Some Update were not applied';
+      message = 'Partial Update';
+      status = 'ok';
+    } else if (hasUpdate) {
+      status = 'ok';
+      message += 'Update Successfully';
+    } else {
+      status = 'error';
+      message += 'No Update Applied';
+    }
+    resp.json(util.response(status, message, responseBody.split('\n')));
   }
   verifyAccessToken(req, resp, updateCallback);
 }
@@ -78,18 +98,15 @@ async function getUserData() {
  * @returns {void}
  */
 async function login(req, res) {
-  const {
-    email,
-    password
-  } = req.body;
   console.log(req.body)
-  const data = await User.authLogin(email, password, res);
+  const data = await User.authLogin(req.body.email, req.body.password, res);
   res.setHeader('content-type', "Application/json");
   const userId = data.response[0];
   if (userId) {
     delete data.response;
     const token = await issueAccessToken(userId);
     data.token = token;
+    data.isAdmin = await User.is_admin(userId);
     res.setHeader("Authorization", token);
     res.statusCode = 200;
     res.json(data);
@@ -102,6 +119,6 @@ async function login(req, res) {
 export {
   signup,
   login,
-  upate,
+  update as upate,
   getUserData
 };

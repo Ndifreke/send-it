@@ -5,6 +5,7 @@ import Parcel from '../module/Parcel';
 import {
    verifyAccessToken
 } from '../module/authenticate';
+import User from '../module/User';
 
 /**
  * Create A parcel order from options supplied in req.body
@@ -78,7 +79,8 @@ function getUserParcels(req, res) {
  */
 function cancelParcel(req, res) {
    async function cancelCallback(accessToken) {
-      if (!accessToken.is_admin) {
+      const is_admin = await User.is_admin(accessToken.id);
+      if (!is_admin) {
          const id = req.params.parcelID;
          res.statusCode = 201;
          const result = await Parcel.changeStatus(id, Parcel.CANCELLED, res);
