@@ -1,15 +1,15 @@
-const packageURL = origin + '/ui/pages/packages.html';
+const loginPath = function (path) {
+   return origin + `/ui/${path}/packages.html`;
+}
 
 document.addEventListener('DOMContentLoaded', function () {
-    option.locationOnSuccess = packageURL;
+    option.locationOnSuccess = loginPath;
     option.renderOnError = true;
     option.renderOnFail = true;
     initPage(option);
-
     const form = document.forms.login;
     form.submitButton.addEventListener("click", login.bind(form));
 })
-
 
 async function login(event) {
     // this == <form name=login> 
@@ -22,8 +22,9 @@ async function login(event) {
         console.log(response)
         if (response.status === 200) {
             alertMessage("success", "success");
-            window.localStorage.setItem('token', json.token)
-            window.location = window.location.origin + '/ui/pages/packages.html';
+            window.localStorage.setItem('token', json.token);
+            window.location = (json.isAmin) ? window.location.origin + '/ui/admin/packages.html' :
+                window.location.origin + '/ui/user/packages.html';
 
         } else {
             alertMessage("Login Fail", "fail");

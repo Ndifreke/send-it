@@ -1,16 +1,17 @@
 document.addEventListener('DOMContentLoaded', function () {
+
     document.body.addEventListener('click', handleClicks, true);
     option.renderOnSuccess = true;
-    option.locationOnError = host + "/ui/pages/login.html";
-    option.locationOnFail = host + "/ui/pages/login.html";
+    option.locationOnError = host + "/ui/login.html";
+    option.locationOnFail = host + "/ui/login.html";
     initPage(option);
     SendIt.get(`${remote}/api/v1/users/null/parcels`).then(function (resonse) {
         return resonse.json();
     }).then(function (json) {
-        console.log(json)
-        buildParcel(json.response);
+        parseParcel(json.response);
     })
 });
+
 
 function setPreviewFocus(previewList) {
     for (const preview of previewList) {
@@ -45,40 +46,30 @@ function handleClicks(event) {
 }
 
 function executeAction(actionType, parcelId, acceptance) {
-    console.log(actionType, parcelId, acceptance);
     switch (actionType) {
         case "cancel-prompt":
             showSpinner();
             if (acceptance === 'accept') {
                 SendIt.put(`${remote}/api/v1/parcels/${parcelId}/cancel`).
                 then(function (response) {
-                    if (response.status === 201) {
-                        response.json().then(function (json) {
-                            hideSpinner()
-                            alertMessage(json.message, 'success')
-                        })
-                    } else {
+                    response.json().then(function (json) {
                         hideSpinner()
-                        alertMessage(json.message, 'fail')
-                    }
+                        alertMessage(json.message, (response.status === 201) ? 'success' : 'fail');
+                    })
                 })
-            } else {
-                hideSpinner()
-                alertMessage('rejected', 'fail')
             }
             break;
         case "edit-prompt":
-            //tochange in server implementation
+            //to change in server implementation
             if (acceptance == 'accept') {
                 showSpinner();
-                window.localStorage.setItem('id', parcelId)
-                window.location = host + '/ui/pages/create.html';
+                window.sessionStorage.setItem('update', JSON.stringify(indexedParcel[parcelId]));
+                window.location = host + `/ui/${sessionStorage.getItem('path')}/update.html`;
             } else {
                 hideSpinner()
                 alertMessage('rejected', 'inform')
             }
     }
-
 }
 
 function toggleDisplayContent(parcelId) {
@@ -125,11 +116,13 @@ function promptAction() {
     actionForm.style.display = 'block';
 }
 
-function buildParcel(json) {
+let indexedParcel = [];
+
+function parseParcel(json) {
     const packages = document.getElementById('packages');
     const parcelTemplate = document.getElementById('parcelTemplate').cloneNode(true);
-
     const parcelElements = json.map(function (parcelObject) {
+        indexedParcel[parcelObject.id] = parcelObject;
         const parcel = buildParcels(parcelObject, parcelTemplate.cloneNode(true));
         packages.appendChild(parcel);
         return parcel;
@@ -143,7 +136,7 @@ function buildParcel(json) {
 function buildParcels(parcelJson, template) {
     const parcelPreview = template.querySelector('.package-preview');
     parcelPreview.dataset.parcelId = parcelJson.id;
-    parcelPreview.querySelector('#preview-title').textContent = parcelJson.shortname || parcelJson.id;
+    parcelPreview.querySelector('#preview-title').textContent = " #" + parcelJson.id + " " + parcelJson.shortname;
     parcelPreview.querySelector('#preview-date').textContent = new Date(parcelJson.created_at).toDateString();
     parcelPreview.querySelector('#preview-status').textContent = parcelJson.status;
     const parcelViews = template.querySelector('.parcel-views');
@@ -151,18 +144,22 @@ function buildParcels(parcelJson, template) {
     const content = parcelViews.querySelector('.package-content');
     content.querySelector('.package-description').textContent = parcelJson.description;
     const meta = content.querySelector('div.meta');
+
     meta.querySelector('.from').textContent = parcelJson.origin;
     meta.querySelector('.destination').textContent = parcelJson.destination;
     meta.querySelector('.sender').textContent = parcelJson.owner;
     meta.querySelector('.date').textContent = parcelJson.created_at;
+    meta.querySelector('.charges').textContent = "$" + parcelJson.price;
     meta.querySelector('.location').textContent = parcelJson.location;
     meta.querySelector('.status').textContent = parcelJson.status;
 
     const actionButtons = parcelViews.querySelectorAll('.steer-cancel-icon, .steer-icon');
     actionButtons[0].dataset.actionId = parcelJson.id;
     actionButtons[0].dataset.name = parcelJson.shortname || parcelJson.id;
-    actionButtons[1].dataset.actionId = parcelJson.id;
-    actionButtons[1].dataset.name = parcelJson.shortname || parcelJson.id;
+    if (actionButtons[1]) { //admin does not have this feature
+        actionButtons[1].dataset.actionId = parcelJson.id;
+        actionButtons[1].dataset.name = parcelJson.shortname || parcelJson.id;
+    }
     editEvent(actionButtons);
     return template;
 }

@@ -47,22 +47,28 @@ class LocationFinder {
     const org = origin.split(',');
     const dest = destination.split(',');
 
-    try {
-      const start = new google.maps.LatLng(org[0], org[1]);
-      const end = new google.maps.LatLng(dest[0], dest[1]);
-      const services = new google.maps.DistanceMatrixService();
-      services.getDistanceMatrix({
-        origins: [start],
-        destinations: [end],
-        travelMode: 'DRIVING',
-      }, function (result) {
-        const status = result.rows[0].elements[0].status;
-        const distance = (status === 'OK') ? result.rows[0].elements[0].distance.text : 'Distance Unavailable!';
-        callback(distance);
-      })
-    } catch (e) {
-      alertMessage('Unable to fetch distance information', 'fail')
-    }
+
+    return new Promise(function (resolve) {
+      try {
+        const start = new google.maps.LatLng(org[0], org[1]);
+        const end = new google.maps.LatLng(dest[0], dest[1]);
+        const services = new google.maps.DistanceMatrixService();
+
+        services.getDistanceMatrix({
+          origins: [start],
+          destinations: [end],
+          travelMode: 'DRIVING',
+        }, function (result) {
+          const status = result.rows[0].elements[0].status;
+          const distance = (status === 'OK') ? result.rows[0].elements[0].distance.text : 'Distance Unavailable!';
+          resolve(distance)
+          callback(distance);
+        })
+
+      } catch (e) {
+        alertMessage('Unable to fetch distance information', 'fail')
+      }
+    })
   }
 
 

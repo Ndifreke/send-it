@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+
+   <head>
+      <title>SendIt | Packages</title>
+      <link type="text/css" rel="stylesheet" href="../stylesheet/shared.css">
+      <link href="https://fonts.googleapis.com/css?family=Roboto:300" rel="stylesheet">
+      <link type="text/css" rel="stylesheet" href="../stylesheet/main.css">
+      <link type="text/css" rel="stylesheet" href="../stylesheet/packages.css">
+      <script type="text/javascript" src="../javascript/UIBuilder.js"></script>
+      <script type="text/javascript" defer src="../javascript/authParcel.js"></script>
+
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   </head>
+
+   <body>
+
+      <div class="fixed-centered bounce" id='wait-animation'>
+         <svg class='wait-spin' width='46' height='46'>
+            <circle class='c1' cx='23px' cy='23px' r='9' fill='gray' stroke-width='3' />
+            <g fill='orange'>
+               <circle cx='4' cy='23' r='4' />
+               <circle cx='23' cy='4' r='4' />
+               <circle cx='42' cy='23' r='4' />
+               <circle cx='23' cy='42' r='4' />
+            </g>
+         </svg>
+
+         <div class="wait-message">
+            <strong>Loading... </strong>
+         </div>
+      </div>
+
+      <div class='viewport'>
+
+         <header>
+            <a href='#' id="logo"> </a>
+            <nav class="positon-bottom-right">
+               <ul>
+                  <li id="navigation-list">
+                     <a href='../index.html' class="active-btn botton">
+                        Sign out </a>
+                  </li>
+               </ul>
+            </nav>
+         </header>
+
+         <aside id='dashboard'>
+            <a class="close-btn" id='dashboard-closer' onclick="toggleDisplay( 'dashboard' )">
+            </a>
+
+            <ul class="dashboard elevate">
+
+               <li>
+                  <a class="dashLink active" href="#"> Parcels </a>
+               </li>
+
+               <li>
+                  <a class="dashLink" href="./create.html"> New Parcel </a>
+               </li>
+
+               <li>
+                  <a class="dashLink" href="./profile.html"> Profile </a>
+               </li>
+
+               <li>
+                  <a class="dashLink" href="./settings.html"> Settings </a>
+               </li>
+
+            </ul>
+
+         </aside>
+         <!--********************************************************-->
+         <main id="main">
+            <button type="button" id="flow-btn"> </button>
+            <section id="main-content">
+
+               <form name="action-prompt" class="elevate" data-action-id>
+                  <strong> Are you sure you want to <span class="action-message">
+                     </span> parcel <span class="parcel-name"></span>?
+                  </strong>
+                  <p> </p>
+                  <label class='ack-delete' data-response='accept'> </label> <span>accept</span>
+                  <label class='ack-cancel' data-response='reject'> </label> <span>reject</span>
+               </form>
+
+
+               <div id='loader' class="stick-top-centered centered">
+                  <svg class='wait-spin' width='46' height='46'>
+                     <circle class='c1' cx='23px' cy='23px' r='3' fill='gray' stroke-width='3' />
+                     <g fill='orange'>
+                        <circle cx='14' cy='23' r='3' />
+                        <circle cx='23' cy='14' r='3' />
+                        <circle cx='32' cy='23' r='3' />
+                        <circle cx='23' cy='32' r='3' />
+                     </g>
+                  </svg>
+                  <div id='message-alert'>#</div>
+               </div>
+
+
+               <section id='packages' style="margin-top: -60px">
+                  <h2 class='centered'> Packages </h2>
+
+                  <div id='parcelTemplate' class="package elevate">
+                     <div class="package-preview" data-parcel-id="1">
+                        <strong id='preview-date'style="position:absolute;right:9px"> Warehouse </strong>
+                        <strong id="preview-title"> Title1 || ID </strong><br />
+                        <strong id="preview-status">Pending </strong>
+
+                     </div>
+
+                     <div id="1" class="parcel-views">
+
+                        <div class='package-content'>
+                           <p class="package-description">
+                              Black and white television
+                           </p>
+                           <hr />
+
+                           <div class="meta">
+
+                              <strong> From: </strong> <span class="from"> Accra </span> <br />
+                              <strong> Destination: </strong> <span class="destination"> Lagos
+                              </span> <br />
+                              <strong> Charges:</strong> <span class="charges">$50</span> <br />
+                              <strong> Sender </strong> <span class="sender"> Mc </span> <br />
+                              <strong> Date </strong> <span class="date">24, August, 2018 </span>
+                              <br />
+                              <strong> Location </strong> <span class="location"> Lagos Custome
+                              </span> <br />
+                              <strong> Status </strong> <span class="status"> Proccessing</span>
+                              <br />
+
+                              <div class='parcel-action'>
+                                 <hr />
+                                 <div class="steer-cancel-icon" data-action='cancel-prompt' title='cancel parcel'
+                                    data-action-id="{packageId1}" data-name="{packageId1}">
+                                 </div>
+                                 <div class="steer-icon" data-action='edit-prompt' title='edit parcel'
+                                    data-action-id="{packageId1}" data-name="{packageId1}">
+                                 </div>
+                              </div>
+
+                           </div>
+                        </div>
+                     </div>
+
+               </section>
+            </section>
+         </main>
+
+         <footer>
+
+         </footer>
+      </div>
+
+
+   </body>
+
+</html>

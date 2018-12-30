@@ -2,7 +2,7 @@
 <html>
 
    <head>
-      <title>SendIt | Packages</title>
+      <title>Admin </title>
       <link type="text/css" rel="stylesheet" href="../stylesheet/shared.css">
       <link href="https://fonts.googleapis.com/css?family=Roboto:300" rel="stylesheet">
       <link type="text/css" rel="stylesheet" href="../stylesheet/main.css">
@@ -57,7 +57,7 @@
                </li>
 
                <li>
-                  <a class="dashLink" href="./create.html"> New Parcel </a>
+                  <a class="dashLink" href="./create.html"> Create Parcel </a>
                </li>
 
                <li>
@@ -66,10 +66,6 @@
 
                <li>
                   <a class="dashLink" href="./settings.html"> Settings </a>
-               </li>
-
-               <li>
-                  <a class="dashLink" href="./admin.html" title="Admin">Admin </a>
                </li>
 
             </ul>
@@ -105,11 +101,18 @@
 
 
                <section id='packages' style="margin-top: -60px">
+
+                  <form id="search">
+                     <input type="text" id="search-parcel" placeholder="Email or Percel ID" />
+                     <input type="submit" class="search-icon" value="">
+                  </form>
+
                   <h2 class='centered'> Packages </h2>
 
                   <div id='parcelTemplate' class="package elevate">
                      <div class="package-preview" data-parcel-id="1">
-                        <strong id='preview-date'style="position:absolute;right:9px"> Warehouse </strong>
+                        <strong id='preview-date' style="position:absolute;right:9px"> Warehouse
+                        </strong>
                         <strong id="preview-title"> Title1 || ID </strong><br />
                         <strong id="preview-status">Pending </strong>
 
@@ -128,7 +131,7 @@
                               <strong> From: </strong> <span class="from"> Accra </span> <br />
                               <strong> Destination: </strong> <span class="destination"> Lagos
                               </span> <br />
-                              <strong> Charges:</strong> <span>$50</span> <br />
+                              <strong> Charges:</strong> <span class="charges">$50</span> <br />
                               <strong> Sender </strong> <span class="sender"> Mc </span> <br />
                               <strong> Date </strong> <span class="date">24, August, 2018 </span>
                               <br />
@@ -139,9 +142,6 @@
 
                               <div class='parcel-action'>
                                  <hr />
-                                 <div class="steer-cancel-icon" data-action='cancel-prompt' title='cancel parcel'
-                                    data-action-id="{packageId1}" data-name="{packageId1}">
-                                 </div>
                                  <div class="steer-icon" data-action='edit-prompt' title='edit parcel'
                                     data-action-id="{packageId1}" data-name="{packageId1}">
                                  </div>

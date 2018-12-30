@@ -1,18 +1,32 @@
 document.addEventListener('DOMContentLoaded', function () {
+  authorizeUpdate();
+
 
   document.querySelector('.refresh-icon').onclick = refreshSummary;
-  option.locationOnFail = host + '/ui/user/login.html';
-  option.locationOnError = host + "/ui/user/login.html";
+  option.locationOnFail = host + '/ui/login.html';
+  option.locationOnError = host + "/ui/login.html";
   option.renderOnSuccess = true;
   initPage(option);
   centerAlert(document.querySelector('#parcel-inputs'));
-  writeSummaryEvent();
+
+  writeSummaryEvent(JSON.parse(sessionStorage.getItem('update')));
   document.forms['createParcel'].create.addEventListener('click', createParcel);
 })
+
+
+
+/** Authorize that the update request was originated from a click 
+ * else assume the user does not have the right to update and send her back to login
+ */
+function authorizeUpdate() {
+  if (!sessionStorage.getItem('update'))
+    window.location = '/ui/login.html';
+}
 
 async function createParcel() {
   refreshSummary().then(async function () {
     const data = validateFormData();
+    console.log(data)
     if (data) {
       const response = await SendIt.post(remote + '/api/v1/parcels', data);
       response.json().then(function (json) {
@@ -84,29 +98,36 @@ function refreshSummary() {
   document.querySelector('#origin-summary').textContent = form.origin.value || 'Unkown!';
   document.querySelector('#destination-summary').textContent = form.destination.value || 'Unkown!';
   document.querySelector('#weight-summary').textContent = form.weight.value || '0 kg';
-  return updateDistanceAndPrice();
+  //return updateDistanceAndPrice();
 }
 
-function writeSummaryEvent() {
+function writeSummaryEvent(parcelData) {
+  console.log(parcelData)
   const form = document.forms['createParcel'];
 
-  form.shortname.onchange = function () {
-    document.querySelector('#shortname-summary').textContent = this.value || 'No title!';
-  }
+  form.shortname.value = parcelData.shortname;
+  form.shortname.disabled = true;
 
-  form.origin.onchange = function () {
-    document.querySelector('#origin-summary').textContent = this.value;
-    updateDistanceAndPrice();
-  }
+  form.origin.value = parcelData.origin;
+  form.origin.disabled = true;
 
-  form.destination.onchange = function () {
-    document.querySelector('#destination-summary').textContent = this.value;
-    updateDistanceAndPrice();
-  }
+  form.destination.value = parcelData.destination;
+  form.destination.disabled = true;
 
-  form.weight.onchange = function () {
-    document.querySelector('#weight-summary').textContent = this.value;
-  }
+  form.weight.value = parcelData.weight;
+  form.weight.disabled = true;
+
+  form.description.value = parcelData.description;
+  form.description.disabled = true;
+  form['destination-lat'] = parcelData.destination_lat;
+  form['destination-lng'] = parcelData.destination_lng;
+
+  form['origin-lat'].value = parcelData.origin_lat;
+  form['origin-lng'].value = parcelData.origin_lng;
+
+  document.querySelector('#distance-summary').textContent = parcelData.distance;
+  document.querySelector('#price-summary').textContent = parcelData.price;
+  refreshSummary();
 }
 
 

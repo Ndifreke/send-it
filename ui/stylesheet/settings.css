@@ -3,20 +3,27 @@ input {
 }
 
 .title-header {
- padding: 4px 9%;
+ padding: 2px 4%;
+ margin: 0px;
+}
 
+#message-alert {
+ position: fixed;
+ bottom: 50%;
 }
 
 /* mobile */
 @media screen and (max-width: 760px) {
- input {
-  width: 100%;
- }
 
  form#settingsUI {
   padding: 20px;
  }
+}
 
+@media screen and (max-width:479px) {
+ input {
+  width: 100%;
+ }
 }
 
 /* tablet */
@@ -28,6 +35,4 @@ input {
 }
 
 /* desktop */
-@media screen and (min-width:1500px) {
- 
-}
+@media screen and (min-width:1500px) {}
