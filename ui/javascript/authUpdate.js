@@ -13,8 +13,6 @@ document.addEventListener('DOMContentLoaded', function () {
   document.forms['createParcel'].create.addEventListener('click', createParcel);
 })
 
-
-
 /** Authorize that the update request was originated from a click 
  * else assume the user does not have the right to update and send her back to login
  */

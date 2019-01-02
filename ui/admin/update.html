@@ -1,7 +1,7 @@
 <html>
 
   <head>
-    <title> Create It | SendIt </title>
+    <title> Update It | SendIt </title>
     <link type="text/css" rel="stylesheet" href="../stylesheet/main.css">
     <link type="text/css" rel="stylesheet" href="../stylesheet/shared.css">
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
@@ -55,6 +55,7 @@
 
           <li> <a class="dashLink" href="./packages.html" value="Packages"> Parcel List </a> </li>
           <li> <a class="dashLink active" href="#"> Update Parcel </a> </li>
+          <li> <a class="dashLink" href="./create.html"> Create Parcel </a> </li>
           <li> <a class="dashLink" href="./profile.html"> Profile </a> </li>
           <li> <a class="dashLink" href="./settings.html"> Settings </a> </li>
         </ul>
@@ -68,15 +69,15 @@
 
           <div id="new-parcel-viewport" style="margin-top: -56px; height: 70%">
 
-            <h2 class="centered"> Create New Percel </h2>
+            <h2 class="centered"> Update Parcel </h2>
             <form class="align-center elevate" id="percel-form" name='createParcel'>
 
               <div id="parcel-inputs">
 
                 <div class="flex  input-icon" title="Parcel Current Location">
-                  <a href="#map-ui" class="location-icon"></a>
-                  <input type="text" class="fit-width no-border" name="location" onclick="focusedInput('location')"
-                    placeholder="Parcel Origin">
+                  <a href="#map-ui" class="location-icon" onclick="focusedInput('location')"></a>
+                  <input type="text" class="fit-width no-border" name="location"
+                    placeholder="Parcel Location">
                   <input type="hidden" name='location-lat' />
                   <input type="hidden" name='location-lng' />
                 </div>
@@ -90,10 +91,10 @@
                   <div class="flex input-icon" title="Delivery Status">
                     <a class="processing"> </a>
                     <select class="fit-width no-border" name="status" style="background:white">
-                      <option> Cancelled </option>
-                      <option> Delivered </option>
-                      <option> Pending </option>
-                      <option>Processing </option>
+                      <option> CANCELLED </option>
+                      <option> DELIVERED </option>
+                      <option> PENDING </option>
+                      <option>PROCESSING </option>
                     </select>
                   </div>
                 </div>
@@ -121,7 +122,7 @@
                 </div>
 
 
-                <div id="create-sumary">
+                <div id="create-summary">
                   <div>
                     <h4 class="centered title-header">
                       Order Summary
@@ -177,7 +178,7 @@
                       </g>
                     </svg>
                   </div>
-                  <input class="botton prim-btn" type="button" name="create" Create It value="Create It" />
+                  <input class="botton prim-btn" type="button" name="create" value="Update It" />
                 </p>
 
               </div>

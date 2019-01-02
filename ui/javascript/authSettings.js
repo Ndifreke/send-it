@@ -14,7 +14,7 @@ async function changeSettings() {
     const response = await SendIt.put(remote + '/api/v1/users/update', data);
     const json = await response.json();
     const messageType = (response.status == 200) ? 'success' : 'inform';
-    alertMessage(json, messageType, leftPos);
+    alertMessage(json.response, messageType);
   } else {
     alertMessage('Enter field data to update', 'inform');
   }

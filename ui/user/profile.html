@@ -15,6 +15,8 @@
 
    <body>
 
+      <div id='message-alert'>#</div>
+
       <div id='wait-animation'>
          <div class="fixed-centered bounce">
             <svg class='wait-spin' width='46' height='46'>
@@ -32,7 +34,7 @@
          </div>
       </div>
 
-      <div id='viewport'>
+      <div class='viewport'>
          <header>
             <a href='#' id="logo"> </a>
             <nav class="positon-bottom-right">
@@ -62,7 +64,7 @@
                </li>
 
                <li>
-                  <a class="dashLink" href="./create.html"> New Parcel </a>
+                  <a class="dashLink" href="./create.html"> Parcel List </a>
                </li>
 
                <li>
@@ -106,15 +108,15 @@
                      <div id="profile-sumary">
                         <p>
                            <strong> Name :</strong> <br />
-                           <span id="name"> Ndifreke Anthony</span>
+                           <span id="name"></span>
                         </p>
                         <p>
                            <strong> Phone </strong> <br />
-                           <span> 23470352748987 </span>
+                           <span id='mobile'></span>
                         </p>
                         <p>
                            <strong> Email :</strong> <br />
-                           <span>user@domain.com</span>
+                           <span id="email"></span>
                         </p>
                      </div>
 
@@ -131,7 +133,7 @@
                            </legend>
                            <div class="badges">
                               <div class="stats-badge elevate">
-                                 <span>588 </span>
+                                 <span id="delivered"></span>
                               </div>
 
                            </div>
@@ -145,7 +147,7 @@
                            </legend>
                            <div class="badges">
                               <div class="stats-badge elevate">
-                                 <span>15 </span>
+                                 <span id='processing'></span>
                               </div>
                            </div>
                         </fieldset>
@@ -160,7 +162,7 @@
 
                            <div class="badges">
                               <div class="stats-badge elevate">
-                                 <span> 5 </span>
+                                 <span id="cancelled"></span>
                               </div>
                            </div>
                         </fieldset>

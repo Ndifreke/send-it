@@ -10,10 +10,10 @@ document.addEventListener('DOMContentLoaded', function () {
   option.locationOnError = host + "/ui/login.html";
   option.renderOnSuccess = true;
   initPage(option);
-  centerAlert(document.querySelector('#parcel-inputs'));
+  centerAlert(document.querySelector('#create-summary'));
 
   fillInputs(JSON.parse(sessionStorage.getItem('update')));
-  document.forms['createParcel'].create.addEventListener('click', createParcel);
+  document.forms['createParcel'].create.addEventListener('click', updateParcel);
 })
 
 /** Authorize that the update request was originated from a click 
@@ -24,15 +24,39 @@ function authorizeUpdate() {
     window.location = '/ui/login.html';
 }
 
-async function createParcel() {
+async function updateParcel() {
   refreshSummary();
   const data = validateFormData();
   console.log(data)
   if (data) {
-    const response = await SendIt.post(remote + '/api/v1/parcels', data);
+    const id = JSON.parse(sessionStorage.getItem('update')).id;
+    const response = await SendIt.put(remote + `/api/v1/parcels/${id}/update`, data);
     response.json().then(function (json) {
-      alertMessage(json.message, (response.status == 201) ? "success" : 'fail')
-    })
+      const alerts = [];
+      for (const field in json.message) {
+        if (field.indexOf("lat") == -1 && field.indexOf("lng") == -1)
+          alerts.push(field + " " + json.message[field]);
+      }
+
+      let nextPrint = function (index) {
+        if (index < alerts.length) {
+          printMessage(alerts[index]);
+        }else{
+          sessionStorage.removeItem('update');
+          window.location = `${host}/ui/${sessionStorage.getItem('path')}/packages.html`;
+          
+        }
+      }
+      let count = 0;
+      nextPrint(0);
+
+      function printMessage(message) {
+        setTimeout(function () {
+          alertMessage(message, (response.status == 200) ? "success" : 'fail');
+          nextPrint(++count);
+        }, 2000)
+      }
+    });
   }
 }
 

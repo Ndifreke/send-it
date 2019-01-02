@@ -49,6 +49,10 @@
     display: flex;
 }
 
+#message-alert {
+    position: fixed;
+    bottom: 50%;
+}
 /* tablet */
 @media screen and (min-width:1000px) {
     #statistics {

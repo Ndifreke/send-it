@@ -1,5 +1,6 @@
 const host = 'http://127.0.0.1:5500';
 const remote = 'http://127.0.0.1:8080';
+let path = null;
 
 const option = {
   defaultRender: false,
@@ -62,7 +63,7 @@ function setAttributes(element, attributeOption) {
 let alertCenter = 0;
 
 function centerAlert(referenceElement) {
- 
+
 
   function computeCenter() {
     const offsetLeft = referenceElement.offsetLeft;
@@ -104,12 +105,12 @@ function alertMessage(msg, type) {
 }
 
 
-function renderPage(message, path) {
+function renderPage(message) {
   const waitAnimation = document.getElementById('wait-animation');
   waitAnimation.parentElement.removeChild(waitAnimation);
   document.querySelector('div.viewport').style.visibility = 'visible';
   if (message)
-    alertMessage(message + " " + path, "success");
+    alertMessage(message, "inform");
 }
 
 function showSpinner() {
@@ -123,24 +124,26 @@ function hideSpinner() {
 /* Initialize secure page after successfull verification of token */
 async function initPage(option) {
   const token = window.localStorage.getItem("token");
-
+ 
   if (token) {
     SendIt.get(remote + '/api/v1/auth').
     then(async function response(res) {
       const json = await res.json(); //can use promise to reduce page lag
-      const path = json.isAdmin ? "admin" : "user";
+      path = json.isAdmin ? "admin" : "user";
+      console.log(path)
       sessionStorage.setItem("path", path);
 
       /** Route to appropraite page path */
-      if (window.location.href.indexOf(path) == -1)
-        window.location = host + "/ui/login.html";
+      if (window.location.href.indexOf(path) == -1) {
+      window.location = host + "/ui/login.html";
+      }
 
       if (res.status === 200) {
         option.locationOnSuccess ? window.location = option.locationOnSuccess(path) : null;
         option.renderOnSuccess ? renderPage("Login as", path) : null;
       } else {
         option.locationOnFail ? window.location = option.locationOnFail : null;
-        option.renderOnFail ? renderPage("Unauthorized", 'fail') : null;
+        option.renderOnFail ? renderPage("Unauthorized") : null;
       }
     }).
     catch(function error(err) {
@@ -153,6 +156,8 @@ async function initPage(option) {
     option.locationOnFail ? window.location = option.locationOnFail : null;
   }
 }
+
+
 
 function xmlGet(url, callback) {
   const req = new XMLHttpRequest();
