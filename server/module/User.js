@@ -13,36 +13,36 @@ class User {
   constructor(options) {
     // validate user input before inserting into the database
     this.options = options;
+    this.id = options.id;
     this.firstname = options.firstname;
     this.surname = options.surname;
     this.email = options.email;
     this.password = options.password;
     this.mobile = options.mobile;
-    this.is_admin = 0;
+    this.is_admin = options.is_admin;
   }
 
   async create(res) {
-    let message;
-    const createUser = `
-    INSERT INTO users(firstname,surname,email,password,mobile,is_admin)
-    VALUES(
-      '${this.firstname}',
-      '${this.surname}',
-      '${this.email}',
-      '${this.password}',
-      '${this.mobile}',
-      '${this.is_admin}'
-    )`;
     try {
-      util.validateCreateUser(this.options);
+      util.validateCreateUser(this);
     } catch (e) {
       res.statusCode = 400;
       return Promise.resolve(util.response('error', e.message, 0));
     }
-    const exist = await User.exists(this.options.email);
-    console.log(!exist);
+    let message;
+    const createUser = `
+    INSERT INTO users(firstname,surname,email,password,mobile,is_admin)
+    VALUES(
+      '${this.getFirstName()}',
+      '${this.getSurname()}',
+      '${this.getEmail()}',
+      '${this.getPassword()}',
+      '${this.getMobile()}',
+      '${false}'
+    )`;
+    const user = await User.lookup(this.options.email);
     //prevent creating a user if a user by this email exist
-    if (!exist) {
+    if (!user) {
       const result = await db.query(createUser);
       message = util.response('ok', 'User created succesfully', result.rowCount);
       return Promise.resolve(message);
@@ -53,6 +53,24 @@ class User {
     return Promise.resolve(message);
   }
 
+  static async lookup(userId, cb) {
+    let field = 'email';
+    if (/^\d+$/.test(userId)) {
+      field = 'id';
+    }
+    const query = `SELECT id, firstname, surname,email,password, mobile, is_admin FROM users
+    WHERE ${field} = '${userId}'`;
+    console.log(query)
+    let userData = null;
+    try {
+      const result = await db.query(query);
+      userData = result.rows[0];
+      return Promise.resolve(new User(userData));
+    } catch (e) {
+      return Promise.resolve(userData);
+    }
+  }
+
 
   /* check by email or id if this user is an admin */
   static async is_admin(identity) {
@@ -60,120 +78,83 @@ class User {
     return Promise.resolve(query.rows[0].is_admin);
   }
 
-  /* Check if the admin status of user identified by id is true */
-  static async checkAdminById(id) {
-    const query = `SELECT is_admin FROM users where id='${id}'`
-    const result = await db.query(query);
-    if (result.rows[0].is_admin === true)
-      return Promise.resolve(true);
-    else
-      return Promise.resolve(false);
+  getIsAdmin() {
+    return this.is_admin;
   }
 
-  /* Check if the admin status of user identified by email is true */
-  static async checkAdminByEmail(email) {
-    const query = `SELECT is_admin FROM users where email='${email}'`
-    const result = await db.query(query);
-    if (result.rows[0].is_admin === true)
-      return Promise.resolve(true);
-    else
-      return Promise.resolve(false);
+  getID() {
+    return this.id;
   }
 
-  /* Takes an email and promise corresponding id or take an Id and promise email*/
-  static async exists(identifier) {
-    let result;
-    try {
-      if (util.isInteger(identifier)) {
-        result = await User.promiseEmail(identifier);
-        return Promise.resolve(result.rowCount);
-      } else if (util.isEmail(identifier)) {
-        result = await User.promiseId(identifier);
-        return Promise.resolve(result[0] ? result[0].id : 0);
-      }
-    } catch (error) {
-      console.log("Something wrong happend at Exist " + error);
-      return Promise.resolve(0);
-    }
-    return Promise.resolve([]);
+  getPassword() {
+    return this.password;
   }
 
-  static async promiseId(email) {
-    const query = `SELECT id from users where email='${email}'`;
-    const result = await db.query(query);
-    return Promise.resolve(result.rows);
+  getSurname() {
+    return this.surname;
   }
 
-  static async promiseEmail(identifier) {
-    const query = `SELECT email from users where id ='${identifier}'`;
-    const result = await db.query(query);
-    return Promise.resolve(result.rows);
+  getEmail() {
+    return this.email;
   }
 
-  static async changePassword(userid, newPassword) {
-    if (util.isText(newPassword)) {
-      const result = await User.update(userid, 'password', newPassword);
-      return Promise.resolve(result.rowCount);
-    } else {
-      return Promise.resolve(0);
-    }
+  getFirstName() {
+    return this.firstname;
   }
 
-  static async changeEmail(userid, newEmail) {
-    if (util.isEmail(newEmail)) {
-      const result = await User.update(userid, 'email', newEmail);
-      return Promise.resolve(result.rowCount);
-    } else {
-      return Promise.resolve(0);
-    }
+  getMobile() {
+    return this.mobile;
   }
 
-  static async authLogin(signInEmail, signInPassword) {
-    let message;
-    if (!util.isEmail(signInEmail)) {
-      message = util.response('error', 'Invalid Email provided')
-      return Promise.resolve(message);
-    }
-    const result = await User.exists(signInEmail);
-    if (result > 0) {
-      const pass = await User.getPassword(result);
-      if (signInPassword === pass) {
-        message = util.response('ok', 'login successfull', result)
-        return Promise.resolve(message);
-      }
-      //user exist but entered wrong password
-      message = util.response('error', 'Email or Password is wrong')
-      return Promise.resolve(message);
-    }
-    //User does not exist
-    message = util.response('error', 'No such User with email ' + signInEmail)
-    return Promise.resolve(message);
-  }
-
-  static async getPassword(id) {
-    const query = `SELECT password from users WHERE id='${id}'`;
-    const result = await db.query(query);
-    return Promise.resolve(result.rows[0]['password']);
-  }
-
-  static async changePhone(userId, newPhone) {
-    if (util.isInteger(newPhone)) {
-      const result = await User.update(userId, 'mobile', newPhone);
-      return Promise.resolve(result.rowCount);
-    } else {
-      return Promise.resolve(0);
-    }
-  }
-
-  static async changeUserMod(id, mode) {
-    const result = await User.update(id, 'is_admin', mode);
+  async changePassword(password) {
+    const result = await User.update(this.getID(), 'password', password);
     return Promise.resolve(result.rowCount);
   }
 
+  async changeEmail(email) {
+    const result = await User.update(this.getID(), 'email', email);
+    return Promise.resolve(result.rowCount);
+  }
 
-  static update(id, fieldName, value) {
+  async changePhone(phoneNumber) {
+    if (util.isInteger(phoneNumber)) {
+      const result = await User.update(this.getID(), 'mobile', phoneNumber);
+      return Promise.resolve(result.rowCount);
+    } else {
+      return Promise.resolve(0);
+    }
+  }
+
+  async changeMode(mode) {
+    const result = await User.update(this.getID(), 'is_admin', mode);
+    return Promise.resolve(result.rowCount);
+  }
+
+  async parse() {
+    const processingQuery = `select count(status) from parcels where owner = ${this.getID()} AND (status != 'DELIVERED' OR status !='CANCELLED')`;
+    const deliveredQuery = `select count(status) from parcels where (owner = ${this.getID()} AND status ='DELIVERED') `;
+    const cancelledQuery = `select count(status) from parcels where (owner = ${this.getID()} AND status ='CANCELLED') `;
+    const procesResult = await db.query(processingQuery);
+    const deliveredResult = await db.query(deliveredQuery);
+    const cancelledResult = await db.query(cancelledQuery);
+    return Promise.resolve({
+      id: this.getID(),
+      firstname: this.getFirstName(),
+      surname: this.getSurname(),
+      password: this.getPassword(),
+      email: this.getEmail(),
+      mobile: this.getMobile(),
+      isAdmin: this.getIsAdmin(),
+      deliveredCount: deliveredResult.rows[0].count,
+      processingCount: procesResult.rows[0].count,
+      cancelledCount: cancelledResult.rows[0].count
+    })
+  }
+
+
+  static update(id, field, value) {
     let updateQuery;
-    switch (fieldName) {
+    switch (field) {
       case 'password':
         updateQuery = `UPDATE users SET password='${value}' WHERE id='${id}'`
         break;
@@ -191,9 +172,30 @@ class User {
     }
     return db.query(updateQuery);
   }
-}
 
-// User.changePhone( 2, '1000000000l' ).then( ( y ) => {
-//   console.log( y )
-// } );
+  static async authLogin(signInEmail, signInPassword) {
+    let message;
+    if (!util.isEmail(signInEmail)) {
+      message = util.response('error', 'Invalid Email provided')
+      return Promise.resolve(message);
+    }
+    const user = await User.lookup(signInEmail);
+    if (user) {
+      const pass = await user.getPassword();
+      if (signInPassword === pass) {
+        message = util.response('ok', 'login successfull')
+        delete message.response;
+        message.id = user.getID();
+        message.isAdmin = user.getIsAdmin();
+        return Promise.resolve(message);
+      }
+    }
+    //User does not exist
+    message = util.response('error', 'No such User with email ' + signInEmail)
+    return Promise.resolve(message);
+  }
+
+
+}
+//console.log(User.lookup(20).then(user => console.log(user)));
 export default User;

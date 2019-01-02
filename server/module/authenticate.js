@@ -1,6 +1,7 @@
 import jwt from 'jsonwebtoken';
-import User from './User';
+import user from './User';
 import util from './utils';
+import User from './User';
 
 
 /**
@@ -12,11 +13,12 @@ import util from './utils';
 const SECRET = process.env.SECRET || 'topdog';
 
 async function issueAccessToken(id) {
-  const isAdmin = await User.is_admin(id)
+  console.log(id)
+  const user = await User.lookup(id);
   const payload = {
     id: id,
-    is_admin: isAdmin,
-    email: User.exists(id)
+    is_admin: user.getIsAdmin(),
+    email: user.getEmail()
   }
 
   const token = jwt.sign(payload, SECRET);
@@ -45,13 +47,21 @@ function verifyAccessToken(req, resp, callback, token) {
 }
 
 function authToken(req, resp, next) {
-  async  function callback(token) {
-    token ? resp.statusCode = 200 : resp.statusCode = 501;
-    resp.json({
-      status: 'ok',
-      message: 'valid token',
-      isAdmin: await User.is_admin(token.id)
-    })
+  async function callback(token) {
+    const user = await User.lookup(token.id);
+    if (!user) {
+      resp.statusCode = 403;
+      resp.json({
+        status: "error",
+        message: "User does not exist"
+      });
+    } else {
+      resp.json({
+        status: 'ok',
+        message: 'valid token',
+        isAdmin: user.getIsAdmin()
+      })
+    }
   }
   verifyAccessToken(req, resp, callback)
 }

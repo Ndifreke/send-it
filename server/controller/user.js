@@ -1,6 +1,6 @@
 // const user = require( "../library/User" ).User;
 import util from '../module/utils';
-import User from '../module/User';
+import user from '../module/User';
 import {
   issueAccessToken,
   verifyAccessToken
@@ -11,6 +11,7 @@ import {
 import {
   stat
 } from 'fs';
+import User from '../module/User';
 
 /**
  * Signup A User to Send-It, given the users signup information
@@ -20,7 +21,7 @@ import {
  * @returns {void}
  */
 async function signup(req, res) {
-  const created = await new User(req.body).create(res);
+  const created = await new user(req.body).create(res);
   res.json(created);
 }
 
@@ -29,17 +30,18 @@ async function update(req, resp) {
     let hasUpdate = false;
     let partialUpdate = false;
     let responseBody = '';
+    const user = await User.lookup(token.id);
     for (let data in req.body) {
       switch (data) {
         //send partial update status
         case 'password':
-          User.changePassword(token.id, req.body[data]);
+          user.changePassword(req.body.password);
           responseBody += 'Password Updated\n';
           hasUpdate = true;
           break;
         case 'email':
           if (util.isEmail(req.body[data])) {
-            User.changeEmail(token.id, req.body[data]);
+            user.changeEmail(req.body.email);
             responseBody += 'Email Updated\n';
             hasUpdate = true;
           } else {
@@ -49,7 +51,7 @@ async function update(req, resp) {
           break;
         case 'phoneNumber':
           if (util.isInteger(req.body[data])) {
-            User.changePhone(token.id, req.body[data]);
+            user.changePhone(req.body.phoneNumber);
             responseBody += 'PhoneNumber Updated\n';
             hasUpdate = true;
           } else {
@@ -58,9 +60,9 @@ async function update(req, resp) {
           }
           break;
         case 'changeMode':
-          const isAdmin = await User.is_admin(token.id);
+          const isAdmin = await user.is_admin(token.id);
           if (isAdmin) {
-            User.changeUserMod(token.id, req.body[data]);
+            user.changeMod(req.body[data]);
             responseBody += 'Mode Updated\n';
             hasUpdate = true;
           } else {
@@ -69,7 +71,8 @@ async function update(req, resp) {
           }
       }
     }
-    let message = '', status ='';
+    let message = '',
+      status = '';
     if (hasUpdate && partialUpdate) {
       responseBody += 'Some Update were not applied';
       message = 'Partial Update';
@@ -86,8 +89,18 @@ async function update(req, resp) {
   verifyAccessToken(req, resp, updateCallback);
 }
 
-async function getUserData() {
-
+function getUserData(req, resp) {
+  async function sendUserData(token) {
+    const user = await User.lookup(token.id);
+    const data = await user.parse();
+    delete data.password;
+    console.log(data)
+    resp.json({
+      status: "ok",
+      data: data
+    });
+  }
+  verifyAccessToken(req, resp, sendUserData);
 }
 
 /**
@@ -99,14 +112,12 @@ async function getUserData() {
  */
 async function login(req, res) {
   console.log(req.body)
-  const data = await User.authLogin(req.body.email, req.body.password, res);
+  const data = await user.authLogin(req.body.email, req.body.password, res);
   res.setHeader('content-type', "Application/json");
-  const userId = data.response[0];
-  if (userId) {
-    delete data.response;
-    const token = await issueAccessToken(userId);
+  if (data.id) {
+    console.log(data)
+    const token = await issueAccessToken(data.id);
     data.token = token;
-    data.isAdmin = await User.is_admin(userId);
     res.setHeader("Authorization", token);
     res.statusCode = 200;
     res.json(data);

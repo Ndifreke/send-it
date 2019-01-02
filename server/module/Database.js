@@ -19,6 +19,9 @@ CREATE TABLE IF NOT EXISTS parcels(
   id SERIAL,
   owner INT REFERENCES users(id) ON DELETE RESTRICT,
   shortname VARCHAR(50) NOT NULL,
+  location TEXT DEFAULT 'WAREHOUSE',
+  location_lat  TEXT ,
+  location_lng  TEXT ,
   destination TEXT NOT NULL,
   destination_Lat  TEXT ,
   destination_lng TEXT ,
@@ -26,13 +29,12 @@ CREATE TABLE IF NOT EXISTS parcels(
   origin_Lat TEXT ,
   origin_lng TEXT ,
   description TEXT,
-  distance NUMERIC NOT NULL,
+  distance DECIMAL DEFAULT 0,
   status VARCHAR(20) DEFAULT 'PENDING',
-  weight NUMERIC NOT NULL,
+  weight DECIMAL DEFAULT 0,
   created_At DATE DEFAULT current_date,
   delivered_On DATE ,
-  location TEXT DEFAULT 'WAREHOUSE',
-  price NUMERIC NOT NULL
+  price DECIMAL DEFAULT 0
   );
 `;
 

@@ -18,7 +18,8 @@ import {
   getAllParcels,
   changePresentLocation,
   updateStatus,
-  changeCordinate
+  changeCordinate,
+  updateParcel
 } from './server/controller/parcel';
 
 import {
@@ -41,7 +42,7 @@ app.get('/api/v1/auth', authToken);
 app.get('/api/v1/parcels', getAllParcels);
 app.get('/api/v1/parcels/:parcelID', getOneParcel);
 app.get('/api/v1/users/:userID/parcels', getUserParcels);
-app.get('/api/v1/users/info', getUserData);
+app.get('/api/v1/users/data', getUserData);
 app.put('/api/v1/users/update', upateUserData)
 
 app.post('/api/v1/parcels', createParcel);
@@ -49,6 +50,7 @@ app.post('/api/v1/auth/signup', signup);
 app.post('/api/v1/auth/login', login);
 
 app.put('/api/v1/parcels/:parcelID/cancel', cancelParcel);
+app.put('/api/v1/parcels/:parcelID/update', updateParcel);
 app.put('/api/v1/parcels/:parcelID/status', updateStatus);
 app.put('/api/v1/parcels/:parcelID/destination', changeCordinate);
 app.put('/api/v1/parcels/:parcelID/presentLocation', changePresentLocation);
