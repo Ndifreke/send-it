@@ -64,7 +64,6 @@ let alertCenter = 0;
 
 function centerAlert(referenceElement) {
 
-
   function computeCenter() {
     const offsetLeft = referenceElement.offsetLeft;
     const referenceCenter = (offsetLeft + (referenceElement.clientWidth / 2));
