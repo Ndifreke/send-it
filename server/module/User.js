@@ -44,6 +44,7 @@ class User {
     //prevent creating a user if a user by this email exist
     if (!user) {
       const result = await db.query(createUser);
+      res.statusCode = 201;
       message = util.response('ok', 'User created succesfully', result.rowCount);
       return Promise.resolve(message);
     }

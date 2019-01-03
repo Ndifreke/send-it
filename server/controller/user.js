@@ -1,16 +1,9 @@
 // const user = require( "../library/User" ).User;
 import util from '../module/utils';
-import user from '../module/User';
 import {
   issueAccessToken,
   verifyAccessToken
 } from '../module/authenticate';
-import {
-  utils
-} from 'mocha';
-import {
-  stat
-} from 'fs';
 import User from '../module/User';
 
 /**
@@ -21,7 +14,8 @@ import User from '../module/User';
  * @returns {void}
  */
 async function signup(req, res) {
-  const created = await new user(req.body).create(res);
+  console.log(req.body)
+  const created = await new User(req.body).create(res);
   res.json(created);
 }
 
@@ -112,7 +106,7 @@ function getUserData(req, resp) {
  */
 async function login(req, res) {
   console.log(req.body)
-  const data = await user.authLogin(req.body.email, req.body.password, res);
+  const data = await User.authLogin(req.body.email, req.body.password, res);
   res.setHeader('content-type', "Application/json");
   if (data.id) {
     console.log(data)
@@ -125,8 +119,8 @@ async function login(req, res) {
     res.statusCode = 403;
     res.json(data);
   }
-}
-
+} 
+ 
 export {
   signup,
   login,
