@@ -25,9 +25,10 @@
     "clean": "cp temp/* -r build && rm -rf -d temp",
     "transpile": "babel ./ --out-dir ../build  --ignore node_modules",
     "copy-files":"cp node_modules index.html package.json .gitignore -r ../build",
-    "build": "npm run transpile && npm run copy-files",
+    "build": "npm run transpile && npm run copy-files && npm run deploy",
     "start": "node app.js",
     "test": "npm run build && mocha build/test/. --timeout 10000 --recursive --exit",
+    "deploy":"printf \"\n ******** DEPLOY BUILD ****** \n\n\"&& ./deploy.sh" ,
     "pack": "webpack ui/javascript/UIBuilder.js ui/javascript/app.js"
   },
   "devDependencies": {
