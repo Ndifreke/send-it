@@ -26,7 +26,7 @@ function validateSettings(form) {
   const password = form.password[0].value;
   const confirmPass = form.password[1].value;
   let updateData = '';
-  if (email.search(/.+/g) !== -1 && !isEmail(email)) {
+  if (email.search(/.+/g) !== -1 && !validEmail(email)) {
     alertMessage('Invalid Email provided', 'inform');
   } else {
     updateData += email ? `email=${email}` : '';
@@ -44,6 +44,5 @@ function validateSettings(form) {
   } else {
     updateData += password ? `&password=${password}` : '';
   }
-
   return updateData;
 }

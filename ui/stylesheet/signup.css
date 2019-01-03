@@ -1,5 +1,10 @@
 /* tablet */
 
+#message-alert{
+ position: fixed;
+ bottom: 50%;
+ }
+ 
 @media screen and (min-width:620px) {
  .multi-display {
   display: inline-flex;

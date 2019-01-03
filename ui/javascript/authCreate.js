@@ -16,7 +16,14 @@ async function createParcel() {
     if (data) {
       const response = await SendIt.post(remote + '/api/v1/parcels', data);
       response.json().then(function (json) {
-        alertMessage(json.message, (response.status == 201) ? "success" : 'fail')
+        if (response.status === 201) {
+          alertMessage(json.message, 'success')
+          setTimeout(function () {
+            window.location = `${host}/ui/${sessionStorage.getItem('path')}/packages.html`;
+          }, 2500);
+        } else{
+          alertMessage(json.message, 'fail');
+        }
       })
     }
   });

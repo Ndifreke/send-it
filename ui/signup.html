@@ -6,80 +6,109 @@
       <link type="text/css" rel="stylesheet" href="stylesheet/shared.css">
       <link type="text/css" rel="stylesheet" href="stylesheet/main.css">
       <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
-      <link type="text/css" rel="stylesheet" href="../stylesheet/signup.css">
+      <link type="text/css" rel="stylesheet" href="stylesheet/signup.css">
+      <script type="text/javascript" src="javascript/UIBuilder.js"></script>
+      <script type="text/javascript" src="javascript/authSignup.js"></script>
       <meta charset="UTF-8">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
    </head>
 
    <body id="home">
 
-      <header>
-         <a href='../index.html' id="logo"> </a>
-         <nav class="positon-bottom-right">
-            <ul>
-               <li id="navigation-list">
-                  <a href='./login.html' class="active-btn botton">
-                     LOG IN </a>
-               </li>
-            </ul>
-         </nav>
-      </header>
-      <!--*********************************************************************************************-->
-      <main id="main">
-         <div style="margin-top:68px;">
-            <div id="signupUI" class="elevate">
+      <div class="fixed-centered bounce" id='wait-animation'>
+         <svg class='wait-spin' width='46' height='46'>
+            <circle class='c1' cx='23px' cy='23px' r='9' fill='gray' stroke-width='3' />
+            <g fill='orange'>
+               <circle cx='4' cy='23' r='4' />
+               <circle cx='23' cy='4' r='4' />
+               <circle cx='42' cy='23' r='4' />
+               <circle cx='23' cy='42' r='4' />
+            </g>
+         </svg>
 
-               <form class="align-center" id="signupForm">
-                  <h2 class="align-center"> Create Your SendIt
-                     Account </h2>
 
-                  <div class="multi-display fit-width">
-                     <fieldset>
-                        <legend> <strong>First Name</strong>  </legend>
-                        <input class="fit-width" type="text" name="signupName" placeholder="Alice">
-                     </fieldset>
-
-                     <fieldset>
-                        <legend> <strong>Name</strong> </legend>
-                        <input class="fit-width" type="text" name='signupLastName' placeholder="Becker">
-                     </fieldset>
-                  </div>
-
-                  <div class="multi-display fit-width">
-                     <fieldset>
-                        <legend><strong>Email</strong> </legend>
-                        <input class="fit-width" type="email" name='signupEmail' placeholder="username@domain.com">
-                     </fieldset>
-                     <fieldset>
-                        <legend><strong>Mobile </strong>  </legend>
-                        <input class="fit-width" type="tel" name='signupNumber' placeholder="+23470123481458">
-                     </fieldset>
-                  </div>
-
-                  <div class="multi-display fit-width">
-                     <fieldset>
-                        <legend> <strong>Password</strong> </legend>
-                        <input class="fit-width" type="password" name='signupPassword' placeholder="Alphebets only">
-                     </fieldset>
-
-                     <fieldset>
-                        <legend><strong>Confirm Password</strong> </legend>
-                        <input class="fit-width" type="password" name='signupComfirmpassword'
-                           oninput="confirmPassword" placeholder="Confirm password">
-                     </fieldset>
-                  </div>
-
-                  <p>
-                     <input type="button" name="register" class="botton prim-btn" value='Register'
-                        onclick="signupUser()">
-                  </p>
-               </form>
-            </div>
+         <div class="wait-message">
+            <strong>Loading... </strong>
          </div>
-      </main>
-      <footer>
+      </div>
 
-      </footer>
+      <div id='message-alert'>#</div>
+
+      <div class="viewport">
+         <header>
+            <a href='../index.html' id="logo"> </a>
+            <nav class="positon-bottom-right">
+               <ul>
+                  <li id="navigation-list">
+                     <a href='./login.html' class="active-btn botton">
+                        LOG IN </a>
+                  </li>
+               </ul>
+            </nav>
+         </header>
+         <!--*********************************************************************************************-->
+         <main id="main">
+            <div style="margin-top:68px;">
+               <div id="signupUI" class="elevate">
+
+                  <form class="align-center" id="signupForm" name="signup">
+                     <h2 class="align-center"> Create Your SendIt
+                        Account </h2>
+
+                     <div class="multi-display fit-width">
+                        <fieldset>
+                           <legend> <strong>First Name</strong> </legend>
+                           <input class="fit-width" type="text" name="firstname" placeholder="Alice">
+                        </fieldset>
+
+                        <fieldset>
+                           <legend> <strong>Name</strong> </legend>
+                           <input class="fit-width" type="text" name='surname' placeholder="Becker">
+                        </fieldset>
+                     </div>
+
+                     <div class="multi-display fit-width">
+                        <fieldset>
+                           <legend><strong>Email</strong> </legend>
+                           <input class="fit-width" type="email" name='email' placeholder="username@domain.com">
+                        </fieldset>
+                        <fieldset>
+                           <legend><strong>Mobile </strong> </legend>
+                           <input class="fit-width" type="tel" name='mobile' placeholder="+23470123481458">
+                        </fieldset>
+                     </div>
+
+                     <div class="multi-display fit-width">
+                        <fieldset>
+                           <legend> <strong>Password</strong> </legend>
+                           <input class="fit-width" type="password" name='password' placeholder="Alphebets only">
+                        </fieldset>
+
+                        <fieldset>
+                           <legend><strong>Confirm Password</strong> </legend>
+                           <input class="fit-width" type="password" name='password' placeholder="Confirm password">
+                        </fieldset>
+                     </div>
+
+                     <p>
+                        <div id='loader'>
+                           <svg class='wait-spin' width='46' height='46'>
+                              <circle class='c1' cx='23px' cy='23px' r='3' fill='gray' stroke-width='3' />
+                              <g fill='orange'>
+                                 <circle cx='14' cy='23' r='3' />
+                                 <circle cx='23' cy='14' r='3' />
+                                 <circle cx='32' cy='23' r='3' />
+                                 <circle cx='23' cy='32' r='3' />
+                              </g>
+                           </svg>
+                        </div>
+                        <input type="button" name="register" class="botton prim-btn" value='Register'>
+                     </p>
+                  </form>
+               </div>
+            </div>
+         </main>
+      </div>
    </body>
 
 </html>
