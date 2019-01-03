@@ -1,5 +1,5 @@
 const loginPath = function (path) {
-    return origin + `/ui/${path}/packages.html`;
+    return host + `/ui/${path}/packages.html`;
 }
 
 document.addEventListener('DOMContentLoaded', function () {
