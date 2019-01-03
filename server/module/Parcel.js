@@ -8,7 +8,6 @@
 
 import db from './Database';
 import util from "./utils";
-import User from './User';
 
 const response = {};
 

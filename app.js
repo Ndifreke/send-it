@@ -22,7 +22,7 @@ import {
   updateParcel
 } from './server/controller/parcel';
 
-import db from "./server/controller/database";
+import dbController from "./server/controller/database";
 
 import {
   signup,
@@ -50,7 +50,7 @@ app.put('/api/v1/users/update', upateUserData)
 app.post('/api/v1/parcels', createParcel);
 app.post('/api/v1/auth/signup', signup);
 app.post('/api/v1/auth/login', login);
-app.post('/api/v1/tables/create', db.createTables);
+app.post('/api/v1/tables/create', dbController.createTables);
 
 app.put('/api/v1/parcels/:parcelID/cancel', cancelParcel);
 app.put('/api/v1/parcels/:parcelID/update', updateParcel);
@@ -58,11 +58,14 @@ app.put('/api/v1/parcels/:parcelID/status', updateStatus);
 app.put('/api/v1/parcels/:parcelID/destination', changeCordinate);
 app.put('/api/v1/parcels/:parcelID/presentLocation', changePresentLocation);
 
-app.delete("/api/v1/tables/users", db.dropUserTable )
+app.delete("/api/v1/table/users", dbController.dropUserTable );
+app.delete("/api/v1/table/parcels", dbController.dropParcelTable );
+app.delete("/api/v1/tables", dbController.dropTables );
+
 /*
 app.delete("/api/v1/user/userId", deleteUser)
 app.delete("/api/v1/parcels/parcelId", deleteParcel);
-app.delete("/api/v1/parcels/drop", dropParcelTable );
+
 app.delete("/api/v1/tables/drop", dropTables )
 */
 

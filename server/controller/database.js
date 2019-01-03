@@ -1,4 +1,4 @@
-import Database from '..//module/Database';
+import db from '..//module/Database';
 
 function createUserTable(req, resp) {
 
@@ -9,23 +9,32 @@ function createParcelTable(req, resp) {
 }
 
 async function dropUserTable(req, resp) {
- const db = new Database();
- const reply = await db.dropUsers(req,resp);
+ const reply = await db.deleteUserTable(req,resp);
  resp.json(reply);
 }
 
-function dropParcelTable(req, resp) {
-
+async function dropParcelTable(req, resp) {
+const result = await db.deleteParcelTable(req,resp);
+resp.json(result);
 }
 
 function createTables(req, resp) {
- resp.json(new Database().createTables(req,resp));
+ resp.json(db.createTables(req,resp));
 }
-const db = {
+
+async function dropTables(req,resp){
+ const result = await db.deleteTables(req,resp);
+ resp.json(result);
+
+
+}
+
+const dbController = {
  dropParcelTable,
  createParcelTable,
  createUserTable,
  dropUserTable,
- createTables
+ createTables,
+ dropTables,
 }
-export default db;
+export default dbController;

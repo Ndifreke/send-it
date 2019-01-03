@@ -43,6 +43,10 @@ CREATE TABLE IF NOT EXISTS parcels(
 class Database {
 
   constructor() {
+    if (!Database._ALLOW) {
+      throw new Error(`Calling new Constructor is not allowed, 
+      use static getInstance() to obtain existing instance`)
+    }
     if (Database.client) {
       this.client = Database.client;
     } else {
@@ -50,8 +54,6 @@ class Database {
         process.env.DATABASE_URL || process.env.DATABASE_URL_DEV
       );
       this.client.connect();
-      // this.client.query(usersTableShema);
-      // this.client.query(parcelsTableShema);
     }
   }
 
@@ -59,54 +61,80 @@ class Database {
     return this.client.query(query);
   }
 
-  createTables(req,resp){
-      this.client.query(usersTableShema);
-      this.client.query(parcelsTableShema);
-      const query =`CREATE TABLE IF NOT EXISTS test(id int)  
-      `
-      this.query(query);
-      resp.statusCode = 201;
-      return {status:"ok",message:"tables created"};
+  static getInstance() {
+    Database._ALLOW = true;
+    return new Database();
   }
 
-  async dropUsers(req,resp){
-    const query = 'DROP TABLE users CASCADE';
+  createTables(req, resp) {
+    this.query(usersTableShema);
+    this.query(parcelsTableShema);
+    const query = `CREATE TABLE IF NOT EXISTS test(id int)`;
+    this.query(query);
+    resp.statusCode = 201;
+    return {
+      status: "ok",
+      message: "tables created"
+    };
+  }
 
-    try{
-    const result = await this.query(query);
-      console.log(result)
-      if('rows' in result){
-        return Promise.resolve({status:"ok", message:"Users table deleted"})
-      }else{
-        return Promise.resolve({status:"error", message:"Users table not affected"}) 
+  async deleteUserTable(req, resp) {
+    const query = 'DROP TABLE users CASCADE';
+    try {
+      const result = await this.query(query);
+      if ('rows' in result) {
+        return Promise.resolve({
+          status: "ok",
+          message: "Users table deleted"
+        })
+      } else {
+        return Promise.resolve({
+          status: "error",
+          message: "Users table not affected"
+        })
       }
-    }catch(e){
+    } catch (e) {
       resp.statusCode = 404;
-      return Promise.resolve({status:"error", message:"Users Table does not exist"}) 
+      return Promise.resolve({
+        status: "error",
+        message: "Users Table does not exist"
+      })
     }
   }
 
-  dropParcels() {
-    const query = 'DROP TABLE test';
-    this.query(query).then(function(result){
-      if(result.rows[0]){
-        return Promise.resolve({status:"ok", message:"Parcels table deleted"})
-      }else{
-        return Promise.resolve({status:"error", message:"Parcels table not affected"}) 
+  async deleteParcelTable(req,resp) {
+    const query = 'DROP TABLE parcels CASCADE';
+    try {
+      const result = await this.query(query);
+      if ('rows' in result) {
+        return Promise.resolve({
+          status: "ok",
+          message: "Parcels table deleted"
+        })
+      } else {
+        return Promise.resolve({
+          status: "error",
+          message: "Parcels table not affected"
+        })
       }
-    }).catch(function(){
-      return Promise.resolve({status:"error", message:"Parcels does not exist"}) 
-    })
+    } catch (e) {
+      resp.statusCode = 404;
+      return Promise.resolve({
+        status: "error",
+        message: "Parcels Table does not exist"
+      })
+    }
   }
 
-  async dropTables(){
-    const parcelResponse = await this.dropParcels();
-    const userResponse = await this.dropUsers();
-    return Promise.resolve(
-      {status:"ok", message:(parcelResponse.message + " " + userResponse.message)}
-    ) 
-}
+  async deleteTables(req,resp) {
+    const parcelResponse = await this.deleteParcelTable(req,resp);
+    const userResponse = await this.deleteUserTable(req,resp);
+    return Promise.resolve({
+      status: (parcelResponse.status && userResponse.status) === 'ok' ? "ok" : 'error',
+      message: (parcelResponse.message + ", " + userResponse.message)
+    })
+  }
 }
 
-//const db = new Database();
-export default Database;
+const db =  Database.getInstance();
+export default db;

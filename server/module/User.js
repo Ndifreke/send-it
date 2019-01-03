@@ -198,5 +198,4 @@ class User {
 
 
 }
-//console.log(User.lookup(20).then(user => console.log(user)));
 export default User;
