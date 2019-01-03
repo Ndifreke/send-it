@@ -1,5 +1,5 @@
 const loginPath = function (path) {
-   return origin + `/ui/${path}/packages.html`;
+    return origin + `/ui/${path}/packages.html`;
 }
 
 document.addEventListener('DOMContentLoaded', function () {
@@ -16,7 +16,7 @@ async function login(event) {
     const data = `password=${this.password.value}&email=${this.email.value}`;
     showSpinner();
     try {
-        const response = await SendIt.post('http://localhost:8080/api/v1/auth/login', data);
+        const response = await SendIt.post(remote + '/api/v1/auth/login', data);
         console.log(response)
         const json = await response.json();
         console.log(response)
