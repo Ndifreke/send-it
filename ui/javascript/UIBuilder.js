@@ -1,5 +1,8 @@
-const host = 'http://127.0.0.1:5500';
-const remote = 'http://127.0.0.1:8080';
+// const host = 'http://127.0.0.1:5500';
+// const remote = 'http://127.0.0.1:8080';
+
+const host = 'https://ndifreke.github.io/sendIt';
+const remote = 'https://send-app.herokuapp.com';
 let path = null;
 
 const option = {
