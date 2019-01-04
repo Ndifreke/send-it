@@ -4,6 +4,13 @@ const host = (window.location.host.indexOf("github") !== -1) ?
 
 const remote = (host.indexOf("github") !== -1 ) ?
  'https://send-app.herokuapp.com' : 'http://127.0.0.1:8080' ;
+
+ const STATUS = {
+   CANCEL : 'CANCELLED',
+   PENDING: 'PENDING',
+   PROCESSING: 'PROCESSING',
+   DELIVERED: 'DELIVERED'
+ }
  
 let path = null;
 

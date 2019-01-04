@@ -31,29 +31,39 @@ function setPreviewFocus(previewList) {
 handle different kinds of clicks that originate from the document body
 */
 function handleClicks(event) {
-    const target = event.target;
-    switch (target.dataset.response) {
+    const clickedTarget = event.target;
+    switch (clickedTarget.dataset.response) {
         //click from parcel form action to either cancel or edit the parcel
         case 'accept':
         case 'reject':
-            const parcelId = target.parentElement.dataset.actionId;
-            executeAction(target.parentElement.dataset.action, parcelId, target.dataset.response);
-            toggleDisplay(target.parentElement);
+            const parcelId = clickedTarget.parentElement.dataset.actionId;
+            executeAction(clickedTarget.parentElement, parcelId, clickedTarget.dataset.response);
+            toggleDisplay(clickedTarget.parentElement);
             break;
         default:
             document.querySelector("form[name='action-prompt'").style.display = 'none';
     }
 }
 
-function executeAction(actionType, parcelId, acceptance) {
-    switch (actionType) {
+function changeStatus(id, status){
+    parcelIndex[id].status = status;
+    const parcelPreview = document.querySelector("#preview"+id);
+    parcelPreview.querySelector('#preview-status').textContent = status;
+    parcelPreview.querySelector('.status').textContent = status;
+}
+
+function executeAction(element, parcelId, acceptance) { 
+    const action = element.dataset.action;
+    console.log(element)
+    switch (action) {
         case "cancel-prompt":
             showSpinner();
             if (acceptance === 'accept') {
                 SendIt.put(`${remote}/api/v1/parcels/${parcelId}/cancel`).
                 then(function (response) {
                     response.json().then(function (json) {
-                        hideSpinner()
+                        hideSpinner();
+                        response.status == 201 ? changeStatus(parcelId, STATUS.CANCEL) : null;
                         alertMessage(json.message, (response.status === 201) ? 'success' : 'fail');
                     })
                 })
@@ -63,7 +73,7 @@ function executeAction(actionType, parcelId, acceptance) {
             //to change in server implementation
             if (acceptance == 'accept') {
                 showSpinner();
-                window.sessionStorage.setItem('update', JSON.stringify(indexedParcel[parcelId]));
+                window.sessionStorage.setItem('update', JSON.stringify(parcelIndex[parcelId]));
                 window.location = host + `/ui/${sessionStorage.getItem('path')}/update.html`;
             } else {
                 hideSpinner()
@@ -116,7 +126,7 @@ function promptAction() {
     actionForm.style.display = 'block';
 }
 
-let indexedParcel = [];
+let parcelIndex = [];
 
 function parseParcel(json) {
     const packages = document.getElementById('packages');
@@ -125,7 +135,7 @@ function parseParcel(json) {
     template.remove();
     templateClone.setAttribute('id','');
     const parcelElements = json.map(function (parcelObject) {
-        indexedParcel[parcelObject.id] = parcelObject;
+        parcelIndex[parcelObject.id] = parcelObject;
         const parcel = buildParcels(parcelObject, templateClone.cloneNode(true));
         packages.appendChild(parcel);
         return parcel;
@@ -137,6 +147,7 @@ function parseParcel(json) {
 }
 
 function buildParcels(parcelJson, template) {
+    template.id = 'preview'+parcelJson.id;
     const parcelPreview = template.querySelector('.package-preview');
     parcelPreview.dataset.parcelId = parcelJson.id;
     parcelPreview.querySelector('#preview-title').textContent = " #" + parcelJson.id + " " + parcelJson.shortname;
