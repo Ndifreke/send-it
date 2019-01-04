@@ -1,8 +1,10 @@
-// const host = 'http://127.0.0.1:5500';
-// const remote = 'http://127.0.0.1:8080';
 
-const host = 'https://ndifreke.github.io/sendIt';
-const remote = 'https://send-app.herokuapp.com';
+const host = (window.location.host.indexOf("github") !== -1) ?
+ 'https://ndifreke.github.io/sendIt' : "http://127.0.0.1:5500";
+
+const remote = (host.indexOf("github") !== -1 ) ?
+ 'https://send-app.herokuapp.com' : 'http://127.0.0.1:8080' ;
+ 
 let path = null;
 
 const option = {
@@ -126,7 +128,7 @@ function hideSpinner() {
 /* Initialize secure page after successfull verification of token */
 async function initPage(option) {
   const token = window.localStorage.getItem("token");
- 
+
   if (token) {
     SendIt.get(remote + '/api/v1/auth').
     then(async function response(res) {
@@ -137,7 +139,7 @@ async function initPage(option) {
 
       /** Route to appropraite page path */
       if (window.location.href.indexOf(path) == -1) {
-      window.location = host + "/ui/login.html";
+        window.location = host + "/ui/login.html";
       }
 
       if (res.status === 200) {

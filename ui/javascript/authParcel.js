@@ -120,10 +120,13 @@ let indexedParcel = [];
 
 function parseParcel(json) {
     const packages = document.getElementById('packages');
-    const parcelTemplate = document.getElementById('parcelTemplate').cloneNode(true);
+    const template = document.getElementById('parcelTemplate');
+    templateClone = template.cloneNode(true);
+    template.remove();
+    templateClone.setAttribute('id','');
     const parcelElements = json.map(function (parcelObject) {
         indexedParcel[parcelObject.id] = parcelObject;
-        const parcel = buildParcels(parcelObject, parcelTemplate.cloneNode(true));
+        const parcel = buildParcels(parcelObject, templateClone.cloneNode(true));
         packages.appendChild(parcel);
         return parcel;
     })
