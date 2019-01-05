@@ -132,7 +132,7 @@ class User {
   }
 
   async parse() {
-    const processingQuery = `select count(status) from parcels where owner = ${this.getID()} AND (status != 'DELIVERED' OR status !='CANCELLED')`;
+    const processingQuery = `select count(status) from parcels where owner = ${this.getID()} AND (status != 'DELIVERED' AND status !='CANCELLED')`;
     const deliveredQuery = `select count(status) from parcels where (owner = ${this.getID()} AND status ='DELIVERED') `;
     const cancelledQuery = `select count(status) from parcels where (owner = ${this.getID()} AND status ='CANCELLED') `;
     const procesResult = await db.query(processingQuery);

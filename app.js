@@ -46,6 +46,7 @@ app.get('/api/v1/parcels/:parcelID', getOneParcel);
 app.get('/api/v1/users/:userID/parcels', getUserParcels);
 app.get('/api/v1/users/data', getUserData);
 app.put('/api/v1/users/update', upateUserData)
+app.put('/api/v1/users/update/userID', upateUserData)
 
 app.post('/api/v1/parcels', createParcel);
 app.post('/api/v1/auth/signup', signup);

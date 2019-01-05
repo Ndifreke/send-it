@@ -21,10 +21,11 @@ async function signup(req, res) {
 
 async function update(req, resp) {
   async function updateCallback(token) {
+    const id = req.params.userID || token.id;
     let hasUpdate = false;
     let partialUpdate = false;
     let responseBody = '';
-    const user = await User.lookup(token.id);
+    const user = await User.lookup(id);
     for (let data in req.body) {
       switch (data) {
         //send partial update status
@@ -54,7 +55,7 @@ async function update(req, resp) {
           }
           break;
         case 'changeMode':
-          const isAdmin = await user.is_admin(token.id);
+          const isAdmin = await User.is_admin(token.id);
           if (isAdmin) {
             user.changeMod(req.body[data]);
             responseBody += 'Mode Updated\n';
