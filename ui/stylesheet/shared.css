@@ -407,7 +407,6 @@ strong {
 }
 
 fieldset {
-    text-align: left;
     border: none;
     width: -webkit-fill-available;
 }
@@ -422,10 +421,6 @@ input[type=checkbox]+label {
     min-width: 45px;
     min-height: 45px;
     display: inline-block;
-}
-
-form#settingsUI {
-    background: whitesmoke;
 }
 
 .inline {

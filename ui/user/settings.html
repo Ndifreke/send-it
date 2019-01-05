@@ -53,9 +53,9 @@
 
         <ul class="dashboard">
           <li> <a class="dashLink" href="./packages.html" value="Packages">Parcel List</a> </li>
-          <li> <a class="dashLink" href="./create.html"> Create Parcel </a>   </li>
-          <li> <a class="dashLink" href="./profile.html"> Profile </a>  </li>
-          <li> <a class="dashLink active" href="#"> Settings </a>  </li>
+          <li> <a class="dashLink" href="./create.html"> Create Parcel </a> </li>
+          <li> <a class="dashLink" href="./profile.html"> Profile </a> </li>
+          <li> <a class="dashLink active" href="#"> Settings </a> </li>
         </ul>
 
       </aside>
@@ -76,40 +76,45 @@
                   <h3> Notifications </h3>
                 </legend>
 
-                <div>
+                <div class="align-left">
+                  <strong>Email Update</strong> <br/>  
                   <input type="email" name='email' placeholder="username@example.com">
                 </div>
                 <br />
                 <div>
+                  <strong>Mobile Update</strong> <br/>  
                   <input type="tel" name='phone' placeholder="+234 xxxx xxxx" />
                 </div>
               </fieldset>
+          
 
               <fieldset>
                 <legend>
                   <h3> Security </h3>
                 </legend>
                 <div>
+                  <strong>Password Update</strong> <br />
                   <input type="password" name='password' placeholder="password">
                 </div>
                 <br />
                 <div>
+                  <strong>Confirm Password</strong> <br />
                   <input type="password" name='password' placeholder="confirm password">
                 </div>
               </fieldset>
- 
+
               <div id='loader' class="stick-top-centered centered">
-                  <svg class='wait-spin' width='46' height='46'>
-                     <circle class='c1' cx='23px' cy='23px' r='3' fill='gray' stroke-width='3' />
-                     <g fill='orange'>
-                        <circle cx='14' cy='23' r='3' />
-                        <circle cx='23' cy='14' r='3' />
-                        <circle cx='32' cy='23' r='3' />
-                        <circle cx='23' cy='32' r='3' />
-                     </g>
-                  </svg>
-                  <div id='message-alert'>#</div>
-               </div>
+                <svg class='wait-spin' width='46' height='46'>
+                  <circle class='c1' cx='23px' cy='23px' r='3' fill='gray' stroke-width='3' />
+                  <g fill='orange'>
+                    <circle cx='14' cy='23' r='3' />
+                    <circle cx='23' cy='14' r='3' />
+                    <circle cx='32' cy='23' r='3' />
+                    <circle cx='23' cy='32' r='3' />
+                  </g>
+                </svg>
+                <div id='message-alert'>#</div>
+              </div>
 
               <input type="button" name='update' class="prim-btn botton" style="width:fit-content"
                 value="Update settings" />
