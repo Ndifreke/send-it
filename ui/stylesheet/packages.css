@@ -57,18 +57,6 @@ section.package {
     text-align: center;
 }
 
-.ack-cancel {
-    display: inline-block;
-    margin: 0 18px;
-    background-image: url('../images/icons/cancel.svg');
-}
-
-.ack-delete {
-    display: inline-block;
-    margin: 0 18px;
-    background-image: url('../images/icons/accept.svg');
-}
-
 #percel-description-input {
     font-family: cursive;
     border-radius: 4px;

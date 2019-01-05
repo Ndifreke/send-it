@@ -30,37 +30,39 @@ async function updateParcel() {
   refreshSummary().then(async function () {
     const data = validateFormData();
     if (data) {
+      showSpinner();
       const id = JSON.parse(sessionStorage.getItem('update')).id;
       const response = await SendIt.put(remote + `/api/v1/parcels/${id}/update`, data);
       const json = await response.json();
 
-        const alerts = [];
-        for (const field in json.message) {
-          if (field.indexOf("lat") == -1 && field.indexOf("lng") == -1)
-            alerts.push(field + " " + json.message[field]);
+      const alerts = [];
+      for (const field in json.message) {
+        if (field.indexOf("lat") == -1 && field.indexOf("lng") == -1)
+          alerts.push(field + " " + json.message[field]);
+      }
+      let nextPrint = function (index) {
+        if (index < alerts.length) {
+          printMessage(alerts[index]);
+        } else {
+          sessionStorage.removeItem('update');
+          window.location = `${host}/ui/${sessionStorage.getItem('path')}/packages.html`;
         }
-        let nextPrint = function (index) {
-          if (index < alerts.length) {
-            printMessage(alerts[index]);
-          }else{
-            sessionStorage.removeItem('update');
-            window.location = `${host}/ui/${sessionStorage.getItem('path')}/packages.html`;
-          }
-        }
+      }
 
-        let count = 0;
-        nextPrint(0);
-        function printMessage(message) {
-          setTimeout(function () {
-            alertMessage(message, (response.status == 200) ? "success" : 'fail');
-            nextPrint(++count);
-          }, 2000)
-        }
+      let count = 0;
+      nextPrint(0);
+
+      function printMessage(message) {
+        setTimeout(function () {
+          alertMessage(message, (response.status == 200) ? "success" : 'fail');
+          nextPrint(++count);
+        }, 2000)
+      }
     }
   })
 }
 
-function storeHiddenCordinate(targetInputElement, inputName, cordinate) {
+function saveCordinate(targetInputElement, inputName, cordinate) {
   /* set the value of this active input field and store its location in the class attribute */
   if (targetInputElement !== undefined) {
     targetInputElement.value = inputName; //mark this as active element
@@ -79,7 +81,6 @@ function storeHiddenCordinate(targetInputElement, inputName, cordinate) {
 
 function validateFormData() {
   form = document.forms['createParcel'];
-
   const destination = form.destination.value;
   const destinationLat = form['destination-lat'].value;
   const destinationLng = form['destination-lng'].value;
@@ -104,16 +105,13 @@ function validateFormData() {
  * @returns Promise resolved once distance value is returned from google
  */
 function refreshSummary(parcelData) {
+  showSpinner();
   const form = document.forms['createParcel'];
-
   document.querySelector('#shortname-summary').textContent = form.shortname.value;
-
   const distance = document.querySelector('#distance-summary').textContent;
   document.querySelector('#distance-summary').textContent = distance || (parcelData.distance + " km");
-
   const price = document.querySelector('#price-summary').textContent;
   document.querySelector('#price-summary').textContent = price ? price : ("$" + parcelData.price);
-
   document.querySelector('#origin-summary').textContent = form.origin.value || 'Unkown!';
   document.querySelector('#destination-summary').textContent = form.destination.value || 'Unkown!';
   document.querySelector('#weight-summary').textContent = form.weight.value || '0 kg';
@@ -174,6 +172,7 @@ function updateDistanceAndPrice() {
     }
     document.querySelector('#distance-summary').textContent = distanceText;
     document.querySelector('#price-summary').textContent = '$' + price;
+    hideSpinner();
   }
   return LocationFinder.requestDistance(origin, destination, setDistanceAndPrice);
 }

@@ -176,7 +176,7 @@ ul.dashboard li {
 }
 
 #loader {
-    visibility: visible;
+    visibility: hidden;
 }
 
 circle[class='c1'] {
@@ -214,17 +214,15 @@ circle[class='c1'] {
     position: sticky;
     top: 1px;
     margin-top: -29px;
-    left: 65%;
+    left:58%;
     margin-right: -15px;
 }
 
-#flow-btn {
+.menu-btn {
     z-index: 2;
     position: sticky;
     top: 0;
     margin-left: -4px;
-    background: url(../images/icons/overflow.svg) no-repeat;
-    background-size: 35px 35px;
     width: 31px;
     height: 26px;
     cursor: pointer;
@@ -272,7 +270,10 @@ circle[class='c1'] {
 .scale-icon,
 .location-icon,
 .refresh-icon,
-.processing {
+.processing,
+.menu-btn,
+.close-btn,
+.home-location-icon {
     display: inline-block;
     background-image: url("../images/icons/sprite.svg");
     width: 30px;
@@ -283,18 +284,37 @@ circle[class='c1'] {
     background-repeat: no-repeat;
 }
 
+.ack-delete{
+    background-position-y:  -286px;
+}
+.ack-cancel{
+    background-position-y:  -213px;
+}
+.home-location-icon{
+    vertical-align: middle;
+    background-position-y:  -798px;
+}
+
+.close-btn{
+    background-position-y: -942px;
+}
+.menu-btn{
+    background-color: transparent;
+    background-position-y: -906px;
+}
+
 .processing {
     background-position-y: -680px;
 }
 
 .steer-cancel-icon {
-    background-position-y: -218px;
+    background-position-y: -105px;
 }
 
 .refresh-icon {
     cursor: pointer;
     vertical-align: bottom;
-    background-position-y: -715px;
+    background-position-y: -724px;
 }
 
 @keyframes tilt {
@@ -316,11 +336,11 @@ circle[class='c1'] {
 }
 
 .steer-icon {
-    background-position-y: -362px;
+    background-position-y: -651px;
 }
 
 .stats-icon {
-    background-position-y: -37px;
+    background-position-y: -31px;
 }
 
 .no-padding {
@@ -328,7 +348,7 @@ circle[class='c1'] {
 }
 
 .profile-icon {
-    background-position-y: -323px;
+    background-position-y: -320px;
 }
 
 .home-icon {
@@ -336,11 +356,12 @@ circle[class='c1'] {
 }
 
 .money-icon {
-    background-position-y: -395px;
+    background-position-y: -393px;
 }
 
 .ferry-icon {
-    background-position-y: -2px;
+    background-position-y: 5px;
+    //vertical-align: middle;
 }
 
 .processed-icon {
@@ -348,15 +369,15 @@ circle[class='c1'] {
 }
 
 .unprocessed-icon {
-    background-position-y: -113px;
+    background-position-y: -103px;
 }
 
 .location-icon {
-    background-position-y: -72px;
+    background-position-y: -759px;
 }
 
 .distance-icon {
-    background-position-y: -469px;
+    background-position-y: -467px;
 }
 
 .scale-icon {

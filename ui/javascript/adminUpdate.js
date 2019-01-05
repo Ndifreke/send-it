@@ -27,8 +27,8 @@ function authorizeUpdate() {
 async function updateParcel() {
   refreshSummary();
   const data = validateFormData();
-  console.log(data)
   if (data) {
+    showSpinner();
     const id = JSON.parse(sessionStorage.getItem('update')).id;
     const response = await SendIt.put(remote + `/api/v1/parcels/${id}/update`, data);
     response.json().then(function (json) {
@@ -41,10 +41,10 @@ async function updateParcel() {
       let nextPrint = function (index) {
         if (index < alerts.length) {
           printMessage(alerts[index]);
-        }else{
+        } else {
           sessionStorage.removeItem('update');
           window.location = `${host}/ui/${sessionStorage.getItem('path')}/packages.html`;
-          
+
         }
       }
       let count = 0;
@@ -60,7 +60,7 @@ async function updateParcel() {
   }
 }
 
-function storeHiddenCordinate(targetInputElement, inputName, cordinate) {
+function saveCordinate(targetInputElement, inputName, cordinate) {
   /* set the value of this active input field and store its location in the class attribute */
   if (targetInputElement !== undefined) {
     targetInputElement.value = inputName; //mark this as active element
@@ -72,6 +72,10 @@ function storeHiddenCordinate(targetInputElement, inputName, cordinate) {
       case "destination":
         document.querySelector("input[name='destination-lat'").value = cordinate.lat;
         document.querySelector("input[name='destination-lng'").value = cordinate.lng;
+        break; 
+      case "location":
+        document.querySelector("input[name='location-lat'").value = cordinate.lat;
+        document.querySelector("input[name='location-lng'").value = cordinate.lng;
         break;
     }
   }

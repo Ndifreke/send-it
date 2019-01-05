@@ -25,7 +25,6 @@ async function login(event) {
             window.localStorage.setItem('token', json.token);
             window.location = (json.isAmin) ? window.location.origin + '/ui/admin/packages.html' :
                 host + '/ui/user/packages.html';
-
         } else {
             alertMessage("Login Fail", "fail");
             hideSpinner();

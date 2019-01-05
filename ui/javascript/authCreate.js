@@ -30,7 +30,7 @@ async function createParcel() {
 }
 
 
-function storeHiddenCordinate(targetInputElement, inputName, cordinate) {
+function saveCordinate(targetInputElement, inputName, cordinate) {
   /* set the value of this active input field and store its location in the class attribute */
   if (targetInputElement !== undefined) {
     targetInputElement.value = inputName; //mark this as active element

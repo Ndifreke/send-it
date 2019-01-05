@@ -204,26 +204,7 @@ header {
     display: none;
 }
 
-.close-btn {
-    background: url("../images/icons/close.svg") no-repeat;
-    background-size: 35px 35px;
-}
-
-.close-btn:hover {
-    background: url("../images/icons/close_hover.svg") no-repeat;
-    background-size: 35px 35px;
-}
-
-.pointer,
-.close-btn {
-    border-style: none;
-    outline: none;
-    width: 35px;
-    height: 35px;
-}
-
-.pointer,
-.close-btn:hover {
+.pointer{
     cursor: pointer;
 }
 

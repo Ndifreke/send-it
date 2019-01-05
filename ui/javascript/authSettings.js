@@ -5,18 +5,22 @@ document.addEventListener('DOMContentLoaded', function () {
   option.renderOnSuccess = true;
   initPage(option)
   centerAlert(form);
-  form.update.addEventListener('click', changeSettings);
+  form.update.addEventListener('click', updateSettings);
 })
 
-async function changeSettings() {
+ function updateSettings() {
+  showSpinner();
   const data = validateSettings(this.parentElement);
   if (data) {
-    const response = await SendIt.put(remote + '/api/v1/users/update', data);
+    SendIt.put(remote + '/api/v1/users/update', data).then( async function(response){
     const json = await response.json();
     const messageType = (response.status == 200) ? 'success' : 'inform';
     alertMessage(json.response, messageType);
+    setTimeout(()=>window.location.reload(), 3000);
+    });
   } else {
     alertMessage('Enter field data to update', 'inform');
+    hideSpinner();
   }
 }
 

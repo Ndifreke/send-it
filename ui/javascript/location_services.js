@@ -236,7 +236,7 @@ function createLabel(cordinate) {
     <span> ${cord.lat} , ${cord.lng} </span>`;
 
   positionLabel.onclick = function () {
-    storeHiddenCordinate(activeElement, locationName, cord);
+    saveCordinate(activeElement, locationName, cord);
     Label.map.placeMarker(cord);
   };
   return positionLabel;

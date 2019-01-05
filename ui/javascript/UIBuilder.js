@@ -26,7 +26,7 @@ const option = {
 
 
 document.addEventListener('DOMContentLoaded', function () {
-  const menuButton = document.getElementById('flow-btn');
+  const menuButton = document.querySelector('.menu-btn');
   if (menuButton)
     menuButton.onclick = function () {
       toggleDisplay('dashboard');
