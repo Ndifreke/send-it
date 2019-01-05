@@ -26,44 +26,47 @@ async function update(req, resp) {
     let partialUpdate = false;
     let responseBody = '';
     const user = await User.lookup(id);
-    for (let data in req.body) {
-      switch (data) {
-        //send partial update status
-        case 'password':
-          user.changePassword(req.body.password);
-          responseBody += 'Password Updated\n';
-          hasUpdate = true;
-          break;
-        case 'email':
-          if (util.isEmail(req.body[data])) {
-            user.changeEmail(req.body.email);
-            responseBody += 'Email Updated\n';
+
+    if (user) {
+      for (let data in req.body) {
+        switch (data) {
+          //send partial update status
+          case 'password':
+            user.changePassword(req.body.password);
+            responseBody += 'Password Updated\n';
             hasUpdate = true;
-          } else {
-            partialUpdate = true;
-            responseBody += 'Invalid Email\n';
-          }
-          break;
-        case 'phoneNumber':
-          if (util.isInteger(req.body[data])) {
-            user.changePhone(req.body.phoneNumber);
-            responseBody += 'PhoneNumber Updated\n';
-            hasUpdate = true;
-          } else {
-            partialUpdate = true;
-            responseBody += 'Invalid PhoneNumber';
-          }
-          break;
-        case 'changeMode':
-          const isAdmin = await User.is_admin(token.id);
-          if (isAdmin) {
-            user.changeMod(req.body[data]);
-            responseBody += 'Mode Updated\n';
-            hasUpdate = true;
-          } else {
-            partialUpdate = true;
-            responseBody += 'You dont have permission to change admin';
-          }
+            break;
+          case 'email':
+            if (util.isEmail(req.body[data])) {
+              user.changeEmail(req.body.email);
+              responseBody += 'Email Updated\n';
+              hasUpdate = true;
+            } else {
+              partialUpdate = true;
+              responseBody += 'Invalid Email\n';
+            }
+            break;
+          case 'phoneNumber':
+            if (util.isInteger(req.body[data])) {
+              user.changePhone(req.body.phoneNumber);
+              responseBody += 'PhoneNumber Updated\n';
+              hasUpdate = true;
+            } else {
+              partialUpdate = true;
+              responseBody += 'Invalid PhoneNumber';
+            }
+            break;
+          case 'admin':
+            const isAdmin = await User.is_admin(token.id);
+            if (isAdmin) {
+              user.changeMode(req.body[data]);
+              responseBody += 'Mode Updated\n';
+              hasUpdate = true;
+            } else {
+              partialUpdate = true;
+              responseBody += 'You dont have permission to change admin';
+            }
+        }
       }
     }
     let message = '',
@@ -120,8 +123,8 @@ async function login(req, res) {
     res.statusCode = 403;
     res.json(data);
   }
-} 
- 
+}
+
 export {
   signup,
   login,

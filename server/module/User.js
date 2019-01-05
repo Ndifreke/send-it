@@ -12,14 +12,14 @@ import util from './utils';
 class User {
   constructor(options) {
     // validate user input before inserting into the database
-    this.options = options;
+   // this.options = options;
     this.id = options.id;
     this.firstname = options.firstname;
     this.surname = options.surname;
     this.email = options.email;
     this.password = options.password;
     this.mobile = options.mobile;
-    this.is_admin = options.is_admin;
+    this.admin = options.admin || options.is_admin;
   }
 
   async create(res) {
@@ -38,16 +38,16 @@ class User {
       '${this.getEmail()}',
       '${this.getPassword()}',
       '${this.getMobile()}',
-      '${false}'
+      '${this.getIsAdmin()}'
     )`;
-    const user = await User.lookup(this.options.email);
-    //prevent creating a user if a user by this email exist
+    const user = await User.lookup(this.getEmail());
     if (!user) {
       const result = await db.query(createUser);
       res.statusCode = 201;
       message = util.response('ok', 'User created succesfully', result.rowCount);
       return Promise.resolve(message);
     }
+    //prevent creating a user if a user by this email exist
     //Another user with email exists
     res.statusCode = 401;
     message = util.response('error', 'Another User with this Email exist', 0);
@@ -61,7 +61,7 @@ class User {
     }
     const query = `SELECT id, firstname, surname,email,password, mobile, is_admin FROM users
     WHERE ${field} = '${userId}'`;
-    console.log(query)
+    //console.log(query)
     let userData = null;
     try {
       const result = await db.query(query);
@@ -76,11 +76,13 @@ class User {
   /* check by email or id if this user is an admin */
   static async is_admin(identity) {
     const query = await db.query(`SELECT is_admin from users where id='${identity}'`);
-    return Promise.resolve(query.rows[0].is_admin);
+    if (query.rowCount > 0)
+      return Promise.resolve(query.rows[0].is_admin);
+      return Promise.resolve(null);
   }
 
   getIsAdmin() {
-    return this.is_admin;
+    return this.admin;
   }
 
   getID() {
