@@ -74,27 +74,18 @@ li.divider {
     margin-bottom: 80px
 }
 
-/************Admin section ***************/
-.search-icon {
-    background: url(../images/ic_search.png) no-repeat;
-    cursor: pointer;
-    background-size: 38px 38px;
-    width: 37px;
-    top: 11px;
-    height: 60px;
-    border-style: none;
-    position: absolute;
-    outline: none;
-    border: none;
-}
-
 form#search {
+    padding: 4px;
+    text-align: left !important;
+    float: right;
+    width: fit-content;
     text-align: right;
+    background-color: #D6D6D6;
+    border-radius: 3px;
 }
 
-form#search input[type=text] {
-    border-bottom: 2px solid #D6D6D6;
-    border-right: 27px solid #D6D6D6;
+form#search input{
+    height: 25px;
 }
 
 .package-content hr {

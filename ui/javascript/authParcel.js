@@ -1,3 +1,5 @@
+
+
 document.addEventListener('DOMContentLoaded', function () {
 
     document.body.addEventListener('click', handleClicks, true);
@@ -45,14 +47,14 @@ function handleClicks(event) {
     }
 }
 
-function changeStatus(id, status){
+function changeStatus(id, status) {
     parcelIndex[id].status = status;
-    const parcelPreview = document.querySelector("#preview"+id);
+    const parcelPreview = document.querySelector("#preview" + id);
     parcelPreview.querySelector('#preview-status').textContent = status;
     parcelPreview.querySelector('.status').textContent = status;
 }
 
-function executeAction(element, parcelId, acceptance) { 
+function executeAction(element, parcelId, acceptance) {
     const action = element.dataset.action;
     console.log(element)
     switch (action) {
@@ -127,13 +129,15 @@ function promptAction() {
 }
 
 let parcelIndex = [];
+let parcelTemplate = null;
+let packages = null;
 
 function parseParcel(json) {
-    const packages = document.getElementById('packages');
-    const template = document.getElementById('parcelTemplate');
-    templateClone = template.cloneNode(true);
-    template.remove();
-    templateClone.setAttribute('id','');
+    packages = packages || document.getElementById('packages');
+    parcelTemplate = parcelTemplate || document.getElementById('parcelTemplate');
+    parcelTemplate.remove();
+    templateClone = parcelTemplate.cloneNode(true);
+   // templateClone.setAttribute('id', '');
     const parcelElements = json.map(function (parcelObject) {
         parcelIndex[parcelObject.id] = parcelObject;
         const parcel = buildParcels(parcelObject, templateClone.cloneNode(true));
@@ -147,7 +151,7 @@ function parseParcel(json) {
 }
 
 function buildParcels(parcelJson, template) {
-    template.id = 'preview'+parcelJson.id;
+    template.id = 'preview' + parcelJson.id;
     const parcelPreview = template.querySelector('.package-preview');
     parcelPreview.dataset.parcelId = parcelJson.id;
     parcelPreview.querySelector('#preview-title').textContent = " #" + parcelJson.id + " " + parcelJson.shortname;
@@ -176,4 +180,30 @@ function buildParcels(parcelJson, template) {
     }
     editEvent(actionButtons);
     return template;
+}
+
+async function searchParcels() {
+    const identifier = this.identifier.value;
+    let endpoint = '';
+    const options = this['search-mode'].options;
+
+    switch (options[options.selectedIndex].value) {
+        case 'email':
+            break;
+        case 'parcel':
+            endpoint = `${remote}/api/v1/parcels/${identifier}`;
+            break;
+        case 'user':
+            endpoint = `${remote}/api/v1/users/${identifier}/parcels`;
+            break;
+    }
+
+    const result = await SendIt.get(endpoint);
+    result.json().then(function (json) {
+        console.log(json.response)
+        packages.innerHTML = null;
+       parseParcel(json.response)
+    })
+ 
+
 }

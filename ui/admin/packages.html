@@ -52,16 +52,29 @@
 
             <ul class="dashboard elevate">
 
-               <li> <a class="dashLink active" href="#"> Search Parcels </a>  </li>
+               <li> <a class="dashLink active" href="#"> Search Parcels </a> </li>
                <li> <a class="dashLink" href="./create.html"> Create Parcel </a> </li>
                <li> <a class="dashLink" href="./profile.html"> Profile </a> </li>
-               <li> <a class="dashLink" href="./settings.html"> Settings </a>  </li>
+               <li> <a class="dashLink" href="./settings.html"> Settings </a> </li>
             </ul>
 
          </aside>
          <!--********************************************************-->
          <main id="main">
             <button type="button" class="menu-btn"> </button>
+
+            <form id="search">
+               <strong>Search with:</strong>
+               <select name="search-mode">
+                  <option>parcel</option>
+                  <option>user</option>
+                  <option>email</option>
+               </select>
+               <br />
+               <input type="text" name="identifier" placeholder="Email or Percel ID" />
+               <input type="button" class="search-icon" onclick="searchParcels.call(this.parentElement)">
+            </form>
+
             <section id="main-content">
 
                <form name="action-prompt" class="elevate" data-action-id>
@@ -73,6 +86,7 @@
                   <label class='ack-cancel' data-response='reject'> </label> <span>reject</span>
                </form>
 
+               <h2 class='centered'> Packages </h2>
 
                <div id='loader' class="stick-top-centered centered">
                   <svg class='wait-spin' width='46' height='46'>
@@ -87,9 +101,7 @@
                   <div id='message-alert'>#</div>
                </div>
 
-
                <section id='packages' style="margin-top: -60px">
-                  <h2 class='centered'> Packages </h2>
 
                   <div id='parcelTemplate' class="package elevate" id="preview1">
                      <div class="package-preview" data-parcel-id="1">

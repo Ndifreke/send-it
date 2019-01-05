@@ -23,7 +23,8 @@ async function login(event) {
         if (response.status === 200) {
             alertMessage("success", "success");
             window.localStorage.setItem('token', json.token);
-            window.location = (json.isAmin) ? window.location.origin + '/ui/admin/packages.html' :
+            console.log(json)
+            window.location = (json.isAdmin) ? host + '/ui/admin/packages.html' :
                 host + '/ui/user/packages.html';
         } else {
             alertMessage("Login Fail", "fail");

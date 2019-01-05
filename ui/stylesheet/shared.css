@@ -283,7 +283,12 @@ circle[class='c1'] {
     outline: none;
     background-repeat: no-repeat;
 }
-
+.search-icon{
+    background-position-x: 1px;
+    vertical-align: middle;
+    background-color: transparent;
+    background-position-y: -578px;
+}
 .ack-delete{
     background-position-y:  -286px;
 }
