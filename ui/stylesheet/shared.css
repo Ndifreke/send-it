@@ -184,6 +184,8 @@ circle[class='c1'] {
 }
 
 #message-alert {
+    position: fixed;
+    top: 0px;
     visibility: hidden;
     font-size: 16px;
     padding: 1px;

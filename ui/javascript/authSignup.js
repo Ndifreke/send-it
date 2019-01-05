@@ -21,7 +21,7 @@ function signup(event) {
    if (response.status === 201) {
     alertMessage(json.message, "success");
     setTimeout(function () {
-     window.location = origin + '/ui/login.html';
+     window.location = host + '/ui/login.html';
     }, 1000)
    } else {
     alertMessage(json.message, "inform");

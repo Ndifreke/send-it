@@ -1,4 +1,12 @@
 /* tablet */
+fieldset{
+ text-align: left;
+}
+.signup-option {
+ text-align: justify;
+ width: fit-content;
+ margin-left: 14px;
+}
 
 .signup-option {
  text-align: justify;

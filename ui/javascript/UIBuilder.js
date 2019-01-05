@@ -26,6 +26,9 @@ const option = {
 
 
 document.addEventListener('DOMContentLoaded', function () {
+  document.getElementById('signout').onclick = function(){
+    window.localStorage.removeItem('token');
+  }
   const menuButton = document.querySelector('.menu-btn');
   if (menuButton)
     menuButton.onclick = function () {

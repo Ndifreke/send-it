@@ -9,6 +9,8 @@ document.addEventListener('DOMContentLoaded', function () {
     initPage(option);
     const form = document.forms.login;
     form.submitButton.addEventListener("click", login.bind(form));
+
+    centerAlert(document.querySelector('#loginUI'));
 })
 
 async function login(event) {

@@ -99,11 +99,6 @@ form#new-percel-viewport.elevate {
   margin: auto;
 }
 
-#message-alert{
-position: fixed;
-bottom: 50%;
-}
-
 #create-sumary {
   background: white;
 }
