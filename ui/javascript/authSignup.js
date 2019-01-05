@@ -1,5 +1,5 @@
 const loginPath = function (path) {
- return origin + `/ui/${path}/packages.html`;
+ return host + `/ui/${path}/packages.html`;
 }
 document.addEventListener('DOMContentLoaded', function () {
  centerAlert(document.querySelector('#signupUI'));
@@ -14,6 +14,7 @@ document.addEventListener('DOMContentLoaded', function () {
 function signup(event) {
  const data = getSignUpdata();
  if (data) {
+  console.log(data)
   showSpinner();
   SendIt.post(remote + '/api/v1/auth/signup', data).then(async function (response) {
    const json = await response.json();
@@ -41,6 +42,7 @@ function getSignUpdata() {
  const email = form.email.value
  const mobile = form.mobile.value;
  const passwords = form.password;
+ const accountOption = form.account.options[form.account.options.selectedIndex].value;
 
  if (firstname.search(/.+/) === -1) {
   alertMessage('Invalid First Name', 'inform');
@@ -62,5 +64,5 @@ function getSignUpdata() {
   alertMessage('Invalid Email provided', 'inform');
   return false;
  }
- return `firstname=${firstname}&surname=${surname}&mobile=${mobile}&email=${email}&password=${passwords[0].value}`;
+ return `firstname=${firstname}&surname=${surname}\&mobile=${mobile}&email=${email}&password=${passwords[0].value}&admin=${(accountOption === 'user')? false : true}`;
 }

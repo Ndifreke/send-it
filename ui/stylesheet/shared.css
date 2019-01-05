@@ -248,6 +248,12 @@ circle[class='c1'] {
     background: none;
     margin-left: 98px;
 }
+select{
+    background: inherit;
+    outline: none;
+    border-radius: 1px;
+    padding:2px 5px;
+}
 
 
 .ack-delete,
@@ -399,6 +405,7 @@ strong {
 }
 
 fieldset {
+    text-align: left;
     border: none;
     width: -webkit-fill-available;
 }
