@@ -43,9 +43,8 @@ CREATE TABLE IF NOT EXISTS parcels(
 class Database {
 
   constructor() {
-    if (!Database._ALLOW) {
-      throw new Error(`Calling new Constructor is not allowed, 
-      use static getInstance() to obtain existing instance`)
+    if (!Database.INITIALIZED) {
+      throw new Error(`An instance exist already, use static getInstance() to obtain existing instance`)
     }
     if (Database.client) {
       this.client = Database.client;
@@ -54,6 +53,7 @@ class Database {
         process.env.DATABASE_URL || process.env.DATABASE_URL_DEV
       );
       this.client.connect();
+      this.createTables();
     }
   }
 
@@ -62,16 +62,16 @@ class Database {
   }
 
   static getInstance() {
-    Database._ALLOW = true;
+    Database.INITIALIZED= true;
     return new Database();
   }
 
   createTables(req, resp) {
     this.query(usersTableShema);
     this.query(parcelsTableShema);
-    const query = `CREATE TABLE IF NOT EXISTS test(id int)`;
-    this.query(query);
-    resp.statusCode = 201;
+   // const query = `CREATE TABLE IF NOT EXISTS test(id int)`;
+    // this.query(query);
+    //resp.statusCode = 201;
     return {
       status: "ok",
       message: "tables created"

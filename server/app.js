@@ -20,23 +20,23 @@ import {
   updateStatus,
   changeCordinate,
   updateParcel
-} from './server/controller/parcel';
+} from './controller/parcel';
 
-import dbController from "./server/controller/database";
+import dbController from "./controller/database";
 
 import {
   signup,
   login,
   upate as upateUserData,
   getUserData
-} from './server/controller/user';
+} from './controller/user';
 
 import {
   cors,
   authToken
-} from './server/module/authenticate';
+} from './module/authenticate';
 
-import view from './server/controller/view';
+import view from './controller/view';
 
 view(app, UI_PATH);
 
