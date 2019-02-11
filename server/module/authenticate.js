@@ -1,6 +1,7 @@
 import jwt from 'jsonwebtoken';
-import User from './User';
+import user from './User';
 import util from './utils';
+import User from './User';
 
 
 /**
@@ -12,11 +13,12 @@ import util from './utils';
 const SECRET = process.env.SECRET || 'topdog';
 
 async function issueAccessToken(id) {
-  const isAdmin = await User.is_admin(id)
+  console.log(id)
+  const user = await User.lookup(id);
   const payload = {
     id: id,
-    is_admin: isAdmin,
-    email: User.exists(id)
+    is_admin: user.getIsAdmin(),
+    email: user.getEmail()
   }
 
   const token = jwt.sign(payload, SECRET);
@@ -28,50 +30,61 @@ async function issueAccessToken(id) {
  * 
  * @param {response} res - Request object
  *  @param {response} resp - Request object
- * @param {request} cb - Callback function which the verified token will be passed to
+ * @param {request} callback - Callback function which the verified token will be passed to
  * @returns {void}
  */
-function verifyAccessToken(req, resp, cb) {
-  const token = req.headers['authorization'] || "error";
-  console.log("authorization" in req.headers, req.headers['authorization'])
+function verifyAccessToken(req, resp, callback, token) {
+  if (!token)
+    token = req.headers['authorization'];
   jwt.verify(token, SECRET, function (err, userToken) {
     if (err) {
+      resp.statusCode = 403;
       resp.json(util.response("error", "Access denied", 0))
-    } else if (cb) {
-      cb(userToken);
+    } else if (callback) {
+      callback(userToken);
     }
   });
 }
 
-function oauthToken(req, resp, next) {
-  function reply(token) {
-    token ? resp.statusCode = 200 : resp.statusCode = 501;
-    resp.json({
-      status: 'ok',
-      message: 'valid token'
-    })
-    resp.end('');
+function authToken(req, resp, next) {
+  async function callback(token) {
+    const user = await User.lookup(token.id);
+    if (!user) {
+      resp.statusCode = 403;
+      resp.json({
+        status: "error",
+        message: "User does not exist"
+      });
+    } else {
+      resp.json({
+        status: 'ok',
+        message: 'valid token',
+        isAdmin: user.getIsAdmin()
+      })
+    }
   }
-  verifyAccessToken(req, resp, reply)
+  verifyAccessToken(req, resp, callback)
 }
 
 function cors(req, res, next) {
   //preflight sniffing
   if (req.method.search(/^options$/gi) != -1) {
-    res.setHeader("Access-Control-Allow-Origin", '*');
+    res.setHeader("Access-Control-Allow-Origin", req.headers['origin'] || "*");
     res.setHeader('Access-Control-Allow-Methods', 'POST,GET,,PUT');
-    res.setHeader("Access-Control-Allow-Credentials", true)
-    resp.statusCode = 200;
-    resp.end();
+    res.setHeader("Access-Control-Allow-Credentials", true);
+    res.setHeader("Access-Control-Allow-Headers", 'authorization')
+    res.statusCode = 200;
+    res.end();
+  } else {
+    res.setHeader("Access-Control-Allow-Origin", req.headers['origin'] || "*");
+    res.setHeader("Access-Control-Allow-Credentials", true);
+    next();
   }
-  res.setHeader("Access-Control-Allow-Origin", req.headers['origin'] || "*");
-  //res.setHeader("Access-Control-Allow-Credentials", true);
-  next();
 }
 
 export {
   verifyAccessToken,
   issueAccessToken,
   cors,
-  oauthToken
+  authToken
 }

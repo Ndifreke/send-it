@@ -5,6 +5,7 @@ import Parcel from '../module/Parcel';
 import {
    verifyAccessToken
 } from '../module/authenticate';
+import User from '../module/User';
 
 /**
  * Create A parcel order from options supplied in req.body
@@ -32,8 +33,8 @@ function createParcel(req, res) {
 function getOneParcel(req, res) {
    // res.setHeader( 'Content-Type', 'text/json' );
    async function getOneCallback(accessToken) {
-      const id = req.params.id;
-      const result = await Parcel.fetchById(id, res);
+      const id = req.params.parcelID;
+      const result = await Parcel.getParcel(id, res);
       res.json(result)
    }
    verifyAccessToken(req, res, getOneCallback);
@@ -54,7 +55,8 @@ function getAllParcels(req, res) {
 }
 
 /**
- * Get all parcels owned by a User identified by id in res.body
+ * Get all parcels owned by a User identified by userID
+ * if no userID exist, ID will be looked in accessToken field
  * @param {response} res - Request object
  * @param {request} req - Response object.
  * @returns {void}
@@ -62,10 +64,8 @@ function getAllParcels(req, res) {
 function getUserParcels(req, res) {
    async function getUsersCallback(accessToken) {
       res.setHeader('Content-Type', 'text/json');
-      const {
-         id
-      } = req.params;
-      const result = await Parcel.fetchUserParcels(id, res);
+      const userID = req.params.userID;
+      const result = await Parcel.fetchUserParcels(util.isInteger(userID) || accessToken.id, res);
       res.json(result);
    }
    verifyAccessToken(req, res, getUsersCallback);
@@ -79,8 +79,9 @@ function getUserParcels(req, res) {
  */
 function cancelParcel(req, res) {
    async function cancelCallback(accessToken) {
-      if (!accessToken.is_admin) {
-         const id = req.params.id;
+      const is_admin = await User.is_admin(accessToken.id);
+      if (!is_admin) {
+         const id = req.params.parcelID;
          res.statusCode = 201;
          const result = await Parcel.changeStatus(id, Parcel.CANCELLED, res);
          res.json(result);
@@ -99,7 +100,7 @@ function cancelParcel(req, res) {
  */
 function changeCordinate(req, res) {
    async function changeCordCallback(accessToken) {
-      const id = req.params.id;
+      const id = req.params.parcelID;
       const {
          lat,
          lng
@@ -114,15 +115,79 @@ function changeCordinate(req, res) {
 }
 
 /**
- * Change the current location of a parcel order
+ * Change the current location of a parcel order this operation can
+ * only be carried out by an admin
  * @param {response} res - Request object
  * @param {request} req - Response object.
  * @returns {void}
  */
 
+function updateParcel(req, resp) {
+   async function updateCallback(token) {
+
+      let result = await Parcel.getParcel(req.params.parcelID);
+      let message = {};
+      let status = "ok";
+
+      if (result.response[0] && result.response[0].status !== 'DELIVERED') {
+         const user = await User.lookup(token.id);
+         const isAdmin = user.getIsAdmin();
+
+         for (let field in req.body) {
+            const value = req.body[field];
+            switch (field) {
+               //this operations can only be done by admin
+               case "location":
+               case "location_lat":
+               case "location_lng":
+               case "status":
+                  if (isAdmin) {
+                     Parcel.updateParcel(req.params.parcelID, field, value);
+                     message[field] = " updated";
+                     break;
+                  }
+                  message[field] = "Permission Denied";
+                  resp.statusCode = 202; //success
+                  break;
+
+                  //this operations can only be done by user
+               case "shortname":
+               case "destination":
+               case "destination_lat":
+               case "price":
+               case "destination_lng":
+               case "distance":
+               case "description":
+                  if (!isAdmin) {
+                     Parcel.updateParcel(req.params.parcelID, field, value);
+                     message[field] = " updated";
+                     break;
+                  }
+                  message[field] = "Permission Denied";
+                  resp.statusCode = 202; //success
+                  break;
+            }
+         };
+      } else {
+         message.Error = (result.response[0]) ? "You cannot update a Delivered parcel" : "Parcel does not exist";
+         resp.statusCode = 405;
+         status = "error";
+      }
+
+      resp.json({
+         status: status,
+         message: message
+      });
+   }
+   verifyAccessToken(req, resp, updateCallback);
+}
+
+
+
+/** Depreciated, should use upate instead */
 function changePresentLocation(req, res) {
    async function changePresentLocationCallback(accessToken) {
-      const changed = await Parcel.changeLocation(req.params.id, req.body.presentLocation, res)
+      const changed = await Parcel.changeLocation(req.params.parcelID, req.body.presentLocation, res)
       res.json(changed);
    }
    verifyAccessToken(req, res, changePresentLocationCallback);
@@ -135,15 +200,15 @@ function changePresentLocation(req, res) {
  * @returns {void}
  */
 
-
+/** Depreciated, should use upate instead */
 function updateStatus(req, res) {
-
    async function updateStatusCallback(accessToken) {
-      const result = await Parcel.changeStatus(req.params.id, req.body.status, res);
+      const result = await Parcel.changeStatus(req.params.parcelID, req.body.status, res);
       res.json(result);
    }
    const id = verifyAccessToken(req, res, updateStatusCallback);
 }
+
 
 export {
    changePresentLocation,
@@ -154,4 +219,5 @@ export {
    getUserParcels,
    updateStatus,
    createParcel,
+   updateParcel
 };

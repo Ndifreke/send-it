@@ -1,5 +1,5 @@
 {
-  "name": "sendIt",
+  "name": "sendit",
   "version": "1.0.0",
   "repository": {},
   "license": "MIT",
@@ -19,14 +19,12 @@
   "scripts": {
     "coverage": "nyc report --reporter=text-lcov | coveralls",
     "nodemon": "nodemon --exec babel-node app.js",
-    "test:dev": "mocha --timeout 10000 --recursive ./test --exit --compilers js:babel-core/register",
-    "sstart": "babel-node app.js",
+    "test:dev": "npm run build && mocha ./build/test/index.js",
     "lint": "eslint .",
-    "clean": "rm -rf -d build",
-    "transpile": "babel ./ --out-dir build  --ignore node_modules --copy-files",
-    "build": "npm run clean && npm run transpile",
+    "clean": "cp temp/* -r build && rm -rf -d temp",
+    "build": "babel ./server --out-dir ./build",
     "start": "npm run build && node ./build/app.js",
-    "test": "npm run build && mocha build/test/. --timeout 10000 --recursive --exit",
+    "test": "npm run build && mocha build/test/. --timeout 5000",
     "pack": "webpack ui/javascript/UIBuilder.js ui/javascript/app.js"
   },
   "devDependencies": {

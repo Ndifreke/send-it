@@ -1,6 +1,8 @@
 /* eslint-disable no-unused-vars */
 
-const { Client } = require('pg');
+const {
+  Client
+} = require('pg');
 
 const usersTableShema = `
 CREATE TABLE IF NOT EXISTS users(
@@ -19,6 +21,9 @@ CREATE TABLE IF NOT EXISTS parcels(
   id SERIAL,
   owner INT REFERENCES users(id) ON DELETE RESTRICT,
   shortname VARCHAR(50) NOT NULL,
+  location TEXT DEFAULT 'WAREHOUSE',
+  location_lat  TEXT ,
+  location_lng  TEXT ,
   destination TEXT NOT NULL,
   destination_Lat  TEXT ,
   destination_lng TEXT ,
@@ -26,19 +31,21 @@ CREATE TABLE IF NOT EXISTS parcels(
   origin_Lat TEXT ,
   origin_lng TEXT ,
   description TEXT,
-  distance NUMERIC NOT NULL,
+  distance DECIMAL DEFAULT 0,
   status VARCHAR(20) DEFAULT 'PENDING',
-  weight NUMERIC NOT NULL,
+  weight DECIMAL DEFAULT 0,
   created_At DATE DEFAULT current_date,
   delivered_On DATE ,
-  location TEXT DEFAULT 'WAREHOUSE',
-  price NUMERIC NOT NULL
+  price DECIMAL DEFAULT 0
   );
 `;
 
 class Database {
-  
+
   constructor() {
+    if (!Database.INITIALIZED) {
+      throw new Error(`An instance exist already, use static getInstance() to obtain existing instance`)
+    }
     if (Database.client) {
       this.client = Database.client;
     } else {
@@ -46,15 +53,88 @@ class Database {
         process.env.DATABASE_URL || process.env.DATABASE_URL_DEV
       );
       this.client.connect();
-      this.client.query(usersTableShema);
-      this.client.query(parcelsTableShema);
+      this.createTables();
     }
   }
 
   query(query) {
     return this.client.query(query);
   }
+
+  static getInstance() {
+    Database.INITIALIZED= true;
+    return new Database();
+  }
+
+  createTables(req, resp) {
+    this.query(usersTableShema);
+    this.query(parcelsTableShema);
+   // const query = `CREATE TABLE IF NOT EXISTS test(id int)`;
+    // this.query(query);
+    //resp.statusCode = 201;
+    return {
+      status: "ok",
+      message: "tables created"
+    };
+  }
+
+  async deleteUserTable(req, resp) {
+    const query = 'DROP TABLE users CASCADE';
+    try {
+      const result = await this.query(query);
+      if ('rows' in result) {
+        return Promise.resolve({
+          status: "ok",
+          message: "Users table deleted"
+        })
+      } else {
+        return Promise.resolve({
+          status: "error",
+          message: "Users table not affected"
+        })
+      }
+    } catch (e) {
+      resp.statusCode = 404;
+      return Promise.resolve({
+        status: "error",
+        message: "Users Table does not exist"
+      })
+    }
+  }
+
+  async deleteParcelTable(req,resp) {
+    const query = 'DROP TABLE parcels CASCADE';
+    try {
+      const result = await this.query(query);
+      if ('rows' in result) {
+        return Promise.resolve({
+          status: "ok",
+          message: "Parcels table deleted"
+        })
+      } else {
+        return Promise.resolve({
+          status: "error",
+          message: "Parcels table not affected"
+        })
+      }
+    } catch (e) {
+      resp.statusCode = 404;
+      return Promise.resolve({
+        status: "error",
+        message: "Parcels Table does not exist"
+      })
+    }
+  }
+
+  async deleteTables(req,resp) {
+    const parcelResponse = await this.deleteParcelTable(req,resp);
+    const userResponse = await this.deleteUserTable(req,resp);
+    return Promise.resolve({
+      status: (parcelResponse.status && userResponse.status) === 'ok' ? "ok" : 'error',
+      message: (parcelResponse.message + ", " + userResponse.message)
+    })
+  }
 }
 
-const db = new Database();
-export default db ;
+const db =  Database.getInstance();
+export default db;

@@ -10,4 +10,5 @@
 /scandir
 /build
 /nbproject/private/
-/package-lock.json
+.*lock.json
+.npmrc
