@@ -1,8 +1,4 @@
-/* eslint-disable no-unused-vars */
-
-const {
-  Client
-} = require('pg');
+const { Client } = require('pg');
 
 const usersTableShema = `
 CREATE TABLE IF NOT EXISTS users(
@@ -41,17 +37,16 @@ CREATE TABLE IF NOT EXISTS parcels(
 `;
 
 class Database {
-
   constructor() {
     if (!Database.INITIALIZED) {
-      throw new Error(`An instance exist already, use static getInstance() to obtain existing instance`)
+      throw new Error(
+        `An instance exist already, use static getInstance() to obtain existing instance`
+      );
     }
     if (Database.client) {
-      this.client = Database.client;
+      this.client = Database.client; 
     } else {
-      this.client = new Client(
-        process.env.DATABASE_URL || process.env.DATABASE_URL_DEV
-      );
+      this.client = new Client(process.env.DATABASE_URL);
       this.client.connect();
       this.createTables();
     }
@@ -62,19 +57,19 @@ class Database {
   }
 
   static getInstance() {
-    Database.INITIALIZED= true;
+    Database.INITIALIZED = true;
     return new Database();
   }
 
   createTables(req, resp) {
     this.query(usersTableShema);
     this.query(parcelsTableShema);
-   // const query = `CREATE TABLE IF NOT EXISTS test(id int)`;
+    // const query = `CREATE TABLE IF NOT EXISTS test(id int)`;
     // this.query(query);
     //resp.statusCode = 201;
     return {
-      status: "ok",
-      message: "tables created"
+      status: 'ok',
+      message: 'tables created'
     };
   }
 
@@ -84,57 +79,60 @@ class Database {
       const result = await this.query(query);
       if ('rows' in result) {
         return Promise.resolve({
-          status: "ok",
-          message: "Users table deleted"
-        })
+          status: 'ok',
+          message: 'Users table deleted'
+        });
       } else {
         return Promise.resolve({
-          status: "error",
-          message: "Users table not affected"
-        })
+          status: 'error',
+          message: 'Users table not affected'
+        });
       }
     } catch (e) {
       resp.statusCode = 404;
       return Promise.resolve({
-        status: "error",
-        message: "Users Table does not exist"
-      })
+        status: 'error',
+        message: 'Users Table does not exist'
+      });
     }
   }
 
-  async deleteParcelTable(req,resp) {
+  async deleteParcelTable(req, resp) {
     const query = 'DROP TABLE parcels CASCADE';
     try {
       const result = await this.query(query);
       if ('rows' in result) {
         return Promise.resolve({
-          status: "ok",
-          message: "Parcels table deleted"
-        })
+          status: 'ok',
+          message: 'Parcels table deleted'
+        });
       } else {
         return Promise.resolve({
-          status: "error",
-          message: "Parcels table not affected"
-        })
+          status: 'error',
+          message: 'Parcels table not affected'
+        });
       }
     } catch (e) {
       resp.statusCode = 404;
       return Promise.resolve({
-        status: "error",
-        message: "Parcels Table does not exist"
-      })
+        status: 'error',
+        message: 'Parcels Table does not exist'
+      });
     }
   }
 
-  async deleteTables(req,resp) {
-    const parcelResponse = await this.deleteParcelTable(req,resp);
-    const userResponse = await this.deleteUserTable(req,resp);
+  async deleteTables(req, resp) {
+    const parcelResponse = await this.deleteParcelTable(req, resp);
+    const userResponse = await this.deleteUserTable(req, resp);
     return Promise.resolve({
-      status: (parcelResponse.status && userResponse.status) === 'ok' ? "ok" : 'error',
-      message: (parcelResponse.message + ", " + userResponse.message)
-    })
+      status:
+        (parcelResponse.status && userResponse.status) === 'ok'
+          ? 'ok'
+          : 'error',
+      message: parcelResponse.message + ', ' + userResponse.message
+    });
   }
 }
 
-const db =  Database.getInstance();
+const db = Database.getInstance();
 export default db;

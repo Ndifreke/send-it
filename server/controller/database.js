@@ -1,4 +1,4 @@
-import db from '..//module/Database';
+import db from '../module/Database';
 
 function createUserTable(req, resp) {
 

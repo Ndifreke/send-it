@@ -6,9 +6,11 @@
   "author": "ndifreke",
   "contributors": [],
   "dependencies": {
+    "dotenv": "^7.0.0",
     "ejs": "latest",
     "express": "^4.16.4",
     "jsonwebtoken": "^8.4.0",
+    "nodemon": "^1.18.10",
     "pg": "latest",
     "serve-static": "latest",
     "webpack-cli": "^3.1.2"
@@ -18,7 +20,7 @@
   },
   "scripts": {
     "coverage": "nyc report --reporter=text-lcov | coveralls",
-    "nodemon": "nodemon --exec babel-node app.js",
+    "nodemon": "nodemon --exec babel-node server/app.js",
     "test:dev": "npm run build && mocha ./build/test/index.js",
     "lint": "eslint .",
     "clean": "cp temp/* -r build && rm -rf -d temp",

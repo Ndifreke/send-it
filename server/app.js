@@ -1,6 +1,8 @@
 import express from 'express';
 import bodyParser from 'body-parser';
 import path from 'path';
+import dotenv from "dotenv";
+dotenv.config();
 
 const app = express();
 
@@ -86,4 +88,5 @@ setTimeout(xmlGet.bind(null, url, 70000));
 
 
 app.listen(process.env.PORT);
+console.log("Listening on Port", process.env.PORT)
 export default app;

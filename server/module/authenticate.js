@@ -36,10 +36,11 @@ async function issueAccessToken(id) {
 function verifyAccessToken(req, resp, callback, token) {
   if (!token)
     token = req.headers['authorization'];
+    console.log(token) 
   jwt.verify(token, SECRET, function (err, userToken) {
     if (err) {
       resp.statusCode = 403;
-      resp.json(util.response("error", "Access denied", 0))
+      resp.json(util.response("error", "invalid token, access denied", 0))
     } else if (callback) {
       callback(userToken);
     }
@@ -53,9 +54,10 @@ function authToken(req, resp, next) {
       resp.statusCode = 403;
       resp.json({
         status: "error",
-        message: "User does not exist"
+        message: "invalid token"
       });
     } else {
+      resp.statusCode = 200;
       resp.json({
         status: 'ok',
         message: 'valid token',

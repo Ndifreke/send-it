@@ -194,7 +194,7 @@ class User {
       }
     }
     //User does not exist
-    message = util.response('error', 'No such User with email ' + signInEmail)
+    message = util.response('error', 'invalid login details')
     return Promise.resolve(message);
   }
 
