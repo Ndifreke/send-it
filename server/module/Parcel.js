@@ -120,7 +120,7 @@ class Parcel {
         updateQuery = `UPDATE parcels SET destination_lng='${value}' WHERE id='${parcelId}'`;
         break;
       case "distance":
-        updateQuery = `UPDATE parcels SET distance='${value.replace(/[a-z\W]/gi,"")}' WHERE id='${parcelId}'`;
+        updateQuery = `UPDATE parcels SET distance='${value}' WHERE id='${parcelId}'`;
         break;
       case "price":
         updateQuery = `UPDATE parcels SET price='${value.replace(/[a-z\W]/gi,"")}' WHERE id='${parcelId}'`;

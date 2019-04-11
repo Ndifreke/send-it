@@ -27,7 +27,7 @@ CREATE TABLE IF NOT EXISTS parcels(
   origin_Lat TEXT ,
   origin_lng TEXT ,
   description TEXT,
-  distance DECIMAL DEFAULT 0,
+  distance TEXT DEFAULT '0 m',
   status VARCHAR(20) DEFAULT 'PENDING',
   weight DECIMAL DEFAULT 0,
   created_At DATE DEFAULT current_date,
